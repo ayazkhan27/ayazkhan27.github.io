@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<!-- saved from url=(0065)https://app.siter.io/account/pg_rPbgoktdKmHTduuyztwXR8J6w/preview -->
+<html class="wf-montserrat-n7-active wf-montserrat-n3-active wf-montserrat-n1-active wf-montserrat-n4-active wf-montserrat-n6-active wf-montserrat-n8-active wf-montserrat-n5-active wf-montserrat-n2-active wf-lato-n6-active wf-lato-n7-active wf-lato-n8-active wf-inter-n1-active wf-inter-n5-active wf-inter-n8-active wf-inter-n6-active wf-inter-n4-active wf-inter-n2-active wf-inter-n7-active wf-inter-n3-active wf-roboto-n1-active wf-roboto-n2-active wf-roboto-n3-active wf-lato-n4-active wf-lato-n5-active wf-ptsans-n1-active wf-ptsans-n2-active wf-ptsans-n3-active wf-ptsans-n4-active wf-ptsans-n5-active wf-roboto-n4-active wf-ptsans-n6-active wf-ptsans-n7-active wf-ptsans-n8-active wf-roboto-n5-active wf-roboto-n6-active wf-roboto-n7-active wf-roboto-n8-active wf-lato-n1-active wf-lato-n2-active wf-lato-n3-active wf-poppins-n1-active wf-poppins-n2-active wf-poppins-n3-active wf-poppins-n4-active wf-poppins-n5-active wf-poppins-n7-active wf-poppins-n6-active wf-poppins-n8-active wf-active"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">  <title>Ayaz Khan's Work Simulations</title> <meta name="description" content="Explore the innovative work and cutting-edge research of Ayaz Khan, an expert in cryptography, data science, and machine learning. Discover projects that push the boundaries of technology and mathematics."> <meta property="og:type" content="article"> <meta property="og:title" content="Ayaz Khan&#39;s Work Simulations"> <meta property="og:description" content="Explore the innovative work and cutting-edge research of Ayaz Khan, an expert in cryptography, data science, and machine learning. Discover projects that push the boundaries of technology and mathematics."> <meta property="og:image" content="https://s3.us-east-1.amazonaws.com/cdn-siter/16d14119-d245-491f-9954-26626f6c2a55-url_og_image.png"> <meta property="twitter:card" content="summary_large_image"> <meta property="twitter:title" content="Ayaz Khan&#39;s Work Simulations"> <meta property="twitter:description" content="Explore the innovative work and cutting-edge research of Ayaz Khan, an expert in cryptography, data science, and machine learning. Discover projects that push the boundaries of technology and mathematics."> <meta property="twitter:image" content="https://s3.us-east-1.amazonaws.com/cdn-siter/16d14119-d245-491f-9954-26626f6c2a55-url_og_image.png"> <script type="text/javascript" id="www-widgetapi-script" src="./Ayaz Khan&#39;s Work Simulations_files/www-widgetapi.js.download" async=""></script><script type="text/javascript" src="./Ayaz Khan&#39;s Work Simulations_files/vendor.ec06f8ec.js.download"></script><script type="text/javascript" src="./Ayaz Khan&#39;s Work Simulations_files/main.ab8a24bd.js.download"></script><script type="text/javascript" id="variables">
+      window.site_id = 'ayaz-khans-work-1716932502739'
+      window.page_id = 'pg_rPbgoktdKmHTduuyztwXR8J6w'
+      window.pages = [{"path":"ayaz-khans-work-simulations","id":"pg_rPbgoktdKmHTduuyztwXR8J6w","home":true}];
+      window.preview = true;
+      window.devices = [{"name":"desktop","title":"Desktop","width":1200}]
+    </script> <link rel="stylesheet" media="screen" href="./Ayaz Khan&#39;s Work Simulations_files/application-47d9c80bc006194ad960d6dc2d9708abf9e984360309d1d501e7acce8017c331.css"><link rel="stylesheet" href="./Ayaz Khan&#39;s Work Simulations_files/css" media="all"> <style hs-beacon="active" data-styled-version="5.1.1"></style><script type="text/javascript" charset="UTF-8" src="./Ayaz Khan&#39;s Work Simulations_files/common.js.download"></script><script type="text/javascript" charset="UTF-8" src="./Ayaz Khan&#39;s Work Simulations_files/util.js.download"></script></head><body class="siter-ready"> <div class="siter-page page_pg_rPbgoktdKmHTduuyztwXR8J6w" style=""> <div class="page-content"> <div class="page-content__inner" id="page-content"><div class="page-content__component text_84be8364-ccbc-4b72-babe-efabb8e80eeb" data-container="grid" id="84be8364-ccbc-4b72-babe-efabb8e80eeb" data-type="text"><div data-wysiwyg="true">Explore the innovative work and cutting-edge research of Ayaz Khan, an expert in cryptography, data science, and machine learning. Discover projects that push the boundaries of technology and mathematics.</div></div><div class="page-content__component text_5557db84-a218-45e6-86ff-428d54a3ac98" data-container="grid" id="5557db84-a218-45e6-86ff-428d54a3ac98" data-type="text"><div data-wysiwyg="true">The "Number Theorem for Cyclic Sequences" project showcases a significant advancement in the field of number theory and its application to cryptography. Ayaz Khan derived and verified a theorem focusing on the minimal digit movement in cyclic sequences, which are crucial for understanding the properties of numbers in modular arithmetic systems. This project involved implementing sophisticated algorithms to generate and analyze cyclic sequences, specifically focusing on the properties of full reptend primes. These primes are known for their extensive repeating decimal expansions, which make them highly suitable for cryptographic applications. By creating detailed visualizations, Ayaz demonstrated the high success rates of the theorem across various tested primes, proving its robustness and potential for securing digital communications.</div></div><div id="8de74056-749b-4739-bdde-6bf163eb437b" class="group_8de74056-749b-4739-bdde-6bf163eb437b page-content__component-group" data-type="group">
+  
+      <div class="page-content__component text_4cb8e935-01b1-447d-8aad-749a9a1ee0b9" data-container="grid" id="4cb8e935-01b1-447d-8aad-749a9a1ee0b9" data-type="text"><div data-wysiwyg="true">Fuelled by an unyielding passion for design and creativity, I have explored a myriad of fields – graphic design, branding, product design, and user experience. My relentless pursuit is to stretch the limits of design and forge profound experiences for clients and users alike. I am dedicated to pushing boundaries and crafting meaningful encounters that resonate.</div></div><div id="053f0e89-3c9e-40f0-b0d3-8d6827a3550f" class="group_053f0e89-3c9e-40f0-b0d3-8d6827a3550f page-content__component-group" data-type="group">
+  
+      <div class="page-content__component text_6ba22c66-5790-4587-a281-7c8f31616b7f" data-container="grid" id="6ba22c66-5790-4587-a281-7c8f31616b7f" data-type="text"><div data-wysiwyg="true">🖌️</div></div><div class="page-content__component text_3ebfa56e-d216-49ce-bc8c-395024da2ef4" data-container="grid" id="3ebfa56e-d216-49ce-bc8c-395024da2ef4" data-type="text"><div data-wysiwyg="true">Project 02</div></div><style>.text_6ba22c66-5790-4587-a281-7c8f31616b7f [data-wysiwyg="true"] {
+  display: table-cell;
+  vertical-align: bottom
+}
+
+
+  
+
+
+.text_6ba22c66-5790-4587-a281-7c8f31616b7f {
+  
+  color: rgba(23.000000528991222, 23.000000528991222, 23.000000528991222, 1);
+  
+}
+
+
+
+
+
+.text_6ba22c66-5790-4587-a281-7c8f31616b7f { top: 1401px;left: 300px;width: 24px;height: 32px;display: table;opacity: 1;font-size: 24px;position: absolute;text-align: left;font-family: Inter;font-weight: 600;line-height: 32px;text-shadow: none;visibility: inherit;letter-spacing: -0.00800000011920929em;box-shadow: none;text-transform: normal;text-decoration: none; }.text_6ba22c66-5790-4587-a281-7c8f31616b7f {
+              left: -moz-calc(50% - 600px + 300px);
+              left: -webkit-calc(50% - 600px + 300px);
+              left: -o-calc(50% - 600px + 300px);
+              left: calc(50% - 600px + 300px)
+            }.text_3ebfa56e-d216-49ce-bc8c-395024da2ef4 [data-wysiwyg="true"] {
+  display: table-cell;
+  vertical-align: bottom
+}
+
+
+  
+
+
+.text_3ebfa56e-d216-49ce-bc8c-395024da2ef4 {
+  
+  color: rgba(23.000000528991222, 23.000000528991222, 23.000000528991222, 1);
+  
+}
+
+
+
+
+
+.text_3ebfa56e-d216-49ce-bc8c-395024da2ef4 { top: 1401px;left: 332px;width: 118px;height: 32px;display: table;opacity: 1;font-size: 24px;position: absolute;text-align: left;font-family: Inter;font-weight: 600;line-height: 32px;text-shadow: none;visibility: inherit;letter-spacing: -0.00800000011920929em;box-shadow: none;text-transform: normal;text-decoration: none; }.text_3ebfa56e-d216-49ce-bc8c-395024da2ef4 {
+              left: -moz-calc(50% - 600px + 332px);
+              left: -webkit-calc(50% - 600px + 332px);
+              left: -o-calc(50% - 600px + 332px);
+              left: calc(50% - 600px + 332px)
+            }</style>
+  
+</div><div data-unit="px" class="page-content__component rectangle_83f18be4-44df-4d21-89b1-2d73e154949b" data-container="grid" id="83f18be4-44df-4d21-89b1-2d73e154949b" data-type="rectangle" style="background-image:url(&#39;https://cdn.siter.io/assets/ast_9v5bBqdcdLfnR15pBx3dtCiKy/c15593a2-72d3-4db3-b7b5-cd6d927ef956.webp&#39;);">
+  <div class="strw-shape"></div>
+  
+</div><style>.text_4cb8e935-01b1-447d-8aad-749a9a1ee0b9 [data-wysiwyg="true"] {
+  display: table-cell;
+  vertical-align: top
+}
+
+
+  
+
+
+.text_4cb8e935-01b1-447d-8aad-749a9a1ee0b9 {
+  
+  color: rgba(23.000000528991222, 23.000000528991222, 23.000000528991222, 1);
+  
+}
+
+
+
+
+
+.text_4cb8e935-01b1-447d-8aad-749a9a1ee0b9 { top: 1449px;left: 300px;width: 620px;height: 110px;display: table;opacity: 1;font-size: 16px;position: absolute;text-align: left;font-family: Inter;font-weight: 400;line-height: 22px;text-shadow: none;visibility: inherit;letter-spacing: -0.00800000011920929em;box-shadow: none;text-transform: normal;text-decoration: none; }.text_4cb8e935-01b1-447d-8aad-749a9a1ee0b9 {
+              left: -moz-calc(50% - 600px + 300px);
+              left: -webkit-calc(50% - 600px + 300px);
+              left: -o-calc(50% - 600px + 300px);
+              left: calc(50% - 600px + 300px)
+            }.group_053f0e89-3c9e-40f0-b0d3-8d6827a3550f { top: 0px;left: 0px;width: 100%;height: 0px;opacity: 1;position: absolute;visibility: inherit;background-color: transparent; }.rectangle_83f18be4-44df-4d21-89b1-2d73e154949b .strw-shape {
+  content: '';
+  position: absolute;
+  top:0;
+  left: 0;
+  right:0;
+  bottom:0;
+  background-image: -webkit-;
+  background-image:    -moz-;
+  background-image:     -ms-;
+  background-image:      -o-;
+  background-image:         ;
+}
+
+.rectangle_83f18be4-44df-4d21-89b1-2d73e154949b:hover .strw-shape, .rectangle_83f18be4-44df-4d21-89b1-2d73e154949b_hover .strw-shape {
+  
+    opacity: 1;
+    background-image: -webkit-;
+    background-image:    -moz-;
+    background-image:     -ms-;
+    background-image:      -o-;
+    background-image:         ;
+  
+}.rectangle_83f18be4-44df-4d21-89b1-2d73e154949b { top: 1599px;left: 220px;width: 780px;border: none;height: 439px;opacity: 1;overflow: hidden;position: absolute;box-shadow: none;visibility: inherit;background-size: cover;background-repeat: no-repeat;background-position: center;border-radius: 4px 4px 4px 4px; }.rectangle_83f18be4-44df-4d21-89b1-2d73e154949b {
+              left: -moz-calc(50% - 600px + 220px);
+              left: -webkit-calc(50% - 600px + 220px);
+              left: -o-calc(50% - 600px + 220px);
+              left: calc(50% - 600px + 220px)
+            }</style>
+  
+</div><div id="8c946a5b-5d46-4ec5-96e8-6f2b605bdac8" class="group_8c946a5b-5d46-4ec5-96e8-6f2b605bdac8 page-content__component-group" data-type="group">
+  
+      <div class="page-content__component text_20cfcfba-ff24-421b-bf4e-83e2221d324b" data-container="grid" id="20cfcfba-ff24-421b-bf4e-83e2221d324b" data-type="text"><div data-wysiwyg="true">Fuelled by an unyielding passion for design and creativity, I have explored a myriad of fields – graphic design, branding, product design, and user experience. My relentless pursuit is to stretch the limits of design and forge profound experiences for clients and users alike. I am dedicated to pushing boundaries and crafting meaningful encounters that resonate.</div></div><div id="2326b08e-f493-46bb-9efc-745d4f3bc616" class="group_2326b08e-f493-46bb-9efc-745d4f3bc616 page-content__component-group" data-type="group">
+  
+      <div class="page-content__component text_2e36b596-9bc1-4d0b-a98d-7297208fe64f" data-container="grid" id="2e36b596-9bc1-4d0b-a98d-7297208fe64f" data-type="text"><div data-wysiwyg="true">👀</div></div><div class="page-content__component text_ff37ec31-5795-450d-ba04-5221e79aa59a" data-container="grid" id="ff37ec31-5795-450d-ba04-5221e79aa59a" data-type="text"><div data-wysiwyg="true">Project 03</div></div><style>.text_2e36b596-9bc1-4d0b-a98d-7297208fe64f [data-wysiwyg="true"] {
+  display: table-cell;
+  vertical-align: bottom
+}
+
+
+  
+
+
+.text_2e36b596-9bc1-4d0b-a98d-7297208fe64f {
+  
+  color: rgba(23.000000528991222, 23.000000528991222, 23.000000528991222, 1);
+  
+}
+
+
+
+
+
+.text_2e36b596-9bc1-4d0b-a98d-7297208fe64f { top: 2158px;left: 300px;width: 24px;height: 32px;display: table;opacity: 1;font-size: 24px;position: absolute;text-align: left;font-family: Inter;font-weight: 600;line-height: 32px;text-shadow: none;visibility: inherit;letter-spacing: -0.00800000011920929em;box-shadow: none;text-transform: normal;text-decoration: none; }.text_2e36b596-9bc1-4d0b-a98d-7297208fe64f {
+              left: -moz-calc(50% - 600px + 300px);
+              left: -webkit-calc(50% - 600px + 300px);
+              left: -o-calc(50% - 600px + 300px);
+              left: calc(50% - 600px + 300px)
+            }.text_ff37ec31-5795-450d-ba04-5221e79aa59a [data-wysiwyg="true"] {
+  display: table-cell;
+  vertical-align: bottom
+}
+
+
+  
+
+
+.text_ff37ec31-5795-450d-ba04-5221e79aa59a {
+  
+  color: rgba(23.000000528991222, 23.000000528991222, 23.000000528991222, 1);
+  
+}
+
+
+
+
+
+.text_ff37ec31-5795-450d-ba04-5221e79aa59a { top: 2158px;left: 332px;width: 119px;height: 32px;display: table;opacity: 1;font-size: 24px;position: absolute;text-align: left;font-family: Inter;font-weight: 600;line-height: 32px;text-shadow: none;visibility: inherit;letter-spacing: -0.00800000011920929em;box-shadow: none;text-transform: normal;text-decoration: none; }.text_ff37ec31-5795-450d-ba04-5221e79aa59a {
+              left: -moz-calc(50% - 600px + 332px);
+              left: -webkit-calc(50% - 600px + 332px);
+              left: -o-calc(50% - 600px + 332px);
+              left: calc(50% - 600px + 332px)
+            }</style>
+  
+</div><div data-unit="px" class="page-content__component rectangle_808a4bd7-8b7a-434d-a5b1-44c027c67cb5" data-container="grid" id="808a4bd7-8b7a-434d-a5b1-44c027c67cb5" data-type="rectangle" style="background-image:url(&#39;https://cdn.siter.io/assets/ast_heqeYmKU7UyJ3ZWUFtt47hbA9/53f59dac-6f66-4a01-a7ab-0365cc996ed2.webp&#39;);">
+  <div class="strw-shape"></div>
+  
+</div><style>.text_20cfcfba-ff24-421b-bf4e-83e2221d324b [data-wysiwyg="true"] {
+  display: table-cell;
+  vertical-align: top
+}
+
+
+  
+
+
+.text_20cfcfba-ff24-421b-bf4e-83e2221d324b {
+  
+  color: rgba(23.000000528991222, 23.000000528991222, 23.000000528991222, 1);
+  
+}
+
+
+
+
+
+.text_20cfcfba-ff24-421b-bf4e-83e2221d324b { top: 2206px;left: 300px;width: 620px;height: 110px;display: table;opacity: 1;font-size: 16px;position: absolute;text-align: left;font-family: Inter;font-weight: 400;line-height: 22px;text-shadow: none;visibility: inherit;letter-spacing: -0.00800000011920929em;box-shadow: none;text-transform: normal;text-decoration: none; }.text_20cfcfba-ff24-421b-bf4e-83e2221d324b {
+              left: -moz-calc(50% - 600px + 300px);
+              left: -webkit-calc(50% - 600px + 300px);
+              left: -o-calc(50% - 600px + 300px);
+              left: calc(50% - 600px + 300px)
+            }.group_2326b08e-f493-46bb-9efc-745d4f3bc616 { top: 0px;left: 0px;width: 100%;height: 0px;opacity: 1;position: absolute;visibility: inherit;background-color: transparent; }.rectangle_808a4bd7-8b7a-434d-a5b1-44c027c67cb5 .strw-shape {
+  content: '';
+  position: absolute;
+  top:0;
+  left: 0;
+  right:0;
+  bottom:0;
+  background-image: -webkit-;
+  background-image:    -moz-;
+  background-image:     -ms-;
+  background-image:      -o-;
+  background-image:         ;
+}
+
+.rectangle_808a4bd7-8b7a-434d-a5b1-44c027c67cb5:hover .strw-shape, .rectangle_808a4bd7-8b7a-434d-a5b1-44c027c67cb5_hover .strw-shape {
+  
+    opacity: 1;
+    background-image: -webkit-;
+    background-image:    -moz-;
+    background-image:     -ms-;
+    background-image:      -o-;
+    background-image:         ;
+  
+}.rectangle_808a4bd7-8b7a-434d-a5b1-44c027c67cb5 { top: 2356px;left: 220px;width: 780px;border: none;height: 439px;opacity: 1;overflow: hidden;position: absolute;box-shadow: none;visibility: inherit;background-size: cover;background-repeat: no-repeat;background-position: center;border-radius: 4px 4px 4px 4px; }.rectangle_808a4bd7-8b7a-434d-a5b1-44c027c67cb5 {
+              left: -moz-calc(50% - 600px + 220px);
+              left: -webkit-calc(50% - 600px + 220px);
+              left: -o-calc(50% - 600px + 220px);
+              left: calc(50% - 600px + 220px)
+            }</style>
+  
+</div><div id="49c1e376-a8ea-464a-b69c-fe7c3a937a71" class="group_49c1e376-a8ea-464a-b69c-fe7c3a937a71 page-content__component-group" data-type="group">
+  
+      <div title="" data-unit="px" data-container="grid" id="2f3f9fe2-5258-429a-aa20-f002865badea" data-type="image" class="page-content__component image_2f3f9fe2-5258-429a-aa20-f002865badea" data-bg="image" style="background-image:url(&#39;https://cdn.siter.io/assets/ast_a989JVcb4QSYKUTvtsLb47rTv/ee7fc9c4-fdad-4ca6-a6c2-d2c20fdeedd5.svg&#39;);">
+  <img class="str-img" src="./Ayaz Khan&#39;s Work Simulations_files/ee7fc9c4-fdad-4ca6-a6c2-d2c20fdeedd5.svg" alt="" style="opacity: 0">
+  <div class="strw-shape"></div>
+  
+</div><div class="page-content__component text_85ee528a-1eb0-4e73-acec-a5816c7195bf" data-container="grid" id="85ee528a-1eb0-4e73-acec-a5816c7195bf" data-type="text"><div data-wysiwyg="true">Available for hire</div></div><div id="c7c044c3-c025-4fc7-9308-639ba6628c33" class="group_c7c044c3-c025-4fc7-9308-639ba6628c33 page-content__component-group" data-type="group">
+  
+      <div data-unit="px" class="page-content__component rectangle_92c59161-a6b2-4818-b770-89ee9f225b42" data-container="grid" id="92c59161-a6b2-4818-b770-89ee9f225b42" data-type="rectangle">
+  <div class="strw-shape"></div>
+  
+</div><div class="page-content__component text_a9edf340-940b-41fd-81e6-b08c87304578" data-container="grid" id="a9edf340-940b-41fd-81e6-b08c87304578" data-type="text"><div data-wysiwyg="true">name@mail.com</div></div><style>.rectangle_92c59161-a6b2-4818-b770-89ee9f225b42 .strw-shape {
+  content: '';
+  position: absolute;
+  top:0;
+  left: 0;
+  right:0;
+  bottom:0;
+  background-image: -webkit-;
+  background-image:    -moz-;
+  background-image:     -ms-;
+  background-image:      -o-;
+  background-image:         ;
+}
+
+.rectangle_92c59161-a6b2-4818-b770-89ee9f225b42:hover .strw-shape, .rectangle_92c59161-a6b2-4818-b770-89ee9f225b42_hover .strw-shape {
+  
+    opacity: 1;
+    background-image: -webkit-;
+    background-image:    -moz-;
+    background-image:     -ms-;
+    background-image:      -o-;
+    background-image:         ;
+  
+}.rectangle_92c59161-a6b2-4818-b770-89ee9f225b42 { top: 2875px;left: 785px;width: 135px;border: 1px solid rgba(180, 214, 253, 1);height: 32px;opacity: 1;overflow: hidden;position: absolute;box-shadow: none;visibility: inherit;background-size: cover;background-repeat: no-repeat;background-position: center;border-radius: 99px 99px 99px 99px; }.rectangle_92c59161-a6b2-4818-b770-89ee9f225b42 {
+              left: -moz-calc(50% - 600px + 785px);
+              left: -webkit-calc(50% - 600px + 785px);
+              left: -o-calc(50% - 600px + 785px);
+              left: calc(50% - 600px + 785px)
+            }.text_a9edf340-940b-41fd-81e6-b08c87304578 [data-wysiwyg="true"] {
+  display: table-cell;
+  vertical-align: bottom
+}
+
+
+  
+
+
+.text_a9edf340-940b-41fd-81e6-b08c87304578 {
+  
+  color: rgba(63.00000004470347, 138.00000697374344, 226.0000017285347, 1);
+  
+}
+
+
+
+
+
+.text_a9edf340-940b-41fd-81e6-b08c87304578 { top: 2881px;left: 797px;width: 111px;height: 20px;display: table;opacity: 1;font-size: 14px;position: absolute;text-align: left;font-family: Inter;font-weight: 500;line-height: 20px;text-shadow: none;visibility: inherit;letter-spacing: -0.0010000000149011613em;box-shadow: none;text-transform: normal;text-decoration: none; }.text_a9edf340-940b-41fd-81e6-b08c87304578 {
+              left: -moz-calc(50% - 600px + 797px);
+              left: -webkit-calc(50% - 600px + 797px);
+              left: -o-calc(50% - 600px + 797px);
+              left: calc(50% - 600px + 797px)
+            }</style>
+  
+</div><style>.image_2f3f9fe2-5258-429a-aa20-f002865badea:before {
+  content: '';
+  position: absolute;
+  top:0;
+  left: 0;
+  right:0;
+  bottom:0;
+
+  background-image: -webkit-;
+  background-image:    -moz-;
+  background-image:     -ms-;
+  background-image:      -o-;
+  background-image:         ;
+}
+
+.image_2f3f9fe2-5258-429a-aa20-f002865badea .str-img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+.image_2f3f9fe2-5258-429a-aa20-f002865badea { top: 2892px;left: 541px;width: 221px;height: 8px;opacity: 1;overflow: hidden;position: absolute;visibility: inherit;background-size: cover;background-image: none;background-repeat: no-repeat;background-position: center;box-shadow: none;border-radius: 0px 0px 0px 0px; }.image_2f3f9fe2-5258-429a-aa20-f002865badea {
+              left: -moz-calc(50% - 600px + 541px);
+              left: -webkit-calc(50% - 600px + 541px);
+              left: -o-calc(50% - 600px + 541px);
+              left: calc(50% - 600px + 541px)
+            }.text_85ee528a-1eb0-4e73-acec-a5816c7195bf [data-wysiwyg="true"] {
+  display: table-cell;
+  vertical-align: bottom
+}
+
+
+  
+
+
+.text_85ee528a-1eb0-4e73-acec-a5816c7195bf {
+  
+  color: rgba(63.00000004470347, 138.00000697374344, 226.0000017285347, 1);
+  
+}
+
+
+
+
+
+.text_85ee528a-1eb0-4e73-acec-a5816c7195bf { top: 2875px;left: 300px;width: 185px;height: 32px;display: table;opacity: 1;font-size: 24px;position: absolute;text-align: left;font-family: Inter;font-weight: 400;line-height: 32px;text-shadow: none;visibility: inherit;letter-spacing: -0.00800000011920929em;box-shadow: none;text-transform: normal;text-decoration: none; }.text_85ee528a-1eb0-4e73-acec-a5816c7195bf {
+              left: -moz-calc(50% - 600px + 300px);
+              left: -webkit-calc(50% - 600px + 300px);
+              left: -o-calc(50% - 600px + 300px);
+              left: calc(50% - 600px + 300px)
+            }.group_c7c044c3-c025-4fc7-9308-639ba6628c33 { top: 0px;left: 0px;width: 100%;height: 0px;opacity: 1;position: absolute;visibility: inherit;background-color: transparent; }</style>
+  
+</div><div id="edf8fe40-ba09-426e-ad74-326601666764" class="group_edf8fe40-ba09-426e-ad74-326601666764 page-content__component-group" data-type="group">
+  
+      <div class="page-content__component text_3f576dfe-d63f-4921-a08f-d666afa4d727" data-container="grid" id="3f576dfe-d63f-4921-a08f-d666afa4d727" data-type="text"><div data-wysiwyg="true">👋</div></div><style>.text_3f576dfe-d63f-4921-a08f-d666afa4d727 [data-wysiwyg="true"] {
+  display: table-cell;
+  vertical-align: bottom
+}
+
+
+  
+
+
+.text_3f576dfe-d63f-4921-a08f-d666afa4d727 {
+  
+  color: rgba(23.000000528991222, 23.000000528991222, 23.000000528991222, 1);
+  
+}
+
+
+
+
+
+.text_3f576dfe-d63f-4921-a08f-d666afa4d727 { top: 127px;left: 289px;width: 30px;height: 38px;display: table;opacity: 1;font-size: 30px;position: absolute;text-align: left;font-family: Inter;font-weight: 600;line-height: 38px;text-shadow: none;visibility: inherit;letter-spacing: -0.00800000011920929em;box-shadow: none;text-transform: normal;text-decoration: none; }.text_3f576dfe-d63f-4921-a08f-d666afa4d727 {
+              left: -moz-calc(50% - 600px + 289px);
+              left: -webkit-calc(50% - 600px + 289px);
+              left: -o-calc(50% - 600px + 289px);
+              left: calc(50% - 600px + 289px)
+            }</style>
+  
+</div><div class="page-content__component text_2bbcd302-4d9f-4332-9901-685db9733407" data-container="grid" id="2bbcd302-4d9f-4332-9901-685db9733407" data-type="text"><div data-wysiwyg="true">Welcome to Ayaz Khan's Project Portfolio</div></div><div id="62115cac-93f6-4046-8333-402cb1111c7f" class="group_62115cac-93f6-4046-8333-402cb1111c7f page-content__component-group" data-type="group">
+  
+      <div class="page-content__component text_4cc1c71c-5270-4be3-ae06-b6f0b64ccc99" data-container="grid" id="4cc1c71c-5270-4be3-ae06-b6f0b64ccc99" data-type="text"><div data-wysiwyg="true">🎨</div></div><div class="page-content__component text_3ad3ccb1-e89e-49db-91f1-c9ff63be3ad8" data-container="grid" id="3ad3ccb1-e89e-49db-91f1-c9ff63be3ad8" data-type="text"><div data-wysiwyg="true">Number Theorem for Cyclic Sequences</div></div><style>.text_4cc1c71c-5270-4be3-ae06-b6f0b64ccc99 [data-wysiwyg="true"] {
+  display: table-cell;
+  vertical-align: bottom
+}
+
+
+  
+
+
+.text_4cc1c71c-5270-4be3-ae06-b6f0b64ccc99 {
+  
+  color: rgba(23.000000528991222, 23.000000528991222, 23.000000528991222, 1);
+  
+}
+
+
+
+
+
+.text_4cc1c71c-5270-4be3-ae06-b6f0b64ccc99 { top: 594px;left: 293px;width: 24px;height: 32px;display: table;opacity: 1;font-size: 24px;position: absolute;text-align: left;font-family: Inter;font-weight: 600;line-height: 32px;text-shadow: none;visibility: inherit;letter-spacing: -0.00800000011920929em;box-shadow: none;text-transform: normal;text-decoration: none; }.text_4cc1c71c-5270-4be3-ae06-b6f0b64ccc99 {
+              left: -moz-calc(50% - 600px + 293px);
+              left: -webkit-calc(50% - 600px + 293px);
+              left: -o-calc(50% - 600px + 293px);
+              left: calc(50% - 600px + 293px)
+            }.text_3ad3ccb1-e89e-49db-91f1-c9ff63be3ad8 [data-wysiwyg="true"] {
+  display: table-cell;
+  vertical-align: bottom
+}
+
+
+  
+
+
+.text_3ad3ccb1-e89e-49db-91f1-c9ff63be3ad8 {
+  
+  color: rgba(23.000000528991222, 23.000000528991222, 23.000000528991222, 1);
+  
+}
+
+
+
+
+
+.text_3ad3ccb1-e89e-49db-91f1-c9ff63be3ad8 { top: 594px;left: 325px;width: 453px;height: 34px;display: table;opacity: 1;font-size: 24px;position: absolute;text-align: left;font-family: Inter;font-weight: 600;line-height: 32px;text-shadow: none;visibility: inherit;letter-spacing: -0.00800000011920929em;box-shadow: none;text-transform: normal;text-decoration: none; }.text_3ad3ccb1-e89e-49db-91f1-c9ff63be3ad8 {
+              left: -moz-calc(50% - 600px + 325px);
+              left: -webkit-calc(50% - 600px + 325px);
+              left: -o-calc(50% - 600px + 325px);
+              left: calc(50% - 600px + 325px)
+            }</style>
+  
+</div><div id="220f9ac9-fadc-4aa1-9809-fc3bb60ea7ac" class="group_220f9ac9-fadc-4aa1-9809-fc3bb60ea7ac page-content__component-group" data-type="group">
+  
+      <div id="e8dc31cc-ac44-4eb4-be9c-dcedb3bfcb7a" class="group_e8dc31cc-ac44-4eb4-be9c-dcedb3bfcb7a page-content__component-group" data-type="group">
+  
+      <div data-unit="px" class="page-content__component rectangle_847f847b-8b06-454b-95d4-12956d6fa4d9" data-container="grid" id="847f847b-8b06-454b-95d4-12956d6fa4d9" data-type="rectangle">
+  <div class="strw-shape"></div>
+  
+</div><div class="page-content__component text_27fc2c6d-a974-42a7-9514-7df10172166e" data-container="grid" id="27fc2c6d-a974-42a7-9514-7df10172166e" data-type="text"><div data-wysiwyg="true"><a class="str-link" data-close-click-outside="true" data-id="link-daa422d3-f089-4572-91af-8ae73c973aec" data-overlay-color="rgba(0, 0, 0, 0.2)" data-popup-position="center" data-type="link" style="font-family:Inter;font-size:14px;font-style:normal;font-weight:500;line-height:20px;text-decoration:none solid #000000;text-transform:none;color:inherit;" href="https://www.linkedin.com/in/ayazkhan27/" data-cke-saved-href="https://www.linkedin.com/in/ayazkhan27/" aria-label="LinkedIn" title="LinkedIn" target="_blank" tab-index="1">LinkedIn</a></div></div><style>.rectangle_847f847b-8b06-454b-95d4-12956d6fa4d9 .strw-shape {
+  content: '';
+  position: absolute;
+  top:0;
+  left: 0;
+  right:0;
+  bottom:0;
+  background-image: -webkit-;
+  background-image:    -moz-;
+  background-image:     -ms-;
+  background-image:      -o-;
+  background-image:         ;
+}
+
+.rectangle_847f847b-8b06-454b-95d4-12956d6fa4d9:hover .strw-shape, .rectangle_847f847b-8b06-454b-95d4-12956d6fa4d9_hover .strw-shape {
+  
+    opacity: 1;
+    background-image: -webkit-;
+    background-image:    -moz-;
+    background-image:     -ms-;
+    background-image:      -o-;
+    background-image:         ;
+  
+}.rectangle_847f847b-8b06-454b-95d4-12956d6fa4d9 { top: 448px;left: 300px;width: 81px;border: 1px solid rgba(223, 223, 223, 1);height: 32px;opacity: 1;overflow: hidden;position: absolute;box-shadow: none;visibility: inherit;background-size: cover;background-repeat: no-repeat;background-position: center;border-radius: 99px 99px 99px 99px; }.rectangle_847f847b-8b06-454b-95d4-12956d6fa4d9 {
+              left: -moz-calc(50% - 600px + 300px);
+              left: -webkit-calc(50% - 600px + 300px);
+              left: -o-calc(50% - 600px + 300px);
+              left: calc(50% - 600px + 300px)
+            }.text_27fc2c6d-a974-42a7-9514-7df10172166e [data-wysiwyg="true"] {
+  display: table-cell;
+  vertical-align: bottom
+}
+
+
+  
+
+
+.text_27fc2c6d-a974-42a7-9514-7df10172166e {
+  
+  color: rgba(0, 221, 255, 1);
+  
+}
+
+
+
+
+
+.text_27fc2c6d-a974-42a7-9514-7df10172166e { top: 454px;left: 312px;width: 57px;height: 20px;display: table;opacity: 1;font-size: 14px;position: absolute;text-align: left;font-family: Inter;font-weight: 500;line-height: 20px;text-shadow: none;visibility: inherit;letter-spacing: -0.0010000000149011613em;box-shadow: none;text-transform: normal;text-decoration: none; }.text_27fc2c6d-a974-42a7-9514-7df10172166e {
+              left: -moz-calc(50% - 600px + 312px);
+              left: -webkit-calc(50% - 600px + 312px);
+              left: -o-calc(50% - 600px + 312px);
+              left: calc(50% - 600px + 312px)
+            }</style>
+  
+</div><div id="d92afee4-a258-424e-8104-e6fea0ce2828" class="group_d92afee4-a258-424e-8104-e6fea0ce2828 page-content__component-group" data-type="group">
+  
+      <div data-unit="px" class="page-content__component rectangle_d0c15ec3-ce0d-4781-8c88-65c18b691669" data-container="grid" id="d0c15ec3-ce0d-4781-8c88-65c18b691669" data-type="rectangle">
+  <div class="strw-shape"></div>
+  
+</div><div class="page-content__component text_aec8c425-0d07-4804-8305-540371fa75d0" data-container="grid" id="aec8c425-0d07-4804-8305-540371fa75d0" data-type="text"><div data-wysiwyg="true">X</div></div><style>.rectangle_d0c15ec3-ce0d-4781-8c88-65c18b691669 .strw-shape {
+  content: '';
+  position: absolute;
+  top:0;
+  left: 0;
+  right:0;
+  bottom:0;
+  background-image: -webkit-;
+  background-image:    -moz-;
+  background-image:     -ms-;
+  background-image:      -o-;
+  background-image:         ;
+}
+
+.rectangle_d0c15ec3-ce0d-4781-8c88-65c18b691669:hover .strw-shape, .rectangle_d0c15ec3-ce0d-4781-8c88-65c18b691669_hover .strw-shape {
+  
+    opacity: 1;
+    background-image: -webkit-;
+    background-image:    -moz-;
+    background-image:     -ms-;
+    background-image:      -o-;
+    background-image:         ;
+  
+}.rectangle_d0c15ec3-ce0d-4781-8c88-65c18b691669 { top: 448px;left: 397px;width: 72px;border: 1px solid rgba(223, 223, 223, 1);height: 32px;opacity: 1;overflow: hidden;position: absolute;box-shadow: none;visibility: inherit;background-size: cover;background-repeat: no-repeat;background-position: center;border-radius: 99px 99px 99px 99px; }.rectangle_d0c15ec3-ce0d-4781-8c88-65c18b691669 {
+              left: -moz-calc(50% - 600px + 397px);
+              left: -webkit-calc(50% - 600px + 397px);
+              left: -o-calc(50% - 600px + 397px);
+              left: calc(50% - 600px + 397px)
+            }.text_aec8c425-0d07-4804-8305-540371fa75d0 [data-wysiwyg="true"] {
+  display: table-cell;
+  vertical-align: bottom
+}
+
+
+  
+
+
+.text_aec8c425-0d07-4804-8305-540371fa75d0 {
+  
+  color: rgba(0, 0, 0, 1);
+  
+}
+
+
+
+
+
+.text_aec8c425-0d07-4804-8305-540371fa75d0 { top: 454px;left: 409px;width: 48px;height: 20px;display: table;opacity: 1;font-size: 14px;position: absolute;text-align: center;font-family: Inter;font-weight: 500;line-height: 20px;text-shadow: none;visibility: inherit;letter-spacing: -0.0010000000149011613em;box-shadow: none;text-transform: normal;text-decoration: none; }.text_aec8c425-0d07-4804-8305-540371fa75d0 {
+              left: -moz-calc(50% - 600px + 409px);
+              left: -webkit-calc(50% - 600px + 409px);
+              left: -o-calc(50% - 600px + 409px);
+              left: calc(50% - 600px + 409px)
+            }</style>
+  
+</div><div id="81996d20-d944-4625-80f5-b4f8f81d5d37" class="group_81996d20-d944-4625-80f5-b4f8f81d5d37 page-content__component-group" data-type="group">
+  
+      <div data-unit="px" class="page-content__component rectangle_82697d8e-9f3e-4061-9b32-9765b825c94b" data-container="grid" id="82697d8e-9f3e-4061-9b32-9765b825c94b" data-type="rectangle">
+  <div class="strw-shape"></div>
+  
+</div><div class="page-content__component text_d4293eab-828d-4222-987c-db7ce049b48f" data-container="grid" id="d4293eab-828d-4222-987c-db7ce049b48f" data-type="text"><div data-wysiwyg="true">Instagram</div></div><style>.rectangle_82697d8e-9f3e-4061-9b32-9765b825c94b .strw-shape {
+  content: '';
+  position: absolute;
+  top:0;
+  left: 0;
+  right:0;
+  bottom:0;
+  background-image: -webkit-;
+  background-image:    -moz-;
+  background-image:     -ms-;
+  background-image:      -o-;
+  background-image:         ;
+}
+
+.rectangle_82697d8e-9f3e-4061-9b32-9765b825c94b:hover .strw-shape, .rectangle_82697d8e-9f3e-4061-9b32-9765b825c94b_hover .strw-shape {
+  
+    opacity: 1;
+    background-image: -webkit-;
+    background-image:    -moz-;
+    background-image:     -ms-;
+    background-image:      -o-;
+    background-image:         ;
+  
+}.rectangle_82697d8e-9f3e-4061-9b32-9765b825c94b { top: 448px;left: 485px;width: 92px;border: 1px solid rgba(223, 223, 223, 1);height: 32px;opacity: 1;overflow: hidden;position: absolute;box-shadow: none;visibility: inherit;background-size: cover;background-repeat: no-repeat;background-position: center;border-radius: 99px 99px 99px 99px; }.rectangle_82697d8e-9f3e-4061-9b32-9765b825c94b {
+              left: -moz-calc(50% - 600px + 485px);
+              left: -webkit-calc(50% - 600px + 485px);
+              left: -o-calc(50% - 600px + 485px);
+              left: calc(50% - 600px + 485px)
+            }.text_d4293eab-828d-4222-987c-db7ce049b48f [data-wysiwyg="true"] {
+  display: table-cell;
+  vertical-align: bottom
+}
+
+
+  
+
+
+.text_d4293eab-828d-4222-987c-db7ce049b48f {
+  
+  color: rgba(227, 0, 255, 1);
+  
+}
+
+
+
+
+
+.text_d4293eab-828d-4222-987c-db7ce049b48f { top: 454px;left: 497px;width: 68px;height: 20px;display: table;opacity: 1;font-size: 14px;position: absolute;text-align: left;font-family: Inter;font-weight: 500;line-height: 20px;text-shadow: none;visibility: inherit;letter-spacing: -0.0010000000149011613em;box-shadow: none;text-transform: normal;text-decoration: none; }.text_d4293eab-828d-4222-987c-db7ce049b48f {
+              left: -moz-calc(50% - 600px + 497px);
+              left: -webkit-calc(50% - 600px + 497px);
+              left: -o-calc(50% - 600px + 497px);
+              left: calc(50% - 600px + 497px)
+            }</style>
+  
+</div><div id="a72b399f-e5f4-49ed-8b62-e2c83c2bbba8" class="group_a72b399f-e5f4-49ed-8b62-e2c83c2bbba8 page-content__component-group" data-type="group">
+  
+      <div data-unit="px" class="page-content__component rectangle_1ad7895e-82ef-4f80-8313-865247da3e40" data-container="grid" id="1ad7895e-82ef-4f80-8313-865247da3e40" data-type="rectangle">
+  <div class="strw-shape"></div>
+  
+</div><div class="page-content__component text_45bac88d-966e-464c-ab84-c13372ca287e" data-container="grid" id="45bac88d-966e-464c-ab84-c13372ca287e" data-type="text"><div data-wysiwyg="true"><a aria-label="https://github.com/ayazkhan27" class="str-link" data-close-click-outside="true" data-id="link-e49af1de-6aa0-4bc2-9cad-72f098003560" data-overlay-color="rgba(0, 0, 0, 0.2)" data-popup-position="center" data-type="page" href="https://app.siter.io/account/pg_rPbgoktdKmHTduuyztwXR8J6w/preview" style="font-family:Inter;font-size:14px;font-style:normal;font-weight:500;line-height:20px;text-decoration:none solid #000000;text-transform:none;color:inherit;" target="_blank" title="https://github.com/ayazkhan27" tab-index="2">GitHub</a></div></div><style>.rectangle_1ad7895e-82ef-4f80-8313-865247da3e40 .strw-shape {
+  content: '';
+  position: absolute;
+  top:0;
+  left: 0;
+  right:0;
+  bottom:0;
+  background-image: -webkit-;
+  background-image:    -moz-;
+  background-image:     -ms-;
+  background-image:      -o-;
+  background-image:         ;
+}
+
+.rectangle_1ad7895e-82ef-4f80-8313-865247da3e40:hover .strw-shape, .rectangle_1ad7895e-82ef-4f80-8313-865247da3e40_hover .strw-shape {
+  
+    opacity: 1;
+    background-image: -webkit-;
+    background-image:    -moz-;
+    background-image:     -ms-;
+    background-image:      -o-;
+    background-image:         ;
+  
+}.rectangle_1ad7895e-82ef-4f80-8313-865247da3e40 { top: 448px;left: 593px;width: 83px;border: 1px solid rgba(223, 223, 223, 1);height: 32px;opacity: 1;overflow: hidden;position: absolute;box-shadow: none;visibility: inherit;background-size: cover;background-repeat: no-repeat;background-position: center;border-radius: 99px 99px 99px 99px; }.rectangle_1ad7895e-82ef-4f80-8313-865247da3e40 {
+              left: -moz-calc(50% - 600px + 593px);
+              left: -webkit-calc(50% - 600px + 593px);
+              left: -o-calc(50% - 600px + 593px);
+              left: calc(50% - 600px + 593px)
+            }.text_45bac88d-966e-464c-ab84-c13372ca287e [data-wysiwyg="true"] {
+  display: table-cell;
+  vertical-align: bottom
+}
+
+
+  
+
+
+.text_45bac88d-966e-464c-ab84-c13372ca287e {
+  
+  color: rgba(185, 185, 185, 1);
+  
+}
+
+
+
+
+
+.text_45bac88d-966e-464c-ab84-c13372ca287e { top: 454px;left: 605px;width: 59px;height: 20px;display: table;opacity: 1;font-size: 14px;position: absolute;text-align: center;font-family: Inter;font-weight: 500;line-height: 20px;text-shadow: none;visibility: inherit;letter-spacing: -0.0010000000149011613em;box-shadow: none;text-transform: normal;text-decoration: none; }.text_45bac88d-966e-464c-ab84-c13372ca287e {
+              left: -moz-calc(50% - 600px + 605px);
+              left: -webkit-calc(50% - 600px + 605px);
+              left: -o-calc(50% - 600px + 605px);
+              left: calc(50% - 600px + 605px)
+            }</style>
+  
+</div><div id="07c37753-d765-4106-9c3e-db9904fa4dce" class="group_07c37753-d765-4106-9c3e-db9904fa4dce page-content__component-group" data-type="group">
+  
+      <div data-unit="px" class="page-content__component rectangle_90ae294f-bc16-47b7-b209-e458498f44f7" data-container="grid" id="90ae294f-bc16-47b7-b209-e458498f44f7" data-type="rectangle">
+  <div class="strw-shape"></div>
+  
+</div><div class="page-content__component text_7dc30be8-f3ab-4d61-9f9a-e096f6455ced" data-container="grid" id="7dc30be8-f3ab-4d61-9f9a-e096f6455ced" data-type="text"><div data-wysiwyg="true"><a class="str-link" data-close-click-outside="true" data-id="link-69862ceb-4b6a-4826-94bb-5ddac7f6d4b9" data-overlay-color="rgba(0, 0, 0, 0.2)" data-popup-position="center" data-subject="" data-type="email" href="mailto:khanayaz2727@gmail.com?subject=&amp;body=" style="font-family:Inter;font-size:14px;font-style:normal;font-weight:500;line-height:20px;text-decoration:none solid #000000;text-transform:none;color:inherit;" target="_blank" tab-index="0">khanayaz2727@gmail.com</a></div></div><style>.rectangle_90ae294f-bc16-47b7-b209-e458498f44f7 .strw-shape {
+  content: '';
+  position: absolute;
+  top:0;
+  left: 0;
+  right:0;
+  bottom:0;
+  background-image: -webkit-;
+  background-image:    -moz-;
+  background-image:     -ms-;
+  background-image:      -o-;
+  background-image:         ;
+}
+
+.rectangle_90ae294f-bc16-47b7-b209-e458498f44f7:hover .strw-shape, .rectangle_90ae294f-bc16-47b7-b209-e458498f44f7_hover .strw-shape {
+  
+    opacity: 1;
+    background-image: -webkit-;
+    background-image:    -moz-;
+    background-image:     -ms-;
+    background-image:      -o-;
+    background-image:         ;
+  
+}.rectangle_90ae294f-bc16-47b7-b209-e458498f44f7 { top: 448px;left: 692px;border: 1px solid rgba(180, 214, 253, 1);height: 31px;opacity: 1;overflow: hidden;position: absolute;box-shadow: none;visibility: inherit;background-size: cover;background-repeat: no-repeat;background-position: center;border-radius: 99px 99px 99px 99px; }.rectangle_90ae294f-bc16-47b7-b209-e458498f44f7 {
+              left: -moz-calc(50% - 600px + 692px);
+              left: -webkit-calc(50% - 600px + 692px);
+              left: -o-calc(50% - 600px + 692px);
+              left: calc(50% - 600px + 692px)
+            }.text_7dc30be8-f3ab-4d61-9f9a-e096f6455ced [data-wysiwyg="true"] {
+  display: table-cell;
+  vertical-align: bottom
+}
+
+
+  
+
+
+.text_7dc30be8-f3ab-4d61-9f9a-e096f6455ced {
+  
+  color: rgba(0, 138, 56, 1);
+  
+}
+
+
+
+
+
+.text_7dc30be8-f3ab-4d61-9f9a-e096f6455ced { top: 453px;left: 703px;width: 180px;height: 17px;display: table;opacity: 1;font-size: 14px;position: absolute;text-align: left;font-family: Inter;font-weight: 500;line-height: 20px;text-shadow: none;visibility: inherit;letter-spacing: -0.0010000000149011613em;box-shadow: none;text-transform: normal;text-decoration: none; }.text_7dc30be8-f3ab-4d61-9f9a-e096f6455ced {
+              left: -moz-calc(50% - 600px + 703px);
+              left: -webkit-calc(50% - 600px + 703px);
+              left: -o-calc(50% - 600px + 703px);
+              left: calc(50% - 600px + 703px)
+            }</style>
+  
+</div><style>.group_e8dc31cc-ac44-4eb4-be9c-dcedb3bfcb7a { top: 0px;left: 0px;width: 100%;height: 0px;opacity: 1;position: absolute;visibility: inherit;background-color: transparent; }.group_d92afee4-a258-424e-8104-e6fea0ce2828 { top: 0px;left: 0px;width: 100%;height: 0px;opacity: 1;position: absolute;visibility: inherit;background-color: transparent; }.group_81996d20-d944-4625-80f5-b4f8f81d5d37 { top: 0px;left: 0px;width: 100%;height: 0px;opacity: 1;position: absolute;visibility: inherit;background-color: transparent; }.group_a72b399f-e5f4-49ed-8b62-e2c83c2bbba8 { top: 0px;left: 0px;width: 100%;height: 0px;opacity: 1;position: absolute;visibility: inherit;background-color: transparent; }.group_07c37753-d765-4106-9c3e-db9904fa4dce { top: 0px;left: 0px;width: 100%;height: 0px;opacity: 1;position: absolute;visibility: inherit;background-color: transparent; }</style>
+  
+</div><div id="2ac53a12-968d-466d-ad04-b3fbd63c3877" class="group_2ac53a12-968d-466d-ad04-b3fbd63c3877 page-content__component-group" data-type="group">
+  
+      <div data-unit="px" class="page-content__component rectangle_52b00d01-6bff-4d54-afbd-628d0622633f" data-container="grid" id="52b00d01-6bff-4d54-afbd-628d0622633f" data-type="rectangle">
+  <div class="strw-shape"></div>
+  
+</div><div class="page-content__component text_7df65531-d462-4b4b-8c94-a5a38fdb74ad" data-container="grid" id="7df65531-d462-4b4b-8c94-a5a38fdb74ad" data-type="text"><div data-wysiwyg="true">Available for hire</div></div><style>.rectangle_52b00d01-6bff-4d54-afbd-628d0622633f .strw-shape {
+  content: '';
+  position: absolute;
+  top:0;
+  left: 0;
+  right:0;
+  bottom:0;
+  background-image: -webkit-linear-gradient(to right, rgba(242, 255, 245, 1), rgba(242, 255, 245, 1));
+  background-image:    -moz-linear-gradient(to right, rgba(242, 255, 245, 1), rgba(242, 255, 245, 1));
+  background-image:     -ms-linear-gradient(to right, rgba(242, 255, 245, 1), rgba(242, 255, 245, 1));
+  background-image:      -o-linear-gradient(to right, rgba(242, 255, 245, 1), rgba(242, 255, 245, 1));
+  background-image:         linear-gradient(to right, rgba(242, 255, 245, 1), rgba(242, 255, 245, 1));
+}
+
+.rectangle_52b00d01-6bff-4d54-afbd-628d0622633f:hover .strw-shape, .rectangle_52b00d01-6bff-4d54-afbd-628d0622633f_hover .strw-shape {
+  
+    opacity: 1;
+    background-image: -webkit-;
+    background-image:    -moz-;
+    background-image:     -ms-;
+    background-image:      -o-;
+    background-image:         ;
+  
+}.rectangle_52b00d01-6bff-4d54-afbd-628d0622633f { top: 135px;left: 141px;width: 116px;border: 1px solid rgba(168, 231, 152, 1);height: 28px;opacity: 1;overflow: hidden;position: absolute;box-shadow: none;visibility: inherit;background-size: cover;background-repeat: no-repeat;background-position: center;border-radius: 99px 99px 99px 99px; }.rectangle_52b00d01-6bff-4d54-afbd-628d0622633f {
+              left: -moz-calc(50% - 600px + 141px);
+              left: -webkit-calc(50% - 600px + 141px);
+              left: -o-calc(50% - 600px + 141px);
+              left: calc(50% - 600px + 141px)
+            }.text_7df65531-d462-4b4b-8c94-a5a38fdb74ad [data-wysiwyg="true"] {
+  display: table-cell;
+  vertical-align: bottom
+}
+
+
+  
+
+
+.text_7df65531-d462-4b4b-8c94-a5a38fdb74ad {
+  
+  color: rgba(70.84081470966339, 147.68749594688416, 10.461197756230833, 1);
+  
+}
+
+
+
+
+
+.text_7df65531-d462-4b4b-8c94-a5a38fdb74ad { top: 139px;left: 151px;width: 96px;height: 20px;display: table;opacity: 1;font-size: 12px;position: absolute;text-align: left;font-family: Inter;font-weight: 500;line-height: 20px;text-shadow: none;visibility: inherit;letter-spacing: -0.0010000000149011613em;box-shadow: none;text-transform: normal;text-decoration: none; }.text_7df65531-d462-4b4b-8c94-a5a38fdb74ad {
+              left: -moz-calc(50% - 600px + 151px);
+              left: -webkit-calc(50% - 600px + 151px);
+              left: -o-calc(50% - 600px + 151px);
+              left: calc(50% - 600px + 151px)
+            }</style>
+  
+</div><div class="page-content__component text_e271f0a8-98df-4ee3-bce2-0fba6d26d75d" data-container="grid" id="e271f0a8-98df-4ee3-bce2-0fba6d26d75d" data-type="text"><div data-wysiwyg="true">Featured Projects</div></div><div data-unit="px" class="page-content__component rectangle_84a2419d-6cb1-427f-9c7a-afec2b4e4ab2" data-container="grid" id="84a2419d-6cb1-427f-9c7a-afec2b4e4ab2" data-type="rectangle" style="background-image:url(&#39;https://cdn.siter.io/assets/ast_BXZwXY9vvAfhY4DeVVNTD1zhe/48a9798c-3120-4fa1-93cd-40eada05639b.webp&#39;);">
+  <div class="strw-shape"></div>
+  
+</div><style>.text_84be8364-ccbc-4b72-babe-efabb8e80eeb [data-wysiwyg="true"] {
+  display: table-cell;
+  vertical-align: top
+}
+
+
+  
+
+
+.text_84be8364-ccbc-4b72-babe-efabb8e80eeb {
+  
+  color: rgba(23.000000528991222, 23.000000528991222, 23.000000528991222, 1);
+  
+}
+
+
+
+
+
+.text_84be8364-ccbc-4b72-babe-efabb8e80eeb { top: 192px;left: 300px;width: 620px;height: 224px;display: table;opacity: 1;font-size: 24px;position: absolute;text-align: left;font-family: Inter;font-weight: 400;line-height: 32px;text-shadow: none;visibility: inherit;letter-spacing: -0.00800000011920929em;box-shadow: none;text-transform: normal;text-decoration: none; }.text_84be8364-ccbc-4b72-babe-efabb8e80eeb {
+              left: -moz-calc(50% - 600px + 300px);
+              left: -webkit-calc(50% - 600px + 300px);
+              left: -o-calc(50% - 600px + 300px);
+              left: calc(50% - 600px + 300px)
+            }.text_5557db84-a218-45e6-86ff-428d54a3ac98 [data-wysiwyg="true"] {
+  display: table-cell;
+  vertical-align: top
+}
+
+
+  
+
+
+.text_5557db84-a218-45e6-86ff-428d54a3ac98 {
+  
+  color: rgba(23.000000528991222, 23.000000528991222, 23.000000528991222, 1);
+  
+}
+
+
+
+
+
+.text_5557db84-a218-45e6-86ff-428d54a3ac98 { top: 641px;left: 296px;width: 620px;height: 110px;display: table;opacity: 1;font-size: 16px;position: absolute;text-align: left;font-family: Inter;font-weight: 400;line-height: 22px;text-shadow: none;visibility: inherit;letter-spacing: -0.00800000011920929em;box-shadow: none;text-transform: normal;text-decoration: none; }.text_5557db84-a218-45e6-86ff-428d54a3ac98 {
+              left: -moz-calc(50% - 600px + 296px);
+              left: -webkit-calc(50% - 600px + 296px);
+              left: -o-calc(50% - 600px + 296px);
+              left: calc(50% - 600px + 296px)
+            }.group_8de74056-749b-4739-bdde-6bf163eb437b { top: 0px;left: 0px;width: 100%;height: 0px;opacity: 1;position: absolute;visibility: inherit;background-color: transparent; }.group_8c946a5b-5d46-4ec5-96e8-6f2b605bdac8 { top: 0px;left: 0px;width: 100%;height: 0px;opacity: 1;position: absolute;visibility: inherit;background-color: transparent; }.group_49c1e376-a8ea-464a-b69c-fe7c3a937a71 { top: 0px;left: 0px;width: 100%;height: 0px;opacity: 1;position: absolute;visibility: inherit;background-color: transparent; }.group_edf8fe40-ba09-426e-ad74-326601666764 { top: 0px;left: 0px;width: 100%;height: 0px;opacity: 1;position: absolute;visibility: inherit;background-color: transparent; }.text_2bbcd302-4d9f-4332-9901-685db9733407 [data-wysiwyg="true"] {
+  display: table-cell;
+  vertical-align: bottom
+}
+
+
+  
+
+
+.text_2bbcd302-4d9f-4332-9901-685db9733407 {
+  
+  color: rgba(23.000000528991222, 23.000000528991222, 23.000000528991222, 1);
+  
+}
+
+
+
+
+
+.text_2bbcd302-4d9f-4332-9901-685db9733407 { top: 129px;left: 339px;width: 621px;height: 41px;display: table;opacity: 1;font-size: 30px;position: absolute;text-align: left;font-family: Inter;font-weight: 600;line-height: 38px;text-shadow: none;visibility: inherit;letter-spacing: -0.00800000011920929em;box-shadow: none;text-transform: normal;text-decoration: none; }.text_2bbcd302-4d9f-4332-9901-685db9733407 {
+              left: -moz-calc(50% - 600px + 339px);
+              left: -webkit-calc(50% - 600px + 339px);
+              left: -o-calc(50% - 600px + 339px);
+              left: calc(50% - 600px + 339px)
+            }.group_62115cac-93f6-4046-8333-402cb1111c7f { top: 0px;left: 0px;width: 100%;height: 0px;opacity: 1;position: absolute;visibility: inherit;background-color: transparent; }.group_220f9ac9-fadc-4aa1-9809-fc3bb60ea7ac { top: 0px;left: 0px;width: 100%;height: 0px;opacity: 1;position: absolute;visibility: inherit;background-color: transparent; }.group_2ac53a12-968d-466d-ad04-b3fbd63c3877 { top: 0px;left: 0px;width: 100%;height: 0px;opacity: 1;position: absolute;visibility: inherit;background-color: transparent; }.text_e271f0a8-98df-4ee3-bce2-0fba6d26d75d [data-wysiwyg="true"] {
+  display: table-cell;
+  vertical-align: bottom
+}
+
+
+  
+
+
+.text_e271f0a8-98df-4ee3-bce2-0fba6d26d75d {
+  
+  color: rgba(119.0000005066395, 119.0000005066395, 119.0000005066395, 1);
+  
+}
+
+
+
+
+
+.text_e271f0a8-98df-4ee3-bce2-0fba6d26d75d { top: 572px;left: 300px;width: 118px;height: 20px;display: table;opacity: 1;font-size: 14px;position: absolute;text-align: left;font-family: Inter;font-weight: 500;line-height: 20px;text-shadow: none;visibility: inherit;letter-spacing: -0.0010000000149011613em;box-shadow: none;text-transform: normal;text-decoration: none; }.text_e271f0a8-98df-4ee3-bce2-0fba6d26d75d {
+              left: -moz-calc(50% - 600px + 300px);
+              left: -webkit-calc(50% - 600px + 300px);
+              left: -o-calc(50% - 600px + 300px);
+              left: calc(50% - 600px + 300px)
+            }.rectangle_84a2419d-6cb1-427f-9c7a-afec2b4e4ab2 .strw-shape {
+  content: '';
+  position: absolute;
+  top:0;
+  left: 0;
+  right:0;
+  bottom:0;
+  background-image: -webkit-;
+  background-image:    -moz-;
+  background-image:     -ms-;
+  background-image:      -o-;
+  background-image:         ;
+}
+
+.rectangle_84a2419d-6cb1-427f-9c7a-afec2b4e4ab2:hover .strw-shape, .rectangle_84a2419d-6cb1-427f-9c7a-afec2b4e4ab2_hover .strw-shape {
+  
+    opacity: 1;
+    background-image: -webkit-;
+    background-image:    -moz-;
+    background-image:     -ms-;
+    background-image:      -o-;
+    background-image:         ;
+  
+}.rectangle_84a2419d-6cb1-427f-9c7a-afec2b4e4ab2 { top: 896px;left: 221px;width: 780px;border: none;height: 439px;opacity: 1;overflow: hidden;position: absolute;box-shadow: none;visibility: inherit;background-size: cover;background-repeat: no-repeat;background-position: center;border-radius: 4px 4px 4px 4px; }.rectangle_84a2419d-6cb1-427f-9c7a-afec2b4e4ab2 {
+              left: -moz-calc(50% - 600px + 221px);
+              left: -webkit-calc(50% - 600px + 221px);
+              left: -o-calc(50% - 600px + 221px);
+              left: calc(50% - 600px + 221px)
+            }</style><style>.page_pg_rPbgoktdKmHTduuyztwXR8J6w { height: 3000px; }.nl-desktop {
+          display: inline;
+          content: normal;
+        }body {
+  background-image: -webkit-linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 1));
+  background-image:    -moz-linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 1));
+  background-image:     -ms-linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 1));
+  background-image:      -o-linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 1));
+  background-image:         linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 1));
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top center;
+}
+
+.page_pg_rPbgoktdKmHTduuyztwXR8J6w {
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+}</style><script>const siterEffects = {}</script></div> <div class="page-content__inner-fixed" id="page-content-fixed"></div> </div> <div class="notification-container" style="display: none"> <span> <div class="notification"> <svg onclick="EditorPageWidgets.notifyHide()" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" style="position: absolute; top: 20px; right: 22px;"> <g opacity="0.5"> <path d="M15 1L1 15" stroke="#333333"></path> <path d="M1 1L15 15" stroke="#333333"></path> </g> </svg> <div class="notification-message" role="alert"> <h4 class="title"></h4> <div class="message"></div> </div> </div> </span> </div> </div><div id="beacon-container"><div class="hsds-beacon"><div class="Beacon"><div class="ContainerGradient-sc-62zoy-0 dkxqZi"></div><div class="ContainerFramecss__WrapperUI-sc-d7rzhh-0 hkMsit BeaconContainer is-configDisplayRight is-manual"><button data-cy="beacon-close-button" class="CloseButtoncss__ButtonUI-sc-1phd8sn-1 jwGyQJ c-BeaconCloseButton is-rendered"><div class="CloseButtoncss__ButtonContentUI-sc-1phd8sn-0 TSYHV"><span class="CloseButtoncss__LabelUI-sc-1phd8sn-2 hVAllm c-BeaconCloseButton__label"><span data-cy="Text" class="Textstyles__TextUI-sc-jkyxsz-0 frCWgc c-Text is-span is-13 is-default">Close</span></span><span aria-hidden="true" role="img" data-cy="Icon" class="Iconstyles__IconUI-sc-35yr6s-0 bGxvTN c-Icon is-noInteract is-iconName-cross-small is-24 c-BeaconCloseButton__iconClose" data-icon-name="cross-small" title="cross-small"><span class="c-Icon__icon"><span data-cy="BaseIcon" class="baseIcon__BaseIconUI-sc-q7zmye-0 izECQ"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M13.414 12l2.293-2.293a.999.999 0 1 0-1.414-1.414L12 10.586 9.707 8.293a.999.999 0 1 0-1.414 1.414L10.586 12l-2.293 2.293a.999.999 0 1 0 1.414 1.414L12 13.414l2.293 2.293a.997.997 0 0 0 1.414 0 .999.999 0 0 0 0-1.414L13.414 12z"></path></svg></span></span><span data-cy="VisuallyHidden" class="VisuallyHiddenstyles__VisuallyHiddenUI-sc-15ba650-0 bxIaSx c-VisuallyHidden">cross-small</span></span></div></button></div></div></div></div> <script src="./Ayaz Khan&#39;s Work Simulations_files/jquery-3.6.0.min.js.download"></script> <script src="./Ayaz Khan&#39;s Work Simulations_files/iframe_api"></script> <script src="./Ayaz Khan&#39;s Work Simulations_files/player.js.download"></script> <script src="./Ayaz Khan&#39;s Work Simulations_files/js"></script> <script src="./Ayaz Khan&#39;s Work Simulations_files/anime.min-8439bccbde3050f7ead5acddedd897fd20bc7203a3ba209514f38680f12ebab0.js.download"></script> <link rel="stylesheet" href="./Ayaz Khan&#39;s Work Simulations_files/magnific-popup-2f7f85183333c84a42262b5f8a4f8251958809e29fa31c65bdee53c4603502cd.css"> <script src="./Ayaz Khan&#39;s Work Simulations_files/magnific-popup.min-df6ae89414437784941d5dc0ada892e5c27aac18e58676eba0fa1b5e6b288b74.js.download"></script> <script src="./Ayaz Khan&#39;s Work Simulations_files/swiper.min-dceaef8c10f13b33b0328938ecbe2b8c3f0d03f28ae56a8864c767b8a2d21caf.js.download"></script> <link rel="stylesheet" href="./Ayaz Khan&#39;s Work Simulations_files/swiper-18be8aa3f032dded246a45a9da3dafdb3934e39e1f1b3b623c1722f3152b2788.css"> <script src="./Ayaz Khan&#39;s Work Simulations_files/application-895b83572e26c4971f6a817af391da339c3eb6d1d133a782db332f1a15fa6b16.js.download"></script> </body></html>
