@@ -1,44 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ayaz Khan's Project Portfolio</title>
-    <link rel="stylesheet" href="web.css">
-</head>
+<html>
 <body>
-    <header>
-        <h1>Ayaz Khan's Project Portfolio</h1>
-    </header>
-    <nav>
-        <ul>
-            <li><a href="#number-theorem">Number Theorem for Cyclic Sequences</a></li>
-            <li><a href="#khan-encryption">Khan Encryption Algorithm</a></li>
-            <li><a href="#sentiment-analysis">Sentiment Analysis Tool</a></li>
-        </ul>
-    </nav>
-    <main>
-        <section id="number-theorem">
-            <h2>Number Theorem for Cyclic Sequences</h2>
-            <p>
-                The "Number Theorem for Cyclic Sequences" project showcases a significant advancement in the field of number theory and its application to cryptography. Ayaz Khan derived and verified a theorem focusing on the minimal digit movement in cyclic sequences, which are crucial for understanding the properties of numbers in modular arithmetic systems. This project involved implementing sophisticated algorithms to generate and analyze cyclic sequences, specifically focusing on the properties of full reptend primes. These primes are known for their extensive repeating decimal expansions, which make them highly suitable for cryptographic applications. By creating detailed visualizations, Ayaz demonstrated the high success rates of the theorem across various tested primes, proving its robustness and potential for securing digital communications.
-            </p>
-        </section>
-        <section id="khan-encryption">
-            <h2>Khan Encryption Algorithm</h2>
-            <p>
-                In the "Khan Encryption Algorithm" project, Ayaz Khan developed an innovative and powerful encryption method designed to enhance the security of data transmission. This algorithm leverages the mathematical principles of cyclic sequences, integrating them into a cryptographic framework that promises both security and efficiency. Ayaz meticulously designed the algorithm to optimize key input processes and encryption parameters, ensuring a seamless user experience while maintaining high security standards. The Khan Encryption Algorithm stands out for its novel approach to cryptography, which not only addresses current security needs but also anticipates future challenges in data protection. This project highlights Ayaz's ability to blend theoretical mathematics with practical applications, creating a tool that is both innovative and indispensable for secure communications.
-            </p>
-        </section>
-        <section id="sentiment-analysis">
-            <h2>Sentiment Analysis Tool</h2>
-            <p>
-                The "Sentiment Analysis Tool" project is a testament to Ayaz Khan's expertise in natural language processing and machine learning. Developed using Python and advanced NLP techniques, this tool is capable of accurately classifying the sentiment of text data, making it invaluable for applications in social media monitoring, customer feedback analysis, and more. Ayaz implemented various machine learning algorithms to achieve high accuracy in sentiment classification, surpassing many existing tools in performance. Additionally, he created compelling data visualizations to present the analysis results, making the insights easily interpretable for stakeholders. This project not only showcases Ayaz's technical skills but also his ability to develop practical solutions that meet real-world needs in data science and machine learning.
-            </p>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2024 Ayaz Khan. All rights reserved.</p>
-    </footer>
+<h1>Hello World</h1>
+<p>I'm hosted with GitHub Pages.</p>
 </body>
 </html>
