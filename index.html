@@ -20,12 +20,13 @@
 
             if (response.ok) {
                 const data = await response.json();
-                if (data.ciphertext && data.decryptedMessage) {
-                    document.getElementById('ciphertext').value = data.ciphertext;
-                    document.getElementById('decryptedMessage').value = data.decryptedMessage;
+                if (data.encryptionTime && data.decryptionTime && data.decryptedText) {
+                    document.getElementById('encryptionTime').value = data.encryptionTime;
+                    document.getElementById('decryptionTime').value = data.decryptionTime;
+                    document.getElementById('decryptedText').value = data.decryptedText;
                 } else {
-                    console.error("Missing ciphertext or decryptedMessage in response:", data);
-                    alert("Error: Missing ciphertext or decryptedMessage in response");
+                    console.error("Missing encryptionTime, decryptionTime, or decryptedText in response:", data);
+                    alert("Error: Missing encryptionTime, decryptionTime, or decryptedText in response");
                 }
             } else {
                 const errorText = await response.text();
@@ -56,12 +57,16 @@
             </div>
             <button onclick="encryptMessage()" class="btn btn-primary btn-block">Encrypt</button>
             <div class="form-group mt-3">
-                <label for="ciphertext">Encrypted message:</label>
-                <textarea id="ciphertext" name="ciphertext" class="form-control" rows="3" readonly></textarea>
+                <label for="encryptionTime">Encryption Time (seconds):</label>
+                <input type="text" id="encryptionTime" name="encryptionTime" class="form-control" readonly>
             </div>
             <div class="form-group">
-                <label for="decryptedMessage">Decrypted message:</label>
-                <textarea id="decryptedMessage" name="decryptedMessage" class="form-control" rows="3" readonly></textarea>
+                <label for="decryptionTime">Decryption Time (seconds):</label>
+                <input type="text" id="decryptionTime" name="decryptionTime" class="form-control" readonly>
+            </div>
+            <div class="form-group">
+                <label for="decryptedText">Decrypted Text:</label>
+                <textarea id="decryptedText" name="decryptedText" class="form-control" rows="3" readonly></textarea>
             </div>
         </section>
     </main>
