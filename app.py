@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify, render_template
 import importlib.util
 import sys
+import logging
 from decimal import Decimal, getcontext
 
 # Import the khan_encryption_2.py module
@@ -13,6 +14,9 @@ spec.loader.exec_module(ke)
 
 app = Flask(__name__)
 
+# Setup logging
+logging.basicConfig(level=logging.DEBUG)
+
 def generate_cyclic_sequence(prime, length):
     getcontext().prec = length + 10
     decimal_expansion = str(Decimal(1) / Decimal(prime))[2:]
@@ -24,25 +28,35 @@ def index():
 
 @app.route('/encrypt', methods=['POST'])
 def encrypt():
-    data = request.json
-    plaintext = data['plaintext']
-    start_position = data['startPosition']
-    superposition_sequence_length = data['superpositionLength']
+    app.logger.debug("Encrypt endpoint hit")
+    try:
+        data = request.json
+        app.logger.debug(f"Received data: {data}")
 
-    prime = 1051
-    cyclic_sequence = generate_cyclic_sequence(prime, prime - 1)
-    
-    ciphertext, char_to_movement, movement_to_char, z_value, superposition_sequence, iv, salt, z_layers = ke.khan_encrypt(
-        plaintext, prime, cyclic_sequence, start_position, superposition_sequence_length
-    )
-    decrypted_text = ke.khan_decrypt(
-        ciphertext, char_to_movement, movement_to_char, z_value, superposition_sequence, iv, salt, z_layers, prime, start_position, cyclic_sequence
-    )
+        plaintext = data['plaintext']
+        start_position = data['startPosition']
+        superposition_sequence_length = data['superpositionLength']
 
-    return jsonify({
-        'ciphertext': ''.join(map(str, ciphertext)),
-        'decryptedMessage': decrypted_text
-    })
+        prime = 1051
+        cyclic_sequence = generate_cyclic_sequence(prime, prime - 1)
+        
+        ciphertext, char_to_movement, movement_to_char, z_value, superposition_sequence, iv, salt, z_layers = ke.khan_encrypt(
+            plaintext, prime, cyclic_sequence, start_position, superposition_sequence_length
+        )
+        decrypted_text = ke.khan_decrypt(
+            ciphertext, char_to_movement, movement_to_char, z_value, superposition_sequence, iv, salt, z_layers, prime, start_position, cyclic_sequence
+        )
+
+        response = {
+            'ciphertext': ''.join(map(str, ciphertext)),
+            'decryptedMessage': decrypted_text
+        }
+        app.logger.debug(f"Response: {response}")
+
+        return jsonify(response)
+    except Exception as e:
+        app.logger.error(f"Error during encryption: {e}")
+        return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
