@@ -1,13 +1,11 @@
-/* General styles */
 body {
     font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
     background-color: #f4f4f9;
     color: #333;
+    margin: 0;
+    padding: 0;
 }
 
-/* Header styles */
 header {
     background-color: #4a90e2;
     color: white;
@@ -21,7 +19,6 @@ header h1 {
     font-size: 2.5em;
 }
 
-/* Main content styles */
 main {
     max-width: 800px;
     margin: 20px auto;
@@ -75,7 +72,6 @@ textarea[readonly] {
     word-wrap: break-word;
 }
 
-/* Footer styles */
 footer {
     text-align: center;
     padding: 20px;

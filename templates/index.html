@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ayaz Khan's Encryption Demo</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <script>
         async function encryptMessage() {
@@ -28,42 +29,40 @@
     </script>
 </head>
 <body>
-    <header>
+    <header class="bg-primary text-white text-center py-5">
         <h1>Ayaz Khan's Encryption Demo</h1>
     </header>
-    <main>
-        <section>
+    <main class="container my-5">
+        <section class="mb-5">
             <h2>Challenge</h2>
             <p>Decrypt the following ciphertext to win the prize:</p>
-            <textarea id="challengeCiphertext" readonly>
+            <textarea id="challengeCiphertext" class="form-control" rows="5" readonly>
                 39836940398374903983590639834802398327123983413439832956398353793983295639833962398359063983316239836857398350963983322939833162398352163983509639836826398332293983271239836162398374903983263239834977398361623983749039836206398350963983682639834134398347323983748639832956398350963983263239837486398323323983509639836826398374863983391639835379398341943983473239837486398381703983345439833162398374903983748639835188398352563983271239834885398328743983749039835096398351883983748639836162398374903983748639835240398324523983463839835240398369423983406439834064398354023983537939834064398374863983749039835096398374863983525639834977398361623983620639834447398374863983488539835096398326323983271239837486398328743983271239836206398336103983345439834732
             </textarea>
             <p>If you crack the algorithm and see the hidden message, you'll win $50!</p>
         </section>
-        <section>
+        <section class="mb-5">
             <h2>Try the Khan Encryption Algorithm</h2>
-            <div>
+            <div class="form-group">
                 <label for="plaintext">Enter your message:</label>
-                <input type="text" id="plaintext" name="plaintext">
+                <input type="text" id="plaintext" name="plaintext" class="form-control">
             </div>
-            <div>
+            <div class="form-group">
                 <label for="startPosition">Starting dial position (integer between 1 and 1050):</label>
-                <input type="number" id="startPosition" name="startPosition">
+                <input type="number" id="startPosition" name="startPosition" class="form-control">
             </div>
-            <div>
+            <div class="form-group">
                 <label for="superpositionLength">Superposition sequence length (even integer):</label>
-                <input type="number" id="superpositionLength" name="superpositionLength">
+                <input type="number" id="superpositionLength" name="superpositionLength" class="form-control">
             </div>
-            <div>
-                <button onclick="encryptMessage()">Encrypt</button>
-            </div>
-            <div>
+            <button onclick="encryptMessage()" class="btn btn-primary btn-block">Encrypt</button>
+            <div class="form-group mt-3">
                 <label for="ciphertext">Encrypted message:</label>
-                <textarea id="ciphertext" name="ciphertext" readonly></textarea>
+                <textarea id="ciphertext" name="ciphertext" class="form-control" rows="3" readonly></textarea>
             </div>
-            <div>
+            <div class="form-group">
                 <label for="decryptedMessage">Decrypted message:</label>
-                <textarea id="decryptedMessage" name="decryptedMessage" readonly></textarea>
+                <textarea id="decryptedMessage" name="decryptedMessage" class="form-control" rows="3" readonly></textarea>
             </div>
         </section>
         <section>
@@ -75,7 +74,7 @@
             </ul>
         </section>
     </main>
-    <footer>
+    <footer class="bg-dark text-white text-center py-3">
         <p>&copy; 2024 Ayaz Khan. All rights reserved.</p>
     </footer>
 </body>
