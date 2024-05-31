@@ -1,54 +1,45 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, request, jsonify
 import random
 import string
-from hashlib import sha256
 from decimal import Decimal, getcontext
-from khan_encryption_2 import khan_encrypt, khan_decrypt, generate_plaintext, initialize_dictionaries
+import importlib.util
+import sys
+
+# Import the khan_encryption2 module from a specific path
+module_name = "khan_encryption2"
+file_path = "khan_encryption_2.py"
+
+spec = importlib.util.spec_from_file_location(module_name, file_path)
+ke = importlib.util.module_from_spec(spec)
+sys.modules[module_name] = ke
+spec.loader.exec_module(ke)
 
 app = Flask(__name__)
 
 def generate_cyclic_sequence(prime, length):
-    getcontext().prec = length + 10  # Set precision to required length + buffer
-    decimal_expansion = str(Decimal(1) / Decimal(prime))[2:]  # Get decimal expansion as string, skipping '0.'
+    getcontext().prec = length + 10
+    decimal_expansion = str(Decimal(1) / Decimal(prime))[2:]
     return decimal_expansion[:length]
-
-def calculate_z_value(superposition_sequence_length):
-    return superposition_sequence_length - 1
-
-@app.route('/')
-def home():
-    return render_template('index.html')
 
 @app.route('/encrypt', methods=['POST'])
 def encrypt():
     data = request.json
     plaintext = data['plaintext']
-    start_position = int(data['start_position'])
-    superposition_sequence_length = int(data['superposition_sequence_length'])
+    start_position = data['startPosition']
+    superposition_sequence_length = data['superpositionLength']
 
-    cyclic_prime = 1051
-    cyclic_sequence = generate_cyclic_sequence(cyclic_prime, cyclic_prime - 1)
-
-    # Generate superposition sequence
-    superposition_sequence = [random.choice([-1, 1]) for _ in range(superposition_sequence_length)]
-    while sum(superposition_sequence) != 0:
-        superposition_sequence = [random.choice([-1, 1]) for _ in range(superposition_sequence_length)]
-
-    # Calculate z_value
-    z_value = calculate_z_value(superposition_sequence_length)
-
-    # Encrypt the plaintext
-    ciphertext, char_to_movement, movement_to_char, z_value, superposition_sequence, iv, salt, z_layers = khan_encrypt(
-        plaintext, cyclic_prime, cyclic_sequence, start_position, superposition_sequence_length
+    prime = 1051
+    cyclic_sequence = generate_cyclic_sequence(prime, prime - 1)
+    
+    ciphertext, char_to_movement, movement_to_char, z_value, superposition_sequence, iv, salt, z_layers = ke.khan_encrypt(
+        plaintext, prime, cyclic_sequence, start_position, superposition_sequence_length
     )
-
-    # Decrypt the ciphertext to verify
-    decrypted_text = khan_decrypt(
-        ciphertext, char_to_movement, movement_to_char, z_value, superposition_sequence, iv, salt, z_layers, cyclic_prime, start_position, cyclic_sequence
+    decrypted_text = ke.khan_decrypt(
+        ciphertext, char_to_movement, movement_to_char, z_value, superposition_sequence, iv, salt, z_layers, prime, start_position, cyclic_sequence
     )
 
     return jsonify({
-        'ciphertext': ciphertext,
+        'ciphertext': ''.join(map(str, ciphertext)),
         'decryptedMessage': decrypted_text
     })
 

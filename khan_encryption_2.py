@@ -114,14 +114,6 @@ def assign_z_layer(movement, salt):
     hashed = sha256(f"{movement}{salt}".encode()).hexdigest()
     return (int(hashed, 16) % 10) + 1
 
-def initialize_dictionaries():
-    all_chars = string.ascii_letters + string.digits + string.punctuation + ' '
-    prime = 1051  # Adjust according to your requirements
-    char_to_movement = {char: (i % prime) for i, char in enumerate(all_chars)}
-    movement_to_char = {(i % prime): char for i, char in enumerate(all_chars)}
-    return char_to_movement, movement_to_char
-
-
 def khan_encrypt(plaintext, prime, cyclic_sequence, start_position, superposition_sequence_length):
     char_to_movement, movement_to_char = generate_keys(prime, cyclic_sequence, start_position)
     superposition_sequence = generate_superposition_sequence(superposition_sequence_length)

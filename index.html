@@ -3,63 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Khan Encryption Algorithm Demo</title>
+    <title>Ayaz Khan's Project Portfolio</title>
     <link rel="stylesheet" href="web.css">
+    <script>
+        async function encryptMessage() {
+            const plaintext = document.getElementById('plaintext').value;
+            const startPosition = parseInt(document.getElementById('startPosition').value);
+            const superpositionLength = parseInt(document.getElementById('superpositionLength').value);
+
+            const response = await fetch('/encrypt', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ plaintext, startPosition, superpositionLength })
+            });
+
+            const data = await response.json();
+            document.getElementById('ciphertext').value = data.ciphertext;
+            document.getElementById('decryptedMessage').value = data.decryptedMessage;
+        }
+    </script>
 </head>
 <body>
     <header>
-        <h1>Khan Encryption Algorithm Demo</h1>
+        <h1>Ayaz Khan's Project Portfolio</h1>
     </header>
+    <nav>
+        <ul>
+            <li><a href="#number-theorem">Number Theorem for Cyclic Sequences</a></li>
+            <li><a href="#khan-encryption">Khan Encryption Algorithm</a></li>
+            <li><a href="#sentiment-analysis">Sentiment Analysis Tool</a></li>
+        </ul>
+    </nav>
     <main>
-        <section id="encryption-demo">
-            <h2>Encrypt Your Message</h2>
-            <form id="encryptionForm">
+        <section id="khan-encryption">
+            <h2>Khan Encryption Algorithm</h2>
+            <h3>Try the Khan Encryption Algorithm</h3>
+            <div>
                 <label for="plaintext">Enter your message:</label>
-                <textarea id="plaintext" name="plaintext" required></textarea><br>
-
-                <label for="start_position">Enter the starting dial position (integer between 1 and 1050):</label>
-                <input type="number" id="start_position" name="start_position" min="1" max="1050" required><br>
-
-                <label for="superposition_sequence_length">Enter the superposition sequence length (even integer):</label>
-                <input type="number" id="superposition_sequence_length" name="superposition_sequence_length" min="2" step="2" required><br>
-
-                <button type="button" onclick="encryptMessage()">Encrypt</button>
-            </form>
-
-            <h3>Encrypted Message:</h3>
-            <p id="ciphertext"></p>
-
-            <h3>Decrypted Message:</h3>
-            <p id="decryptedMessage"></p>
+                <input type="text" id="plaintext" name="plaintext">
+            </div>
+            <div>
+                <label for="startPosition">Starting dial position (integer between 1 and 1050):</label>
+                <input type="number" id="startPosition" name="startPosition">
+            </div>
+            <div>
+                <label for="superpositionLength">Superposition sequence length (even integer):</label>
+                <input type="number" id="superpositionLength" name="superpositionLength">
+            </div>
+            <div>
+                <button onclick="encryptMessage()">Encrypt</button>
+            </div>
+            <div>
+                <label for="ciphertext">Encrypted message:</label>
+                <textarea id="ciphertext" name="ciphertext" readonly></textarea>
+            </div>
+            <div>
+                <label for="decryptedMessage">Decrypted message:</label>
+                <textarea id="decryptedMessage" name="decryptedMessage" readonly></textarea>
+            </div>
         </section>
     </main>
     <footer>
         <p>&copy; 2024 Ayaz Khan. All rights reserved.</p>
     </footer>
-
-    <script>
-        async function encryptMessage() {
-            const plaintext = document.getElementById('plaintext').value;
-            const start_position = document.getElementById('start_position').value;
-            const superposition_sequence_length = document.getElementById('superposition_sequence_length').value;
-
-            const response = await fetch('/encrypt', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    plaintext: plaintext,
-                    start_position: start_position,
-                    superposition_sequence_length: superposition_sequence_length
-                })
-            });
-
-            const data = await response.json();
-
-            document.getElementById('ciphertext').textContent = data.ciphertext;
-            document.getElementById('decryptedMessage').textContent = data.decryptedMessage;
-        }
-    </script>
 </body>
 </html>
