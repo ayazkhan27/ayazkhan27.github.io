@@ -12,6 +12,10 @@
             const startPosition = parseInt(document.getElementById('startPosition').value);
             const superpositionLength = parseInt(document.getElementById('superpositionLength').value);
 
+            console.log("Sending request to /encrypt with data:", {
+                plaintext, startPosition, superpositionLength
+            });
+
             const response = await fetch('/encrypt', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -20,10 +24,13 @@
 
             if (response.ok) {
                 const data = await response.json();
+                console.log("Received response from /encrypt:", data);
                 document.getElementById('ciphertext').value = data.ciphertext;
                 document.getElementById('decryptedMessage').value = data.decryptedMessage;
             } else {
-                console.error('Failed to fetch /encrypt:', response.statusText);
+                const errorText = await response.text();
+                console.error('Failed to fetch /encrypt:', response.statusText, errorText);
+                alert(`Error: ${response.statusText}`);
             }
         }
     </script>
