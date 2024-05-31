@@ -43,13 +43,13 @@ def encrypt():
         ciphertext, char_to_movement, movement_to_char, z_value, superposition_sequence, iv, salt, z_layers = ke.khan_encrypt(
             plaintext, prime, cyclic_sequence, start_position, superposition_sequence_length
         )
-        decrypted_text = ke.khan_decrypt(
-            ciphertext, char_to_movement, movement_to_char, z_value, superposition_sequence, iv, salt, z_layers, prime, start_position, cyclic_sequence
-        )
-
+        
         response = {
             'ciphertext': ''.join(map(str, ciphertext)),
-            'decryptedMessage': decrypted_text
+            'startPosition': start_position,
+            'superpositionLength': superposition_sequence_length,
+            'prime': prime,
+            'cyclicSequence': cyclic_sequence
         }
         app.logger.debug(f"Response: {response}")
 
@@ -60,3 +60,5 @@ def encrypt():
 
 if __name__ == '__main__':
     app.run(debug=True)
+    app.run(debug=True)
+

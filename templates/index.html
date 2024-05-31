@@ -7,6 +7,16 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <script>
+        // Asynchronously encrypts a message using the Khan encryption algorithm.
+        // 
+        // Retrieves the plaintext message, starting dial position, and superposition
+        // sequence length from the corresponding HTML input elements. Sends a POST
+        // request to the '/encrypt' endpoint with the message data as JSON in the
+        // request body. If the response is successful, sets the encrypted message
+        // and decrypted message in the corresponding HTML textareas. If the response
+        // is not successful, displays an error message.
+        //
+        // Returns: None
         async function encryptMessage() {
             const plaintext = document.getElementById('plaintext').value;
             const startPosition = parseInt(document.getElementById('startPosition').value);
@@ -25,8 +35,13 @@
             if (response.ok) {
                 const data = await response.json();
                 console.log("Received response from /encrypt:", data);
-                document.getElementById('ciphertext').value = data.ciphertext;
-                document.getElementById('decryptedMessage').value = data.decryptedMessage;
+                if (data.ciphertext && data.decryptedMessage) {
+                    document.getElementById('ciphertext').value = data.ciphertext;
+                    document.getElementById('decryptedMessage').value = data.decryptedMessage;
+                } else {
+                    console.error("Missing ciphertext or decryptedMessage in response:", data);
+                    alert("Error: Missing ciphertext or decryptedMessage in response");
+                }
             } else {
                 const errorText = await response.text();
                 console.error('Failed to fetch /encrypt:', response.statusText, errorText);
@@ -44,7 +59,7 @@
             <h2>Challenge</h2>
             <p>Decrypt the following ciphertext to win the prize:</p>
             <textarea id="challengeCiphertext" class="form-control" rows="5" readonly>
-                39836940398374903983590639834802398327123983413439832956398353793983295639833962398359063983316239836857398350963983322939833162398352163983509639836826398332293983271239836162398374903983263239834977398361623983749039836206398350963983682639834134398347323983748639832956398350963983263239837486398323323983509639836826398374863983391639835379398341943983473239837486398381703983345439833162398374903983748639835188398352563983271239834885398328743983749039835096398351883983748639836162398374903983748639835240398324523983463839835240398369423983406439834064398354023983537939834064398374863983749039835096398374863983525639834977398361623983620639834447398374863983488539835096398326323983271239837486398328743983271239836206398336103983345439834732
+                398369403983749039835906398348023983271239834134398329563983537939832956398339623983590639833162398368573983509639833229398331623983521639835096398368263983322939832712398361623983749039832632398349773983616239837490398362063983509639835188398352563983271239834885398328743983749039835096398351883983748639836162398374903983748639835240398324523983463839835240398369423983406439834064398354023983537939834064398374863983749039835096398374863983525639834977398361623983620639834447398374863983488539835096398326323983271239837486398328743983271239836206398336103983345439834732398374863983817039833454
             </textarea>
             <p>If you crack the algorithm and see the hidden message, you'll win $50!</p>
         </section>
@@ -76,13 +91,5 @@
             <h2>Other Projects</h2>
             <ul>
                 <li><a href="https://ia.cr/2024/825">Project 1</a></li>
-                <li><a href="https://www.researchgate.net/publication/380167604_Sentiment_Gummy_Worm_A_New_Scoring_Model_for_Anonymous_Data_Incorporating_Decay_Factors_and_Buffer_Ratios?_sg%5B0%5D=x-lpk3AxAMPUjaD-ZfLKjL1FNXjv5RkkhxqwR9gPPUpNvwuI9tgbTvFw71sUwwCdwuw_RMNpNBGSY7inIu1yCw_tGrP3fJ6yUGJmBrY2.E2d19zwcZEsmHFsNE2v3g6tHEhSvR6ljV72WZGU-BHP-PBhN-uERGBHy_d-12jCPFTSRHoI_Z4tJbEWPA0O4PQ&_tp=eyJjb250ZXh0Ijp7ImZpcnN0UGFnZSI6ImhvbWUiLCJwYWdlIjoicHJvZmlsZSIsInBvc2l0aW9uIjoicGFnZUNvbnRlbnQifX0">Project 2</a></li>
-                <li><a href="https://www.researchgate.net/publication/380932578_The_Motion_Theorems_Seen_In_Full_Reptend_Prime_Numbers_And_Their_Cyclic_Sequence?_sg%5B0%5D=x-lpk3AxAMPUjaD-ZfLKjL1FNXjv5RkkhxqwR9gPPUpNvwuI9tgbTvFw71sUwwCdwuw_RMNpNBGSY7inIu1yCw_tGrP3fJ6yUGJmBrY2.E2d19zwcZEsmHFsNE2v3g6tHEhSvR6ljV72WZGU-BHP-PBhN-uERGBHy_d-12jCPFTSRHoI_Z4tJbEWPA0O4PQ&_tp=eyJjb250ZXh0Ijp7ImZpcnN0UGFnZSI6ImhvbWUiLCJwYWdlIjoicHJvZmlsZSIsInBvc2l0aW9uIjoicGFnZUNvbnRlbnQifX0">Project 3</a></li>
-            </ul>
-        </section>
-    </main>
-    <footer class="bg-dark text-white text-center py-3">
-        <p>&copy; 2024 Ayaz Khan. All rights reserved.</p>
-    </footer>
-</body>
-</html>
+                <li><a href="https://www.researchgate.net/publication/380167604_Sentiment_Gummy_Worm_A_New_Scoring_Model_for_Anonymous_Data_Incorporating_Decay_Factors_and_Buffer_Ratios?_sg%5B0%5D=x-lpk3AxAMPUjaD-ZfLKjL1FNXjv5RkkhxqwR9gPPUpNvwuI9tgbTvFw71sUwwCdwuw_RMNpNBGSY7inIu1yCw_tGrP3fJ6yUGJmBrY2.E2d19zwcZEsmHFsNE2v3g6tHEhSvR6ljV72WZGU-BHP-PBhN-uERGBHy_d-12jCP
+
