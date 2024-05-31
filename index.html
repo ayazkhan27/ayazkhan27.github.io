@@ -3,42 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ayaz Khan's Project Portfolio</title>
+    <title>Khan Encryption Algorithm Demo</title>
     <link rel="stylesheet" href="web.css">
 </head>
 <body>
     <header>
-        <h1>Ayaz Khan's Project Portfolio</h1>
+        <h1>Khan Encryption Algorithm Demo</h1>
     </header>
-    <nav>
-        <ul>
-            <li><a href="#number-theorem">Number Theorem for Cyclic Sequences</a></li>
-            <li><a href="#khan-encryption">Khan Encryption Algorithm</a></li>
-            <li><a href="#sentiment-analysis">Sentiment Analysis Tool</a></li>
-        </ul>
-    </nav>
     <main>
-        <section id="number-theorem">
-            <h2>Number Theorem for Cyclic Sequences</h2>
-            <p>
-                The "Number Theorem for Cyclic Sequences" project showcases a significant advancement in the field of number theory and its application to cryptography. Ayaz Khan derived and verified a theorem focusing on the minimal digit movement in cyclic sequences, which are crucial for understanding the properties of numbers in modular arithmetic systems. This project involved implementing sophisticated algorithms to generate and analyze cyclic sequences, specifically focusing on the properties of full reptend primes. These primes are known for their extensive repeating decimal expansions, which make them highly suitable for cryptographic applications. By creating detailed visualizations, Ayaz demonstrated the high success rates of the theorem across various tested primes, proving its robustness and potential for securing digital communications. For more details, please visit the <a href="https://www.researchgate.net/publication/380932578_The_Motion_Theorems_Seen_In_Full_Reptend_Prime_Numbers_And_Their_Cyclic_Sequence?_sg%5B0%5D=5FuDprUaQUystjEFfLhza6ONmFMDUS8SoREFbQFVG3ajblDtvUrlWDHRYo7OHE3R01BtLC4HgKG9r0-7q116H7nvn4cWbKm3MNadPuaH.yRHMygyaqzwrUrGEdP4YrWfIiRASO8CC274vBhXeWmZRZp5Lu-tNj7eYX1TKzpK-SLnyRNcbLdJLMcvtV8Vi2Q&_tp=eyJjb250ZXh0Ijp7ImZpcnN0UGFnZSI6ImhvbWUiLCJwYWdlIjoicHJvZmlsZSIsInByZXZpb3VzUGFnZSI6InByb2ZpbGUiLCJwb3NpdGlvbiI6InBhZ2VDb250ZW50In19">research publication</a>.
-            </p>
-        </section>
-        <section id="khan-encryption">
-            <h2>Khan Encryption Algorithm</h2>
-            <p>
-                In the "Khan Encryption Algorithm" project, Ayaz Khan developed an innovative and powerful encryption method designed to enhance the security of data transmission. This algorithm leverages the mathematical principles of cyclic sequences, integrating them into a cryptographic framework that promises both security and efficiency. Ayaz meticulously designed the algorithm to optimize key input processes and encryption parameters, ensuring a seamless user experience while maintaining high security standards. The Khan Encryption Algorithm stands out for its novel approach to cryptography, which not only addresses current security needs but also anticipates future challenges in data protection. This project highlights Ayaz's ability to blend theoretical mathematics with practical applications, creating a tool that is both innovative and indispensable for secure communications. For more details, please visit the <a href="https://www.researchgate.net/publication/380932213_KHAN_Encryption_Algorithm_Leveraging_Full_Reptend_Primes?_sg%5B0%5D=5FuDprUaQUystjEFfLhza6ONmFMDUS8SoREFbQFVG3ajblDtvUrlWDHRYo7OHE3R01BtLC4HgKG9r0-7q116H7nvn4cWbKm3MNadPuaH.yRHMygyaqzwrUrGEdP4YrWfIiRASO8CC274vBhXeWmZRZp5Lu-tNj7eYX1TKzpK-SLnyRNcbLdJLMcvtV8Vi2Q&_tp=eyJjb250ZXh0Ijp7ImZpcnN0UGFnZSI6ImhvbWUiLCJwYWdlIjoicHJvZmlsZSIsInByZXZpb3VzUGFnZSI6InByb2ZpbGUiLCJwb3NpdGlvbiI6InBhZ2VDb250ZW50In19">research publication</a>.
-            </p>
-        </section>
-        <section id="sentiment-analysis">
-            <h2>Sentiment Analysis Tool</h2>
-            <p>
-                The "Sentiment Analysis Tool" project is a testament to Ayaz Khan's expertise in natural language processing and machine learning. Developed using Python and advanced NLP techniques, this tool is capable of accurately classifying the sentiment of text data, making it invaluable for applications in social media monitoring, customer feedback analysis, and more. Ayaz implemented various machine learning algorithms to achieve high accuracy in sentiment classification, surpassing many existing tools in performance. Additionally, he created compelling data visualizations to present the analysis results, making the insights easily interpretable for stakeholders. This project not only showcases Ayaz's technical skills but also his ability to develop practical solutions that meet real-world needs in data science and machine learning. For more details, please visit the <a href="https://www.researchgate.net/publication/380167604_Sentiment_Gummy_Worm_A_New_Scoring_Model_for_Anonymous_Data_Incorporating_Decay_Factors_and_Buffer_Ratios?_sg%5B0%5D=fQHViyYKFXYeRys5b-bxZIcXsFiQQRqtkMbBGNSvPblKyexYi3jKyLTXlFJjR4LJ0djPLA_zDBIEsbQGxQ4039_z0xYGmCFANAmGxGX5.gOqnsrc0yIzdP_S6wvKoAQ2DgqJ7w9ILAP5VKIz9EM6x80gjFBYGjN7H6sas0gRySNzv46bOSkcu8LzKT7bUBQ&_tp=eyJjb250ZXh0Ijp7ImZpcnN0UGFnZSI6ImhvbWUiLCJwYWdlIjoicHJvZmlsZSIsInBvc2l0aW9uIjoicGFnZUNvbnRlbnQifX0">research publication</a>.
-            </p>
+        <section id="encryption-demo">
+            <h2>Encrypt Your Message</h2>
+            <form id="encryptionForm">
+                <label for="plaintext">Enter your message:</label>
+                <textarea id="plaintext" name="plaintext" required></textarea><br>
+
+                <label for="start_position">Enter the starting dial position (integer between 1 and 1050):</label>
+                <input type="number" id="start_position" name="start_position" min="1" max="1050" required><br>
+
+                <label for="superposition_sequence_length">Enter the superposition sequence length (even integer):</label>
+                <input type="number" id="superposition_sequence_length" name="superposition_sequence_length" min="2" step="2" required><br>
+
+                <button type="button" onclick="encryptMessage()">Encrypt</button>
+            </form>
+
+            <h3>Encrypted Message:</h3>
+            <p id="ciphertext"></p>
+
+            <h3>Decrypted Message:</h3>
+            <p id="decryptedMessage"></p>
         </section>
     </main>
     <footer>
         <p>&copy; 2024 Ayaz Khan. All rights reserved.</p>
     </footer>
+
+    <script>
+        async function encryptMessage() {
+            const plaintext = document.getElementById('plaintext').value;
+            const start_position = document.getElementById('start_position').value;
+            const superposition_sequence_length = document.getElementById('superposition_sequence_length').value;
+
+            const response = await fetch('/encrypt', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    plaintext: plaintext,
+                    start_position: start_position,
+                    superposition_sequence_length: superposition_sequence_length
+                })
+            });
+
+            const data = await response.json();
+
+            document.getElementById('ciphertext').textContent = data.ciphertext;
+            document.getElementById('decryptedMessage').textContent = data.decryptedMessage;
+        }
+    </script>
 </body>
 </html>
