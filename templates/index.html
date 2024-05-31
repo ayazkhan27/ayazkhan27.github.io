@@ -107,7 +107,7 @@
                 <label for="superpositionLength">Superposition sequence length (even integer):</label>
                 <input type="number" id="superpositionLength" name="superpositionLength" class="form-control">
             </div>
-            <button onclick="encryptMessage()" class="btn btn-primary btn-block">Encrypt</button>
+            <button id="encryptButton" class="btn btn-primary btn-block">Encrypt</button>
             <div class="form-group mt-3">
                 <label for="ciphertext">Encrypted message:</label>
                 <textarea id="ciphertext" name="ciphertext" class="form-control" rows="3" readonly></textarea>
@@ -161,6 +161,10 @@
                 alert(`Error: ${error.message}`);
             }
         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('encryptButton').addEventListener('click', encryptMessage);
+        });
     </script>
 </body>
 </html>
