@@ -3,15 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ayaz Khan's Project Portfolio</title>
-    <link rel="stylesheet" href="web.css">
+    <title>Ayaz Khan's Encryption Demo</title>
+    <link rel="stylesheet" href="styles.css">
     <script>
         async function encryptMessage() {
             const plaintext = document.getElementById('plaintext').value;
             const startPosition = parseInt(document.getElementById('startPosition').value);
             const superpositionLength = parseInt(document.getElementById('superpositionLength').value);
-
-            console.log('Sending request to /encrypt:', { plaintext, startPosition, superpositionLength });
 
             const response = await fetch('/encrypt', {
                 method: 'POST',
@@ -21,7 +19,6 @@
 
             if (response.ok) {
                 const data = await response.json();
-                console.log('Received response:', data);
                 document.getElementById('ciphertext').value = data.ciphertext;
                 document.getElementById('decryptedMessage').value = data.decryptedMessage;
             } else {
@@ -32,19 +29,20 @@
 </head>
 <body>
     <header>
-        <h1>Ayaz Khan's Project Portfolio</h1>
+        <h1>Ayaz Khan's Encryption Demo</h1>
     </header>
-    <nav>
-        <ul>
-            <li><a href="#number-theorem">Number Theorem for Cyclic Sequences</a></li>
-            <li><a href="#khan-encryption">Khan Encryption Algorithm</a></li>
-            <li><a href="#sentiment-analysis">Sentiment Analysis Tool</a></li>
-        </ul>
-    </nav>
     <main>
-        <section id="khan-encryption">
-            <h2>Khan Encryption Algorithm</h2>
-            <h3>Try the Khan Encryption Algorithm</h3>
+        <section>
+            <h2>Challenge</h2>
+            <p>Decrypt the following ciphertext to win the prize:</p>
+            <textarea id="challengeCiphertext" readonly>
+                <!-- Encrypted prize message -->
+                39836940398374903983590639834802398327123983413439832956398353793983295639833962398359063983316239836857398350963983322939833162398352163983509639836826398332293983271239836162398374903983263239834977398361623983749039836206398350963983682639834134398347323983748639832956398350963983263239837486398323323983509639836826398374863983391639835379398341943983473239837486398381703983345439833162398374903983748639835188398352563983271239834885398328743983749039835096398351883983748639836162398374903983748639835240398324523983463839835240398369423983406439834064398354023983537939834064398374863983749039835096398374863983525639834977398361623983620639834447398374863983488539835096398326323983271239837486398328743983271239836206398336103983345439834732
+            </textarea>
+            <p>If you crack the algorithm and see the hidden message, you'll win $50!</p>
+        </section>
+        <section>
+            <h2>Try the Khan Encryption Algorithm</h2>
             <div>
                 <label for="plaintext">Enter your message:</label>
                 <input type="text" id="plaintext" name="plaintext">
@@ -68,6 +66,14 @@
                 <label for="decryptedMessage">Decrypted message:</label>
                 <textarea id="decryptedMessage" name="decryptedMessage" readonly></textarea>
             </div>
+        </section>
+        <section>
+            <h2>Other Projects</h2>
+            <ul>
+                <li><a href="https://ia.cr/2024/825">Project 1</a></li>
+                <li><a href="https://www.researchgate.net/publication/380167604_Sentiment_Gummy_Worm_A_New_Scoring_Model_for_Anonymous_Data_Incorporating_Decay_Factors_and_Buffer_Ratios?_sg%5B0%5D=x-lpk3AxAMPUjaD-ZfLKjL1FNXjv5RkkhxqwR9gPPUpNvwuI9tgbTvFw71sUwwCdwuw_RMNpNBGSY7inIu1yCw_tGrP3fJ6yUGJmBrY2.E2d19zwcZEsmHFsNE2v3g6tHEhSvR6ljV72WZGU-BHP-PBhN-uERGBHy_d-12jCPFTSRHoI_Z4tJbEWPA0O4PQ&_tp=eyJjb250ZXh0Ijp7ImZpcnN0UGFnZSI6ImhvbWUiLCJwYWdlIjoicHJvZmlsZSIsInBvc2l0aW9uIjoicGFnZUNvbnRlbnQifX0">Project 2</a></li>
+                <li><a href="https://www.researchgate.net/publication/380932578_The_Motion_Theorems_Seen_In_Full_Reptend_Prime_Numbers_And_Their_Cyclic_Sequence?_sg%5B0%5D=x-lpk3AxAMPUjaD-ZfLKjL1FNXjv5RkkhxqwR9gPPUpNvwuI9tgbTvFw71sUwwCdwuw_RMNpNBGSY7inIu1yCw_tGrP3fJ6yUGJmBrY2.E2d19zwcZEsmHFsNE2v3g6tHEhSvR6ljV72WZGU-BHP-PBhN-uERGBHy_d-12jCPFTSRHoI_Z4tJbEWPA0O4PQ&_tp=eyJjb250ZXh0Ijp7ImZpcnN0UGFnZSI6ImhvbWUiLCJwYWdlIjoicHJvZmlsZSIsInBvc2l0aW9uIjoicGFnZUNvbnRlbnQifX0">Project 3</a></li>
+            </ul>
         </section>
     </main>
     <footer>

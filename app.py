@@ -1,9 +1,7 @@
 from flask import Flask, request, jsonify
-import random
-import string
-from decimal import Decimal, getcontext
 import importlib.util
 import sys
+from decimal import Decimal, getcontext
 
 # Import the khan_encryption2 module from a specific path
 module_name = "khan_encryption2"

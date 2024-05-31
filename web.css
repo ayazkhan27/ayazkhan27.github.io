@@ -21,37 +21,9 @@ header h1 {
     font-size: 2.5em;
 }
 
-/* Navigation styles */
-nav {
-    background-color: #333;
-}
-
-nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-}
-
-nav ul li {
-    margin: 0;
-}
-
-nav ul li a {
-    color: white;
-    padding: 15px 20px;
-    display: block;
-    text-decoration: none;
-}
-
-nav ul li a:hover {
-    background-color: #575757;
-}
-
 /* Main content styles */
 main {
-    max-width: 1200px;
+    max-width: 800px;
     margin: 20px auto;
     padding: 20px;
     background-color: white;
@@ -67,34 +39,36 @@ h2 {
     margin-top: 0;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
+label {
+    display: block;
+    margin-top: 1rem;
 }
 
-form label {
-    margin-bottom: 5px;
-    font-weight: bold;
+input, textarea {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
 }
 
-form input, form textarea, form button {
-    margin-bottom: 15px;
-    padding: 10px;
-    font-size: 1em;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-form button {
-    background-color: #4a90e2;
-    color: white;
+button {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    margin-top: 1rem;
+    background: #333;
+    color: #fff;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
-form button:hover {
-    background-color: #357ABD;
+button:hover {
+    background: #555;
+}
+
+textarea[readonly] {
+    background: #eee;
+    word-wrap: break-word;
 }
 
 /* Footer styles */
@@ -106,13 +80,4 @@ footer {
     position: fixed;
     width: 100%;
     bottom: 0;
-}
-
-h3 {
-    margin-top: 0;
-    color: #4a90e2;
-}
-
-#ciphertext, #decryptedMessage {
-    word-wrap: break-word;
 }
