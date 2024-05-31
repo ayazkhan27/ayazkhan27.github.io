@@ -1,12 +1,11 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 import importlib.util
 import sys
 from decimal import Decimal, getcontext
 
-# Import the khan_encryption2 module from a specific path
+# Import the khan_encryption_2.py module
 module_name = "khan_encryption2"
 file_path = "khan_encryption_2.py"
-
 spec = importlib.util.spec_from_file_location(module_name, file_path)
 ke = importlib.util.module_from_spec(spec)
 sys.modules[module_name] = ke
@@ -18,6 +17,10 @@ def generate_cyclic_sequence(prime, length):
     getcontext().prec = length + 10
     decimal_expansion = str(Decimal(1) / Decimal(prime))[2:]
     return decimal_expansion[:length]
+
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 @app.route('/encrypt', methods=['POST'])
 def encrypt():
