@@ -1,4 +1,4 @@
-/* Joseph Joestar, "Your next line will be..." (assets/jojo/joseph.js) */
+/* Joseph Joestar, "Your next line is..." (assets/jojo/joseph.js) */
 .jj-joseph{max-width:52rem;color:var(--color-ink)}
 .jj-joseph *{box-sizing:border-box}
 .jj-joseph ::selection{background:var(--color-accent);color:var(--color-on-accent,#fbfbf9)}
@@ -6,16 +6,17 @@
 .jj-joseph .jj-vh{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 
 /* the call: one statement in the display face; it updates as the visitor types */
-.jj-joseph .jj-say{margin:0 0 var(--space-md,1.5rem);min-height:2.24em;max-width:24em;font:700 clamp(1.6rem,3.4vw,2.5rem)/1.12 var(--font-display);letter-spacing:-.015em;overflow-wrap:anywhere}
+.jj-joseph .jj-say{margin:0 0 var(--space-md,1.5rem);min-height:2.24em;max-width:24em;font:700 var(--text-statement,clamp(1.6rem,3.2vw,2.25rem))/1.12 var(--font-display);letter-spacing:-.015em;overflow-wrap:anywhere}
 .jj-joseph .jj-lead,.jj-joseph .jj-none{color:var(--color-muted)}
 .jj-joseph .jj-line{-webkit-box-decoration-break:clone;box-decoration-break:clone}
 .jj-joseph .jj-flash .jj-line{animation:jj-flash .65s var(--ease-out,cubic-bezier(.2,.7,.2,1))}
 @keyframes jj-flash{0%,30%{background:var(--color-air,#ffd7a8);color:var(--color-plate-ink,#2a1f17)}}
 
 /* the line you write on, with the model's completion in light grey behind it */
-.jj-joseph .jj-form{display:flex;align-items:flex-end;gap:.75rem;max-width:40rem}
+.jj-joseph .jj-form{display:flex;flex-wrap:wrap;align-items:flex-end;gap:.75rem;max-width:40rem}
+.jj-joseph .jj-own{flex-basis:100%;margin-bottom:-.5rem;font:600 var(--text-small,.9375rem)/1.3 var(--font-text);color:var(--color-muted)}
 .jj-joseph .jj-field{position:relative;flex:1;min-width:0}
-.jj-joseph .jj-in,.jj-joseph .jj-ghost{width:100%;margin:0;padding:.7rem 0 .6rem;border:0;border-bottom:2px solid transparent;font:600 1.125rem/1.4 var(--font-text);letter-spacing:0;word-spacing:0;text-indent:0}
+.jj-joseph .jj-in,.jj-joseph .jj-ghost{width:100%;margin:0;padding:.7rem 0 .6rem;border:0;border-bottom:2px solid transparent;font:600 var(--text-body,1.125rem)/1.4 var(--font-text);letter-spacing:0;word-spacing:0;text-indent:0}
 .jj-joseph .jj-in{position:relative;display:block;background:transparent;color:var(--color-ink);border-bottom-color:var(--color-ink);border-radius:0;caret-color:var(--color-accent);-webkit-appearance:none;appearance:none}
 .jj-joseph .jj-in:focus{border-bottom-color:var(--color-accent)}
 .jj-joseph .jj-in::placeholder{color:var(--color-muted);font-weight:300;opacity:1}
@@ -35,7 +36,7 @@
 .jj-joseph .jj-a{position:relative;margin-top:var(--space-lg,2.5rem);padding:var(--space-md,1.5rem);background:var(--color-surface)}
 .jj-joseph .jj-a:empty{margin:0;padding:0;background:none}
 .jj-joseph .jj-a p{margin:0;max-width:62ch}
-.jj-joseph .jj-a .jj-aq{padding-right:clamp(3.5rem,9vw,5.5rem);margin-bottom:.5rem;font:700 1.25rem/1.25 var(--font-display);letter-spacing:-.01em}
+.jj-joseph .jj-a .jj-aq{padding-right:clamp(3.5rem,9vw,5.5rem);margin-bottom:.5rem;font:700 var(--text-h3,1.25rem)/1.25 var(--font-display);letter-spacing:-.01em}
 .jj-joseph .jj-at a{color:var(--color-accent);text-decoration-thickness:1px;text-underline-offset:.2em}
 .jj-joseph .jj-at a:hover{text-decoration-thickness:2px}
 .jj-joseph .jj-a .jj-score{margin-top:.9rem;font-size:var(--text-small,.9375rem);font-weight:600}

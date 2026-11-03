@@ -5,6 +5,8 @@ const PHI = (1 + Math.sqrt(5)) / 2;
 const MINUS = '−';
 const f3 = v => (v < 0 ? MINUS : '') + Math.abs(v).toFixed(3);
 const sgn = v => (v < 0 ? MINUS : '+') + Math.abs(v).toFixed(3);
+// the sign in the text face: Afficher's minus is a hairline and would read as no sign at all
+const sgnHTML = v => `<span class="jjg-sign">${v < 0 ? MINUS : '+'}</span>${Math.abs(v).toFixed(3)}`;
 const r1 = v => Math.round(v * 10) / 10;
 const fp = p => (p < 0.001 ? '< 0.001' : p.toFixed(3));
 const set = (el, a) => { for (const k in a) el.setAttribute(k, a[k]); };
@@ -79,6 +81,7 @@ export async function mount(root, opts = {}) {
   <ol class="jjg-strip" aria-label="The ${F.length} gallop frames">${F.map(f => `
     <li><button type="button" data-n="${f.n}" aria-label="Frame ${f.n}"><svg viewBox="${x0} ${y0} ${x1 - x0} ${y1 - y0}" aria-hidden="true"><use href="#h${f.n}" ${use}/></svg></button></li>`).join('')}
   </ol>
+  <p class="jjg-verdict"></p>
 </div>
 <div class="jjg-facts">
   <dl class="jjg-read">
@@ -87,16 +90,14 @@ export async function mount(root, opts = {}) {
     <div><dt>Gap</dt><dd class="jjg-gap"></dd></div>
   </dl>
   <p class="jjg-note"></p>
-  <p class="jjg-verdict"></p>
   <p class="jjg-key2" aria-hidden="true"><span class="r">${M.rider.label}</span><span class="h">${M.horse.label}</span><span class="g">Golden, 1.618</span></p>
   <div class="jjg-plot"></div>
   <p class="jjg-cap"></p>
-  <details class="jjg-table"><summary>The numbers</summary><table>
+  <details class="jjg-table"><summary>Show the numbers (table)</summary><table>
     <thead><tr><th scope="col">Frame</th><th scope="col">${M.rider.label}</th><th scope="col">${M.horse.label}</th></tr></thead>
     <tbody>${F.map(f => tr(f.n, f3(f.rider), f3(f.horse))).join('')}</tbody>
-    <tfoot>${tr('Mean', M.rider.mean.toFixed(3), M.horse.mean.toFixed(3))}${tr('95% CI', ci(M.rider), ci(M.horse))}${tr('t-test p', fp(M.rider.p), fp(M.horse.p))}${tr('12, at rest', f3(R.rider), f3(R.horse))}</tfoot>
+    <tfoot>${tr('Mean', M.rider.mean.toFixed(3), M.horse.mean.toFixed(3))}${tr('Bootstrap 95% CI', ci(M.rider), ci(M.horse))}${tr('t-test p', fp(M.rider.p), fp(M.horse.p))}${tr('12, at rest', f3(R.rider), f3(R.horse))}</tfoot>
   </table></details>
-  <p class="jjg-credit">Gyro's lesson, checked against the 1878 plate.</p>
 </div>
 <p class="jjg-vh" aria-live="polite"></p>`;
 
@@ -159,7 +160,7 @@ export async function mount(root, opts = {}) {
     q('.jjg-key .b').textContent = alone ? 'Box, ear tip to hoof' : 'Box, horse and rider';
     q('.jjg-where').textContent = `Frame ${f.n} of ${F.length}`;
     q('.jjg-r').textContent = f3(ratio);
-    q('.jjg-gap').innerHTML = `${sgn(gap)}<small>${pct}</small>`;
+    q('.jjg-gap').innerHTML = `${sgnHTML(gap)}<small>${pct}</small>`;
     q('.jjg-note').textContent = near
       ? `Within 2% of golden.${lo < PHI && PHI < hi ? ` This ratio runs from ${f3(lo)} to ${f3(hi)} across the run, so it was bound to pass 1.618 somewhere. One close frame is not evidence.` : ''}`
       : `Closest to 1.618, ${label}: frame ${m.closest.n}, at ${f3(m.closest.ratio)}.`;

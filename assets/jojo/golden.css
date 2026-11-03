@@ -40,11 +40,12 @@
 .jj-golden .jjg-facts{container-type:inline-size}
 .jj-golden .jjg-read{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-sm,1rem);margin:0}
 .jj-golden .jjg-read dt{margin-bottom:.35rem;font-size:var(--text-small,.9375rem);color:var(--color-muted)}
-.jj-golden .jjg-read dd{margin:0;font:700 clamp(1.35rem,8.5cqi,2.4rem)/1 var(--font-display);letter-spacing:-.02em;font-variant-numeric:tabular-nums lining-nums;white-space:nowrap}
+.jj-golden .jjg-read dd{margin:0;font:700 var(--text-readout,clamp(1.5rem,2.6vw,2.5rem))/1 var(--font-display);letter-spacing:-.02em;font-variant-numeric:tabular-nums lining-nums;white-space:nowrap}
 .jj-golden .jjg-read small{display:block;margin-top:.4rem;font:300 var(--text-small,.9375rem)/1.3 var(--font-text);letter-spacing:0;color:var(--color-muted);white-space:normal}
 .jj-golden .jjg-note{margin-top:var(--space-sm,1rem);font-size:var(--text-small,.9375rem);color:var(--color-muted);min-height:3em}
-.jj-golden .jjg-verdict{margin-top:var(--space-md,1.5rem);font-size:1.0625rem;line-height:1.45}
-.jj-golden .jjg-verdict b{display:block;margin-bottom:.3rem;font:700 clamp(1.5rem,7cqi,2.1rem)/1.1 var(--font-display);letter-spacing:-.02em}
+.jj-golden .jjg-sign{font:600 .7em var(--font-text);vertical-align:.18em;margin-right:.08em}
+.jj-golden .jjg-verdict{margin-top:var(--space-lg,2.5rem);font-size:var(--text-body,1.125rem);line-height:1.45;max-width:46ch}
+.jj-golden .jjg-verdict b{display:block;margin-bottom:.3rem;font:700 var(--text-h2,2.1rem)/1.1 var(--font-display);letter-spacing:-.02em}
 .jj-golden .jjg-key2{margin-top:var(--space-md,1.5rem)}
 .jj-golden .jjg-key2 span::before{content:"";display:inline-block;box-sizing:border-box;width:.75em;height:.75em;margin-right:.4em;vertical-align:-.04em;border:2px solid var(--color-mark);border-radius:50%;background:var(--color-mark)}
 .jj-golden .jjg-key2 .h::before{background:transparent}
@@ -61,13 +62,15 @@
 .jj-golden .jjg-plot .r{fill:var(--color-mark);stroke:var(--color-bg);stroke-width:2}
 .jj-golden .jjg-plot .h{fill:var(--color-bg);stroke:var(--color-mark);stroke-width:2}
 .jj-golden .jjg-plot .lab{paint-order:stroke;stroke:var(--color-bg);stroke-width:5px;stroke-linejoin:round}
-.jj-golden .jjg-cap,.jj-golden .jjg-credit{margin-top:var(--space-xs,.5rem);font-size:var(--text-small,.9375rem);color:var(--color-muted)}
+.jj-golden .jjg-cap{margin-top:var(--space-xs,.5rem);font-size:var(--text-small,.9375rem);color:var(--color-muted)}
 .jj-golden .jjg-table{margin-top:var(--space-sm,1rem);font-size:var(--text-small,.9375rem)}
-.jj-golden .jjg-table summary{display:flex;align-items:center;min-height:44px;font-weight:600;cursor:pointer}
+.jj-golden .jjg-table summary{display:flex;align-items:center;gap:.5rem;min-height:44px;font-weight:600;cursor:pointer;list-style:none}
+.jj-golden .jjg-table summary::-webkit-details-marker{display:none}
+.jj-golden .jjg-table summary::before{content:"+";display:inline-grid;place-items:center;width:1.4em;height:1.4em;border:2px solid currentColor;font:600 var(--text-small,.9375rem)/1 var(--font-text)}
+.jj-golden .jjg-table[open] summary::before{content:"\2212"}
 .jj-golden .jjg-table table{border-collapse:collapse;font-variant-numeric:tabular-nums}
 .jj-golden .jjg-table th,.jj-golden .jjg-table td{padding:.2rem 1rem .2rem 0;line-height:1.35;text-align:right;font-weight:300}
 .jj-golden .jjg-table th:first-child,.jj-golden .jjg-table thead th{text-align:left;font-weight:600}
 .jj-golden .jjg-table tfoot tr:first-child>*{border-top:1px solid var(--color-context)}
-.jj-golden .jjg-credit{margin-top:var(--space-md,1.5rem)}
 .jj-golden .jjg-vh{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 @media (prefers-reduced-motion:reduce){.jj-golden .jjg-spiral.jjg-draw{animation:none}}

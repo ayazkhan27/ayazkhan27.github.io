@@ -106,9 +106,14 @@ export async function mount(root, opts = {}) {
   root.innerHTML = `
     <div class="jj-steelball__stage" role="button" tabindex="0" aria-label="Spin the steel ball" aria-describedby="${id}"></div>
     <div class="jj-steelball__readout">
-      <p class="jj-steelball__golden">Golden Spin: 161.8 rpm and up</p>
+      <p class="jj-steelball__golden">This page's Golden Spin: 161.8 rpm and up</p>
       <p class="jj-steelball__rpm"><span class="jj-steelball__num"></span><span class="jj-steelball__unit">rpm</span></p>
       <p class="jj-steelball__fit"></p>
+      <figure class="jj-steelball__fig">
+        <svg class="jj-steelball__plot" viewBox="0 0 280 110" aria-hidden="true"><path class="ax" d="M30 92H272M30 10V92"/><path class="pts"/><path class="ls"/>
+          <text x="30" y="106">0 s</text><text class="tmax" x="272" y="106" text-anchor="end"></text><text x="24" y="16" text-anchor="end">ln</text></svg>
+        <figcaption>Each dot is a reading: log speed against time. The line is the least-squares fit; its slope is −1/τ.</figcaption>
+      </figure>
       <p class="jj-steelball__note" id="${id}">${N} dots, each 137.508° around from the last: the golden angle in a sunflower head.
         Friction is simulated (τ&nbsp;=&nbsp;${tau.toFixed(2)}&nbsp;s) and each speed reading has ${Math.round(noise * 100)}% noise.
         Flick it sideways, or use the arrow keys and Space.</p>
@@ -116,6 +121,7 @@ export async function mount(root, opts = {}) {
     <p class="jj-steelball__live" aria-live="polite"></p>`;
   const $ = (c) => root.querySelector('.jj-steelball__' + c);
   const stage = $('stage'), numEl = $('num'), fitEl = $('fit'), noteEl = $('note'), goldEl = $('golden'), live = $('live');
+  const plotEl = $('plot'), ptsEl = plotEl.querySelector('.pts'), lsEl = plotEl.querySelector('.ls'), tmaxEl = plotEl.querySelector('.tmax');
 
   let ang = 0.5, w = 0, tSim = 0, last = 0, raf = 0, drawn = ang, radius = 200;
   let user = false, dead = false, failed = false, golden = false, gold = 0, flare = 0;
@@ -142,18 +148,36 @@ export async function mount(root, opts = {}) {
   }
   const r2Text = (r2) => (Math.floor(r2 * 1000) / 1000).toFixed(3);   // rounded down: never claims a perfect fit
   const fitText = (f) => `τ\u00a0=\u00a0${f.tau.toFixed(2)}\u00a0s, R²\u00a0=\u00a0${r2Text(f.r2)}`;   // values never break across lines
+  // the readings on log scale, and the fitted line through them: a straight line is the whole claim of the fit
+  function drawPlot(f) {
+    const P = fit ? fit.pts : [];
+    if (!P.length) { ptsEl.setAttribute('d', ''); lsEl.setAttribute('d', ''); tmaxEl.textContent = ''; return; }
+    const T = Math.max(1, P[P.length - 1][0]);
+    let lo = Infinity, hi = -Infinity;
+    for (const [, y] of P) { lo = Math.min(lo, y); hi = Math.max(hi, y); }
+    if (hi - lo < 0.5) { const m = (hi + lo) / 2; lo = m - 0.25; hi = m + 0.25; }
+    const X = (t) => (30 + t / T * 242).toFixed(1), Y = (y) => (88 - (y - lo) / (hi - lo) * 74).toFixed(1);
+    ptsEl.setAttribute('d', P.map(([t, y]) => `M${X(t)} ${Y(y)}h0`).join(''));
+    if (f) {
+      const { n, St, Sy } = fit, b = -1 / f.tau, a = (Sy - b * St) / n;
+      lsEl.setAttribute('d', `M${X(0)} ${Y(a)}L${X(T)} ${Y(a + b * T)}`);
+    } else lsEl.setAttribute('d', '');
+    tmaxEl.textContent = T.toFixed(1) + ' s';
+  }
   function showReadout() {
     setRpm(Math.abs(w) * TO_RPM);
     const f = fitNow();
+    drawPlot(f);
     fitEl.textContent = f ? `Spin-down fit: ${fitText(f)} (fit\u00a0to\u00a0this\u00a0spin)`
       : !fit ? 'Spin-down fit: waiting for a spin' : fit.done ? 'Spin-down fit: spin too short to fit' : 'Spin-down fit: measuring';
   }
 
   /* ---- physics and the fit ---- */
-  function resetFit() { fit = { n: 0, St: 0, Sy: 0, Stt: 0, Sty: 0, Syy: 0, t0: tSim, next: tSim, done: false }; }
+  function resetFit() { fit = { n: 0, St: 0, Sy: 0, Stt: 0, Sty: 0, Syy: 0, t0: tSim, next: tSim, done: false, pts: [] }; }
   function sample() {                // one tachometer reading: ln omega plus noise
     const t = tSim - fit.t0, y = Math.log(Math.abs(w)) + noise * gauss();
     fit.n++; fit.St += t; fit.Sy += y; fit.Stt += t * t; fit.Sty += t * y; fit.Syy += y * y; fit.span = t;
+    fit.pts.push([t, y]);
     fit.next = tSim + 0.05;
   }
   function spin(addRpm) {
@@ -171,7 +195,7 @@ export async function mount(root, opts = {}) {
     if (m && gl3) gl3.U.uGoldColor.value.setRGB(m[1] / 255, m[2] / 255, m[3] / 255, THREE.SRGBColorSpace);
     if (!reduce.matches) flare = 1;
     if (user) sfx({ name: 'golden' });
-    say('Golden Spin: 161.8 rpm and up.');
+    say('This page\'s Golden Spin: 161.8 rpm and up.');
   }
   function quiet() { if (spinOn) { spinOn = false; sfx({ name: 'spin', stop: true }); } }
 

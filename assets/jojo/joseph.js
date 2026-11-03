@@ -1,4 +1,4 @@
-/* Joseph Joestar, "Your next line will be...": a recruiter FAQ that predicts the question with a word-level
+/* Joseph Joestar, "Your next line is...": a recruiter FAQ that predicts the question with a word-level
    trigram (stupid backoff) mixed with question priors, then answers by TF-IDF cosine. No network, no storage. */
 
 const MAIL = 'aak2259@columbia.edu';
@@ -7,10 +7,10 @@ const MAIL = 'aak2259@columbia.edu';
 const DATA = [
 [12, 'Do you need visa sponsorship?|Will you need sponsorship now or in the future?|Are you authorized to work in the US?|Do you need an H-1B?|Are you a US citizen?',
  'visa, sponsor, sponsorship, h1b, citizenship, work authorization, green card, opt, visa status, immigration',
- "No. I'm a U.S. citizen, so I don't need sponsorship."],
+ "I'm a U.S. citizen, so I can work in the U.S. without sponsorship, now or later."],
 [10, 'When can you start?|When are you available?|What is your start date?|When do you graduate?',
  'start, next week, asap, immediately, soon, availability, begin, join, graduation, finish, notice period',
- 'January 2027. I finish my M.A. in Statistics at Columbia in December 2026.'],
+ 'I finish my M.A. in Statistics at Columbia in December 2026 and can start in January 2027.'],
 [6, 'Are you willing to relocate?|Where are you based?|Would you move for this job?|Where do you live?',
  'relocation, move, moving, located, location, city, new york, nyc',
  "I'm in New York, and I'm willing to relocate."],
@@ -19,7 +19,7 @@ const DATA = [
  "A statistician and data scientist in New York, finishing a Columbia M.A. in Statistics in December 2026, and an NSF Graduate Research Fellow. I measure what a model can do before I believe what it reports."],
 [3, 'Are you open to remote work?|Do you want a hybrid role?|Can you work in the office?',
  'remote, hybrid, days a week, onsite, on-site, in person, work from home',
- "Ask me about the setup for your role at {mail}. I'm in New York and willing to relocate."],
+ "I'm in New York and willing to relocate. For the on-site or remote setup of a specific role, email me at {mail}."],
 [5, 'What degrees do you have?|Where did you go to school?|Do you have a master\'s degree?',
  'degree, education, school, university, college, masters, graduate degree, bachelor, phd, columbia, hunter, cuny, major, study',
  'An M.A. in Statistics from Columbia University, expected December 2026. Before that, a Special Honors B.A. in Statistics with a computer science minor from CUNY Hunter College, cum laude, December 2024.'],
@@ -40,7 +40,7 @@ const DATA = [
  "I was an Applied ML and Data Engineering Intern at Telenav in Santa Clara, June to August 2026, on Novo Insurance's scoring stack. Ask me about the accuracy ceiling, the leakage audit or the FunctionGemma router."],
 [5, 'Do you have model validation experience?|Have you worked in model risk?|How do you validate a model?|What was the 0.806 AUC problem?',
  'validation, validate, model risk, audit, governance, backtest, leakage, leak, 0.806, auc, temporal split, 127k, sr 11-7',
- 'At Telenav I caught target leakage and non-temporal splits behind an inflated 0.806 AUC. The honest figure was 0.7401, and the audit surfaced $127K of campaign waste. I also estimated a pricing accuracy ceiling that stopped a degrading release.'],
+ 'The validation work I can show is from my Telenav internship. I caught target leakage and non-temporal splits behind an inflated 0.806 AUC; the honest figure was 0.7401, and the audit surfaced $127K of campaign waste. I also estimated the pricing accuracy ceiling that stopped a degrading release.'],
 [2, 'Do you know survival analysis?|Have you built time-to-event models?|Can you do Cox regression?',
  'survival, time-to-event, hazard, cox, kaplan meier, churn, censoring',
  "Survival analysis is on my methods list, with causal inference, Bayesian networks and stochastic processes. There's no survival project written up on this page, so ask me about it at {mail}."],
@@ -49,7 +49,7 @@ const DATA = [
  'Causal inference and A/B testing are both on my methods list. Neither is written up on this page, so ask me about them at {mail}.'],
 [3, 'Have you worked with imbalanced data?|Tell me about the fraud project.|Do you use Bayesian methods?',
  'imbalanced, class imbalance, rare events, fraud, credit card, smote, oversampling, dashboard, monitoring, bayes, bayesian network',
- 'In a credit card fraud project, fraud was 0.172% of the data. I worked through the imbalance with SMOTE-NC, Bayesian networks and calibrated XGBoost, and built a Dash app to monitor the model.'],
+ 'In a credit card fraud project, fraud was 0.172% of the data. I rebalanced the training data with SMOTE-NC, modeled fraud with Bayesian networks and calibrated XGBoost, and built a Dash app to monitor the model.'],
 [3, 'Do you have banking experience?|Have you worked in finance?|Have you worked with financial data?',
  'bank, financial, fed, federal reserve, credit risk, lending, loan',
  "The financial work I can show is insurance pricing at Telenav, on Novo Insurance's scoring stack, and a credit card fraud model where fraud was 0.172% of the data."],
@@ -67,14 +67,14 @@ const DATA = [
  'The health work I can show is retrieval: SMA-1 beat the strongest RAG baseline by 0.34 on long-tail top-5 retrieval in medicine, and by 0.17 in genomics.'],
 [3, 'Do you have clinical trial experience?|Have you worked in pharma?|Do you know CDISC or SDTM?',
  'clinical, trial, cro, pharmaceutical, adam, fda, regulatory, drug',
- "I haven't listed any clinical-trial work, so I won't claim it. Survival analysis and causal inference are on my methods list; email {mail} to talk through what you need."],
+ "Clinical-trial work isn't on this page. Survival analysis and causal inference are on my methods list; email {mail} to talk through what your team needs."],
 [3, 'Do you have any publications?|Have you published papers?|What research have you done?',
  'paper, publish, ieee, icngn, conference, first author, orcid',
- "I'm first author of an IEEE ICNGN 2024 paper from my NSF REU at Texas A&M International: an Intrusion Effort Index on aperiodic Spectre monotile tilings for wireless sensor network security. It gave a 15% efficiency improvement in 3D deployments."],
+ "I'm first author of an IEEE ICNGN 2024 paper from my NSF REU at Texas A&M University-Kingsville: an Intrusion Effort Index on aperiodic Spectre monotile tilings for wireless sensor network security. It gave a 15% efficiency improvement in 3D deployments."],
 [3, 'Do you have a patent?|What is the patent about?',
  'provisional, uspto, columbia technology ventures, invention',
- 'Yes, U.S. Provisional Patent 64/029,090, filed through Columbia Technology Ventures. It comes from my work on Calx, a neuro-symbolic engine for cross-domain discovery.'],
-[3, 'What is Calx?|What are you building?|Tell me about your startup.',
+ 'A provisional one: U.S. provisional patent application 64/029,090, filed through Columbia Technology Ventures. It comes from my work on Calx, a neuro-symbolic engine for cross-domain discovery.'],
+[3, 'What is Calx?|What are you building?|Tell me about Calx.',
  'neuro-symbolic, structure mapping engine, sme, cross-domain, founder, kalman filter, dynamic program',
  'Calx is a neuro-symbolic engine for cross-domain discovery that I founded in 2025; it ports the Structure-Mapping Engine to find the same relational structure across fields. Its Certified Affine Corridor dynamic program cut operations by 31.55% on average, exact on 45 of 45 cases, and the work produced two new square-root Kalman filter variants.'],
 [2, 'What is SMA-1?|Can I install SMA-1?',
@@ -94,13 +94,13 @@ const DATA = [
  "I'd rather talk about that once I know the role. Email me at {mail}."],
 [3, 'What kind of role are you looking for?|What job do you want?',
  'role, looking, position, seeking, title, interest',
- "Statistician or data scientist roles, starting January 2027. Tell me what you're hiring for at {mail}."],
+ "Statistics and data science roles in biostatistics, model risk or analytics, starting January 2027. Tell me what you're hiring for at {mail}."],
 [3, 'What are you best at?|Why should we hire you?|What makes you different?',
  'strength, different, unique, stand out, strong, candidate',
  "I measure what a model can do before I believe what it reports. The examples I'd point to are the 56.69% accuracy ceiling that stopped a release and the leakage audit that took an AUC from 0.806 to an honest 0.7401."],
 [1, "Is this a JoJo reference?|Is this from JoJo's Bizarre Adventure?",
  'jojo, joseph, joestar, reference, anime, manga, next line',
- "Yes. In JoJo's Bizarre Adventure, Joseph Joestar's trick is predicting an opponent's next line before they say it. This box tries it with a trigram model and keeps an honest score."],
+ "Yes. In JoJo's Bizarre Adventure, Joseph Joestar's trick is predicting an opponent's next line before they say it. This box tries it with a trigram model and keeps score."],
 [1, 'How does this work?|Is this a chatbot?',
  'predict, prediction, trigram, bot, autocomplete, guess, this ai',
  'A trigram model of {n} phrasings of these {q} questions guesses how your line ends, weighted by how often I expect each question. TF-IDF cosine similarity picks the answer, and nothing you type leaves this page.'],
@@ -256,13 +256,13 @@ export async function mount(root, opts = {}) {
   const B = brain(), uid = 'jj' + Math.random().toString(36).slice(2, 8);
   const el = document.createElement('div');
   el.className = 'jj-joseph';
-  el.innerHTML = `<p class="jj-say"><span class="jj-lead">Your next line will be:</span> <span class="jj-line"></span></p>
-<form class="jj-form"><label class="jj-vh" for="${uid}">Ask a question</label>
+  el.innerHTML = `<p class="jj-say"><span class="jj-lead">Your next line is:</span> <span class="jj-line"></span></p>
+<form class="jj-form"><label class="jj-own" for="${uid}">Or ask your own</label>
 <div class="jj-field"><div class="jj-ghost" aria-hidden="true"><span></span><b></b></div><input class="jj-in" id="${uid}" type="text" autocomplete="off" spellcheck="false" enterkeyhint="send" placeholder="Type a question" aria-describedby="${uid}n"></div>
 <button class="jj-ask" type="submit">Ask</button></form>
 <div class="jj-chips" role="group" aria-label="Likely questions">${'<button type="button" class="jj-chip"></button>'.repeat(3)}</div>
 <div class="jj-a" aria-live="polite" aria-atomic="true"></div>
-<p class="jj-note" id="${uid}n">A trigram model trained on ${B.nP} phrasings of ${B.Q.length} questions I expect to be asked. It learns nothing about you and sends nothing anywhere. A prediction only scores if it was on screen before you were halfway through typing.</p>`;
+<p class="jj-note" id="${uid}n">A trigram model trained on ${B.nP} phrasings of ${B.Q.length} questions I expect to be asked. It learns nothing about you and sends nothing anywhere. It counts a hit when the question it showed before you were halfway through is the one you asked.</p>`;
   root.append(el);
   const $ = s => el.querySelector(s);
   const say = $('.jj-say'), lineEl = $('.jj-line'), input = $('.jj-in'), ghost = $('.jj-ghost'), out = $('.jj-a');
@@ -298,7 +298,7 @@ export async function mount(root, opts = {}) {
     if (verdict && verdict.hit) { add('jj-bang', '！？', 'span').setAttribute('aria-hidden', 'true'); sfx('nextline'); }
     add('jj-aq', `“${cap(text.trim())}”`);
     add('jj-at', '').innerHTML = html(m ? m.q.a : FALLBACK);
-    const tally = `Predicted your next line ${hits} of ${tries} times.`;
+    const tally = `Next line called: ${hits} of ${tries}.`;
     if (verdict) add('jj-score', (verdict.hit ? 'Called it. ' : '') + tally);
     else if (took) add('jj-score', "You took my suggestion, so this one isn't scored." + (tries ? ' ' + tally : ''));
     else if (tries) add('jj-score', tally);
@@ -321,7 +321,9 @@ export async function mount(root, opts = {}) {
     let verdict = null;
     if (!took) {                          // score against the guess on screen before the halfway point
       const half = hist.filter(h => h.n <= key(v).length / 2).pop();
-      const hit = !!(half && half.line && sameLine(half.line, v));
+      // a hit is the same question, read the way the answer is chosen; identical wording only when neither line matches one
+      const mh = half && half.line && B.match(half.line), mv = B.match(v);
+      const hit = !!(half && half.line && (mh && mv ? mh.q === mv.q : sameLine(half.line, v)));
       tries++; hits += hit;
       verdict = { hit, had: half && half.line };
     }

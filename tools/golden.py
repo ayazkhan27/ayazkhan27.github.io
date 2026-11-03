@@ -100,8 +100,8 @@ def verdict(r, h):
     has = [inside(r["ci95"]), inside(h["ci95"])]
     if not any(has):
         if (r["mean"] - PHI) * (h["mean"] - PHI) < 0:
-            return f"The horse is not golden: {nums}, and 1.618 falls between the two, inside neither interval."
-        return f"The horse is not golden: {nums}; both intervals sit {'below' if r['mean'] < PHI else 'above'} 1.618."
+            return f"This horse, in this run, is not golden: {nums}, and 1.618 falls between the two, inside neither interval."
+        return f"This horse, in this run, is not golden: {nums}; both intervals sit {'below' if r['mean'] < PHI else 'above'} 1.618."
     if all(has):
         return f"The horse could be golden: {nums}, and both intervals include 1.618."
     return f"Golden only {'with' if has[0] else 'without'} the rider: {nums}; only that interval includes 1.618."
@@ -174,8 +174,11 @@ def main():
         verdict=verdict(r, h),
         caption=f"Bars are bootstrap 95% intervals for the mean ({B:,} resamples). One-sample t-test against "
                 f"1.618: {fp(r['p'])} with the rider, {fp(h['p'])} without. The 11 frames are one horse in one run, "
-                f"about 1/25 s apart, so they are not independent draws. Frame 12, the horse at rest, is not in "
-                f"the means: {rest['rider']:.2f} with the rider, {rest['horse']:.2f} without.",
+                f"about 1/25 s apart, so they are not independent draws; read the intervals and p-values as rough. "
+                f"Frame 12, the horse at rest, is not in the means: {rest['rider']:.2f} with the rider, "
+                f"{rest['horse']:.2f} without. Of two other measures I checked, a second-moment rectangle "
+                f"{'also excludes' if not inside(S['moment']['ci95']) else 'includes'} 1.618; a tilted minimum box, "
+                f"whose angle swings with the horse's lean, {'does not' if inside(S['min_rect']['ci95']) else 'excludes it too'}.",
         notes=["The traces include the rider, whose head is the top of the box in every frame.",
                "The ear tip is the same point for any front cut from 22% to 27% of the box width, in all 12 frames.",
                f"Ground shadows in frames {', '.join(map(str, SHADOW))}: with {TRIM} pixels trimmed the 95% CIs are "

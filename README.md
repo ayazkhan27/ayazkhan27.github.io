@@ -7,7 +7,8 @@ index.html            the homepage (generated from tools/page.html; do not edit 
 sma-1/index.html      the previous SMA-1 landing page, kept as a subpage (uses ../assets/img, ../assets/video)
 Ayaz_Khan_Resume.pdf  résumé
 assets/fonts/         LT Afficher Neue (LyonsType) and Alphazet (Type Forward), Latin subsets as woff2;
-                      dela-sfx.woff2 is Dela Gothic One (SIL OFL 1.1, licence in dela-sfx-OFL.txt), cut to the kana and kanji in use
+                      dela-sfx.woff2 is Dela Gothic One (SIL OFL 1.1, license in dela-sfx-OFL.txt), cut to the kana and kanji in use;
+                      alphazet-EULA.pdf is Type Forward's free license for Alphazet (none ships with LT Afficher Neue)
 assets/plate/         frames cut from Muybridge's "The Horse in Motion" (1878, public domain); alb-*.jpg are albumen-toned with LightCraft
 assets/site.js        zoopraxiscope disc, route rail, entrances, and the v3 race layer: time stop, sound toggle,
                       lazy loading of the JoJo modules, the To Be Continued ending (no dependencies)
@@ -15,7 +16,7 @@ assets/grain.js       WebGL albumen grain on the projection screen, loaded when 
 assets/jojo/          the Steel Ball Run modules, one ES module and one stylesheet each (see below)
 assets/audio/         original sound cues for assets/jojo/audio.js; nothing loads until the visitor turns sound on
 assets/photo-finish.png  slit-scan of the traced gallop (tools/build_v2_assets.py)
-assets/gallop-*.gif   two-colour gallop GIFs for email signatures (150 px wide, under 10 KB)
+assets/gallop-*.gif   two-color gallop GIFs for email signatures (150 px wide, under 10 KB)
 assets/og.png         1200x630 social preview (rendered from tools/og.html)
 tools/                build_page.py, build_sfx_font.py, golden.py (measures the traced frames, writes assets/jojo/golden.json),
                       build_assets.py (fonts, plate frames, GIFs, horse symbols), build_v2_assets.py
@@ -43,14 +44,14 @@ Needs fontTools and brotli.
 ## The v3 race layer
 
 The page runs as the 1890 Steel Ball Run, San Diego to New York. Each section opens with a stage line, the rail at the
-bottom is the route, and the contact section is the last stage. Each JoJo moment teaches a statistical idea with real numbers.
+bottom is the route, and the contact section is the last stage. Each JoJo moment teaches a statistical idea, with real numbers or a labeled simulation.
 
 Modules live in `assets/jojo/<name>.js` with styles in `<name>.css`, scoped under `.jj-<name>`.
 `export async function mount(root, opts)` returns `{ pause, resume, destroy }`. site.js loads each one when its slot
 comes within about 600 px of the viewport, so Three.js (import map in the page head, pinned to three@0.170.0 on
 jsDelivr) only loads near Gyro's lesson.
 
-- `stand.js` the Stand card 「NO SURPRISES」; `ora.js` the bootstrap rush under the interval chart;
+- `stand.js` the Stand card 「NO SURPRISES」 (a recap after the record); `ora.js` a simulated bootstrap rush (a teaching sketch) under the interval chart;
   `rohan.js` the refusal beside the leakage result; `golden.js` with `golden.json` the golden rectangle on the
   traced frames; `steelball.js` the Three.js steel ball and its spin-down fit; `joseph.js` the next-question FAQ;
   `audio.js` exports `initAudio({ toggle })`.
@@ -59,8 +60,8 @@ jsDelivr) only loads near Gyro's lesson.
 - "Stop time" (in the nav and on the rail) pauses the disc, the rail horse, the grain, CSS animations and every
   module (WCAG 2.2.2). Reaching the To Be Continued arrow holds the page in sepia until you scroll back up.
 
-Steel Ball Run and JoJo's Bizarre Adventure are by Hirohiko Araki; this page is an unaffiliated fan homage.
-Every drawing and sound on it is original.
+Steel Ball Run and JoJo's Bizarre Adventure are by Hirohiko Araki, published by Shueisha. This page is an unaffiliated fan
+homage: it uses no art, music or sound from the series, and its sound effects are original.
 
 ## Albumen toning
 

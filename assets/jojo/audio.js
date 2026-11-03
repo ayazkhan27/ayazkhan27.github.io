@@ -97,7 +97,6 @@ export function initAudio({ toggle }) {
 
   function show() {
     toggle.setAttribute('aria-pressed', String(on));
-    toggle.textContent = on ? 'Sound on' : 'Sound off';
   }
 
   function setEnabled(v) {

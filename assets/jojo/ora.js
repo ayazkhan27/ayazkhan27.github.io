@@ -66,6 +66,13 @@ export async function mount(root, opts = {}) {
   const id = 'jjo' + Math.random().toString(36).slice(2, 8);
   root.innerHTML = `
 <div class="jj-ora">
+  <div class="jj-ora__controls">
+    <button type="button" class="jj-ora__btn"><span class="jj-ora__word">ORA</span><span class="jj-ora__hint">Hold to rush. Tap for one.</span></button>
+    <span class="jj-ora__side">
+      <button type="button" class="jj-ora__sec" data-act="auto">Run to 1,000</button>
+      <button type="button" class="jj-ora__sec" data-act="reset">Reset</button>
+    </span>
+  </div>
   <figure class="jj-ora__panel">
     <svg class="jj-ora__lines" aria-hidden="true"><defs><clipPath id="${id}-p"><rect x="0" y="0" width="100%"/></clipPath></defs><path clip-path="url(#${id}-p)"/></svg>
     <figcaption class="jj-ora__head">
@@ -74,7 +81,7 @@ export async function mount(root, opts = {}) {
     </figcaption>
     <div class="jj-ora__plot">
       <svg class="jj-ora__chart" role="img" aria-labelledby="${id}-t">
-        <title id="${id}-t">Histogram of simulated resample accuracies. Beneath it, the middle 95% of the simulated resamples and the real 95% CI from the actual analysis, 55.13% to 58.08%.</title>
+        <title id="${id}-t">Histogram of simulated resample accuracies. Beneath it, the middle 95% of the simulated resamples and, for scale, the reported 95% CI from the real analysis, 55.13% to 58.08%, which this simulation does not reproduce.</title>
         <defs><clipPath id="${id}-m"><rect y="0"/></clipPath></defs>
         <g class="jj-ora__ctx"></g>
         <g class="jj-ora__mid" clip-path="url(#${id}-m)"></g>
@@ -89,13 +96,6 @@ export async function mount(root, opts = {}) {
     </div>
     <div class="jj-ora__fx" aria-hidden="true"></div>
   </figure>
-  <div class="jj-ora__controls">
-    <button type="button" class="jj-ora__btn"><span class="jj-ora__word">ORA</span><span class="jj-ora__hint">Hold to rush. Tap for one.</span></button>
-    <span class="jj-ora__side">
-      <button type="button" class="jj-ora__sec" data-act="auto">Run to 1,000</button>
-      <button type="button" class="jj-ora__sec" data-act="reset">Reset</button>
-    </span>
-  </div>
   <p class="jj-ora__summary" hidden></p>
   <p class="jj-ora__vh" role="status" aria-live="polite"></p>
 </div>`;
@@ -152,7 +152,7 @@ export async function mount(root, opts = {}) {
       tx.textContent = t + '%';
     }
     simName.textContent = wide ? 'Simulated: middle 95% of resamples' : 'Simulated 95%';
-    realName.textContent = wide ? 'Real 95% CI, from the actual analysis' : 'Real 95% CI';
+    realName.textContent = wide ? 'Reported 95% CI, from the real analysis' : 'Reported 95% CI';
     set(simName, { x: 0, y: axisY + 52 }); set(simVal, { x: W, y: axisY + 52 });
     set(realName, { x: 0, y: axisY + 94 }); set(realVal, { x: W, y: axisY + 94 });
     realVal.textContent = '55.13% to 58.08%';
@@ -220,7 +220,7 @@ export async function mount(root, opts = {}) {
   function finish() {
     stopRush();
     const [a, z] = interval();
-    summary.innerHTML = `1,000 simulated resamples: 95% of them landed between <b>${f2(a)}%</b> and <b>${f2(z)}%</b>. The real interval, from the actual analysis, is <b>55.13%</b> to <b>58.08%</b>.`;
+    summary.innerHTML = `1,000 simulated resamples: 95% of them landed between <b>${f2(a)}%</b> and <b>${f2(z)}%</b>. The reported interval, from the real analysis, is <b>55.13%</b> to <b>58.08%</b>. This sketch treats 56.69% as a plain hit rate and does not reproduce that analysis.`;
     summary.hidden = false;
     live.textContent = summary.textContent;
     for (const b of [btn, autoBtn]) b.setAttribute('aria-disabled', 'true');

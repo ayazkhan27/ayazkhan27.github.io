@@ -10,7 +10,7 @@
   function frozen() { return root.classList.contains('time-stopped'); }
 
   /* ---- section entrances, once each ---- */
-  var rise = d.querySelectorAll('.rise');
+  var rise = d.querySelectorAll('.rise, [data-enter]');
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (es) {
       es.forEach(function (e) {
@@ -157,8 +157,8 @@
     while (prints.firstChild) prints.removeChild(prints.firstChild);
     lastPrint = -99; onScroll();
   }
-  function routeX(p) {                          // scroll fraction to route fraction: the horse reaches post i as stage i begins
-    var T = [0].concat(postT, [1]), X = [0].concat(postX, [1]);
+  function routeX(p) {                          // scroll fraction to route fraction: the horse reaches post i as stage i begins, and stops at the last
+    var T = [0].concat(postT, [1]), X = [0].concat(postX, [postX[postX.length - 1]]);
     for (var i = 1; i < T.length; i++) if (p <= T[i]) return X[i - 1] + (T[i] > T[i - 1] ? (p - T[i - 1]) / (T[i] - T[i - 1]) : 1) * (X[i] - X[i - 1]);
     return 1;
   }
@@ -196,6 +196,7 @@
   addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
   addEventListener('resize', layout);
   addEventListener('load', layout);
+  if (window.ResizeObserver) new ResizeObserver(function () { if (field.clientWidth !== W) layout(); }).observe(field);   // the end labels settle after the fonts
   layout();
 
   /* ---- time stop (WCAG 2.2.2): one control pauses every moving thing on the page ---- */
@@ -264,7 +265,7 @@
     try { opts = JSON.parse(slot.getAttribute('data-jj-opts') || '{}'); } catch (e) {}
     var host = d.createElement('div'); host.className = 'jj-host';
     Promise.all([import(url('assets/jojo/' + name + '.js')), slot.hasAttribute('data-jj-css') ? css(url('assets/jojo/' + name + '.css')) : 0])
-      .then(function (r) { slot.appendChild(host); return r[0].mount(host, opts); })
+      .then(function (r) { slot.insertBefore(host, slot.hasAttribute('data-jj-keep') ? slot.firstChild : null); return r[0].mount(host, opts); })
       .then(function (api) { slot.jj = api; slot.classList.add('jj-on'); })
       .catch(function () { if (host.parentNode) host.parentNode.removeChild(host); slot.classList.add('jj-off'); });   // the static content stays
   }
@@ -297,16 +298,18 @@
     })();
   });
 
-  /* ---- To Be Continued: reaching the end freezes the page in sepia; scrolling back up releases it ---- */
-  var tbc = d.getElementById('tbc');
-  if (tbc && 'IntersectionObserver' in window) new IntersectionObserver(function (es) {
-    var e = es[0];
-    if (e.isIntersecting) {
-      tbc.classList.add('on');
-      if (!root.classList.contains('tbc-freeze')) { root.classList.add('tbc-freeze'); sfx('tbc'); }
-    } else if (e.boundingClientRect.top > 0) root.classList.remove('tbc-freeze');
-  }, { threshold: 0.6 }).observe(tbc);
-  else if (tbc) tbc.classList.add('on');
+  /* ---- To Be Continued: the arrow slides in when it shows; the page freezes in sepia once the footer arrives
+     (the contact block sits above the tint and stays in colour), and scrolling back up releases it ---- */
+  var tbc = d.getElementById('tbc'), foot = d.querySelector('.foot');
+  if (tbc && foot && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (es) { if (es[0].isIntersecting) tbc.classList.add('on'); }, { threshold: 0.4 }).observe(tbc);
+    new IntersectionObserver(function (es) {
+      var e = es[0];
+      if (e.isIntersecting) {
+        if (!root.classList.contains('tbc-freeze')) { root.classList.add('tbc-freeze'); sfx('tbc'); }
+      } else if (e.boundingClientRect.top > 0) root.classList.remove('tbc-freeze');
+    }, { threshold: 0.5 }).observe(foot);
+  } else if (tbc) tbc.classList.add('on');
 
   /* ---- albumen grain on the screen: WebGL, loaded when the page is idle; the CSS grain tile is the fallback ---- */
   function loadGrain() {

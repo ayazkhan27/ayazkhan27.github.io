@@ -1,22 +1,22 @@
-/* 「NO SURPRISES」 Stand card. Scoped to .jj-stand; printed on the albumen plate in both modes. */
+/* 「NO SURPRISES」 Stand card. Scoped to .jj-stand; printed on the albumen plate in both modes. Sizes use the page tokens. */
 .jj-stand{--jj-ink:var(--color-plate-ink,#2a1f17);--jj-paper:var(--color-plate,#d9ccb2);--jj-rule:var(--color-plate-rule,#bcae94);--jj-menace:var(--color-menace,#6b2fa0);--jj-soft:color-mix(in srgb,var(--jj-ink) 74%,var(--jj-paper));
-  position:relative;container-type:inline-size;padding-top:1.25rem;overflow-x:clip;font-family:var(--font-text)}
-.jj-stand__card{position:relative;display:grid;grid-template-columns:minmax(0,1fr);grid-template-areas:"head" "chart" "detail" "list" "note";gap:1.5rem;margin:0;padding:clamp(1.25rem,4cqi,2.5rem);background:var(--jj-paper);color:var(--jj-ink);outline:1px solid var(--jj-rule);outline-offset:-.5rem}
+  position:relative;container-type:inline-size;overflow-x:clip;font-family:var(--font-text)}
+.jj-stand__card{position:relative;display:grid;grid-template-columns:minmax(0,1fr);grid-template-areas:"head" "chart" "list" "note";gap:1.5rem;margin:0;padding:clamp(1.25rem,4cqi,2.5rem);background:var(--jj-paper);color:var(--jj-ink);outline:1px solid var(--jj-rule);outline-offset:-.5rem}
 
-/* name block */
-.jj-stand__head{grid-area:head;padding-right:2.5rem}
-.jj-stand__name{margin:0;font:700 clamp(1.9rem,8cqi,3.1rem)/1 var(--font-display);letter-spacing:-.01em;text-transform:uppercase;font-style:normal}
+/* name block; the right padding leaves the corner to ゴゴゴ */
+.jj-stand__head{grid-area:head;padding-right:3.5rem}
+.jj-stand__name{margin:0;font:700 var(--text-h2,2.5rem)/1 var(--font-display);letter-spacing:-.01em;text-transform:uppercase;font-style:normal}
 .jj-stand__br{font-family:var(--font-sfx);font-weight:400;font-size:.8em;color:var(--jj-ink)}
 .jj-stand__br:first-child{margin:0 .04em 0 -.36em}
 .jj-stand__br:last-child{margin-left:.04em}
-.jj-stand__kana{margin:.55rem 0 0;font:400 .875rem/1.2 var(--font-sfx);letter-spacing:.12em;color:var(--jj-soft)}
+.jj-stand__kana{margin:.55rem 0 0;font:400 var(--text-small,.9375rem)/1.2 var(--font-sfx);letter-spacing:.12em;color:var(--jj-soft)}
 .jj-stand__user{margin:1.1rem 0 0;font-size:var(--text-small,.9375rem);color:var(--jj-soft)}
 .jj-stand__user b{font-weight:600;color:var(--jj-ink)}
-.jj-stand__ability{margin:.6rem 0 0;max-width:44ch;font-size:1rem;line-height:1.5}
+.jj-stand__ability{margin:.6rem 0 0;max-width:44ch;font-size:var(--text-small,.9375rem);line-height:1.5}
 .jj-stand__ability b{font-weight:600}
 
 /* the hexagon */
-.jj-stand__chart{grid-area:chart;position:relative;width:100%;max-width:27rem;aspect-ratio:1;justify-self:center}
+.jj-stand__chart{grid-area:chart;position:relative;width:100%;max-width:25rem;aspect-ratio:1;justify-self:center}
 .jj-stand__chart svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
 .jj-stand__grid polygon,.jj-stand__grid line{fill:none;stroke:var(--jj-ink);stroke-opacity:.3;stroke-width:1;vector-effect:non-scaling-stroke}
 .jj-stand__grid line.is-on{stroke:var(--jj-menace);stroke-opacity:1;stroke-width:2}
@@ -24,65 +24,52 @@
 .jj-stand__poly{fill:var(--jj-menace);fill-opacity:.2;stroke:var(--jj-menace);stroke-width:2;stroke-linejoin:miter;vector-effect:non-scaling-stroke;transform-box:view-box;transform-origin:0 0}
 .jj-stand__dots circle{fill:var(--jj-menace);stroke:var(--jj-paper);stroke-width:2;vector-effect:non-scaling-stroke;transition:r .18s cubic-bezier(.16,1,.3,1)}
 .jj-stand__dots circle.is-on{r:7px}
-.jj-stand__axis{position:absolute;display:grid;justify-items:center;gap:.1rem;min-width:44px;min-height:44px;padding:.3rem .45rem;border:0;border-radius:0;background:transparent;color:var(--jj-ink);font:600 .8125rem/1.1 var(--font-text);cursor:pointer;-webkit-tap-highlight-color:transparent}
-.jj-stand__ag{font:700 1.5rem/1 var(--font-display)}
+.jj-stand__axis{position:absolute;display:grid;justify-items:center;gap:.1rem;padding:.3rem .45rem;color:var(--jj-ink);font:600 var(--text-small,.9375rem)/1.1 var(--font-text)}
+.jj-stand__ag{font:700 var(--text-h3,1.25rem)/1 var(--font-display)}
 .jj-stand__axis.is-n{transform:translate(-50%,-100%)}
 .jj-stand__axis.is-s{transform:translate(-50%,0)}
 .jj-stand__axis.is-e{transform:translate(0,-50%);justify-items:start}
 .jj-stand__axis.is-w{transform:translate(-100%,-50%);justify-items:end}
-.jj-stand__axis:hover .jj-stand__an{text-decoration:underline;text-underline-offset:.2em}
-.jj-stand__axis[aria-current="true"]{background:var(--jj-ink);color:var(--jj-paper)}
-.jj-stand__axis:focus-visible{outline:3px solid var(--color-focus,#2f8cf0);outline-offset:2px}
+.jj-stand__axis.is-on{background:var(--jj-ink);color:var(--jj-paper)}
 
-/* the evidence for the chosen parameter */
-.jj-stand__detail{grid-area:detail;display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-rows:auto 1fr;column-gap:1.1rem;align-content:start;min-height:8.5rem;padding-top:1rem;border-top:1px solid var(--jj-rule)}
-.jj-stand__prompt{grid-column:1/-1;margin:0;color:var(--jj-soft);font-size:var(--text-small,.9375rem);max-width:34ch}
-.jj-stand__dg{grid-row:1/3;margin:0;font:700 clamp(3.5rem,13cqi,5rem)/.82 var(--font-display);color:var(--jj-ink)}
-.jj-stand__dn{margin:0;font-weight:600;font-size:1.0625rem;line-height:1.3}
-.jj-stand__de{margin:.3rem 0 0;font-size:1rem;line-height:1.45;max-width:38ch}
-
-/* every grade with its evidence, for readers who skip the chart */
-.jj-stand__list{grid-area:list;margin:0;border-top:1px solid var(--jj-rule)}
-.jj-stand__list>div{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:1rem;padding:.7rem 0;border-bottom:1px solid var(--jj-rule);transition:background-color .18s}
-.jj-stand__list dt{font-weight:600;font-size:.9375rem}
+/* every grade with its evidence; each evidence line links up to its section */
+.jj-stand__list{grid-area:list;margin:0;border-top:1px solid var(--jj-rule);align-self:start}
+.jj-stand__list>div{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:1rem;padding:.7rem .5rem;margin:0 -.5rem;border-bottom:1px solid var(--jj-rule);transition:background-color .18s}
+.jj-stand__list dt{font-weight:600;font-size:var(--text-small,.9375rem)}
 .jj-stand__list dd{margin:0}
-.jj-stand__list .jj-stand__lg{grid-row:1/3;grid-column:2;font:700 1.375rem/1 var(--font-display)}
-.jj-stand__list dd:last-child{grid-column:1;font-size:.9375rem;line-height:1.45;color:var(--jj-soft)}
+.jj-stand__list .jj-stand__lg{grid-row:1/3;grid-column:2;align-self:center;font:700 var(--text-h3,1.25rem)/1 var(--font-display)}
+.jj-stand__list dd:last-child{grid-column:1;font-size:var(--text-small,.9375rem);line-height:1.45}
+.jj-stand__list a{color:var(--jj-ink);text-decoration-thickness:1px;text-underline-offset:.2em}
+.jj-stand__list a:hover{text-decoration-thickness:2px}
+.jj-stand__list a:focus-visible{outline:3px solid var(--jj-ink);outline-offset:2px}
 .jj-stand__list>div.is-on{background:color-mix(in srgb,var(--jj-menace) 9%,var(--jj-paper))}
-.jj-stand__note{grid-area:note;margin:0;font-size:.875rem;line-height:1.45;color:var(--jj-soft);max-width:60ch}
+.jj-stand__note{grid-area:note;margin:0;font-size:var(--text-small,.9375rem);line-height:1.45;color:var(--jj-soft);max-width:60ch}
 .jj-stand__vh{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 
-/* ゴゴゴ, drifting beside the card */
-.jj-stand__gogo{position:absolute;top:.4rem;right:.15rem;z-index:1;display:flex;flex-direction:column;align-items:flex-end;font:400 clamp(1.6rem,6cqi,2.6rem)/.92 var(--font-sfx);color:var(--jj-menace);pointer-events:none;opacity:0;transition:opacity 1.2s}
-.jj-stand.is-drawn .jj-stand__gogo{opacity:1}
-.jj-stand__gogo span{display:block;opacity:.6;animation:jj-stand-gogo 5.5s ease-in-out infinite alternate}
-.jj-stand__gogo span:nth-child(2){margin-right:.5em;font-size:1.15em;animation-delay:-1.4s}
-.jj-stand__gogo span:nth-child(3){animation-delay:-2.8s}
-.jj-stand__gogo span:nth-child(4){margin-right:.45em;font-size:.88em;animation-delay:-4.2s}
-@keyframes jj-stand-gogo{from{transform:translate(0,-5px) rotate(-7deg);opacity:.38}to{transform:translate(-3px,6px) rotate(5deg);opacity:.75}}
+/* ゴゴゴ, printed in the card's top corner; it does not move */
+.jj-stand__gogo{position:absolute;top:clamp(1rem,3cqi,1.75rem);right:clamp(1rem,3cqi,1.75rem);display:flex;flex-direction:column;align-items:flex-end;font:400 var(--text-h3,1.25rem)/.92 var(--font-sfx);color:var(--jj-menace);pointer-events:none}
+.jj-stand__gogo span:nth-child(2){margin-right:.5em;font-size:1.15em}
+.jj-stand__gogo span:nth-child(4){margin-right:.45em;font-size:.88em}
 
 /* draw-in, first view only */
 .jj-stand.is-armed .jj-stand__poly,.jj-stand.is-armed .jj-stand__dots{opacity:0}
 .jj-stand.is-armed.is-drawn .jj-stand__poly{opacity:1;animation:jj-stand-draw 1.1s cubic-bezier(.16,1,.3,1) both}
 .jj-stand.is-armed.is-drawn .jj-stand__dots{opacity:1;animation:jj-stand-dots .5s .75s both}
-@keyframes jj-stand-draw{from{transform:scale(0) rotate(-30deg)}to{transform:none}}
+@keyframes jj-stand-draw{from{transform:scale(.2) rotate(-30deg)}to{transform:none}}
 @keyframes jj-stand-dots{from{opacity:0}}
 .jj-stand.is-frozen *{animation-play-state:paused!important}
 
 @container (max-width:24rem){
-  .jj-stand__axis{padding:.25rem .3rem;font-size:.75rem}
-  .jj-stand__ag{font-size:1.3rem}
+  .jj-stand__axis{padding:.25rem .3rem;font-size:.8125rem}
+}
+@container (min-width:40rem){
+  .jj-stand__gogo{font-size:var(--text-h2,2.5rem)}
+  .jj-stand__head{padding-right:5rem}
 }
 @container (min-width:46rem){
-  .jj-stand__card{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);grid-template-areas:"chart head" "chart detail" "list list" "note note";column-gap:clamp(1.5rem,4cqi,3rem);margin-right:4rem}
-  .jj-stand__head{padding-right:0}
+  .jj-stand__card{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);grid-template-areas:"chart head" "chart list" "note note";column-gap:clamp(1.5rem,4cqi,3rem)}
   .jj-stand__chart{align-self:center}
-  .jj-stand__list>div{grid-template-columns:12rem 2.5rem minmax(0,1fr);align-items:baseline}
-  .jj-stand__list .jj-stand__lg{grid-row:auto;grid-column:2}
-  .jj-stand__list dd:last-child{grid-column:3}
-  .jj-stand__gogo{top:2.25rem;right:0}
 }
 @media (prefers-reduced-motion:reduce){
-  .jj-stand__gogo span{animation:none}
-  .jj-stand__gogo,.jj-stand__dots circle,.jj-stand__list>div{transition:none}
+  .jj-stand__dots circle,.jj-stand__list>div{transition:none}
 }
