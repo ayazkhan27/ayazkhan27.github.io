@@ -1,6 +1,6 @@
 /* Albumen-print grain over the projection screen. WebGL1, ~1 KB of shader.
    Controls follow LightCraft's develop model: grain amount / size / roughness, vignette amount / midpoint / feather.
-   New grain every 1/25 s (Muybridge's interval); one still frame under reduced motion; stops off screen. */
+   New grain every 1/25 s (Muybridge's interval); one still frame under reduced motion or a time stop; stops off screen. */
 (function () {
   var stage = document.getElementById('stage');
   if (!stage) return;
@@ -39,7 +39,7 @@
 
   stage.appendChild(c); stage.classList.add('gl');
   var dpr = Math.min(devicePixelRatio || 1, 1.5), frame = 0, last = 0, on = true, raf = 0;
-  var reduce = matchMedia('(prefers-reduced-motion: reduce)');
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)'), still = document.documentElement.classList.contains('time-stopped');
   function size() {
     c.width = Math.round(stage.clientWidth * dpr); c.height = Math.round(stage.clientHeight * dpr);
     gl.viewport(0, 0, c.width, c.height); gl.uniform2f(uRes, c.width, c.height); draw();
@@ -47,11 +47,13 @@
   function draw() { gl.uniform1f(uFrame, frame % 997); gl.drawArrays(gl.TRIANGLES, 0, 3); }
   function tick(t) {
     raf = 0;
-    if (!on || reduce.matches) return;
+    if (!on || reduce.matches || still) return;
     if (t - last >= 40) { last = t; frame++; draw(); }
     raf = requestAnimationFrame(tick);
   }
-  function start() { if (!raf && on && !reduce.matches) raf = requestAnimationFrame(tick); }
+  function start() { if (!raf && on && !reduce.matches && !still) raf = requestAnimationFrame(tick); }
+  document.addEventListener('timestop', function () { still = true; });
+  document.addEventListener('timeresume', function () { still = false; start(); });
   new IntersectionObserver(function (es) { on = es[0].isIntersecting; start(); }).observe(stage);
   addEventListener('resize', size);
   reduce.addEventListener && reduce.addEventListener('change', start);

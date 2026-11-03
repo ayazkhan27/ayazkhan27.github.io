@@ -1,0 +1,73 @@
+/* Golden rectangle module (assets/jojo/golden.js). Page tokens throughout; gold falls back to #a8780a. */
+.jj-golden{--jjg-gold:var(--color-gold,#a8780a);display:grid;grid-template-columns:minmax(0,1fr);gap:var(--space-lg,2.5rem);align-items:start;color:var(--color-ink)}
+@media (min-width:900px){.jj-golden{grid-template-columns:minmax(0,7fr) minmax(0,5fr)}}
+.jj-golden p{margin:0;max-width:62ch}
+.jj-golden button{min-width:44px;min-height:44px;padding:0 1rem;font:600 var(--text-small,.9375rem)/1.2 var(--font-text);color:var(--color-ink);background:transparent;border:2px solid var(--color-control-edge,currentColor);border-radius:0;cursor:pointer}
+.jj-golden button:hover{border-color:var(--color-ink)}
+.jj-golden button[aria-pressed=true]{background:var(--color-ink);border-color:var(--color-ink);color:var(--color-bg)}
+.jj-golden :focus-visible{outline:3px solid var(--color-focus);outline-offset:2px}
+
+/* the plate: silhouette, its box, the golden rectangle */
+.jj-golden .jjg-stage{display:block;width:100%;height:auto;background:var(--color-surface)}
+.jj-golden .jjg-horse,.jj-golden .jjg-ghost{fill:var(--color-ink)}
+.jj-golden .jjg-ghost{opacity:.22}
+.jj-golden .jjg-box,.jj-golden .jjg-gold *{fill:none;vector-effect:non-scaling-stroke}
+.jj-golden .jjg-box{stroke:var(--color-mark);stroke-width:2.5}
+.jj-golden .jjg-gold *{stroke:var(--jjg-gold)}
+.jj-golden .jjg-phi{stroke-width:2}
+.jj-golden .jjg-cuts{stroke-width:1}
+.jj-golden .jjg-spiral{stroke-width:2.5;stroke-linecap:round}
+.jj-golden .jjg-spiral.jjg-draw{stroke-dasharray:1 1;animation:jjg-draw 1200ms linear both}
+@keyframes jjg-draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+.jj-golden .jjg-key,.jj-golden .jjg-key2{display:flex;flex-wrap:wrap;gap:.25rem 1.25rem;margin-top:.6rem;font-size:var(--text-small,.9375rem);color:var(--color-muted)}
+.jj-golden .jjg-key span::before{content:"";display:inline-block;width:1.1em;height:.75em;margin-right:.45em;vertical-align:-.05em;border:2px solid var(--color-mark)}
+.jj-golden .jjg-key .g::before{border-color:var(--jjg-gold)}
+
+/* stepping */
+.jj-golden .jjg-bar{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:.75rem 1.5rem;margin-top:var(--space-md,1.5rem)}
+.jj-golden .jjg-steps,.jj-golden .jjg-seg{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.jj-golden .jjg-where{margin-left:.5rem;font-size:var(--text-small,.9375rem);font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.jj-golden .jjg-lab{margin-right:.4rem;font-size:var(--text-small,.9375rem);color:var(--color-muted)}
+.jj-golden .jjg-pair{display:flex}
+.jj-golden .jjg-pair button+button{margin-left:-2px}
+.jj-golden .jjg-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(44px,1fr));gap:4px;margin:var(--space-sm,1rem) 0 0;padding:0;list-style:none}
+.jj-golden .jjg-strip button{display:block;width:100%;min-width:0;padding:4px 2px;border-width:1px}
+.jj-golden .jjg-strip svg{display:block;width:100%;height:auto;fill:var(--color-muted)}
+.jj-golden .jjg-strip button[aria-current=true]{border:2px solid var(--color-ink);padding:3px 1px}
+.jj-golden .jjg-strip button[aria-current=true] svg{fill:var(--color-ink)}
+
+/* the numbers */
+.jj-golden .jjg-facts{container-type:inline-size}
+.jj-golden .jjg-read{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-sm,1rem);margin:0}
+.jj-golden .jjg-read dt{margin-bottom:.35rem;font-size:var(--text-small,.9375rem);color:var(--color-muted)}
+.jj-golden .jjg-read dd{margin:0;font:700 clamp(1.35rem,8.5cqi,2.4rem)/1 var(--font-display);letter-spacing:-.02em;font-variant-numeric:tabular-nums lining-nums;white-space:nowrap}
+.jj-golden .jjg-read small{display:block;margin-top:.4rem;font:300 var(--text-small,.9375rem)/1.3 var(--font-text);letter-spacing:0;color:var(--color-muted);white-space:normal}
+.jj-golden .jjg-note{margin-top:var(--space-sm,1rem);font-size:var(--text-small,.9375rem);color:var(--color-muted);min-height:3em}
+.jj-golden .jjg-verdict{margin-top:var(--space-md,1.5rem);font-size:1.0625rem;line-height:1.45}
+.jj-golden .jjg-verdict b{display:block;margin-bottom:.3rem;font:700 clamp(1.5rem,7cqi,2.1rem)/1.1 var(--font-display);letter-spacing:-.02em}
+.jj-golden .jjg-key2{margin-top:var(--space-md,1.5rem)}
+.jj-golden .jjg-key2 span::before{content:"";display:inline-block;box-sizing:border-box;width:.75em;height:.75em;margin-right:.4em;vertical-align:-.04em;border:2px solid var(--color-mark);border-radius:50%;background:var(--color-mark)}
+.jj-golden .jjg-key2 .h::before{background:transparent}
+.jj-golden .jjg-key2 .g::before{width:2px;height:1em;border:0;border-radius:0;background:var(--jjg-gold);vertical-align:-.15em}
+.jj-golden .jjg-plot{margin-top:.5rem}
+.jj-golden .jjg-plot svg{display:block;overflow:visible}
+.jj-golden .jjg-plot text{font:300 12px var(--font-text);fill:var(--color-muted)}
+.jj-golden .jjg-plot .t{font-size:13px;font-weight:600;fill:var(--color-ink)}
+.jj-golden .jjg-plot .sel{fill:var(--color-surface)}
+.jj-golden .jjg-plot .phi{stroke:var(--jjg-gold);stroke-width:2}
+.jj-golden .jjg-plot .ln{stroke:var(--color-context);stroke-width:2}
+.jj-golden .jjg-plot .ax{stroke:var(--color-context);stroke-width:1}
+.jj-golden .jjg-plot .ci{fill:none;stroke:var(--color-mark);stroke-width:2}
+.jj-golden .jjg-plot .r{fill:var(--color-mark);stroke:var(--color-bg);stroke-width:2}
+.jj-golden .jjg-plot .h{fill:var(--color-bg);stroke:var(--color-mark);stroke-width:2}
+.jj-golden .jjg-plot .lab{paint-order:stroke;stroke:var(--color-bg);stroke-width:5px;stroke-linejoin:round}
+.jj-golden .jjg-cap,.jj-golden .jjg-credit{margin-top:var(--space-xs,.5rem);font-size:var(--text-small,.9375rem);color:var(--color-muted)}
+.jj-golden .jjg-table{margin-top:var(--space-sm,1rem);font-size:var(--text-small,.9375rem)}
+.jj-golden .jjg-table summary{display:flex;align-items:center;min-height:44px;font-weight:600;cursor:pointer}
+.jj-golden .jjg-table table{border-collapse:collapse;font-variant-numeric:tabular-nums}
+.jj-golden .jjg-table th,.jj-golden .jjg-table td{padding:.2rem 1rem .2rem 0;line-height:1.35;text-align:right;font-weight:300}
+.jj-golden .jjg-table th:first-child,.jj-golden .jjg-table thead th{text-align:left;font-weight:600}
+.jj-golden .jjg-table tfoot tr:first-child>*{border-top:1px solid var(--color-context)}
+.jj-golden .jjg-credit{margin-top:var(--space-md,1.5rem)}
+.jj-golden .jjg-vh{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+@media (prefers-reduced-motion:reduce){.jj-golden .jjg-spiral.jjg-draw{animation:none}}

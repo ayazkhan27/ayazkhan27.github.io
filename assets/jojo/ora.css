@@ -1,0 +1,71 @@
+/* ORA ORA: the resample barrage. Scoped to .jj-ora; colors come only from page tokens. */
+.jj-ora{position:relative;container-type:inline-size;color:var(--color-ink);font-family:var(--font-text)}
+.jj-ora__panel{position:relative;margin:0;padding:clamp(1rem,2.6vw,1.75rem);background:var(--color-surface);overflow:hidden;isolation:isolate}
+.jj-ora__head{position:relative;z-index:3;display:flex;flex-wrap:wrap;align-items:baseline;gap:.35rem 1.5rem;margin:0 0 1rem;font-size:var(--text-small,.9375rem);line-height:1.4}
+.jj-ora__head>span>span{background:var(--color-surface);padding:.1em .3em;margin:0 -.3em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.jj-ora__note{width:100%;max-width:52ch;color:var(--color-muted)}
+.jj-ora__count b{font-weight:600;font-variant-numeric:tabular-nums}
+.jj-ora__plot{position:relative;z-index:1}
+.jj-ora__chart{display:block;width:100%;height:auto;overflow:visible}
+.jj-ora__chart text{font:300 14px var(--font-text);fill:var(--color-muted)}
+.jj-ora__chart .is-name{font-weight:600;fill:var(--color-ink)}
+.jj-ora__chart .is-val{fill:var(--color-ink);font-variant-numeric:tabular-nums}
+.jj-ora__chart .is-wait{fill:var(--color-muted)}
+.jj-ora__chart .jj-ora__empty{font-size:15px}
+.jj-ora__ctx rect{fill:var(--color-context)}
+.jj-ora__mid rect{fill:var(--color-mark)}
+.jj-ora__hit{fill:var(--color-ink)}
+.jj-ora__chart .jj-ora__tag{font-weight:600;fill:var(--color-ink);stroke:var(--color-surface);stroke-width:4px;stroke-linejoin:round;paint-order:stroke fill;font-variant-numeric:tabular-nums}
+.jj-ora__axis{stroke:var(--color-context);stroke-width:1}
+.jj-ora__sim line{stroke:var(--color-mark);stroke-width:2}
+.jj-ora__real rect{fill:var(--color-ink)}
+.jj-ora__real circle{fill:var(--color-surface);stroke:var(--color-ink);stroke-width:2}
+
+/* flourish layers: decorative, clipped by the panel like a manga frame. Focus lines sit behind the bars, kana above them. */
+.jj-ora__lines{position:absolute;inset:0;z-index:0;width:100%;height:100%;pointer-events:none}
+.jj-ora__lines path{fill:var(--color-ink);opacity:0;transition:opacity .3s}
+.jj-ora__fx{position:absolute;inset:0;z-index:2;pointer-events:none;overflow:hidden}
+.jj-ora__kana{position:absolute;font:400 calc(1.5rem * var(--s,1))/1 var(--font-sfx);color:var(--color-ink);white-space:nowrap;-webkit-text-stroke:.18em var(--color-surface);paint-order:stroke fill;animation:jj-ora-kana .56s cubic-bezier(.16,1,.3,1) both}
+.jj-ora__final{position:absolute;font:700 clamp(4.5rem,16vw,10rem)/1 var(--font-display);letter-spacing:-.02em;color:var(--color-ink);-webkit-text-stroke:.07em var(--color-surface);paint-order:stroke fill;white-space:nowrap;animation:jj-ora-final 1.9s cubic-bezier(.16,1,.3,1) both}
+.jj-ora.is-frozen .jj-ora__fx>*{animation-play-state:paused}
+@keyframes jj-ora-kana{
+  0%{opacity:0;transform:translate(-50%,-50%) rotate(var(--r)) scale(1.7)}
+  16%{opacity:1;transform:translate(-50%,-50%) rotate(var(--r)) scale(1)}
+  72%{opacity:1}
+  100%{opacity:0;transform:translate(-50%,-50%) rotate(var(--r)) scale(.94)}
+}
+@keyframes jj-ora-final{
+  0%{opacity:0;transform:translate(-50%,-50%) rotate(-6deg) scale(2.2)}
+  9%{opacity:1;transform:translate(-50%,-50%) rotate(-6deg) scale(1)}
+  12%{transform:translate(calc(-50% + 5px),calc(-50% - 3px)) rotate(-6deg)}
+  15%{transform:translate(-50%,-50%) rotate(-6deg)}
+  78%{opacity:1}
+  100%{opacity:0;transform:translate(-50%,-50%) rotate(-6deg) scale(1.03)}
+}
+@keyframes jj-ora-fade{0%,100%{opacity:0}12%,78%{opacity:1}}
+@keyframes jj-ora-shake{0%{transform:translate(1px,1px)}50%{transform:translate(-1px,2px)}100%{transform:translate(1px,2px)}}
+
+/* controls */
+.jj-ora__controls{display:flex;flex-wrap:wrap;align-items:stretch;gap:.75rem;margin-top:1rem}
+.jj-ora__btn{display:inline-grid;justify-items:start;align-content:center;gap:.25rem;min-height:4.75rem;min-width:13rem;padding:.6rem 1.5rem .75rem;border:0;border-radius:0;background:var(--color-ink);color:var(--color-bg);cursor:pointer;touch-action:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent;transition:transform .12s cubic-bezier(.16,1,.3,1)}
+.jj-ora__word{font:700 2.5rem/.9 var(--font-display);letter-spacing:-.01em}
+.jj-ora__hint{font:600 .8125rem/1.2 var(--font-text);opacity:.82}
+.jj-ora__btn.is-held{transform:translateY(2px)}
+.jj-ora__btn.is-rushing{animation:jj-ora-shake .09s steps(2) infinite}
+.jj-ora__side{display:flex;gap:.5rem;align-items:stretch}
+.jj-ora__sec{min-height:48px;min-width:48px;padding:0 1rem;border:2px solid var(--color-control-edge,var(--color-context));border-radius:0;background:transparent;color:var(--color-ink);font:600 var(--text-small,.9375rem)/1.2 var(--font-text);cursor:pointer}
+.jj-ora__sec:hover{border-color:var(--color-ink)}
+.jj-ora [aria-disabled="true"]{opacity:.5;cursor:default}
+.jj-ora button:focus-visible{outline:3px solid var(--color-focus,#2f8cf0);outline-offset:3px}
+.jj-ora__summary{margin:1.25rem 0 0;max-width:60ch;font-size:1.125rem;line-height:1.5}
+.jj-ora__summary b{font-weight:600;font-variant-numeric:lining-nums}
+.jj-ora__vh{position:absolute;width:1px;height:1px;margin:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+
+@container (max-width:32rem){
+  .jj-ora__btn,.jj-ora__side{flex:1 1 100%}
+  .jj-ora__sec{flex:1}
+}
+@media (prefers-reduced-motion:reduce){
+  .jj-ora__final{animation-name:jj-ora-fade;transform:translate(-50%,-50%) rotate(-6deg)}
+  .jj-ora__btn,.jj-ora__lines path{transition:none}
+}
