@@ -69,8 +69,8 @@
     else last = 0;
   }
   function kick() { if (!raf) raf = requestAnimationFrame(loop); }
-  function setAuto(on) {
-    auto = on && !reduce.matches && !frozen();
+  function setAuto(on, asked) {                  // the page never starts motion under reduced motion; a visitor's Play still runs it
+    auto = on && (asked || !reduce.matches) && !frozen();
     play.textContent = auto ? 'Pause' : 'Play';
     play.setAttribute('aria-pressed', auto ? 'true' : 'false');
     kick();
@@ -81,7 +81,7 @@
     return target + k * 360;
   }
 
-  play.addEventListener('click', function () { if (frozen()) setTime(false); setAuto(!auto); });
+  play.addEventListener('click', function () { if (frozen()) setTime(false); setAuto(!auto, true); });
   d.getElementById('prev').addEventListener('click', function () { go(cur === 1 ? N : cur - 1); });
   d.getElementById('next').addEventListener('click', function () { go(cur === N ? 1 : cur + 1); });
   btns.forEach(function (b, i) { b.addEventListener('click', function () { go(i + 1); }); });
@@ -94,7 +94,7 @@
     if (k === 'ArrowRight' || k === 'ArrowUp') go((cur % N) + 1);
     else if (k === 'ArrowLeft' || k === 'ArrowDown') go(cur === 1 ? N : cur - 1);
     else if (k === 'Home') go(1); else if (k === 'End') go(N);
-    else if (k === ' ' || k === 'Enter') { if (frozen()) setTime(false); setAuto(!auto); }
+    else if (k === ' ' || k === 'Enter') { if (frozen()) setTime(false); setAuto(!auto, true); }
     else return;
     e.preventDefault();
   });
@@ -127,11 +127,20 @@
   sheet.addEventListener('focusin', function () { held = true; });
   sheet.addEventListener('focusout', function () { held = false; kick(); });
 
-  var hero = d.querySelector('.hero');
-  if ('IntersectionObserver' in window) new IntersectionObserver(function (es) {
-    inView = es[0].isIntersecting; d.getElementById('rail').classList.toggle('on', !inView);
-    if (inView) kick();
-  }).observe(hero);
+  /* the engine runs while the hero plate or the disc (in the Lab) is on screen */
+  var hero = d.querySelector('.hero'), gate = d.querySelector('.gate'), seen = { hero: true, gate: false };
+  if ('IntersectionObserver' in window) {
+    var vis = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        var k = e.target === hero ? 'hero' : 'gate';
+        seen[k] = e.isIntersecting;
+        if (k === 'hero') d.getElementById('rail').classList.toggle('on', !e.isIntersecting);
+      });
+      inView = seen.hero || seen.gate;
+      if (inView) kick();
+    });
+    vis.observe(hero); if (gate) vis.observe(gate);
+  }
   reduce.addEventListener && reduce.addEventListener('change', function () { setAuto(!reduce.matches); });
 
   render();
@@ -196,7 +205,11 @@
   addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
   addEventListener('resize', layout);
   addEventListener('load', layout);
-  if (window.ResizeObserver) new ResizeObserver(function () { if (field.clientWidth !== W) layout(); }).observe(field);   // the end labels settle after the fonts
+  var H = 0;                                     // relayout when the end labels settle after the fonts, or a toggle or module changes the page's height
+  if (window.ResizeObserver) {
+    var ro = new ResizeObserver(function () { if (field.clientWidth !== W || root.scrollHeight !== H) { H = root.scrollHeight; layout(); } });
+    ro.observe(field); ro.observe(d.body);
+  }
   layout();
 
   /* ---- time stop (WCAG 2.2.2): one control pauses every moving thing on the page ---- */
@@ -240,20 +253,38 @@
   try { if (sessionStorage.getItem('ak-time') === 'stopped') setTime(true, true); } catch (e) {}
 
   /* ---- sound: off by default; the audio module owns the toggle, the rail copy mirrors it ---- */
-  var soundBtns = [].slice.call(d.querySelectorAll('[data-sound]'));
+  var soundBtns = [].slice.call(d.querySelectorAll('[data-sound]')), audioCtl = null, audioP = Promise.resolve();
   function url(p) { return new URL(p, d.baseURI).href; }
   if (root.hasAttribute('data-audio') && soundBtns.length) {
-    import(url('assets/jojo/audio.js')).then(function (m) {
-      m.initAudio({ toggle: soundBtns[0] });
+    audioP = import(url('assets/jojo/audio.js')).then(function (m) {
+      audioCtl = m.initAudio({ toggle: soundBtns[0] }) || null;
       soundBtns.slice(1).forEach(function (b) { b.addEventListener('click', function () { soundBtns[0].click(); }); });
       var mirror = function () { soundBtns.slice(1).forEach(function (b) { b.setAttribute('aria-pressed', soundBtns[0].getAttribute('aria-pressed') || 'false'); }); };
       new MutationObserver(mirror).observe(soundBtns[0], { attributes: true, attributeFilter: ['aria-pressed'] });
       mirror();
-      soundBtns.forEach(function (b) { b.hidden = false; });
-    }).catch(function () {});                       // no audio module: the toggles stay hidden
+      soundBtns.forEach(function (b) { b.removeAttribute('data-pending'); });
+    }).catch(function () {});                       // no audio module: the toggles stay invisible
   }
 
-  /* ---- JoJo modules: each loads as its section comes within ~600 px, so Three.js waits for Gyro's lesson ---- */
+  /* ---- the 26-second episode: its engine loads on the first hover, focus or press of the button ---- */
+  var epBtn = d.querySelector('[data-episode]'), epP = null, epReady = false;
+  function loadEpisode() {
+    if (!epP) epP = Promise.all([import(url('assets/jojo/episode.js')), epBtn.hasAttribute('data-ep-css') ? css(url('assets/jojo/episode.css')) : 0, audioP])
+      .then(function (r) { return r[0].initEpisode({ button: epBtn, audio: audioCtl }); })
+      .then(function () { epReady = true; });
+    return epP;
+  }
+  if (epBtn && root.hasAttribute('data-ep-ready')) {
+    ['pointerenter', 'focus', 'touchstart'].forEach(function (t) { epBtn.addEventListener(t, function () { loadEpisode().catch(function () {}); }, { once: true, passive: true }); });
+    epBtn.addEventListener('click', function (e) {     // a click that beats the engine waits for it, then is replayed
+      if (epReady) return;
+      e.preventDefault(); e.stopImmediatePropagation();
+      loadEpisode().then(function () { epBtn.click(); }, function () { epBtn.disabled = true; });
+    });
+  }
+
+  /* ---- JoJo modules: a slot in the main path loads as it comes within ~600 px; a slot behind a toggle (the Lab,
+     Ask your own) loads only when it is opened, and pauses while it is closed ---- */
   function css(href) {
     return new Promise(function (ok) {
       var l = d.createElement('link'); l.rel = 'stylesheet'; l.href = href;
@@ -269,13 +300,19 @@
       .then(function (api) { slot.jj = api; slot.classList.add('jj-on'); })
       .catch(function () { if (host.parentNode) host.parentNode.removeChild(host); slot.classList.add('jj-off'); });   // the static content stays
   }
-  var slots = [].slice.call(d.querySelectorAll('[data-jj]'));
-  if ('IntersectionObserver' in window) {
-    var lazy = new IntersectionObserver(function (es) {
-      es.forEach(function (e) { if (e.isIntersecting) { lazy.unobserve(e.target); mount(e.target); } });
-    }, { rootMargin: '600px 0px' });
-    slots.forEach(function (s) { lazy.observe(s); });
-  } else slots.forEach(mount);
+  var lazy = 'IntersectionObserver' in window && new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { lazy.unobserve(e.target); mount(e.target); } });
+  }, { rootMargin: '600px 0px' });
+  [].slice.call(d.querySelectorAll('[data-jj]')).forEach(function (s) {
+    var det = s.closest('details');
+    if (!det) return lazy ? lazy.observe(s) : mount(s);
+    function toggled() {
+      if (!det.open) return s.jj && s.jj.pause && s.jj.pause();
+      if (!s.jj && !s.mounting) { s.mounting = true; mount(s); }
+      else if (s.jj && s.jj.resume && !frozen()) s.jj.resume();
+    }
+    det.addEventListener('toggle', toggled); toggled();
+  });
 
   /* ---- in-page jumps land where they aim, even when modules above the target mount on the way ---- */
   d.addEventListener('click', function (e) {

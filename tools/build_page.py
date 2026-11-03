@@ -14,7 +14,7 @@ s = (T / "page.html").read_text()
 
 sheet = "\n          ".join(
     f'<li><button type="button" aria-label="Frame {n}{" (all four hooves off the track)" if n in (2, 3) else ""}">'
-    f'<img src="assets/plate/alb-{n:02d}.jpg" width="240" height="150" alt="" decoding="async"></button></li>'
+    f'<img src="assets/plate/alb-{n:02d}.jpg" width="240" height="150" alt="" loading="lazy" decoding="async"></button></li>'
     for n in range(1, 12))
 disc = "\n            ".join(
     f'<g transform="rotate({(n - 1) * 360 / 11:.3f})"><use class="d-horse" href="#h{n}" x="-120" y="-428" width="240" height="153"/>'
@@ -125,6 +125,10 @@ def slot(m):
 s = re.sub(r'data-module="([a-z]+)"', slot, s)
 if (J / "audio.js").exists():
     s = s.replace('<html lang="en">', '<html lang="en" data-audio>', 1)
+if (J / "episode.js").exists():                                               # the hero's episode button shows only once its engine ships
+    s = s.replace('<html lang="en"', '<html lang="en" data-ep-ready', 1)
+    if (J / "episode.css").exists():
+        s = s.replace(' data-episode>', ' data-episode data-ep-css>', 1)
 
 (R / "index.html").write_text(s)
 left = sorted(set(re.findall(r"TODO-FACT[^<]*", s)))

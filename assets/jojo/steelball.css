@@ -15,7 +15,7 @@
 .jj-steelball__d{width:.56em}
 .jj-steelball__pt{width:.22em}
 .jj-steelball__unit{font:600 var(--text-small,.9375rem)/1 var(--font-text);color:var(--color-muted)}
-.jj-steelball__fit{margin:.7rem 0 0;font:600 var(--text-small,.9375rem)/1.4 var(--font-text);font-variant-numeric:tabular-nums lining-nums}
+.jj-steelball__fit{min-height:2.8em;margin:.7rem 0 0;font:600 var(--text-small,.9375rem)/1.4 var(--font-text);font-variant-numeric:tabular-nums lining-nums}
 .jj-steelball__fig{margin:.6rem 0 0}
 .jj-steelball__plot{display:block;width:100%;max-width:320px;height:auto;overflow:visible}
 .jj-steelball__plot .ax{fill:none;stroke:var(--color-context);stroke-width:1}

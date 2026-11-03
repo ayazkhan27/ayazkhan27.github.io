@@ -6,8 +6,7 @@
    The engraving is computed per pixel in the shader, with exact motion blur along the spin: at speed the dots
    smear into streaks, and above 161.8 rpm the steel dims and the dots light in var(--color-gold).
    mount(root, { tau = 3, noise = 0.02, fallbackSrc }) -> Promise<{ pause, resume, destroy }> */
-import * as THREE from 'three';
-import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+let THREE = null, RoomEnvironment = null;   // loaded inside mount(), so a blocked CDN falls back to the still instead of killing the module
 
 const N = 377, DOT = 0.062;            // dots (a Fibonacci number) and their radius, in radians of arc
 const GOLDEN = 161.8, QUIET = 5;       // rpm: Golden Spin; below QUIET the readings and the spin sound stop
@@ -101,6 +100,9 @@ export async function mount(root, opts = {}) {
   const reduce = win.matchMedia('(prefers-reduced-motion: reduce)');
   const id = 'jj-sb-' + Math.random().toString(36).slice(2, 8);
   const saved = [...root.childNodes];
+  if (!THREE) try {
+    [THREE, { RoomEnvironment }] = await Promise.all([import('three'), import('three/addons/environments/RoomEnvironment.js')]);
+  } catch { THREE = null; }
 
   root.classList.add('jj-steelball');
   root.innerHTML = `
@@ -272,6 +274,7 @@ export async function mount(root, opts = {}) {
     draw();                          // setSize clears the canvas; repaint even while paused
   }
   function init3D() {
+    if (!THREE) return fallback();
     const canvas = doc.createElement('canvas');
     const ctx = canvas.getContext('webgl2', { alpha: true, antialias: true, premultipliedAlpha: true, powerPreference: 'low-power' });
     if (!ctx) return fallback();
@@ -323,8 +326,9 @@ export async function mount(root, opts = {}) {
     root.classList.remove('is-golden');
     w = 0; fit = null; shown = '';
     setRpm(0);
-    fitEl.textContent = '3D needs WebGL';
+    fitEl.textContent = THREE ? 'The live ball needs WebGL.' : 'The live ball could not load.';
     noteEl.hidden = true;
+    $('rpm').hidden = true; $('fig').hidden = true;
   }
 
   /* ---- input ---- */

@@ -33,8 +33,8 @@
 .jj-joseph .jj-chip:empty{display:none}
 
 /* the answer */
-.jj-joseph .jj-a{position:relative;margin-top:var(--space-lg,2.5rem);padding:var(--space-md,1.5rem);background:var(--color-surface)}
-.jj-joseph .jj-a:empty{margin:0;padding:0;background:none}
+.jj-joseph .jj-a{position:relative;min-height:10rem;margin-top:var(--space-lg,2.5rem);padding:var(--space-md,1.5rem);background:var(--color-surface)}
+.jj-joseph .jj-a:empty{background:none}   /* the answer's room is kept from the start, so it lands without pushing the page */
 .jj-joseph .jj-a p{margin:0;max-width:62ch}
 .jj-joseph .jj-a .jj-aq{padding-right:clamp(3.5rem,9vw,5.5rem);margin-bottom:.5rem;font:700 var(--text-h3,1.25rem)/1.25 var(--font-display);letter-spacing:-.01em}
 .jj-joseph .jj-at a{color:var(--color-accent);text-decoration-thickness:1px;text-underline-offset:.2em}

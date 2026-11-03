@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-audio>
+<html lang="en" data-ep-ready data-audio>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,17 +25,20 @@
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="assets/fonts/afficher-bold.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/alphazet-light.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/alphazet-semibold.woff2" as="font" type="font/woff2" crossorigin>
+<script>document.documentElement.classList.add("js")</script><!-- before the first paint, so script-only controls hold their place from the start -->
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Ayaz Khan","jobTitle":"Statistician and data scientist","email":"mailto:aak2259@columbia.edu","telephone":"+1-917-943-3853","address":{"@type":"PostalAddress","addressLocality":"New York","addressRegion":"NY","addressCountry":"US"},"alumniOf":[{"@type":"CollegeOrUniversity","name":"Columbia University"},{"@type":"CollegeOrUniversity","name":"Hunter College, City University of New York"}],"sameAs":["https://www.linkedin.com/in/ayazkhan27","https://github.com/ayazkhan27","https://orcid.org/0009-0008-5695-4934"]}</script>
 <style>
-/* Hallmark · macrostructure: custom (bespoke "Plate" v3: zoopraxiscope hero, work-first race in nine stages on a route rail, Stand-card recap, photo-finish and a title-card + To Be Continued close) · tone: austere/technical, playful in motion · anchor hue: 250 (ink blue)
+/* Hallmark · macrostructure: custom (bespoke "Plate" v4: status hero beside the plate, four result cards, then the detail legs on a route rail, the Lab of bonus stages behind tiles, quick answers, photo finish and a title-card + To Be Continued close) · tone: austere/technical, playful in motion · anchor hue: 250 (ink blue)
  * theme: custom · vibe: "1890 race broadside, manga SFX on albumen paper" · display LT Afficher Neue + text Alphazet + SFX Dela Gothic One (kana only)
  * axes: dark-hero/light-body · high-contrast-serif · cool + gold/menace accents
- * Hallmark · pre-emit critique: P5 H5 E4 S5 R4 V5
+ * Hallmark · pre-emit critique: P5 H5 E4 S5 R5 V5
  */
 @font-face{font-family:"Afficher";src:url(assets/fonts/afficher-bold.woff2) format("woff2");font-weight:700;font-display:swap}
-@font-face{font-family:"Alphazet";src:url(assets/fonts/alphazet-light.woff2) format("woff2");font-weight:300;font-display:swap}
-@font-face{font-family:"Alphazet";src:url(assets/fonts/alphazet-semibold.woff2) format("woff2");font-weight:600;font-display:swap}
+/* the text face is preloaded and optional: if it misses the first ~100 ms the page keeps the system face for that view instead of reflowing the hero */
+@font-face{font-family:"Alphazet";src:url(assets/fonts/alphazet-light.woff2) format("woff2");font-weight:300;font-display:optional}
+@font-face{font-family:"Alphazet";src:url(assets/fonts/alphazet-semibold.woff2) format("woff2");font-weight:600;font-display:optional}
 @font-face{font-family:"Dela SFX";src:url(assets/fonts/dela-sfx.woff2) format("woff2");font-weight:400;font-display:swap;unicode-range:U+3000-30FF,U+3400-9FFF,U+FF00-FFEF}
 
 :root{
@@ -55,7 +58,7 @@
   --color-lk-orange:#ef8a1d; --color-lk-red:#b3151d; --color-lk-ink:#0c0710; --color-lk-extrude:#5a2390;
   --color-lk-ivory:#f4ead2; --color-lk-hi:#fff3c4; --color-lk-violet:#8a4fc4;
   /* the hero band is the plate's black in both modes */
-  --color-band:#0e1012; --color-band-ink:#ecebe6; --color-band-muted:#a7abaf;
+  --color-band:#0e1012; --color-band-2:#1f2328; --color-band-ink:#ecebe6; --color-band-muted:#a7abaf;
   --color-band-lit:#f8f8f5; --color-air:#ffd7a8; --color-control-edge:#6d7278;
   --color-plate:#d9ccb2; --color-plate-ink:#2a1f17; --color-plate-rule:#bcae94; --color-plate-muted:#5a4a3a;
   --color-albumen-paper:#d9ccb2; --color-disc:#1c1a17; --color-disc-rim:#3b352c; --rail-h:64px;
@@ -78,15 +81,17 @@
     --color-accent:#8fc0f0; --color-on-accent:#0b1a29;
     --color-mark:#4a94d8; --color-context:#686e74;
     --color-gold:#e2b450; --color-menace:#b48ae6;
-    --color-band:#060708;
+    --color-band:#060708; --color-band-2:#181b1f;
   }
   /* the Stand card's purple is drawn both on its light paper and on the dark page: one value at 3:1 on each */
   [data-jj="stand"]{--color-menace:#8a4fc4}
 }
 *,*::before,*::after{box-sizing:border-box}
-[hidden],html:not(.js) [data-time]{display:none!important}
+[hidden],html:not(.js) [data-time],html:not(.js) [data-sound],html:not([data-audio]) [data-sound],html:not(.js) .rail,html:not(.js) .controls{display:none!important}
+/* the Sound button holds its place from the first paint (no nav reflow when audio.js arrives) */
+.js [data-sound][data-pending]{visibility:hidden}
 html,body{overflow-x:clip}
-html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-bottom:calc(var(--rail-h) + 1rem)}
 body{margin:0;background:var(--color-bg);color:var(--color-ink);font:300 var(--text-body)/1.55 var(--font-text);font-feature-settings:"lnum","tnum" 0;text-rendering:optimizeLegibility}
 ::selection{background:var(--color-air);color:var(--color-plate-ink)}
 img,svg{display:block;max-width:100%}
@@ -159,21 +164,31 @@ p{margin:0 0 var(--space-sm);max-width:62ch}
 .js .tbc .lockup .lk-sheen{animation:none}
 .js .tbc.on .lockup .lk-sheen{animation:lk-sheen .9s var(--ease-out) .45s both}
 .tbc-freeze .tbc .lockup .lk-sheen{animation-play-state:running!important}
-.top{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:var(--space-lg);align-items:end;padding-top:var(--space-lg)}
+.top{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:var(--space-lg) var(--space-xl);align-items:start;padding-top:var(--space-lg)}
 h1{font-size:var(--text-display);line-height:.84;letter-spacing:-.04em}
-.lede{font-size:clamp(1.125rem,1.6vw,1.375rem);line-height:1.45;margin:var(--space-md) 0 var(--space-md);max-width:30ch;color:var(--color-band-ink)}
-.terms{color:var(--color-band-muted);font-size:var(--text-small);margin-bottom:var(--space-md);max-width:38ch}
+.lede{font-size:clamp(1.125rem,1.6vw,1.375rem);line-height:1.45;margin:var(--space-md) 0;max-width:34ch;color:var(--color-band-ink)}
+/* status chips: four facts a recruiter checks first, as flat tone steps on the band */
+.chips{display:grid;grid-template-columns:minmax(0,max-content);gap:6px;list-style:none;margin:0 0 var(--space-lg);padding:0}   /* one chip per row in every face: a late font cannot add a row or push into the plate */
+.chips li{padding:.45rem .75rem .4rem;background:var(--color-band-2);color:var(--color-band-ink);font:600 var(--text-small)/1.25 var(--font-text);white-space:nowrap}
 .actions{display:flex;flex-wrap:wrap;gap:var(--space-sm) var(--space-md);align-items:center}
-.hero .btn-primary{background:var(--color-band-ink);color:var(--color-band)}
-.hero .btn-primary:hover{background:var(--color-band-lit)}
-.hero .mail{display:inline-flex;align-items:center;min-height:44px;font-weight:600;font-size:var(--text-small);white-space:nowrap}
+.ep{display:flex;flex-wrap:wrap;align-items:center;gap:.25rem .75rem;margin:0;flex-basis:100%;max-width:none}
+.btn-ep{gap:.6rem;background:var(--color-gold-lit);color:var(--color-band)}
+.btn-ep:hover{background:var(--color-lk-hi)}
+.btn-ep svg{width:16px;height:16px;fill:currentColor;flex:none}
+.ep-note{font-size:var(--text-small);color:var(--color-band-muted)}
+/* the episode button appears only when its engine ships, and never without script */
+html:not([data-ep-ready]) .ep,html:not(.js) .ep{display:none}
+.hero .btn-res{background:var(--color-band-ink);color:var(--color-band)}
+.hero .btn-res:hover{background:var(--color-band-lit)}
+html.js[data-ep-ready] .hero .btn-res{background:transparent;color:var(--color-band-ink);border-color:var(--color-band-ink)}
+html.js[data-ep-ready] .hero .btn-res:hover{background:var(--color-band-2)}
+.hero .mail{flex-basis:100%;display:inline-flex;align-items:center;min-height:44px;font-weight:600;font-size:var(--text-small);white-space:nowrap}
 .stage{margin:0;background:var(--color-plate);color:var(--color-plate-ink)}
 .stage svg{width:100%;height:auto}
 .stage .rule{stroke:var(--color-plate-rule);stroke-width:3}
 .stage .track{stroke:var(--color-plate-ink);stroke-width:4;opacity:.55}
 .horse{fill:var(--color-plate-ink)}
-.figtitle{display:flex;justify-content:space-between;gap:var(--space-sm);font-size:var(--text-small);color:var(--color-band-muted);padding:.65rem 0 0}
-.figtitle b{color:var(--color-band-ink)}
+.figtitle{font-size:var(--text-small);color:var(--color-band-muted);margin:.65rem 0 0;max-width:none}
 /* the contact sheet */
 .sheet{display:grid;grid-template-columns:repeat(11,minmax(0,1fr));gap:2px 6px;margin:var(--space-lg) 0 0;padding:0;list-style:none}
 .sheet button{display:block;width:100%;padding:6px 0;border:0;background:none;cursor:pointer;position:relative}
@@ -184,24 +199,54 @@ h1{font-size:var(--text-display);line-height:.84;letter-spacing:-.04em}
 .controls button{min-width:48px;min-height:48px;padding:0 1rem;background:transparent;color:var(--color-band-ink);border:2px solid var(--color-control-edge);font:600 var(--text-small) var(--font-text);cursor:pointer;border-radius:0}
 .controls button:hover{border-color:var(--color-band-ink)}
 .why{color:var(--color-band-muted);font-size:var(--text-small);max-width:60ch;margin-top:var(--space-md)}
+.plate-note{color:var(--color-band-muted);font-size:var(--text-small);margin:0}
 .why b{color:var(--color-band-ink)}
 
 /* ---------- sections ---------- */
 section{padding:var(--space-2xl) 0 0}
+#results{padding-top:var(--space-xl)}
 .head{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--space-sm);margin-bottom:var(--space-lg)}
 .role{font-size:var(--text-small);color:var(--color-muted);margin:0}
 /* the stage line: every section is a leg of the 1890 race, San Diego to New York */
-.leg{display:flex;align-items:baseline;gap:.5rem var(--space-sm);max-width:none;margin:0 0 var(--space-xl);font:700 1.375rem/1.1 var(--font-display);letter-spacing:-.01em}
+.leg{display:flex;align-items:baseline;gap:.5rem var(--space-sm);max-width:none;margin:0 0 var(--space-lg);font:700 1.375rem/1.1 var(--font-display);letter-spacing:-.01em}
 .leg b{font-weight:700;white-space:nowrap}
 .leg i{flex:1 1 4rem;min-width:2rem;height:7px;border-top:3px solid var(--color-ink);border-bottom:1px solid var(--color-ink);align-self:center}
 .leg span{text-align:right}
-.premise{max-width:62ch;margin:calc(-1 * var(--space-lg)) 0 var(--space-xl);font-size:var(--text-small);color:var(--color-muted)}
 .leg small{font:300 var(--text-small)/1.3 var(--font-text);letter-spacing:0;color:var(--color-muted);margin-left:.4em}
-/* total and its receipt */
-.receipt{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:var(--space-xl);align-items:start}
-.total{position:relative}
-.total .fig{font-size:clamp(4rem,13vw,12rem)}
-.total p{margin-top:var(--space-sm);max-width:34ch}
+/* the four results: a figure, a small honest chart of it, one line; each card opens its detail */
+.hl{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;list-style:none;margin:0;padding:0}
+.hl a{display:flex;flex-direction:column;gap:var(--space-sm);height:100%;padding:var(--space-md) var(--space-md) var(--space-lg);background:var(--color-surface);color:var(--color-ink);text-decoration:none;transition:background-color 140ms var(--ease-out)}
+.hl a:hover{background:var(--color-stopped)}
+.hl .fig{align-self:flex-start;font-size:clamp(2.75rem,4.4vw,4.25rem);white-space:nowrap}
+.hl .fig small{font:600 .3em/1 var(--font-text);letter-spacing:0;vertical-align:.5em;margin:0 .25em}
+.hl del{display:block;margin-bottom:.45rem;font:600 1rem/1 var(--font-text);letter-spacing:0;color:var(--color-muted);text-decoration-thickness:2px}
+.hl-l{font-size:1rem;line-height:1.4;max-width:26ch}
+.hl a:hover .hl-l{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.2em}
+.spark{width:100%;max-width:9.5rem;height:auto;overflow:visible}
+.spark .axis{stroke:var(--color-context);stroke-width:1}
+.spark .link{stroke:var(--color-context);stroke-width:2}
+.spark .ci{fill:none;stroke:var(--color-mark);stroke-width:2}
+.spark .mark,.spark .bar{fill:var(--color-mark)}
+.spark .ctx{fill:var(--color-context)}
+.spark .box{fill:none;stroke:var(--color-context);stroke-width:1}
+/* Telenav: the chart beside the heading, then the tally and Rohan's call */
+.work{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:var(--space-lg) var(--space-xl);align-items:end;margin-bottom:var(--space-lg)}
+.work .head{margin:0}
+.bench{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:var(--space-lg) var(--space-xl);align-items:start}
+.tally{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;list-style:none;margin:0;padding:0}
+.tally li{padding:var(--space-md);background:var(--color-surface);font-size:1rem;line-height:1.4}
+.tally b{display:block;margin-bottom:.4rem;font:700 clamp(1.75rem,2.8vw,2.5rem)/1 var(--font-display);letter-spacing:-.02em;font-variant-numeric:lining-nums;white-space:nowrap}
+/* the "more" toggles: the depth of each leg, one click away */
+.more{margin-top:var(--space-md)}
+.more > summary{display:inline-flex;align-items:center;gap:.5rem;min-height:44px;cursor:pointer;font-weight:600;color:var(--color-accent);list-style:none}
+.more > summary::-webkit-details-marker{display:none}
+.more > summary::before{content:"";width:.5em;height:.5em;border:solid currentColor;border-width:0 2px 2px 0;transform:rotate(-45deg);transition:transform 140ms var(--ease-out)}
+.more[open] > summary::before{transform:rotate(45deg)}
+.more > summary:hover{text-decoration:underline;text-underline-offset:.2em}
+.more-body{padding:var(--space-md) 0 0;max-width:72rem}
+.more-body h3{margin:var(--space-lg) 0 var(--space-xs)}
+.more-body > .split{margin:var(--space-md) 0}
+.more-body blockquote{margin:var(--space-md) 0}
 .lines{list-style:none;margin:0;padding:0}
 .lines li{padding:var(--space-sm) var(--space-md);margin:0 0 6px;background:var(--color-surface)}
 .lines b{font-weight:600}
@@ -243,7 +288,34 @@ blockquote footer{font-size:var(--text-small);color:var(--color-muted)}
 .record tr:nth-child(odd){background:var(--color-surface)}
 .record td:first-child{font-weight:600;width:44%}
 .record td:last-child{color:var(--color-muted)}
-.skills{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-lg);margin:var(--space-xl) 0 0}
+.skills{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-lg);margin:var(--space-lg) 0 0}
+.rec-wrap{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:var(--space-lg) var(--space-xl);align-items:start}
+.tools{display:flex;flex-wrap:wrap;gap:6px;list-style:none;margin:var(--space-md) 0 0;padding:0}
+.tools li{padding:.4rem .75rem .35rem;background:var(--color-surface);font:600 var(--text-small)/1.25 var(--font-text)}
+/* the Lab: bonus stages as albumen tiles; one opens at a time and drops its stage below the strip, and nothing loads until it opens */
+.lab{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));grid-auto-flow:dense;gap:6px}
+.lab:has(.tile[open]){grid-template-columns:repeat(4,minmax(0,1fr))}
+.tile{min-width:0;background:var(--color-plate);color:var(--color-plate-ink)}
+.tile[open]{grid-column:1/-1;grid-row:2}
+.tile > summary{display:flex;flex-direction:column;justify-content:space-between;gap:var(--space-md);min-height:10rem;padding:var(--space-md);cursor:pointer;list-style:none;font:700 1.375rem/1.05 var(--font-display);letter-spacing:-.01em;transition:background-color 140ms var(--ease-out)}
+.tile > summary::-webkit-details-marker{display:none}
+.tile > summary:hover{background:var(--color-plate-rule)}
+.tile[open] > summary{flex-direction:row;align-items:center;justify-content:flex-start;min-height:0;background:var(--color-plate-ink);color:var(--color-plate)}
+.tile[open] > summary .ico{width:40px;height:40px}
+.ico{width:60px;height:60px;flex:none;overflow:visible;fill:none;stroke:currentColor;stroke-width:2.25;stroke-linejoin:round}
+.ico .fill{fill:var(--color-menace-plate);fill-opacity:.25;stroke:var(--color-menace-plate)}
+.ico .dot{fill:currentColor;stroke:none}
+.ico .hot{stroke:var(--color-menace-plate);stroke-width:2.5}
+.tile[open] .ico .hot,.tile[open] .ico .fill{stroke:var(--color-gold-lit)}
+.tile[open] .ico .fill{fill:var(--color-gold-lit)}
+.tile-body{padding:var(--space-lg) var(--space-md);background:var(--color-bg);color:var(--color-ink)}
+.tile-body > p:first-child{max-width:62ch}
+.tile-body.dark{background:var(--color-band);color:var(--color-band-ink)}
+.tile-body.dark .gate{margin-top:var(--space-lg)}
+.note{color:var(--color-muted);font-size:var(--text-small)}
+/* the no-script notes and the steel ball still stay out of the way while a module loads; they return only if it fails */
+.js .jj-slot:not(.jj-off) > .note,.js [data-jj="steelball"]:not(.jj-off) > .jj-static{display:none}
+
 .skills dt{font-weight:600;margin-bottom:var(--space-xs)}
 .skills dd{margin:0}
 /* contact */
@@ -259,7 +331,8 @@ blockquote footer{font-size:var(--text-small);color:var(--color-muted)}
 .foot nav{display:flex;gap:0 var(--space-md)}
 .foot nav a{color:var(--color-ink);display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px}
 .foot p{margin:0}
-.foot .credit p+p{margin-top:var(--space-xs)}
+.foot .credit summary{display:inline-flex;align-items:center;min-height:44px;cursor:pointer;font-weight:600;color:var(--color-ink)}
+.foot .credit p{margin-top:var(--space-xs);max-width:70ch}
 
 /* ---------- v2: the zoopraxiscope, the rail, the photo finish ---------- */
 .stage{position:relative;overflow:hidden}
@@ -316,11 +389,8 @@ body{padding-bottom:var(--rail-h)}
 /* ---------- v3: the race layer ---------- */
 /* manga sound effects beside the big number: decorative; they drift twice as it arrives, then rest */
 .fig:has(.sfx){display:inline-block;position:relative}
-.sfx{position:absolute;left:100%;top:.02em;margin-left:.05em;display:flex;flex-direction:column;align-items:center;font:400 .27em/.9 var(--font-sfx);letter-spacing:0;color:var(--color-menace);pointer-events:none;-webkit-user-select:none;user-select:none}
-.sfx span{display:block}
-.js .total.in .sfx span{animation:drift 1.3s var(--ease-in-out) 2 alternate}
-.sfx span:nth-child(2){animation-delay:-.85s;margin-left:.22em}
-.sfx span:nth-child(3){animation-delay:-1.7s}
+.sfx{position:absolute;left:100%;top:.02em;width:1em;margin-left:.1em;white-space:normal;word-break:break-all;text-align:center;font:400 .27em/.95 var(--font-sfx);letter-spacing:0;color:var(--color-menace);pointer-events:none;-webkit-user-select:none;user-select:none}
+.js .hl .sfx{animation:drift 1.3s var(--ease-in-out) 2 alternate}
 @keyframes drift{from{transform:translate(0,0) rotate(-7deg)}to{transform:translate(.06em,-.08em) rotate(6deg)}}
 /* the Stand card: an entry card on albumen paper */
 .card{background:var(--color-plate);color:var(--color-plate-ink);padding:var(--space-lg);outline:1px solid var(--color-plate-rule);outline-offset:-8px}
@@ -356,21 +426,10 @@ body{padding-bottom:var(--rail-h)}
 @media (min-width:900px){.js [data-jj="ora"]{min-height:580px}.js [data-jj="golden"]{min-height:980px}}
 .jj-on,.jj-off{min-height:0!important}
 .jj-host:empty{display:none}
-/* the bootstrap rush, under the interval chart */
-.rush{margin-top:var(--space-xl)}
-.rush h3{margin-bottom:var(--space-xs)}
-/* the refusal, beside the leakage result */
-.refuse{display:grid;grid-template-columns:minmax(0,8fr) minmax(0,4fr);gap:var(--space-sm) var(--space-xl);align-items:start}
-.refuse > .jj-slot{grid-column:1;grid-row:1}
-.refuse-k{grid-column:2;grid-row:1;margin:0;font-size:var(--text-small);color:var(--color-muted);max-width:34ch}
-.refuse .jj-static{background:var(--color-surface);padding:var(--space-lg)}
+/* the refusal, beside the tally */
+.refuse .jj-static{background:var(--color-surface);padding:var(--space-md)}
 .refuse .jp{display:block;font-size:clamp(2.75rem,6vw,4.5rem);line-height:1;color:var(--color-menace);margin:0 0 var(--space-sm)}
-.evidence{margin-top:var(--space-xl)}
-.detour .statement{margin:0 0 var(--space-sm)}
-/* Gyro's lesson */
-.lesson{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--space-xl)}
-.lesson .leg,.lesson .head{margin-bottom:0}
-.ps{max-width:62ch;margin:0;color:var(--color-muted)}
+.ps{max-width:62ch;margin:var(--space-md) 0 0;color:var(--color-muted)}
 .spin{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:var(--space-xl);align-items:center}
 .spin h3{margin-bottom:var(--space-xs)}
 /* Tusk ACT 1 to ACT 4 */
@@ -392,12 +451,13 @@ body{padding-bottom:var(--rail-h)}
 @keyframes spin{to{transform:rotate(360deg)}}
 .acts .fig{font-size:clamp(3rem,5.4vw,4.75rem);margin:var(--space-xs) 0}
 .acts p{font-size:1rem}
-.acts .back{display:inline-flex;align-items:center;min-height:44px;font-weight:600}
+#research h2{margin-bottom:var(--space-lg)}
 /* Joseph: the next question */
 .faq{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:var(--space-xl);align-items:start}
 .qa{margin:0}
 .qa div{padding:var(--space-sm) var(--space-md);background:var(--color-surface);margin-bottom:6px}
 .qa dt{font-weight:600;margin-bottom:.2rem}
+.faq .more{margin-top:var(--space-sm)}
 .qa .yn{display:inline-block;margin-left:.4rem;padding:.16rem .4rem .1rem;border:1.5px solid currentColor;font:600 .75rem/1 var(--font-text);letter-spacing:.04em;vertical-align:.1em;transform:rotate(-4deg)}
 .qa .yn-yes{background:var(--color-yes-field);color:var(--color-yes-ink)}
 .qa .yn-no{background:var(--color-no-field);color:var(--color-no-ink)}
@@ -405,7 +465,6 @@ body{padding-bottom:var(--rail-h)}
 /* To Be Continued */
 .tbc{position:relative;z-index:5;display:flex;flex-wrap:wrap;justify-content:flex-end;align-items:center;gap:var(--space-sm) var(--space-lg);padding:var(--space-lg) var(--margin) var(--space-xl);max-width:84rem;margin:0 auto;overflow:hidden}
 .tbc p{margin:0;font:700 clamp(1.25rem,2.4vw,1.75rem)/1.1 var(--font-display);letter-spacing:-.01em}
-.tbc .small{margin-top:var(--space-xs);max-width:30ch;font:300 var(--text-small)/1.45 var(--font-text);letter-spacing:0;color:var(--color-muted)}
 .arrow{width:min(100%,34rem);height:auto;overflow:visible}
 .arrow .body{fill:var(--color-gold-lit);stroke:var(--color-band);stroke-width:5;stroke-linejoin:miter}
 .arrow .in{fill:none;stroke:var(--color-band);stroke-width:1.5;stroke-linejoin:miter}
@@ -425,6 +484,7 @@ body{padding-bottom:var(--rail-h)}
 .ts-flash .tint{-webkit-backdrop-filter:invert(1) hue-rotate(180deg);backdrop-filter:invert(1) hue-rotate(180deg)}
 .ts-flash .tone{background:none}
 .time-stopped *,.time-stopped *::before,.time-stopped *::after,.tbc-freeze *,.tbc-freeze *::before,.tbc-freeze *::after{animation-play-state:paused!important}
+.time-stopped *,.time-stopped *::before,.time-stopped *::after{transition-duration:0s!important;transition-delay:0s!important}
 .tsay{position:fixed;left:50%;top:38%;z-index:7;margin:0;max-width:none;transform:translate(-50%,-50%);padding:.5rem 1rem;background:var(--color-band);color:var(--color-gold-lit);font:400 clamp(1.5rem,6vw,3.5rem)/1.1 var(--font-sfx);white-space:nowrap;pointer-events:none;opacity:0;visibility:hidden;transition:opacity 240ms var(--ease-out),visibility 0s linear 240ms}
 .tsay.on{opacity:1;visibility:visible;transition:opacity 240ms var(--ease-out)}
 .tsay{display:flex;flex-direction:column;align-items:center;gap:.3rem}
@@ -435,7 +495,7 @@ body{padding-bottom:var(--rail-h)}
   .js .rise{transform:none;transition:opacity 150ms linear}
   .btn,.sheet img{transition:none}
   .rail{transition:none}
-  .js .total.in .sfx span,.js .acts.in .nail .tip,.js .lockup,.js .lockup .lk-sheen{animation:none}
+  .js .hl .sfx,.js .acts.in .nail .tip,.js .lockup,.js .lockup .lk-sheen{animation:none}
   .js .tbc .lockup{opacity:1;transform:none;transition:none}
   .js .tbc.on .lockup .lk-sheen{animation:none}
   .js .tbc-next{opacity:1;transition:none}
@@ -449,11 +509,15 @@ body{padding-bottom:var(--rail-h)}
 }
 @media (max-width:900px){
   .rail-end{display:none}
-  .top,.receipt,.calx,.split,.contact,.card-top,.card-body,.faq,.spin,.refuse{grid-template-columns:minmax(0,1fr)}
-  .refuse-k,.refuse > .jj-slot{grid-column:1;grid-row:auto}
+  .nav .where,.nav .gbtn[data-time] .jp{display:none}   /* one nav row in every face from 641 px up */
+  .top,.work,.bench,.rec-wrap,.calx,.split,.contact,.card-top,.card-body,.faq,.spin{grid-template-columns:minmax(0,1fr)}
+  .hl{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .lab,.lab:has(.tile[open]){grid-template-columns:minmax(0,1fr)}
+  .tile[open]{grid-row:auto}
+  .tile > summary{flex-direction:row;align-items:center;justify-content:flex-start;min-height:4.5rem;padding:.75rem var(--space-md)}
+  .tile > summary .ico{width:44px;height:44px}
   .skills{grid-template-columns:repeat(2,minmax(0,1fr))}
   .acts{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:var(--space-xl)}
-  .stage{order:2}
   .gate{grid-template-columns:minmax(0,1fr)}
   .readings{grid-template-columns:repeat(2,minmax(0,1fr))}
   .contact{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
@@ -476,7 +540,6 @@ body{padding-bottom:var(--rail-h)}
   .post{pointer-events:none}
   .post::after{height:16px}
   h1{font-size:24vw;line-height:.82}
-  .figtitle{flex-direction:column;gap:.15rem}
   .sheet{grid-template-columns:repeat(6,minmax(0,1fr));gap:0 4px}
   .sheet button{padding:9px 0}
   .sheet li:nth-child(n+7){transform:translateX(50%)}
@@ -493,6 +556,8 @@ body{padding-bottom:var(--rail-h)}
   .card{padding:var(--space-md)}
   .params{grid-template-columns:minmax(0,1fr)}
   .acts{grid-template-columns:minmax(0,1fr)}
+  .hl,.tally{grid-template-columns:minmax(0,1fr)}
+  .chips li{font-size:.875rem;padding:.4rem .6rem .35rem}
   .leg{flex-wrap:wrap}
   .leg span{flex-basis:100%;text-align:left}
   .foot{grid-template-columns:minmax(0,1fr)}
@@ -500,6 +565,7 @@ body{padding-bottom:var(--rail-h)}
 }
 @media (max-width:360px){
   .nav ul{gap:.55rem;font-size:.875rem}
+  .btn-ep{padding:.7rem .9rem;font-size:.9375rem}
 }
 </style>
 </head>
@@ -523,7 +589,7 @@ body{padding-bottom:var(--rail-h)}
 <p class="tsay" id="tsay" aria-hidden="true"><span class="jp">時は動き出す</span><span class="en">Time moves again</span></p>
 <p class="vh" id="status" aria-live="polite"></p>
 
-<header class="hero">
+<header class="hero" data-ep="hero">
   <div class="wrap">
     <nav class="nav" aria-label="Main">
       <span class="where">New York</span>
@@ -534,40 +600,311 @@ body{padding-bottom:var(--rail-h)}
         <li><a href="Ayaz_Khan_Resume.pdf">Résumé</a></li>
       </ul>
       <div class="global">
-        <button type="button" class="gbtn" data-sound aria-pressed="false" hidden><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7.5h3.5L11 4v12l-4.5-3.5H3z"/><path class="on" d="M13.5 7.2a4 4 0 0 1 0 5.6M15.8 5a7 7 0 0 1 0 10"/></svg>Sound</button>
+        <button type="button" class="gbtn" data-sound aria-pressed="false" data-pending><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7.5h3.5L11 4v12l-4.5-3.5H3z"/><path class="on" d="M13.5 7.2a4 4 0 0 1 0 5.6M15.8 5a7 7 0 0 1 0 10"/></svg>Sound</button>
         <button type="button" class="gbtn" data-time><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="11" r="7"/><path d="M10 7v4l2.5 2.5M8 2h4"/></svg><span class="jp" aria-hidden="true">時よ止まれ</span><span class="lbl">Stop time</span></button>
       </div>
     </nav>
 
     <div class="top">
-      <div>
-        <h1>Ayaz Khan</h1>
+      <div class="intro">
+        <h1>Ayaz <br>Khan</h1>
         <p class="lede">Statistician and data scientist. I measure what a model can do before I believe what it reports.</p>
-        <p class="terms">Columbia M.A. Statistics, expected December 2026. Available January 2027. U.S. citizen, no sponsorship needed.</p>
+        <ul class="chips" data-ep="status" aria-label="Status">
+          <li data-ep-chip>U.S. citizen, no sponsorship</li>
+          <li data-ep-chip>Available January 2027</li>
+          <li data-ep-chip>Columbia M.A. Statistics, Dec 2026</li>
+          <li data-ep-chip>NSF Graduate Research Fellow</li>
+        </ul>
         <div class="actions">
-          <a class="btn btn-primary" href="Ayaz_Khan_Resume.pdf" download>Download résumé (PDF)</a>
+          <p class="ep"><button type="button" class="btn btn-ep" data-episode data-ep-css><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9.5-5.5z"/></svg>Play the 26-second episode</button><span class="ep-note">sound on</span></p>
+          <a class="btn btn-res" href="Ayaz_Khan_Resume.pdf" download>Download résumé (PDF)</a>
           <a class="mail" href="mailto:aak2259@columbia.edu">aak2259@columbia.edu</a>
         </div>
       </div>
-      <figure class="stage" id="stage" aria-labelledby="stage-cap">
-        <svg viewBox="70 20 1150 800" role="img" aria-labelledby="stage-cap">
-          <g aria-hidden="true">
-            <path class="rule" d="M128 20V700M256 20V700M384 20V700M512 20V700M640 20V700M768 20V700M896 20V700M1024 20V700M1152 20V700"/>
-            <path class="track" d="M70 728H1220M70 748H1220M70 768H1220"/>
-            <use class="horse" id="horse" href="#h3"/>
-          </g>
-        </svg>
-      </figure>
+      <div class="plate">
+        <figure class="stage" id="stage" aria-labelledby="stage-cap">
+          <svg viewBox="70 20 1150 800" role="img" aria-labelledby="stage-cap">
+            <g aria-hidden="true">
+              <path class="rule" d="M128 20V700M256 20V700M384 20V700M512 20V700M640 20V700M768 20V700M896 20V700M1024 20V700M1152 20V700"/>
+              <path class="track" d="M70 728H1220M70 748H1220M70 768H1220"/>
+              <use class="horse" id="horse" href="#h3"/>
+            </g>
+          </svg>
+        </figure>
+        <p class="figtitle" id="stage-cap">Sallie Gardner at a gallop, traced from Muybridge's 1878 plate</p>
+      </div>
     </div>
-    <div class="figtitle" id="stage-cap"><span><b>Measured, not assumed.</b> Sallie Gardner at a gallop, Palo Alto, 19 June 1878.</span><span>Traced from Eadweard Muybridge's plate</span></div>
+  </div>
+</header>
 
-    <div class="gate">
-      <div class="disc-wrap">
-        <svg class="disc" id="disc" viewBox="-520 -548 1040 1068" role="slider" tabindex="0" aria-label="Zoopraxiscope disc. Drag it, or use the arrow keys, to turn one frame at a time." aria-valuemin="1" aria-valuemax="11" aria-valuenow="3" aria-valuetext="Frame 3 of 11, all four hooves off the track">
-          <g id="spin">
-            <circle r="500" class="d-face"/>
-            <circle r="482" class="d-rim"/>
-            <g transform="rotate(0.000)"><use class="d-horse" href="#h1" x="-120" y="-428" width="240" height="153"/><text class="d-num" y="-448">1</text></g>
+<main id="main">
+  <section id="results" aria-labelledby="t-results">
+    <div class="wrap">
+      <p class="leg"><b>Stage 1</b><i></i><span>15,000 Meters</span></p>
+      <h2 id="t-results" class="vh">Results</h2>
+      <ul class="hl">
+        <li><a href="#work" data-ep="ceiling"><svg class="spark" viewBox="0 0 120 28" aria-hidden="true"><line class="axis" x1="4" y1="26" x2="116" y2="26"/><line class="link" x1="24.1" y1="13" x2="91.3" y2="13"/><path class="ci" d="M79.6 13H101.7M79.6 8V18M101.7 8V18"/><circle class="ctx" cx="24.1" cy="13" r="4.5"/><circle class="mark" cx="91.3" cy="13" r="4.5"/></svg><span class="fig">56.69%<span class="sfx" aria-hidden="true">ドドド</span></span><span class="hl-l">Accuracy ceiling that cancelled a pricing release</span></a></li>
+        <li><a href="#leak" data-ep="leak"><svg class="spark" viewBox="0 0 120 28" aria-hidden="true"><line class="axis" x1="4" y1="26" x2="116" y2="26"/><line class="link" x1="41.4" y1="13" x2="102.9" y2="13"/><circle class="ctx" cx="102.9" cy="13" r="4.5"/><circle class="mark" cx="41.4" cy="13" r="4.5"/></svg><span class="fig"><del>0.806</del> 0.7401</span><span class="hl-l">Honest AUC after I caught target leakage; $127K of waste found</span></a></li>
+        <li><a href="#calx" data-ep="calx"><svg class="spark" viewBox="0 0 120 28" aria-hidden="true"><rect class="bar ctx" x="4" y="4" width="112" height="7"/><rect class="bar" x="4" y="16" width="76.7" height="7"/></svg><span class="fig">31.55%</span><span class="hl-l">Fewer operations on average in Calx, exact on 45 of 45; provisional patent</span></a></li>
+        <li><a href="#record" data-ep="nsf"><svg class="spark" viewBox="0 0 120 28" aria-hidden="true"><rect class="bar" x="4.0" y="1.0" width="7" height="7"/><rect class="box" x="13.0" y="1.0" width="7" height="7"/><rect class="box" x="22.0" y="1.0" width="7" height="7"/><rect class="box" x="31.0" y="1.0" width="7" height="7"/><rect class="box" x="40.0" y="1.0" width="7" height="7"/><rect class="box" x="49.0" y="1.0" width="7" height="7"/><rect class="box" x="4.0" y="10.0" width="7" height="7"/><rect class="box" x="13.0" y="10.0" width="7" height="7"/><rect class="box" x="22.0" y="10.0" width="7" height="7"/><rect class="box" x="31.0" y="10.0" width="7" height="7"/><rect class="box" x="40.0" y="10.0" width="7" height="7"/><rect class="box" x="49.0" y="10.0" width="7" height="7"/><rect class="box" x="4.0" y="19.0" width="7" height="7"/><rect class="box" x="13.0" y="19.0" width="7" height="7"/><rect class="box" x="22.0" y="19.0" width="7" height="7"/><rect class="box" x="31.0" y="19.0" width="7" height="7"/><rect class="box" x="40.0" y="19.0" width="7" height="7"/></svg><span class="fig">1<small> of </small>1,000</span><span class="hl-l">NSF Graduate Research Fellow, from 17,000 applicants</span></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="work" aria-labelledby="t-telenav">
+    <div class="wrap">
+      <p class="leg"><b>Stage 2</b><i></i><span>Across the Arizona Desert</span></p>
+      <div class="work">
+        <div class="head rise">
+          <h2 id="t-telenav">The ceiling that stopped a release</h2>
+          <p class="role">Telenav, Santa Clara. Applied ML and Data Engineering Intern, June to August 2026.</p>
+        </div>
+        <figure class="rise">
+          <svg class="chart" viewBox="12 0 316 150" role="img" aria-labelledby="c1t">
+            <title id="c1t">Accuracy ceiling 56.69 percent with 95 percent interval 55.13 to 58.08; production calibrator 9 points below.</title>
+            <text x="16" y="24" class="t">Production</text>
+            <text x="16" y="42" class="m">9 points lower</text>
+            <text x="324" y="24" class="t" text-anchor="end">Ceiling 56.69%</text>
+            <text x="324" y="42" class="m" text-anchor="end">95% CI 55.13 to 58.08</text>
+            <line class="link" x1="78" y1="80" x2="249" y2="80"/>
+            <line class="ci" x1="224" y1="80" x2="284.6" y2="80"/>
+            <line class="ci" x1="224" y1="72" x2="224" y2="88"/><line class="ci" x1="284.6" y1="72" x2="284.6" y2="88"/>
+            <circle class="ctx" cx="71.2" cy="80" r="7"><title>Production calibrator, 9 points below the ceiling</title></circle>
+            <circle class="mark" cx="256" cy="80" r="7"><title>Ceiling 56.69%, 95% CI 55.13 to 58.08</title></circle>
+            <line class="axis" x1="16" y1="112" x2="324" y2="112"/>
+            <text x="16" y="136" class="m">45%</text><text x="118.7" y="136" class="m" text-anchor="middle">50%</text><text x="221.3" y="136" class="m" text-anchor="middle">55%</text><text x="324" y="136" class="m" text-anchor="end">60%</text>
+          </svg>
+        </figure>
+      </div>
+      <div class="bench">
+        <ul class="tally">
+          <li><b>56.69%</b> accuracy ceiling, 95% CI [55.13, 58.08]</li>
+          <li id="leak"><b>0.806<span aria-hidden="true">→</span><span class="vh"> to </span>0.7401</b> AUC after the leakage fix</li>
+          <li><b>0.6206<span aria-hidden="true">→</span><span class="vh"> to </span>0.6457</b> ping-stage AUC from distillation</li>
+          <li><b>95.5%</b> function accuracy, 270M-parameter router</li>
+        </ul>
+        <div class="jj-slot refuse" data-jj="rohan" data-jj-css>
+          <div class="jj-static">
+            <p class="jp" aria-hidden="true">だが断る</p>
+            <p>I refused to ship a leaky 0.806 and reported the honest 0.7401.</p>
+            <p><a href="Ayaz_Khan_Resume.pdf">Heaven's Door: read the résumé (PDF)</a></p>
+          </div>
+        </div>
+      </div>
+      <details class="more">
+        <summary>More from Telenav</summary>
+        <div class="more-body">
+          <p>On Novo Insurance's scoring stack. The 56.69% is a nonparametric estimate of the best accuracy any calibrator could reach on this data: 95% CI [55.13, 58.08] on 4,338 true-ping rows. The production calibrator ran 9 points below that bound. The finding cancelled a release that would have degraded pricing.</p>
+          <div class="split">
+            <p>Target leakage and non-temporal splits had inflated the AUC to 0.806. With both fixed it was an honest 0.7401, and the audit surfaced $127K of campaign waste. Privileged-features distillation lifted ping-stage AUC from 0.6206 to 0.6457 on 23,559 holdout rows.</p>
+            <figure>
+              <div class="legend" aria-hidden="true"><span>Before</span><span class="after">After</span></div>
+              <svg class="chart" viewBox="12 0 316 214" role="img" aria-labelledby="c2t">
+                <title id="c2t">AUC before and after. Leakage and split fix: 0.806 reported, 0.7401 honest. Distillation at ping stage: 0.6206 to 0.6457.</title>
+                <text x="16" y="18" class="t">Leakage and split fix</text>
+                <line class="link" x1="219" y1="48" x2="297" y2="48"/>
+                <circle class="ctx" cx="304.4" cy="48" r="7"><title>Reported AUC 0.806, inflated by leakage</title></circle>
+                <circle class="mark" cx="212.1" cy="48" r="7"><title>Honest AUC 0.7401</title></circle>
+                <text x="212.1" y="76" text-anchor="middle">0.7401</text><text x="324" y="76" text-anchor="end" class="m">0.806</text>
+                <text x="16" y="112" class="t">Distillation, ping stage</text>
+                <line class="link" x1="52" y1="140" x2="73" y2="140"/>
+                <circle class="ctx" cx="44.8" cy="140" r="7"><title>Baseline AUC 0.6206</title></circle>
+                <circle class="mark" cx="80" cy="140" r="7"><title>Distilled AUC 0.6457</title></circle>
+                <text x="16" y="168" class="m">0.6206</text><text x="76" y="168">0.6457</text>
+                <line class="axis" x1="16" y1="182" x2="324" y2="182"/>
+                <text x="16" y="204" class="m">0.60</text><text x="156" y="204" class="m" text-anchor="middle">0.70</text><text x="296" y="204" class="m" text-anchor="middle">0.80</text>
+              </svg>
+              <figcaption>AUC on one shared axis. Distillation results are on 23,559 holdout rows.</figcaption>
+            </figure>
+          </div>
+          <p>A 270M-parameter FunctionGemma router: 95.5% function accuracy and 86.4% exact match on 500 held-out prompts, 95.4% serving accuracy against live Snowflake.</p>
+          <p>Gyro's last lesson: “The shortest route was a detour.” In validation, the detour is a split by time. It is slower to build than a random split, and it is the one that shows how a model scores on rows that arrive after its training data.</p>
+          <p class="muted">In JoJo Part 4, an enemy offers to spare Rohan Kishibe if he lures Josuke into a trap. His answer: “But I refuse.”</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section id="research" aria-labelledby="t-research">
+    <div class="wrap">
+      <p class="leg"><b>Stage 3</b><i></i><span>Rocky Mountain Breakdown</span></p>
+      <h2 id="t-research" class="rise">Research, in four acts</h2>
+      <ol class="acts" data-enter>
+        <li id="early"><p class="act-k"><svg class="nail" viewBox="0 0 48 48" aria-hidden="true"><circle class="orbit" cx="24" cy="24" r="20"/><path class="arc" d="M24 4A20 20 0 0 1 44.0 24.0"/><path class="tip" d="M24 9c3.2 0 4.6 3 4.6 7.5V22h-9.2v-5.5C19.4 12 20.8 9 24 9z"/></svg><span><b>ACT 1</b>2024</span></p><p class="fig">15%</p><p>efficiency gain in 3D sensor networks, NSF REU; IEEE first author</p></li>
+        <li><p class="act-k"><svg class="nail" viewBox="0 0 48 48" aria-hidden="true"><circle class="orbit" cx="24" cy="24" r="20"/><path class="arc" d="M24 4A20 20 0 0 1 24.0 44.0"/><path class="tip" d="M24 9c3.2 0 4.6 3 4.6 7.5V22h-9.2v-5.5C19.4 12 20.8 9 24 9z"/></svg><span><b>ACT 2</b>2025</span></p><p class="fig">0.172%</p><p>of the data was fraud; Bayesian networks and calibrated XGBoost</p></li>
+        <li id="psc"><p class="act-k"><svg class="nail" viewBox="0 0 48 48" aria-hidden="true"><circle class="orbit" cx="24" cy="24" r="20"/><path class="arc" d="M24 4A20 20 0 1 1 4.0 24.0"/><path class="tip" d="M24 9c3.2 0 4.6 3 4.6 7.5V22h-9.2v-5.5C19.4 12 20.8 9 24 9z"/></svg><span><b>ACT 3</b>2026</span></p><p class="fig">−3.8</p><p>points of affordability testimony in Con Edison rate cases</p></li>
+        <li id="calx"><p class="act-k"><svg class="nail" viewBox="0 0 48 48" aria-hidden="true"><circle class="orbit" cx="24" cy="24" r="20"/><circle class="arc" cx="24" cy="24" r="20"/><path class="tip" d="M24 9c3.2 0 4.6 3 4.6 7.5V22h-9.2v-5.5C19.4 12 20.8 9 24 9z"/></svg><span><b>ACT 4</b>2025 to present</span></p><p class="fig">31.55%</p><p>fewer operations on average in Calx, exact on 45 of 45 cases</p></li>
+      </ol>
+      <details class="more">
+        <summary>More on each act</summary>
+        <div class="more-body">
+          <p class="muted">Johnny Joestar's Stand, Tusk, grows through four acts during the race, each built on the last. His goal is to bring his minus back to zero, which is also a fair description of bias correction.</p>
+          <h3>ACT 1. Aperiodic tilings for sensor network security</h3>
+          <p>NSF REU at Texas A&amp;M University-Kingsville, June to August 2024. I built the Intrusion Effort Index on aperiodic Spectre monotile tilings for wireless sensor network security. It gave a 15% efficiency improvement in 3D deployments. First author, IEEE ICNGN 2024.</p>
+          <blockquote>
+            <p>“Rare even among experienced researchers, his ability to close the distance between abstract theory and practical application is demonstrated by his development of the Intrusion Effort Index.”</p>
+            <footer>Dr. Habib M. Ammari, my REU mentor at Texas A&amp;M University-Kingsville, now at Texas A&amp;M International University, from his recommendation letter</footer>
+          </blockquote>
+          <h3>ACT 2. Credit card fraud detection</h3>
+          <p>Fraud was 0.172% of the data. I rebalanced the training data with SMOTE-NC, modeled fraud with Bayesian networks and calibrated XGBoost, and built a Dash app to monitor the model.</p>
+          <h3>ACT 3. Energy insecurity in Con Edison rate cases</h3>
+          <p class="role">Columbia Data Science Institute scholar, NYSERDA energy-insecurity research, January to May 2026.</p>
+          <div class="split">
+            <div>
+              <p>317 Con Edison testimony PDFs, 16 docket themes. Affordability testimony fell 3.8 points from 2022 to 2025.</p>
+              <p>The filings came from the New York Public Service Commission. I split them into 12,073 segments, 10,225 of them substantive, and modeled topics with BERTopic: LegalBERT embeddings, UMAP, then HDBSCAN. Over the same years, rate-design testimony rose 4.9 points and IT-systems testimony rose 3.4.</p>
+            </div>
+            <figure>
+              <svg class="chart" viewBox="0 0 360 150" role="img" aria-labelledby="c3t">
+                <title id="c3t">Change in share of testimony from 2022 to 2025: affordability minus 3.8 points, rate design plus 4.9, IT systems plus 3.4.</title>
+                <rect class="bar" x="73.6" y="14" width="106.4" height="24"><title>Affordability, down 3.8 points</title></rect>
+                <text x="188" y="31">Affordability</text><text x="66" y="31" text-anchor="end" class="t">−3.8</text>
+                <rect class="bar" x="180" y="58" width="137.2" height="24"><title>Rate design, up 4.9 points</title></rect>
+                <text x="172" y="75" text-anchor="end">Rate design</text><text x="323" y="75" class="t">+4.9</text>
+                <rect class="bar" x="180" y="102" width="95.2" height="24"><title>IT systems, up 3.4 points</title></rect>
+                <text x="172" y="119" text-anchor="end">IT systems</text><text x="281" y="119" class="t">+3.4</text>
+                <line class="zero" x1="180" y1="6" x2="180" y2="134"/>
+              </svg>
+              <figcaption>Change in each theme's share of testimony, in points, 2022 to 2025.</figcaption>
+            </figure>
+          </div>
+          <h3>ACT 4. Calx: one structure, two fields</h3>
+          <p class="role">Founder and lead researcher, 2025 to present. Funny Valentine's D4C crosses between parallel worlds; Calx crosses between fields.</p>
+          <p>Calx is a neuro-symbolic engine for cross-domain discovery. It ports the Structure-Mapping Engine to find the same relational structure in problems from different fields. U.S. provisional patent application 64/029,090, filed through Columbia Technology Ventures.</p>
+          <div class="linkrow">
+            <a href="sma-1/">SMA-1 project page</a>
+            <a href="https://pypi.org/project/structuremappingmemory/">PyPI package</a>
+            <a href="https://github.com/ayazkhan27/SMA-1">Source on GitHub</a>
+          </div>
+          <table class="ledger">
+            <caption class="vh">Calx results</caption>
+            <tbody>
+              <tr><th scope="row">31.55%</th><td>mean reduction in operations from the Certified Affine Corridor dynamic program, exact on 45 of 45 cases</td></tr>
+              <tr><th scope="row">2</th><td>new square-root Kalman filter variants</td></tr>
+              <tr><th scope="row">594,000</th><td>concepts across 11 ontologies in SMA-1, structure-mapping retrieval shipped as an MCP server</td></tr>
+              <tr><th scope="row"><span class="sign">+</span>0.34</th><td>over the strongest RAG baseline on long-tail top-5 retrieval, medicine</td></tr>
+              <tr><th scope="row"><span class="sign">+</span>0.17</th><td>on the same comparison, genomics</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section id="record" aria-labelledby="t-record">
+    <div class="wrap">
+      <p class="leg"><b>Stage 4</b><i></i><span>Little Tomb on the Wide, Wide Prairie</span></p>
+      <div class="rec-wrap">
+        <h2 id="t-record" class="rise">Education and honors</h2>
+        <div>
+          <table class="record" aria-labelledby="t-record">
+            <tbody>
+              <tr><td>Columbia University, M.A. Statistics</td><td>Dec 2026</td></tr>
+              <tr><td>CUNY Hunter College, B.A. Statistics, cum laude</td><td>Dec 2024</td></tr>
+              <tr><td>Provisional patent 64/029,090</td><td>Columbia Technology Ventures</td></tr>
+              <tr><td>IEEE ICNGN 2024</td><td>First author</td></tr>
+            </tbody>
+          </table>
+          <ul class="tools" aria-label="Main tools">
+            <li>Python</li><li>R</li><li>SQL</li><li>PyTorch</li><li>XGBoost</li><li>Snowflake</li>
+          </ul>
+          <details class="more">
+            <summary>Full record and skills</summary>
+            <div class="more-body">
+              <table class="record">
+                <caption class="vh">Education and honors</caption>
+                <tbody>
+                  <tr><td>National Science Foundation Graduate Research Fellow</td><td>1 of 1,000 awardees from 17,000 applicants</td></tr>
+                  <tr><td>Columbia University, M.A. Statistics</td><td>Expected December 2026</td></tr>
+                  <tr><td>CUNY Hunter College, Special Honors B.A. Statistics, computer science minor, cum laude</td><td>December 2024</td></tr>
+                  <tr><td>U.S. provisional patent application 64/029,090</td><td>Through Columbia Technology Ventures</td></tr>
+                  <tr><td>First author, IEEE ICNGN 2024</td><td>Intrusion Effort Index for wireless sensor networks</td></tr>
+                </tbody>
+              </table>
+              <dl class="skills">
+                <div><dt>Languages</dt><dd>Python, R, SQL, SAS, Java, C++</dd></div>
+                <div><dt>Modeling</dt><dd>PyTorch, scikit-learn, transformers, XGBoost, LightGBM, LoRA</dd></div>
+                <div><dt>Data and cloud</dt><dd>Snowflake, Docker, GCP, AWS</dd></div>
+                <div><dt>Methods</dt><dd>Causal inference, survival analysis, Bayesian networks, stochastic processes, SHAP, A/B testing</dd></div>
+              </dl>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="lab" aria-labelledby="t-lab">
+    <div class="wrap">
+      <p class="leg"><b>Stages 5 to 7</b><i></i><span>Bonus stages</span></p>
+      <h2 id="t-lab" class="rise">The Lab</h2>
+      <div class="lab">
+        <details class="tile" id="stand" name="lab">
+          <summary><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><polygon points="32.0,6.0 54.5,19.0 54.5,45.0 32.0,58.0 9.5,45.0 9.5,19.0"/><polygon class="fill" points="32.0,9.9 46.6,23.6 51.1,43.0 32.0,54.1 12.9,43.0 12.9,20.9"/></svg>Stand card</summary>
+          <div class="tile-body">
+            <p>In JoJo many characters fight with a Stand, and most Stands are named after songs, albums or bands. Mine borrows Radiohead's “No Surprises”, and each grade links up to the result that earns it.</p>
+            <div class="jj-slot" data-jj="stand" data-jj-css>
+              <article class="card jj-static" aria-labelledby="stand-name">
+                <div class="card-top">
+                  <dl class="card-id">
+                    <dt>Stand</dt><dd class="name" id="stand-name"><span class="jp" aria-hidden="true">「</span>NO SURPRISES<span class="jp" aria-hidden="true">」</span></dd>
+                    <dt>Stand user</dt><dd>Ayaz Khan</dd>
+                  </dl>
+                  <p class="ability"><b>Ability.</b> Measures how surprised a model should be, in bits. When a calibrator claims more than the data allows, it shows.</p>
+                </div>
+                <div class="card-body">
+                  <svg class="hex" viewBox="-150 -128 300 256" role="img" aria-label="Stand parameters: Power A, Speed B, Range A, Stamina A, Precision A, Potential A"><polygon class="ring" points="0.0,-20.0 17.3,-10.0 17.3,10.0 0.0,20.0 -17.3,10.0 -17.3,-10.0"/><polygon class="ring" points="0.0,-40.0 34.6,-20.0 34.6,20.0 0.0,40.0 -34.6,20.0 -34.6,-20.0"/><polygon class="ring" points="0.0,-60.0 52.0,-30.0 52.0,30.0 0.0,60.0 -52.0,30.0 -52.0,-30.0"/><polygon class="ring" points="0.0,-80.0 69.3,-40.0 69.3,40.0 0.0,80.0 -69.3,40.0 -69.3,-40.0"/><polygon class="ring" points="0.0,-100.0 86.6,-50.0 86.6,50.0 0.0,100.0 -86.6,50.0 -86.6,-50.0"/><line class="spoke" x1="0" y1="0" x2="0.0" y2="-100.0"/><line class="spoke" x1="0" y1="0" x2="86.6" y2="-50.0"/><line class="spoke" x1="0" y1="0" x2="86.6" y2="50.0"/><line class="spoke" x1="0" y1="0" x2="0.0" y2="100.0"/><line class="spoke" x1="0" y1="0" x2="-86.6" y2="50.0"/><line class="spoke" x1="0" y1="0" x2="-86.6" y2="-50.0"/><polygon class="shape" points="0.0,-100.0 69.3,-40.0 86.6,50.0 0.0,100.0 -86.6,50.0 -86.6,-50.0"/><text x="0.0" y="-126.0" text-anchor="middle" aria-hidden="true">Power <tspan class="g">A</tspan></text><text x="105.7" y="-65.0" text-anchor="start" aria-hidden="true">Speed <tspan class="g">B</tspan></text><text x="105.7" y="75.0" text-anchor="start" aria-hidden="true">Range <tspan class="g">A</tspan></text><text x="0.0" y="136.0" text-anchor="middle" aria-hidden="true">Stamina <tspan class="g">A</tspan></text><text x="-105.7" y="75.0" text-anchor="end" aria-hidden="true">Precision <tspan class="g">A</tspan></text><text x="-105.7" y="-65.0" text-anchor="end" aria-hidden="true">Potential <tspan class="g">A</tspan></text></svg>
+                  <dl class="params">
+                    <div><dt>Power</dt><dd class="gr">A</dd><dd class="ev"><a href="#calx">594,000 concepts across 11 ontologies in SMA-1</a></dd></div>
+                    <div><dt>Speed</dt><dd class="gr">B</dd><dd class="ev"><a href="#work">Caught the accuracy ceiling before a degrading release shipped</a></dd></div>
+                    <div><dt>Range</dt><dd class="gr">A</dd><dd class="ev"><a href="#work">Insurance pricing</a>, <a href="#psc">utility rate cases</a>, <a href="#calx">medical and genomic retrieval</a>, <a href="#early">sensor networks</a></dd></div>
+                    <div><dt>Stamina</dt><dd class="gr">A</dd><dd class="ev"><a href="#psc">12,073 segments from 317 rate-case filings</a></dd></div>
+                    <div><dt>Precision</dt><dd class="gr">A</dd><dd class="ev"><a href="#work">95% CI [55.13, 58.08] on 4,338 rows</a></dd></div>
+                    <div><dt>Potential</dt><dd class="gr">A</dd><dd class="ev"><a href="#record">NSF Graduate Research Fellow, 1 of 1,000 from 17,000 applicants</a></dd></div>
+                  </dl>
+                </div>
+              </article>
+            </div>
+          </div>
+        </details>
+        <details class="tile" id="ora" name="lab">
+          <summary><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><circle class="dot" cx="20" cy="38" r="2.4"/><circle class="dot" cx="26" cy="38" r="2.4"/><circle class="dot" cx="26" cy="32" r="2.4"/><circle class="dot" cx="32" cy="38" r="2.4"/><circle class="dot" cx="32" cy="32" r="2.4"/><circle class="dot" cx="32" cy="26" r="2.4"/><circle class="dot" cx="32" cy="20" r="2.4"/><circle class="dot" cx="38" cy="38" r="2.4"/><circle class="dot" cx="38" cy="32" r="2.4"/><circle class="dot" cx="38" cy="26" r="2.4"/><circle class="dot" cx="44" cy="38" r="2.4"/><path d="M14 48H50M14 44V52M50 44V52"/></svg>ORA bootstrap</summary>
+          <div class="tile-body">
+            <p>An interval says how far the estimate could move if the rows had come out differently. A bootstrap is one way to see that: resample the rows with replacement, recompute, and repeat a thousand times. Jotaro's Stand, Star Platinum, wins fights the same way, with a rush of punches (ORA ORA). Here each punch is one resample of simulated rows, a sketch of the idea that is separate from the analysis behind the Telenav interval.</p>
+            <div class="jj-slot" data-jj="ora" data-jj-css><p class="jj-static note">The bootstrap rush needs JavaScript.</p></div>
+          </div>
+        </details>
+        <details class="tile" id="gyro" name="lab">
+          <summary><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><path d="M6 14H58V46H6Z"/><path d="M38 14V46M38 34H58M46 34V46"/><path class="hot" d="M6 46A32 32 0 0 1 38 14A20 20 0 0 1 58 34A12 12 0 0 1 46 46"/></svg>Golden rectangle</summary>
+          <div class="tile-body">
+            <p>Gyro Zeppeli's Spin draws its power from the golden rectangle, sides in the ratio 1 to 1.618, and in Steel Ball Run he says a horse running at its natural pace forms one. Muybridge photographed a horse at a gallop in 1878, so I measured all eleven frames.</p>
+            <div class="jj-slot" data-jj="golden" data-jj-css data-jj-opts='{"frame":1,"measure":"rider"}'><p class="jj-static note">The frame-by-frame measurement needs JavaScript.</p></div>
+            <p class="ps">One more comparison, which I made after seeing the data, so treat it as a joke: Gyro also gives the ratio as roughly 9:16, and 16/9 is 1.78, inside the horse-alone interval [1.71, 1.90], so the horse passes his rough rule and fails his precise one.</p>
+          </div>
+        </details>
+        <details class="tile" id="steel" name="lab">
+          <summary><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="24"/><path class="hot" d="M34.0 32.0 L34.2 32.8 L34.1 33.8 L33.6 34.7 L32.6 35.5 L31.3 35.9 L29.8 35.7 L28.4 35.0 L27.2 33.7 L26.5 32.0 L26.5 29.9 L27.3 27.9 L28.8 26.2 L30.9 25.1 L33.4 24.7 L36.0 25.3 L38.3 26.8 L40.1 29.2 L40.9 32.2 L40.7 35.3 L39.3 38.4 L36.9 40.8 L33.6 42.3 L29.9 42.6 L26.2 41.6 L22.9 39.3 L20.6 35.8 L19.6 31.7 L20.1 27.3 L22.1 23.3 L25.6 20.1 L30.0 18.2 L34.9 18.0 L39.7 19.5 L43.9 22.7 L46.7 27.2 L47.9 32.5 L47.1 38.1 L44.4 43.1 L40.0 47.0 L34.4 49.2 L28.2 49.4 L22.3 47.4 L17.3 43.3"/></svg>Steel ball</summary>
+          <div class="tile-body">
+            <div class="spin">
+              <div class="jj-slot" data-jj="steelball" data-jj-css><figure class="jj-static"><img src="assets/jojo/steelball.png" width="420" height="420" loading="lazy" decoding="async" alt="A polished steel ball engraved with 377 dots in a golden-angle spiral"><figcaption>The live ball needs JavaScript.</figcaption></figure></div>
+              <div>
+                <h3>The Spin, fitted while it slows</h3>
+                <p>Gyro's third lesson to Johnny is “Believe in the Spin.” This spin you can also measure. Drag or flick the ball: in this simulation, friction takes the same share of its speed every second, so the speed decays exponentially and its logarithm falls on a straight line. While the ball slows, the page fits that line by least squares and reports τ, the time constant of the decay. The fit runs live on the simulated readings.</p>
+              </div>
+            </div>
+          </div>
+        </details>
+        <details class="tile" id="disc-tile" name="lab">
+          <summary><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="27"/><path d="M32.0 17.0L32.0 9.0"/><path d="M40.1 19.4L44.4 12.7"/><path d="M45.6 25.8L52.9 22.4"/><path d="M46.8 34.1L54.8 35.3"/><path d="M43.3 41.8L49.4 47.1"/><path d="M36.2 46.4L38.5 54.1"/><path d="M27.8 46.4L25.5 54.1"/><path d="M20.7 41.8L14.6 47.1"/><path d="M17.2 34.1L9.2 35.3"/><path d="M18.4 25.8L11.1 22.4"/><path d="M23.9 19.4L19.6 12.7"/><circle cx="32" cy="32" r="4"/><path class="hot" d="M27 1H37L32 7Z"/></svg>Zoopraxiscope</summary>
+          <div class="tile-body dark">
+            <p class="plate-note">Sallie Gardner at a gallop, Palo Alto, 19 June 1878. Traced from Eadweard Muybridge's plate.</p>
+            <div class="gate">
+              <div class="disc-wrap">
+                <svg class="disc" id="disc" viewBox="-520 -548 1040 1068" role="slider" tabindex="0" aria-label="Zoopraxiscope disc. Drag it, or use the arrow keys, to turn one frame at a time." aria-valuemin="1" aria-valuemax="11" aria-valuenow="3" aria-valuetext="Frame 3 of 11, all four hooves off the track">
+                  <g id="spin">
+                    <circle r="500" class="d-face"/>
+                    <circle r="482" class="d-rim"/>
+                    <g transform="rotate(0.000)"><use class="d-horse" href="#h1" x="-120" y="-428" width="240" height="153"/><text class="d-num" y="-448">1</text></g>
             <g transform="rotate(32.727)"><use class="d-horse" href="#h2" x="-120" y="-428" width="240" height="153"/><text class="d-num" y="-448">2</text></g>
             <g transform="rotate(65.455)"><use class="d-horse" href="#h3" x="-120" y="-428" width="240" height="153"/><text class="d-num" y="-448">3</text></g>
             <g transform="rotate(98.182)"><use class="d-horse" href="#h4" x="-120" y="-428" width="240" height="153"/><text class="d-num" y="-448">4</text></g>
@@ -578,331 +915,67 @@ body{padding-bottom:var(--rail-h)}
             <g transform="rotate(261.818)"><use class="d-horse" href="#h9" x="-120" y="-428" width="240" height="153"/><text class="d-num" y="-448">9</text></g>
             <g transform="rotate(294.545)"><use class="d-horse" href="#h10" x="-120" y="-428" width="240" height="153"/><text class="d-num" y="-448">10</text></g>
             <g transform="rotate(327.273)"><use class="d-horse" href="#h11" x="-120" y="-428" width="240" height="153"/><text class="d-num" y="-448">11</text></g>
-            <circle r="56" class="d-hub"/><circle r="14" class="d-pin"/>
-          </g>
-          <path class="d-gate" d="M-64 -546H64L0 -500Z"/>
-        </svg>
-        <p class="cap">Muybridge later projected painted copies of frames like these from a spinning glass disc, the zoopraxiscope, which he built in 1879. The frame under the pointer is the one on the screen.</p>
-      </div>
-      <div class="gauge">
-        <dl class="readings" aria-hidden="true">
-          <div><dt>Frame</dt><dd id="r-frame">3 of 11</dd></div>
-          <div><dt>Elapsed</dt><dd id="r-time">0.08 s</dd></div>
-          <div><dt>Track covered</dt><dd id="r-track">54 in</dd></div>
-          <div><dt>Hooves down</dt><dd id="r-hoof" class="air">None</dd></div>
-        </dl>
-        <p class="vh" id="readout" aria-live="polite"></p>
-        <div class="controls">
-          <button type="button" id="prev" aria-label="Previous frame">Back</button>
-          <button type="button" id="play" aria-pressed="false">Play</button>
-          <button type="button" id="next" aria-label="Next frame">Next</button>
-        </div>
-        <ol class="sheet" id="sheet" aria-label="The eleven gallop frames of the 1878 plate">
-          <li><button type="button" aria-label="Frame 1"><img src="assets/plate/alb-01.jpg" width="240" height="150" alt="" decoding="async"></button></li>
-          <li><button type="button" aria-label="Frame 2 (all four hooves off the track)"><img src="assets/plate/alb-02.jpg" width="240" height="150" alt="" decoding="async"></button></li>
-          <li><button type="button" aria-label="Frame 3 (all four hooves off the track)"><img src="assets/plate/alb-03.jpg" width="240" height="150" alt="" decoding="async"></button></li>
-          <li><button type="button" aria-label="Frame 4"><img src="assets/plate/alb-04.jpg" width="240" height="150" alt="" decoding="async"></button></li>
-          <li><button type="button" aria-label="Frame 5"><img src="assets/plate/alb-05.jpg" width="240" height="150" alt="" decoding="async"></button></li>
-          <li><button type="button" aria-label="Frame 6"><img src="assets/plate/alb-06.jpg" width="240" height="150" alt="" decoding="async"></button></li>
-          <li><button type="button" aria-label="Frame 7"><img src="assets/plate/alb-07.jpg" width="240" height="150" alt="" decoding="async"></button></li>
-          <li><button type="button" aria-label="Frame 8"><img src="assets/plate/alb-08.jpg" width="240" height="150" alt="" decoding="async"></button></li>
-          <li><button type="button" aria-label="Frame 9"><img src="assets/plate/alb-09.jpg" width="240" height="150" alt="" decoding="async"></button></li>
-          <li><button type="button" aria-label="Frame 10"><img src="assets/plate/alb-10.jpg" width="240" height="150" alt="" decoding="async"></button></li>
-          <li><button type="button" aria-label="Frame 11"><img src="assets/plate/alb-11.jpg" width="240" height="150" alt="" decoding="async"></button></li>
-        </ol>
-        <p class="why">In 1878 people argued over whether a galloping horse ever has all four hooves in the air. Muybridge stopped arguing and set up cameras along the track, 27 inches and about 1/25 of a second apart, each exposure shorter than 1/2000 of a second. <b>Frames 2 and 3 settled it.</b> I bring the same habit to models: set up the measurement first, then read what it says.</p>
-      </div>
-    </div>
-  </div>
-</header>
-
-<main id="main">
-  <section id="work" aria-labelledby="t-telenav">
-    <div class="wrap">
-      <p class="leg"><b>Start</b><i></i><span>San Diego Beach <small>25 September 1890</small></span></p>
-      <p class="premise">This page runs as the 1890 horse race in Steel Ball Run, Part 7 of JoJo's Bizarre Adventure: nine stages and about 6,000 km, from San Diego Beach to Trinity Church in Manhattan.</p>
-      <div class="head rise">
-        <h2 id="t-telenav">The ceiling that stopped a release</h2>
-        <p class="role">Telenav, Santa Clara. Applied ML and Data Engineering Intern, June to August 2026, on Novo Insurance's scoring stack.</p>
-      </div>
-      <div class="receipt">
-        <div class="total rise">
-          <p class="fig" aria-describedby="ceil-note">56.69%<span class="sfx" aria-hidden="true"><span>ド</span><span>ド</span><span>ド</span></span></p>
-          <p id="ceil-note">A nonparametric estimate of the best accuracy any calibrator could reach on this data: 95% CI [55.13, 58.08] on 4,338 true-ping rows.</p>
-        </div>
-        <div>
-          <p class="statement">The production calibrator ran 9 points below that bound. The finding cancelled a release that would have degraded pricing.</p>
-          <figure>
-            <svg class="chart" viewBox="12 0 316 150" role="img" aria-labelledby="c1t">
-              <title id="c1t">Accuracy ceiling 56.69 percent with 95 percent interval 55.13 to 58.08; production calibrator 9 points below.</title>
-              <text x="16" y="24" class="t">Production</text>
-              <text x="16" y="42" class="m">9 points lower</text>
-              <text x="324" y="24" class="t" text-anchor="end">Ceiling 56.69%</text>
-              <text x="324" y="42" class="m" text-anchor="end">95% CI 55.13 to 58.08</text>
-              <line class="link" x1="78" y1="80" x2="249" y2="80"/>
-              <line class="ci" x1="224" y1="80" x2="284.6" y2="80"/>
-              <line class="ci" x1="224" y1="72" x2="224" y2="88"/><line class="ci" x1="284.6" y1="72" x2="284.6" y2="88"/>
-              <circle class="ctx" cx="71.2" cy="80" r="7"><title>Production calibrator, 9 points below the ceiling</title></circle>
-              <circle class="mark" cx="256" cy="80" r="7"><title>Ceiling 56.69%, 95% CI 55.13 to 58.08</title></circle>
-              <line class="axis" x1="16" y1="112" x2="324" y2="112"/>
-              <text x="16" y="136" class="m">45%</text><text x="118.7" y="136" class="m" text-anchor="middle">50%</text><text x="221.3" y="136" class="m" text-anchor="middle">55%</text><text x="324" y="136" class="m" text-anchor="end">60%</text>
-            </svg>
-            <figcaption>Accuracy on 4,338 true-ping rows. The interval is the 95% CI of the nonparametric bound.</figcaption>
-          </figure>
-        </div>
-      </div>
-      <div class="rush">
-        <h3>ORA ORA: what an interval measures</h3>
-        <p>An interval says how far the estimate could move if the rows had come out differently. A bootstrap is one way to see that: resample the rows with replacement, recompute, and repeat a thousand times. Jotaro's Stand, Star Platinum, wins fights the same way, with a rush of punches (ORA ORA). Below, each punch is one resample of simulated rows, a sketch of the idea that is separate from the analysis behind the interval above.</p>
-        <div class="jj-slot" data-jj="ora" data-jj-css></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="leak" aria-labelledby="t-leak">
-    <div class="wrap">
-      <p class="leg"><b>Stage 2</b><i></i><span>Santa Maria Novella Church to Monument Valley</span></p>
-      <div class="head rise">
-        <h2 id="t-leak">Catching the leak behind a 0.806 AUC</h2>
-        <p class="role">Telenav, the same internship.</p>
-      </div>
-      <div class="refuse">
-        <p class="refuse-k">In JoJo Part 4, an enemy offers to spare Rohan Kishibe if he lures Josuke into a trap. His answer: “But I refuse.”</p>
-        <div class="jj-slot" data-jj="rohan" data-jj-css>
-          <div class="jj-static">
-            <p class="jp" aria-hidden="true">だが断る</p>
-            <p>A leaky 0.806 would have looked better on a slide. I caught the leak and reported the honest number, 0.7401, measured on a split that respects time.</p>
-            <p><a href="Ayaz_Khan_Resume.pdf">Heaven's Door: read the résumé (PDF)</a></p>
+                    <circle r="56" class="d-hub"/><circle r="14" class="d-pin"/>
+                  </g>
+                  <path class="d-gate" d="M-64 -546H64L0 -500Z"/>
+                </svg>
+                <p class="cap">Muybridge later projected painted copies of frames like these from a spinning glass disc, the zoopraxiscope, which he built in 1879. The frame under the pointer is the one on the screen.</p>
+              </div>
+              <div class="gauge">
+                <dl class="readings" aria-hidden="true">
+                  <div><dt>Frame</dt><dd id="r-frame">3 of 11</dd></div>
+                  <div><dt>Elapsed</dt><dd id="r-time">0.08 s</dd></div>
+                  <div><dt>Track covered</dt><dd id="r-track">54 in</dd></div>
+                  <div><dt>Hooves down</dt><dd id="r-hoof" class="air">None</dd></div>
+                </dl>
+                <p class="vh" id="readout" aria-live="polite"></p>
+                <div class="controls">
+                  <button type="button" id="prev" aria-label="Previous frame">Back</button>
+                  <button type="button" id="play" aria-pressed="false">Play</button>
+                  <button type="button" id="next" aria-label="Next frame">Next</button>
+                </div>
+                <ol class="sheet" id="sheet" aria-label="The eleven gallop frames of the 1878 plate">
+                  <li><button type="button" aria-label="Frame 1"><img src="assets/plate/alb-01.jpg" width="240" height="150" alt="" loading="lazy" decoding="async"></button></li>
+          <li><button type="button" aria-label="Frame 2 (all four hooves off the track)"><img src="assets/plate/alb-02.jpg" width="240" height="150" alt="" loading="lazy" decoding="async"></button></li>
+          <li><button type="button" aria-label="Frame 3 (all four hooves off the track)"><img src="assets/plate/alb-03.jpg" width="240" height="150" alt="" loading="lazy" decoding="async"></button></li>
+          <li><button type="button" aria-label="Frame 4"><img src="assets/plate/alb-04.jpg" width="240" height="150" alt="" loading="lazy" decoding="async"></button></li>
+          <li><button type="button" aria-label="Frame 5"><img src="assets/plate/alb-05.jpg" width="240" height="150" alt="" loading="lazy" decoding="async"></button></li>
+          <li><button type="button" aria-label="Frame 6"><img src="assets/plate/alb-06.jpg" width="240" height="150" alt="" loading="lazy" decoding="async"></button></li>
+          <li><button type="button" aria-label="Frame 7"><img src="assets/plate/alb-07.jpg" width="240" height="150" alt="" loading="lazy" decoding="async"></button></li>
+          <li><button type="button" aria-label="Frame 8"><img src="assets/plate/alb-08.jpg" width="240" height="150" alt="" loading="lazy" decoding="async"></button></li>
+          <li><button type="button" aria-label="Frame 9"><img src="assets/plate/alb-09.jpg" width="240" height="150" alt="" loading="lazy" decoding="async"></button></li>
+          <li><button type="button" aria-label="Frame 10"><img src="assets/plate/alb-10.jpg" width="240" height="150" alt="" loading="lazy" decoding="async"></button></li>
+          <li><button type="button" aria-label="Frame 11"><img src="assets/plate/alb-11.jpg" width="240" height="150" alt="" loading="lazy" decoding="async"></button></li>
+                </ol>
+                <p class="why">In 1878 people argued over whether a galloping horse ever has all four hooves in the air. Muybridge stopped arguing and set up cameras along the track, 27 inches and about 1/25 of a second apart, each exposure shorter than 1/2000 of a second. <b>Frames 2 and 3 settled it.</b> I bring the same habit to models: set up the measurement first, then read what it says.</p>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-      <div class="split evidence">
-        <p class="statement">Target leakage and non-temporal splits had inflated the AUC to 0.806. With both fixed it was an honest 0.7401, and the audit surfaced $127K of campaign waste.</p>
-        <figure>
-          <div class="legend" aria-hidden="true"><span>Before</span><span class="after">After</span></div>
-          <svg class="chart" viewBox="12 0 316 214" role="img" aria-labelledby="c2t">
-            <title id="c2t">AUC before and after. Leakage and split fix: 0.806 reported, 0.7401 honest. Distillation at ping stage: 0.6206 to 0.6457.</title>
-            <text x="16" y="18" class="t">Leakage and split fix</text>
-            <line class="link" x1="219" y1="48" x2="297" y2="48"/>
-            <circle class="ctx" cx="304.4" cy="48" r="7"><title>Reported AUC 0.806, inflated by leakage</title></circle>
-            <circle class="mark" cx="212.1" cy="48" r="7"><title>Honest AUC 0.7401</title></circle>
-            <text x="212.1" y="76" text-anchor="middle">0.7401</text><text x="324" y="76" text-anchor="end" class="m">0.806</text>
-            <text x="16" y="112" class="t">Distillation, ping stage</text>
-            <line class="link" x1="52" y1="140" x2="73" y2="140"/>
-            <circle class="ctx" cx="44.8" cy="140" r="7"><title>Baseline AUC 0.6206</title></circle>
-            <circle class="mark" cx="80" cy="140" r="7"><title>Distilled AUC 0.6457</title></circle>
-            <text x="16" y="168" class="m">0.6206</text><text x="76" y="168">0.6457</text>
-            <line class="axis" x1="16" y1="182" x2="324" y2="182"/>
-            <text x="16" y="204" class="m">0.60</text><text x="156" y="204" class="m" text-anchor="middle">0.70</text><text x="296" y="204" class="m" text-anchor="middle">0.80</text>
-          </svg>
-          <figcaption>AUC on one shared axis. Distillation results are on 23,559 holdout rows.</figcaption>
-        </figure>
-      </div>
-      <div class="split evidence">
-        <ul class="lines">
-          <li>Privileged-features distillation lifted ping-stage AUC from <b>0.6206 to 0.6457</b> on 23,559 holdout rows.</li>
-          <li>A 270M-parameter FunctionGemma router: <b>95.5%</b> function accuracy and <b>86.4%</b> exact match on 500 held-out prompts, <b>95.4%</b> serving accuracy against live Snowflake.</li>
-        </ul>
-        <div class="detour">
-          <p class="statement">Gyro's last lesson: “The shortest route was a detour.”</p>
-          <p>In validation, the detour is a split by time. It is slower to build than a random split, and it is the one that shows how a model scores on rows that arrive after its training data.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="calx" aria-labelledby="t-calx">
-    <div class="wrap">
-      <p class="leg"><b>Stage 3</b><i></i><span>Monument Valley to Cañon City</span></p>
-      <div class="calx">
-        <div>
-          <div class="head rise">
-            <h2 id="t-calx">Calx: one structure, two fields</h2>
-            <p class="role">Funny Valentine's D4C crosses between parallel worlds; Calx crosses between fields.</p>
-          </div>
-          <p class="role">Founder and lead researcher, 2025 to present.</p>
-          <p style="margin-top:var(--space-sm)">Calx is a neuro-symbolic engine for cross-domain discovery. It ports the Structure-Mapping Engine to find the same relational structure in problems from different fields. U.S. provisional patent application 64/029,090, filed through Columbia Technology Ventures.</p>
-          <div class="linkrow">
-            <a href="sma-1/">SMA-1 project page</a>
-            <a href="https://pypi.org/project/structuremappingmemory/">PyPI package</a>
-            <a href="https://github.com/ayazkhan27/SMA-1">Source on GitHub</a>
-          </div>
-        </div>
-        <table class="ledger">
-          <caption class="vh">Calx results</caption>
-          <tbody>
-            <tr><th scope="row">31.55%</th><td>mean reduction in operations from the Certified Affine Corridor dynamic program, exact on 45 of 45 cases</td></tr>
-            <tr><th scope="row">2</th><td>new square-root Kalman filter variants</td></tr>
-            <tr><th scope="row">594,000</th><td>concepts across 11 ontologies in SMA-1, structure-mapping retrieval shipped as an MCP server</td></tr>
-            <tr><th scope="row"><span class="sign">+</span>0.34</th><td>over the strongest RAG baseline on long-tail top-5 retrieval, medicine</td></tr>
-            <tr><th scope="row"><span class="sign">+</span>0.17</th><td>on the same comparison, genomics</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <section id="psc" aria-labelledby="t-psc">
-    <div class="wrap">
-      <p class="leg"><b>Stage 4</b><i></i><span>Cañon City to Kansas City</span></p>
-      <div class="head rise">
-        <h2 id="t-psc">Energy insecurity in Con Edison rate cases</h2>
-        <p class="role">Columbia Data Science Institute scholar, NYSERDA energy-insecurity research, January to May 2026.</p>
-      </div>
-      <div class="split">
-        <div>
-          <p class="statement">317 Con Edison testimony PDFs, 16 docket themes. Affordability testimony fell 3.8 points from 2022 to 2025.</p>
-          <p>The filings came from the New York Public Service Commission. I split them into 12,073 segments, 10,225 of them substantive, and modeled topics with BERTopic: LegalBERT embeddings, UMAP, then HDBSCAN. Over the same years, rate-design testimony rose 4.9 points and IT-systems testimony rose 3.4.</p>
-        </div>
-        <figure>
-          <svg class="chart" viewBox="0 0 360 150" role="img" aria-labelledby="c3t">
-            <title id="c3t">Change in share of testimony from 2022 to 2025: affordability minus 3.8 points, rate design plus 4.9, IT systems plus 3.4.</title>
-            <rect class="bar" x="73.6" y="14" width="106.4" height="24"><title>Affordability, down 3.8 points</title></rect>
-            <text x="188" y="31">Affordability</text><text x="66" y="31" text-anchor="end" class="t">−3.8</text>
-            <rect class="bar" x="180" y="58" width="137.2" height="24"><title>Rate design, up 4.9 points</title></rect>
-            <text x="172" y="75" text-anchor="end">Rate design</text><text x="323" y="75" class="t">+4.9</text>
-            <rect class="bar" x="180" y="102" width="95.2" height="24"><title>IT systems, up 3.4 points</title></rect>
-            <text x="172" y="119" text-anchor="end">IT systems</text><text x="281" y="119" class="t">+3.4</text>
-            <line class="zero" x1="180" y1="6" x2="180" y2="134"/>
-          </svg>
-          <figcaption>Change in each theme's share of testimony, in points, 2022 to 2025.</figcaption>
-        </figure>
-      </div>
-    </div>
-  </section>
-
-  <section id="gyro" aria-labelledby="t-gyro">
-    <div class="wrap lesson">
-      <p class="leg"><b>Stage 5</b><i></i><span>Kansas City to Chicago</span></p>
-      <div class="head rise">
-        <h2 id="t-gyro">Lesson: the golden rectangle</h2>
-        <p>Gyro Zeppeli's Spin draws its power from the golden rectangle, sides in the ratio 1 to 1.618, and in Steel Ball Run he says a horse running at its natural pace forms one. Muybridge photographed a horse at a gallop in 1878, so I measured all eleven frames.</p>
-      </div>
-      <div class="jj-slot" data-jj="golden" data-jj-css data-jj-opts='{"frame":1,"measure":"rider"}'></div>
-      <p class="ps">One more comparison, which I made after seeing the data, so treat it as a joke: Gyro also gives the ratio as roughly 9:16, and 16/9 is 1.78, inside the horse-alone interval [1.71, 1.90], so the horse passes his rough rule and fails his precise one.</p>
-      <div class="spin">
-        <div class="jj-slot" data-jj="steelball" data-jj-css></div>
-        <div>
-          <h3>The Spin, fitted while it slows</h3>
-          <p>Gyro's third lesson to Johnny is “Believe in the Spin.” This spin you can also measure. Drag or flick the ball: in this simulation, friction takes the same share of its speed every second, so the speed decays exponentially and its logarithm falls on a straight line. While the ball slows, the page fits that line by least squares and reports τ, the time constant of the decay. The fit runs live on the simulated readings.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="early" aria-labelledby="t-early">
-    <div class="wrap">
-      <p class="leg"><b>Stage 6</b><i></i><span>Chicago to Mackinaw City</span></p>
-      <div class="head rise">
-        <h2 id="t-early">Four acts, 2024 to now</h2>
-        <p>Johnny Joestar's Stand, Tusk, grows through four acts during the race, each built on the last. His goal is to bring his minus back to zero, which is also a fair description of bias correction. These are my four acts.</p>
-      </div>
-      <ol class="acts" data-enter>
-        <li>
-          <p class="act-k"><svg class="nail" viewBox="0 0 48 48" aria-hidden="true"><circle class="orbit" cx="24" cy="24" r="20"/><path class="arc" d="M24 4A20 20 0 0 1 44.0 24.0"/><path class="tip" d="M24 9c3.2 0 4.6 3 4.6 7.5V22h-9.2v-5.5C19.4 12 20.8 9 24 9z"/></svg><span><b>ACT 1</b>2024</span></p>
-          <p class="fig">15%</p>
-          <h3>Aperiodic tilings for sensor network security</h3>
-          <p>NSF REU at Texas A&amp;M University-Kingsville, June to August 2024. I built the Intrusion Effort Index on aperiodic Spectre monotile tilings for wireless sensor network security. It gave a 15% efficiency improvement in 3D deployments. First author, IEEE ICNGN 2024.</p>
-        </li>
-        <li>
-          <p class="act-k"><svg class="nail" viewBox="0 0 48 48" aria-hidden="true"><circle class="orbit" cx="24" cy="24" r="20"/><path class="arc" d="M24 4A20 20 0 0 1 24.0 44.0"/><path class="tip" d="M24 9c3.2 0 4.6 3 4.6 7.5V22h-9.2v-5.5C19.4 12 20.8 9 24 9z"/></svg><span><b>ACT 2</b>2025</span></p>
-          <p class="fig">0.172%</p>
-          <h3>Credit card fraud detection</h3>
-          <p>Fraud was 0.172% of the data. I rebalanced the training data with SMOTE-NC, modeled fraud with Bayesian networks and calibrated XGBoost, and built a Dash app to monitor the model.</p>
-        </li>
-        <li>
-          <p class="act-k"><svg class="nail" viewBox="0 0 48 48" aria-hidden="true"><circle class="orbit" cx="24" cy="24" r="20"/><path class="arc" d="M24 4A20 20 0 1 1 4.0 24.0"/><path class="tip" d="M24 9c3.2 0 4.6 3 4.6 7.5V22h-9.2v-5.5C19.4 12 20.8 9 24 9z"/></svg><span><b>ACT 3</b>2026</span></p>
-          <p class="fig">0.7401</p>
-          <h3>Telenav: measuring before shipping</h3>
-          <p>An accuracy ceiling that cancelled a release, and a leakage fix that took the AUC from 0.806 to 0.7401.</p>
-          <p><a class="back" href="#work">Stages 1 and 2</a></p>
-        </li>
-        <li>
-          <p class="act-k"><svg class="nail" viewBox="0 0 48 48" aria-hidden="true"><circle class="orbit" cx="24" cy="24" r="20"/><circle class="arc" cx="24" cy="24" r="20"/><path class="tip" d="M24 9c3.2 0 4.6 3 4.6 7.5V22h-9.2v-5.5C19.4 12 20.8 9 24 9z"/></svg><span><b>ACT 4</b>2025 to present</span></p>
-          <p class="fig">31.55%</p>
-          <h3>Calx: structure across fields</h3>
-          <p>A neuro-symbolic engine with a provisional patent. Its corridor dynamic program cut operations by 31.55% on average, exact on 45 of 45 cases.</p>
-          <p><a class="back" href="#calx">Stage 3</a></p>
-        </li>
-      </ol>
-      <blockquote>
-        <p>“Rare even among experienced researchers, his ability to close the distance between abstract theory and practical application is demonstrated by his development of the Intrusion Effort Index.”</p>
-        <footer>Dr. Habib M. Ammari, my REU mentor at Texas A&amp;M University-Kingsville, now at Texas A&amp;M International University, from his recommendation letter</footer>
-      </blockquote>
-    </div>
-  </section>
-
-  <section id="record" aria-labelledby="t-record">
-    <div class="wrap">
-      <p class="leg"><b>Stage 7</b><i></i><span>Mackinaw City to Philadelphia</span></p>
-      <div class="head rise"><h2 id="t-record">Education and honors</h2></div>
-      <table class="record">
-        <caption class="vh">Education and honors</caption>
-        <tbody>
-          <tr><td>National Science Foundation Graduate Research Fellow</td><td>1 of 1,000 awardees from 17,000 applicants</td></tr>
-          <tr><td>Columbia University, M.A. Statistics</td><td>Expected December 2026</td></tr>
-          <tr><td>CUNY Hunter College, Special Honors B.A. Statistics, computer science minor, cum laude</td><td>December 2024</td></tr>
-          <tr><td>U.S. provisional patent application 64/029,090</td><td>Through Columbia Technology Ventures</td></tr>
-          <tr><td>First author, IEEE ICNGN 2024</td><td>Intrusion Effort Index for wireless sensor networks</td></tr>
-        </tbody>
-      </table>
-      <dl class="skills">
-        <div><dt>Languages</dt><dd>Python, R, SQL, SAS, Java, C++</dd></div>
-        <div><dt>Modeling</dt><dd>PyTorch, scikit-learn, transformers, XGBoost, LightGBM, LoRA</dd></div>
-        <div><dt>Data and cloud</dt><dd>Snowflake, Docker, GCP, AWS</dd></div>
-        <div><dt>Methods</dt><dd>Causal inference, survival analysis, Bayesian networks, stochastic processes, SHAP, A/B testing</dd></div>
-      </dl>
-    </div>
-  </section>
-
-  <section id="stand" aria-labelledby="t-stand">
-    <div class="wrap">
-      <p class="leg"><b>Checkpoint</b><i></i><span>Philadelphia</span></p>
-      <div class="head rise">
-        <h2 id="t-stand">Stand card: six grades, each tied to a result above</h2>
-        <p>In JoJo many characters fight with a Stand, and most Stands are named after songs, albums or bands. Mine borrows Radiohead's “No Surprises”, and each grade links up to the result that earns it.</p>
-      </div>
-      <div class="jj-slot" data-jj="stand" data-jj-css>
-        <article class="card jj-static" aria-labelledby="stand-name">
-          <div class="card-top">
-            <dl class="card-id">
-              <dt>Stand</dt><dd class="name" id="stand-name"><span class="jp" aria-hidden="true">「</span>NO SURPRISES<span class="jp" aria-hidden="true">」</span></dd>
-              <dt>Stand user</dt><dd>Ayaz Khan</dd>
-            </dl>
-            <p class="ability"><b>Ability.</b> Measures how surprised a model should be, in bits. When a calibrator claims more than the data allows, it shows.</p>
-          </div>
-          <div class="card-body">
-            <svg class="hex" viewBox="-150 -128 300 256" role="img" aria-label="Stand parameters: Power A, Speed B, Range A, Stamina A, Precision A, Potential A"><polygon class="ring" points="0.0,-20.0 17.3,-10.0 17.3,10.0 0.0,20.0 -17.3,10.0 -17.3,-10.0"/><polygon class="ring" points="0.0,-40.0 34.6,-20.0 34.6,20.0 0.0,40.0 -34.6,20.0 -34.6,-20.0"/><polygon class="ring" points="0.0,-60.0 52.0,-30.0 52.0,30.0 0.0,60.0 -52.0,30.0 -52.0,-30.0"/><polygon class="ring" points="0.0,-80.0 69.3,-40.0 69.3,40.0 0.0,80.0 -69.3,40.0 -69.3,-40.0"/><polygon class="ring" points="0.0,-100.0 86.6,-50.0 86.6,50.0 0.0,100.0 -86.6,50.0 -86.6,-50.0"/><line class="spoke" x1="0" y1="0" x2="0.0" y2="-100.0"/><line class="spoke" x1="0" y1="0" x2="86.6" y2="-50.0"/><line class="spoke" x1="0" y1="0" x2="86.6" y2="50.0"/><line class="spoke" x1="0" y1="0" x2="0.0" y2="100.0"/><line class="spoke" x1="0" y1="0" x2="-86.6" y2="50.0"/><line class="spoke" x1="0" y1="0" x2="-86.6" y2="-50.0"/><polygon class="shape" points="0.0,-100.0 69.3,-40.0 86.6,50.0 0.0,100.0 -86.6,50.0 -86.6,-50.0"/><text x="0.0" y="-126.0" text-anchor="middle" aria-hidden="true">Power <tspan class="g">A</tspan></text><text x="105.7" y="-65.0" text-anchor="start" aria-hidden="true">Speed <tspan class="g">B</tspan></text><text x="105.7" y="75.0" text-anchor="start" aria-hidden="true">Range <tspan class="g">A</tspan></text><text x="0.0" y="136.0" text-anchor="middle" aria-hidden="true">Stamina <tspan class="g">A</tspan></text><text x="-105.7" y="75.0" text-anchor="end" aria-hidden="true">Precision <tspan class="g">A</tspan></text><text x="-105.7" y="-65.0" text-anchor="end" aria-hidden="true">Potential <tspan class="g">A</tspan></text></svg>
-            <dl class="params">
-              <div><dt>Power</dt><dd class="gr">A</dd><dd class="ev"><a href="#calx">594,000 concepts across 11 ontologies in SMA-1</a></dd></div>
-              <div><dt>Speed</dt><dd class="gr">B</dd><dd class="ev"><a href="#work">Caught the accuracy ceiling before a degrading release shipped</a></dd></div>
-              <div><dt>Range</dt><dd class="gr">A</dd><dd class="ev"><a href="#work">Insurance pricing</a>, <a href="#psc">utility rate cases</a>, <a href="#calx">medical and genomic retrieval</a>, <a href="#early">sensor networks</a></dd></div>
-              <div><dt>Stamina</dt><dd class="gr">A</dd><dd class="ev"><a href="#psc">12,073 segments from 317 rate-case filings</a></dd></div>
-              <div><dt>Precision</dt><dd class="gr">A</dd><dd class="ev"><a href="#work">95% CI [55.13, 58.08] on 4,338 rows</a></dd></div>
-              <div><dt>Potential</dt><dd class="gr">A</dd><dd class="ev"><a href="#record">NSF Graduate Research Fellow, 1 of 1,000 from 17,000 applicants</a></dd></div>
-            </dl>
-          </div>
-        </article>
+        </details>
       </div>
     </div>
   </section>
 
   <section id="faq" aria-labelledby="t-faq">
     <div class="wrap">
-      <p class="leg"><b>Stage 8</b><i></i><span>Philadelphia to Union Beach, New Jersey</span></p>
+      <p class="leg"><b>Stage 8</b><i></i><span>Both Sides Now</span></p>
       <div class="faq">
-        <div class="head rise">
-          <h2 id="t-faq">Questions recruiters ask</h2>
-          <p>Joseph Joestar's trick is telling an opponent “Your next line is...” before they say it, and D'Arby's Stand, Atum, reads a soul through yes-or-no questions. The box tries both on the questions recruiters ask; the usual answers sit under it.</p>
-        </div>
-        <div class="jj-slot" data-jj="joseph" data-jj-css data-jj-keep>
-          <dl class="qa jj-static">
-            <div><dt>Do you need visa sponsorship? <span class="yn yn-no" aria-hidden="true">NO!</span></dt><dd>No. I'm a U.S. citizen, so I don't need sponsorship, now or later.</dd></div>
-            <div><dt>When can you start?</dt><dd>January 2027. My Columbia M.A. in Statistics finishes in December 2026.</dd></div>
-            <div><dt>Are you willing to relocate? <span class="yn yn-yes" aria-hidden="true">YES!</span></dt><dd>Yes. I'm in New York and willing to relocate.</dd></div>
-            <div><dt>What kind of role?</dt><dd>Statistics and data science, especially biostatistics, model risk and analytics.</dd></div>
-            <div><dt>Can I see a résumé?</dt><dd><a href="Ayaz_Khan_Resume.pdf">Ayaz_Khan_Resume.pdf</a></dd></div>
+        <h2 id="t-faq" class="rise">Quick answers</h2>
+        <div>
+          <dl class="qa">
+            <div><dt>Do you need sponsorship? <span class="yn yn-no" aria-hidden="true">NO!</span></dt><dd>U.S. citizen, now and later.</dd></div>
+            <div><dt>When can you start?</dt><dd>January 2027.</dd></div>
+            <div><dt>Will you relocate? <span class="yn yn-yes" aria-hidden="true">YES!</span></dt><dd>Yes, from New York.</dd></div>
+            <div><dt>What roles?</dt><dd>Biostatistics, model risk, analytics.</dd></div>
           </dl>
+          <details class="more ask">
+            <summary>Ask your own</summary>
+            <div class="more-body">
+              <p>Joseph Joestar's trick is telling an opponent “Your next line is...” before they say it, and D'Arby's Stand, Atum, reads a soul through yes-or-no questions. The box tries both on the questions recruiters ask.</p>
+              <p class="muted">The long answers: I'm a U.S. citizen, so I don't need sponsorship, now or later. My Columbia M.A. in Statistics finishes in December 2026, so I can start in January 2027. I'm in New York and willing to relocate. I'm looking for statistics and data science roles, especially biostatistics, model risk and analytics. The résumé is <a href="Ayaz_Khan_Resume.pdf">Ayaz_Khan_Resume.pdf</a>.</p>
+              <div class="jj-slot" data-jj="joseph" data-jj-css></div>
+            </div>
+          </details>
         </div>
       </div>
     </div>
@@ -910,13 +983,18 @@ body{padding-bottom:var(--rail-h)}
 
   <section id="contact" aria-labelledby="t-contact">
     <div class="wrap">
-      <p class="leg"><b>Stage 9</b><i></i><span>Union Beach to Trinity Church, Manhattan</span></p>
+      <p class="leg"><b>Stage 9</b><i></i><span>Manhattan Rhapsody</span></p>
     </div>
     <div class="wrap finish">
       <figure>
         <img class="pf" src="assets/photo-finish.png" width="1309" height="408" loading="lazy" decoding="async" alt="Photo-finish image built from the traced gallop: one fixed slit records time from right to left, so the horse appears stretched and its legs smear in bands.">
-        <div class="pf-scale" aria-hidden="true"><span style="right:0">0 s</span><span style="right:18.3%">0.2 s</span><span style="right:36.7%">0.4 s</span><span style="right:55%">0.6 s</span><span style="right:73.3%">0.8 s</span><span style="right:91.7%">1.0 s</span></div>
-        <figcaption>Photo finish. A finish-line camera watches one slit and records time instead of space. I ran the eleven traced frames past a single slit at 1/25 s per frame; each band is one exposure, and the legs smear wherever they outrun the body.</figcaption>
+        <div class="pf-scale" aria-hidden="true"><span style="right:0">0 s</span><span style="right:91.7%">1.0 s</span></div>
+        <figcaption>
+          <details class="more pf-more">
+            <summary>Photo finish</summary>
+            <p>A finish-line camera watches one slit and records time instead of space. I ran the eleven traced frames past a single slit at 1/25 s per frame; each band is one exposure, and the legs smear wherever they outrun the body. The scale runs from 0 s at the right to 1.0 s at the left.</p>
+          </details>
+        </figcaption>
       </figure>
     </div>
     <div class="wrap contact">
@@ -936,33 +1014,31 @@ body{padding-bottom:var(--rail-h)}
           <li><a href="https://github.com/ayazkhan27">github.com/ayazkhan27</a></li>
           <li><a href="https://orcid.org/0009-0008-5695-4934">ORCID 0009-0008-5695-4934</a></li>
         </ul>
-        <a class="btn btn-accent" href="Ayaz_Khan_Resume.pdf" download>Download résumé (PDF)</a>
-        <p class="small muted" style="margin-top:var(--space-sm)">New York. U.S. citizen, no sponsorship needed.</p>
+        <a class="btn btn-accent" href="Ayaz_Khan_Resume.pdf" download data-ep="resume">Download résumé (PDF)</a>
       </div>
     </div>
   </section>
 </main>
 
-<aside class="tbc" id="tbc" aria-label="End of the page">
+<aside class="tbc" id="tbc" aria-label="End of the page" data-ep="end">
   <div class="tbc-title"><svg class="lockup" viewBox="0 0 1324 216" role="img" aria-label="Ayaz's Bizarre Adventure"><defs><path id="lk-a" d="M 126.0 71.3 C 121.7 78.0 116.5 86.3 110.4 96.1 C 104.2 105.9 97.0 117.7 88.6 131.4 C 92.5 131.0 96.9 130.8 101.6 130.8 C 106.0 130.8 110.1 131.0 113.8 131.4 C 114.9 124.6 116.4 116.2 118.5 106.2 C 120.5 96.3 123.0 84.6 126.0 71.3Z M 177.6 15.6 C 163.7 65.2 152.3 122.4 143.3 187.2 L 99.8 197.6 L 105.9 166.6 C 99.2 165.4 92.3 164.8 85.4 164.8 C 83.0 164.8 80.5 164.9 77.9 165.1 C 75.2 165.3 72.4 165.5 69.2 165.8 L 52.4 197.4 L 12.0 196.3 C 25.5 173.0 41.6 146.5 60.3 116.5 C 79.0 86.6 100.6 53.0 125.0 15.8ZM 308.2 20.0 C 298.0 30.9 287.8 42.3 277.6 54.2 C 267.4 66.2 256.9 78.9 246.2 92.3 C 237.2 103.6 230.4 114.7 225.8 125.5 C 223.6 130.6 221.5 135.9 219.4 141.4 C 217.3 146.9 215.1 152.8 212.8 159.1 L 179.4 159.1 C 183.3 148.3 187.0 138.5 190.5 129.7 C 194.0 120.9 197.4 112.9 200.8 105.8 C 200.2 102.7 199.9 99.5 199.7 96.1 C 199.5 92.7 199.4 89.1 199.4 85.4 C 199.4 73.7 199.7 62.5 200.4 52.0 C 201.1 41.6 202.2 31.6 203.6 22.3 L 239.1 16.6 C 239.0 16.9 238.8 18.8 238.4 22.1 C 238.0 25.5 237.3 30.4 236.4 36.8 C 235.8 41.0 235.3 44.7 235.0 48.1 C 234.7 51.4 234.6 54.5 234.6 57.2 C 234.6 59.0 234.6 60.6 234.7 62.0 C 234.7 63.5 234.8 64.8 234.9 65.8 C 243.0 54.5 250.3 44.7 257.1 36.5 C 263.8 28.3 270.2 21.5 276.2 16.2ZM 332.0 63.3 C 328.7 68.2 324.7 74.3 320.2 81.8 C 315.6 89.3 310.0 98.1 303.6 108.2 C 305.0 108.1 306.5 108.0 308.1 107.9 C 309.8 107.8 311.6 107.8 313.5 107.8 C 315.3 107.8 317.0 107.8 318.6 107.9 C 320.2 108.0 321.7 108.1 323.0 108.2 C 323.9 103.2 325.2 97.0 326.6 89.5 C 328.1 82.1 329.9 73.4 332.0 63.3Z M 374.8 16.2 C 363.5 56.7 354.3 102.6 347.3 154.0 L 312.9 156.2 L 316.6 137.0 C 312.0 136.2 307.0 135.8 301.6 135.8 C 299.4 135.8 297.1 135.9 294.7 136.0 C 292.4 136.2 290.1 136.3 287.9 136.6 L 275.9 158.9 L 241.0 161.0 C 246.7 151.3 252.8 141.0 259.3 130.2 C 265.9 119.4 272.9 108.1 280.4 96.1 C 287.9 84.1 296.0 71.5 304.5 58.2 C 313.0 45.0 322.1 31.0 331.8 16.4ZM 510.8 12.0 C 502.2 20.9 493.7 29.9 485.3 39.1 C 476.9 48.2 468.4 57.6 459.9 67.5 L 463.3 67.5 L 467.1 67.5 C 467.8 67.5 468.6 67.5 469.4 67.4 C 470.3 67.4 471.1 67.3 472.1 67.3 L 458.9 98.8 L 456.0 98.8 C 448.9 98.8 441.0 99.0 432.2 99.4 C 427.3 105.1 423.0 110.3 419.3 115.0 C 415.5 119.7 412.2 123.8 409.3 127.4 C 418.9 126.8 428.3 125.9 437.4 124.8 C 446.6 123.8 455.8 122.5 465.0 121.1 L 443.4 153.0 C 429.4 154.9 414.9 156.3 399.7 157.3 C 384.6 158.2 368.4 158.7 351.3 158.7 C 357.8 150.2 364.8 141.3 372.4 132.0 C 380.0 122.6 388.3 112.7 397.3 102.0 C 393.7 102.3 390.4 102.6 387.3 103.0 C 384.2 103.4 381.3 103.8 378.6 104.3 L 391.6 72.4 C 397.3 71.8 402.8 71.2 408.2 70.7 C 413.6 70.3 419.4 69.7 425.5 69.2 C 428.6 65.7 431.8 62.1 435.0 58.4 C 438.2 54.7 441.6 50.8 445.2 46.9 C 431.7 47.5 415.7 47.9 397.3 48.0 L 416.6 17.5 C 433.3 17.1 449.5 16.5 465.1 15.6 C 480.8 14.7 496.0 13.5 510.8 12.0ZM 547.2 43.6 L 506.2 61.2 L 511.4 49.4 L 517.8 44.2 L 513.0 43.8 L 523.4 19.8 L 556.8 19.0ZM 636.2 48.8 C 623.9 49.2 617.5 49.5 617.0 49.6 C 608.1 51.0 603.6 54.3 603.6 59.5 C 603.6 60.0 603.7 61.4 604.0 63.7 C 604.3 66.0 604.6 69.3 605.2 73.6 C 606.1 80.5 606.8 86.0 607.2 89.9 C 607.6 93.9 607.8 96.5 607.8 97.6 C 607.8 103.2 606.7 109.2 604.4 115.4 C 602.3 120.8 600.1 125.0 597.8 127.8 C 590.3 137.7 578.5 145.6 562.4 151.5 C 555.9 153.7 549.1 155.6 542.1 157.1 C 535.0 158.5 527.7 159.5 520.0 160.0 L 530.4 124.2 C 536.2 123.6 541.4 122.8 545.9 121.9 C 550.4 121.0 554.2 119.9 557.4 118.8 C 561.3 117.5 563.9 115.9 565.2 114.0 C 566.7 112.1 567.4 109.1 567.4 105.1 C 567.4 103.3 567.3 101.6 567.3 100.0 C 567.2 98.4 567.1 96.9 567.0 95.4 C 566.7 92.9 565.9 88.3 564.6 81.6 C 563.4 76.0 562.8 71.4 562.8 67.7 C 562.8 57.9 567.2 48.2 576.2 38.5 C 583.8 30.1 592.7 23.7 603.0 19.4 C 610.9 16.1 621.3 14.4 634.2 14.4 C 637.3 14.4 640.4 14.5 643.3 14.7 C 646.3 14.9 649.2 15.2 652.0 15.4Z"/><path id="lk-b" d="M 682.0 97.1 L 693.9 12.0 L 729.3 12.0 C 735.6 12.0 740.8 13.7 744.7 17.2 C 748.6 20.7 750.6 25.2 750.6 30.8 C 750.6 34.5 749.9 37.8 748.4 40.6 C 746.9 43.5 744.9 46.0 742.6 48.0 C 740.2 50.0 737.6 51.5 734.9 52.4 L 734.7 52.9 C 738.3 54.2 741.2 56.4 743.5 59.7 C 745.8 62.9 746.9 67.0 746.9 71.8 C 746.9 77.0 745.5 81.5 742.9 85.3 C 740.2 89.1 736.7 92.0 732.5 94.0 C 728.3 96.1 723.8 97.1 719.1 97.1Z M 699.6 82.9 L 718.4 82.9 C 720.7 82.9 722.8 82.4 724.7 81.4 C 726.6 80.4 728.1 79.0 729.2 77.1 C 730.3 75.2 730.9 72.8 730.9 70.0 C 730.9 67.3 730.0 65.0 728.4 63.2 C 726.7 61.4 724.0 60.5 720.4 60.5 L 702.9 60.5Z M 704.9 46.5 L 721.3 46.5 C 724.1 46.5 726.4 45.9 728.3 44.8 C 730.2 43.7 731.6 42.2 732.6 40.5 C 733.6 38.7 734.1 36.8 734.1 34.7 C 734.1 31.8 733.3 29.6 731.8 28.2 C 730.2 26.8 728.0 26.1 725.3 26.1 L 707.7 26.1ZM 754.2 97.1 L 766.1 12.0 L 781.9 12.0 L 770.0 97.1ZM 778.8 97.1 L 779.3 91.0 L 821.8 26.1 L 790.8 26.1 L 792.8 12.0 L 845.8 12.0 L 845.3 18.2 L 802.7 82.9 L 837.2 82.9 L 835.2 97.1ZM 838.3 97.1 L 877.2 12.0 L 895.4 12.0 L 910.7 97.1 L 894.6 97.1 L 891.8 80.3 L 861.5 80.3 L 854.2 97.1Z M 867.8 66.2 L 889.5 66.2 L 885.8 42.9 C 885.4 40.7 885.2 38.4 885.0 35.8 C 884.8 33.2 884.6 31.0 884.5 29.2 C 884.3 27.3 884.3 26.4 884.3 26.4 L 883.8 26.4 C 883.8 26.4 883.5 27.3 882.9 29.2 C 882.3 31.1 881.6 33.4 880.7 35.9 C 879.9 38.5 879.0 40.8 878.1 42.9ZM 919.3 97.1 L 931.2 12.0 L 964.5 12.0 C 972.8 12.0 978.9 13.9 982.9 17.8 C 986.9 21.7 988.9 26.8 988.9 33.0 C 988.9 39.1 987.3 44.4 984.1 48.9 C 980.9 53.4 976.5 56.6 971.0 58.5 L 982.4 97.1 L 965.4 97.1 L 955.5 61.6 L 939.8 61.6 L 935.0 97.1Z M 941.8 47.6 L 958.6 47.6 C 962.7 47.6 966.0 46.5 968.4 44.2 C 970.8 42.0 972.0 39.0 972.0 35.2 C 972.0 32.4 971.2 30.2 969.6 28.6 C 968.0 26.9 965.5 26.1 962.2 26.1 L 944.9 26.1ZM 992.7 97.1 L 1004.6 12.0 L 1037.9 12.0 C 1046.2 12.0 1052.3 13.9 1056.3 17.8 C 1060.3 21.7 1062.3 26.8 1062.3 33.0 C 1062.3 39.1 1060.7 44.4 1057.5 48.9 C 1054.3 53.4 1049.9 56.6 1044.4 58.5 L 1055.8 97.1 L 1038.8 97.1 L 1028.9 61.6 L 1013.2 61.6 L 1008.4 97.1Z M 1015.2 47.6 L 1032.0 47.6 C 1036.1 47.6 1039.4 46.5 1041.8 44.2 C 1044.2 42.0 1045.4 39.0 1045.4 35.2 C 1045.4 32.4 1044.6 30.2 1043.0 28.6 C 1041.4 26.9 1039.0 26.1 1035.6 26.1 L 1018.3 26.1ZM 1066.1 97.1 L 1078.0 12.0 L 1131.5 12.0 L 1129.6 26.1 L 1091.7 26.1 L 1088.9 46.5 L 1121.4 46.5 L 1119.4 60.6 L 1086.9 60.6 L 1083.7 82.9 L 1122.4 82.9 L 1120.4 97.1ZM 668.0 196.2 L 707.0 111.1 L 725.2 111.1 L 740.5 196.2 L 724.3 196.2 L 721.6 179.4 L 691.2 179.4 L 683.9 196.2Z M 697.6 165.3 L 719.3 165.3 L 715.5 142.0 C 715.2 139.8 714.9 137.5 714.7 134.9 C 714.5 132.3 714.4 130.1 714.2 128.3 C 714.1 126.4 714.0 125.5 714.0 125.5 L 713.5 125.5 C 713.5 125.5 713.3 126.4 712.7 128.3 C 712.1 130.2 711.4 132.5 710.5 135.0 C 709.6 137.6 708.8 139.9 707.8 142.0ZM 749.0 196.2 L 760.9 111.1 L 787.1 111.1 C 796.5 111.1 803.8 113.8 809.1 119.2 C 814.3 124.5 817.0 132.6 817.0 143.3 C 817.0 148.0 816.5 152.7 815.7 157.7 C 814.8 162.6 813.4 167.3 811.5 171.9 C 809.6 176.5 807.1 180.6 804.1 184.3 C 801.0 187.9 797.3 190.8 793.1 192.9 C 788.8 195.1 783.9 196.2 778.3 196.2Z M 766.7 182.0 L 776.9 182.0 C 780.7 182.0 784.0 181.2 786.7 179.6 C 789.4 178.0 791.7 175.8 793.6 173.1 C 795.4 170.4 796.9 167.3 798.0 164.0 C 799.1 160.7 799.8 157.4 800.3 154.0 C 800.7 150.6 801.0 147.4 801.0 144.4 C 801.0 138.1 799.5 133.3 796.7 130.1 C 793.8 126.8 789.9 125.2 784.8 125.2 L 774.7 125.2ZM 841.0 196.2 L 827.3 111.1 L 843.4 111.1 L 852.2 171.6 L 852.7 171.6 L 878.5 111.1 L 894.3 111.1 L 856.8 196.2ZM 890.2 196.2 L 902.2 111.1 L 955.7 111.1 L 953.7 125.2 L 915.9 125.2 L 913.1 145.6 L 945.6 145.6 L 943.6 159.7 L 911.1 159.7 L 907.9 182.0 L 946.5 182.0 L 944.6 196.2ZM 958.1 196.2 L 970.0 111.1 L 983.9 111.1 L 1003.3 158.0 C 1003.7 158.6 1004.0 159.6 1004.5 160.9 C 1004.9 162.2 1005.2 163.3 1005.6 164.3 C 1005.9 165.4 1006.1 165.9 1006.1 165.9 L 1006.4 165.5 C 1006.4 165.5 1006.5 165.0 1006.6 164.0 C 1006.7 163.0 1006.9 162.0 1007.0 160.8 C 1007.1 159.7 1007.2 158.9 1007.3 158.5 L 1013.9 111.1 L 1027.9 111.1 L 1016.0 196.2 L 1002.0 196.2 L 982.5 149.3 C 982.3 148.7 981.9 147.8 981.4 146.5 C 981.0 145.2 980.6 144.0 980.3 143.0 C 979.9 141.9 979.8 141.3 979.8 141.3 L 979.3 141.7 C 979.3 141.7 979.2 142.2 979.2 143.0 C 979.1 143.9 979.0 144.9 978.9 146.0 C 978.8 147.1 978.7 148.0 978.5 148.8 L 972.0 196.2ZM 1047.0 196.2 L 1056.9 125.2 L 1035.9 125.2 L 1037.9 111.1 L 1095.5 111.1 L 1093.5 125.2 L 1072.5 125.2 L 1062.6 196.2ZM 1125.1 197.6 C 1116.3 197.6 1109.5 195.7 1104.7 191.7 C 1099.9 187.7 1097.5 181.9 1097.5 174.3 C 1097.5 173.5 1097.6 171.7 1097.9 169.1 C 1098.2 166.4 1098.6 163.1 1099.1 159.3 C 1099.6 155.4 1100.1 151.3 1100.7 147.0 C 1101.4 142.6 1102.0 138.4 1102.6 134.2 C 1103.2 129.9 1103.8 126.1 1104.3 122.6 C 1104.8 119.2 1105.2 116.4 1105.4 114.3 C 1105.7 112.1 1105.9 111.1 1105.9 111.1 L 1121.6 111.1 C 1121.6 111.1 1121.5 112.1 1121.2 114.2 C 1120.9 116.3 1120.5 119.0 1120.0 122.4 C 1119.5 125.9 1119.0 129.7 1118.4 133.8 C 1117.8 137.9 1117.2 142.1 1116.6 146.3 C 1116.0 150.5 1115.4 154.4 1114.9 158.0 C 1114.4 161.6 1114.0 164.6 1113.8 167.1 C 1113.5 169.5 1113.3 171.0 1113.3 171.5 C 1113.3 175.5 1114.3 178.6 1116.4 180.8 C 1118.4 182.9 1121.3 184.0 1125.1 184.0 C 1129.2 184.0 1132.6 182.6 1135.1 179.9 C 1137.6 177.2 1139.2 173.2 1140.0 168.0 L 1147.9 111.1 L 1163.7 111.1 L 1155.6 168.5 C 1154.3 178.0 1151.0 185.2 1145.6 190.2 C 1140.3 195.2 1133.5 197.6 1125.1 197.6ZM 1167.0 196.2 L 1178.9 111.1 L 1212.3 111.1 C 1220.5 111.1 1226.7 113.0 1230.7 116.9 C 1234.7 120.8 1236.7 125.8 1236.7 132.0 C 1236.7 138.2 1235.1 143.5 1231.9 148.0 C 1228.6 152.5 1224.3 155.7 1218.7 157.6 L 1230.1 196.2 L 1213.1 196.2 L 1203.2 160.7 L 1187.6 160.7 L 1182.8 196.2Z M 1189.6 146.7 L 1206.3 146.7 C 1210.5 146.7 1213.7 145.6 1216.1 143.3 C 1218.5 141.1 1219.7 138.1 1219.7 134.3 C 1219.7 131.5 1218.9 129.3 1217.4 127.6 C 1215.8 126.0 1213.3 125.2 1209.9 125.2 L 1192.7 125.2ZM 1240.4 196.2 L 1252.3 111.1 L 1305.9 111.1 L 1303.9 125.2 L 1266.1 125.2 L 1263.2 145.6 L 1295.7 145.6 L 1293.7 159.7 L 1261.3 159.7 L 1258.0 182.0 L 1296.7 182.0 L 1294.7 196.2Z"/><linearGradient id="lk-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" class="lk-s1"/><stop offset=".5" class="lk-s2"/><stop offset="1" class="lk-s3"/></linearGradient><linearGradient id="lk-shine" x1="0" y1="0" x2="1" y2="0"><stop offset="0" class="lk-g0"/><stop offset=".5" class="lk-g1"/><stop offset="1" class="lk-g0"/></linearGradient><mask id="lk-top"><use href="#lk-a" fill="#fff"/><use href="#lk-a" fill="#000" transform="translate(0 3.5)"/></mask><clipPath id="lk-clip"><use href="#lk-a"/></clipPath></defs><g class="lk-stack"><use href="#lk-b" class="lk-b-shadow" transform="translate(4.5 5.5)"/><use href="#lk-b" class="lk-b-ink"/><use href="#lk-b" class="lk-b-fill"/></g><g class="lk-name"><use href="#lk-a" class="lk-ext" transform="translate(7.2 9.0)"/><use href="#lk-a" class="lk-ext" transform="translate(6.0 7.5)"/><use href="#lk-a" class="lk-ext" transform="translate(4.8 6.0)"/><use href="#lk-a" class="lk-ext" transform="translate(3.6 4.5)"/><use href="#lk-a" class="lk-ext" transform="translate(2.4 3.0)"/><use href="#lk-a" class="lk-ext" transform="translate(1.2 1.5)"/><use href="#lk-a" class="lk-ink"/><use href="#lk-a" fill="url(#lk-fill)"/><use href="#lk-a" class="lk-hi" mask="url(#lk-top)"/><g clip-path="url(#lk-clip)"><rect class="lk-sheen" x="-260" y="0" width="200" height="216" fill="url(#lk-shine)"/></g></g></svg></div>
   <svg class="arrow" viewBox="0 0 640 120" role="img" aria-label="To Be Continued">
     <path class="body" d="M4 60 80 3V31H636L606 60 636 89H80V117Z"/>
     <path class="in" d="M19 60 72 20V39H620L596 60 620 81H72V100Z"/>
     <text x="343" y="75" text-anchor="middle">To Be Continued</text>
   </svg>
-  <div class="tbc-next">
-    <p>Next stage: January 2027</p>
-    <p class="small">The 1890 race ended in New York in January 1891. My next stage starts in January 2027.</p>
-  </div>
+  <p class="tbc-next">Next stage: January 2027</p>
 </aside>
 
 <footer class="foot">
   <p>Ayaz Khan, statistician</p>
   <nav aria-label="Footer"><a href="#work">Work</a><a href="sma-1/">SMA-1</a><a href="Ayaz_Khan_Resume.pdf">Résumé</a></nav>
-  <div class="credit">
+  <details class="credit">
+    <summary>Credits</summary>
     <p>Plate: Eadweard Muybridge, <i>The Horse in Motion</i>, 1878, public domain. Type: LT Afficher Neue by LyonsType, Alphazet by Type Forward, Japanese lettering in Dela Gothic One (SIL Open Font License). The title card is lettered in SF Fedora by ShyFonts and Archivo Narrow (SIL Open Font License), set as outlines.</p>
     <p>Steel Ball Run and JoJo's Bizarre Adventure are by Hirohiko Araki, published by Shueisha. This page is an unaffiliated fan homage: it uses no art, music or sound from the series, and its sound effects are original.</p>
-  </div>
+    <p>This page runs as the 1890 horse race in Steel Ball Run, Part 7 of JoJo's Bizarre Adventure: nine stages and about 6,000 km, from San Diego Beach to Trinity Church in Manhattan. The race ended in New York in January 1891. My next stage starts in January 2027.</p>
+  </details>
 </footer>
 
 <nav class="rail" id="rail" aria-label="Route: San Diego to New York, one post per stage">
@@ -972,21 +1048,19 @@ body{padding-bottom:var(--rail-h)}
       <svg class="rail-track" aria-hidden="true" preserveAspectRatio="none" viewBox="0 0 100 10"><path d="M0 3H100M0 8H100" vector-effect="non-scaling-stroke"/></svg>
       <svg class="rail-prints" id="prints" aria-hidden="true"></svg>
       <ol class="posts">
-        <li><a class="post" href="#work" title="Stage 1: the accuracy ceiling"><span class="lab">56.69%</span><span class="vh"> Stage 1, the accuracy ceiling</span></a></li>
-        <li><a class="post" href="#leak" title="Stage 2: the leakage fix"><span class="lab">0.7401</span><span class="vh"> Stage 2, the leakage fix</span></a></li>
-        <li><a class="post" href="#calx" title="Stage 3: Calx"><span class="lab">31.55%</span><span class="vh"> Stage 3, Calx</span></a></li>
-        <li><a class="post" href="#psc" title="Stage 4: rate cases"><span class="lab">−3.8</span><span class="vh"> Stage 4, rate cases</span></a></li>
-        <li><a class="post" href="#gyro" title="Stage 5: the golden rectangle"><span class="lab">1.618</span><span class="vh"> Stage 5, the golden rectangle</span></a></li>
-        <li><a class="post" href="#early" title="Stage 6: four acts"><span class="lab">15%</span><span class="vh"> Stage 6, four acts</span></a></li>
-        <li><a class="post" href="#record" title="Stage 7: education and honors"><span class="lab">1 of 1,000</span><span class="vh"> Stage 7, education and honors</span></a></li>
-        <li><a class="post" href="#faq" title="Stage 8: questions"><span class="lab">U.S. citizen</span><span class="vh"> Stage 8, questions</span></a></li>
-        <li><a class="post" href="#contact" title="Stage 9: contact"><span class="lab">Jan 2027</span><span class="vh"> Stage 9, contact</span></a></li>
+        <li><a class="post" href="#results" aria-label="Stage 1, results"><span class="lab">Results</span></a></li>
+        <li><a class="post" href="#work" aria-label="Stage 2, Telenav"><span class="lab">Telenav</span></a></li>
+        <li><a class="post" href="#research" aria-label="Stage 3, research"><span class="lab">Research</span></a></li>
+        <li><a class="post" href="#record" aria-label="Stage 4, record"><span class="lab">Record</span></a></li>
+        <li><a class="post" href="#lab" aria-label="Stages 5 to 7, the Lab"><span class="lab">Lab</span></a></li>
+        <li><a class="post" href="#faq" aria-label="Stage 8, quick answers"><span class="lab">Answers</span></a></li>
+        <li><a class="post" href="#contact" aria-label="Stage 9, contact"><span class="lab">Contact</span></a></li>
       </ol>
       <svg class="rail-horse" id="rail-horse" viewBox="100 40 1100 780" aria-hidden="true"><use href="#h1"/></svg>
     </div>
     <span class="rail-end" aria-hidden="true">New York</span>
     <div class="global">
-      <button type="button" class="gbtn" data-sound aria-pressed="false" aria-label="Sound" hidden><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7.5h3.5L11 4v12l-4.5-3.5H3z"/><path class="on" d="M13.5 7.2a4 4 0 0 1 0 5.6M15.8 5a7 7 0 0 1 0 10"/></svg></button>
+      <button type="button" class="gbtn" data-sound aria-pressed="false" aria-label="Sound" data-pending><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7.5h3.5L11 4v12l-4.5-3.5H3z"/><path class="on" d="M13.5 7.2a4 4 0 0 1 0 5.6M15.8 5a7 7 0 0 1 0 10"/></svg></button>
       <button type="button" class="gbtn" data-time aria-label="Stop time"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="11" r="7"/><path d="M10 7v4l2.5 2.5M8 2h4"/></svg></button>
     </div>
   </div>
