@@ -114,7 +114,7 @@ const DATA = [
  "I'd rather talk about that once I know the role. Email me at {mail}."],
 [3, 'What kind of role are you looking for?|What job do you want?',
  'role, looking, position, seeking, title, interest',
- "Statistics and data science roles in biostatistics, model risk or analytics, starting January 2027. Tell me what you're hiring for at {mail}."],
+ "Data science and statistics roles: data scientist, statistician, biostatistics, model risk, quant analytics and quant finance, starting January 2027. Tell me what you're hiring for at {mail}."],
 [3, 'What are you best at?|Why should we hire you?|What makes you different?',
  'strength, different, unique, stand out, strong, candidate',
  "I measure what a model can do before I believe what it reports. The examples I'd point to are the 56.69% accuracy ceiling that stopped a release and the leakage audit that took an AUC from 0.806 to an honest 0.7401."],
