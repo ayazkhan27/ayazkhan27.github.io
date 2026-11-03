@@ -27,7 +27,7 @@
 <link rel="preload" href="assets/fonts/alphazet-light.woff2" as="font" type="font/woff2" crossorigin>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Ayaz Khan","jobTitle":"Statistician and data scientist","email":"mailto:aak2259@columbia.edu","telephone":"+1-917-943-3853","address":{"@type":"PostalAddress","addressLocality":"New York","addressRegion":"NY","addressCountry":"US"},"alumniOf":[{"@type":"CollegeOrUniversity","name":"Columbia University"},{"@type":"CollegeOrUniversity","name":"Hunter College, City University of New York"}],"sameAs":["https://www.linkedin.com/in/ayazkhan27","https://github.com/ayazkhan27","https://orcid.org/0009-0008-5695-4934"]}</script>
 <style>
-/* Hallmark · macrostructure: custom (bespoke "Plate": contact-sheet hero, stat-led body) · tone: austere/technical · anchor hue: 250 (ink blue)
+/* Hallmark · macrostructure: custom (bespoke "Plate" v2: zoopraxiscope hero, furlong-rail flip-book, stat-led body, photo-finish close) · tone: austere/technical, playful in motion · anchor hue: 250 (ink blue)
  * theme: custom · vibe: "albumen print, ruled track, measured ink" · display LT Afficher Neue + text Alphazet
  * axes: dark-hero/light-body · high-contrast-serif · cool
  * Hallmark · pre-emit critique: P5 H4 E4 S5 R4 V5
@@ -46,7 +46,8 @@
   /* the hero band is the plate's black in both modes */
   --color-band:#0e1012; --color-band-ink:#ecebe6; --color-band-muted:#a7abaf;
   --color-band-lit:#f8f8f5; --color-air:#ffd7a8; --color-control-edge:#6d7278;
-  --color-plate:#d6d5cf; --color-plate-ink:#15171a; --color-plate-rule:#b3b2ab;
+  --color-plate:#d9ccb2; --color-plate-ink:#2a1f17; --color-plate-rule:#bcae94;
+  --color-albumen-paper:#d9ccb2; --color-disc:#1c1a17; --color-disc-rim:#3b352c; --rail-h:64px;
   --color-focus:#2f8cf0;
   --text-display:clamp(3.5rem,11vw,10.5rem);
   --text-figure:clamp(3.25rem,8.4vw,8rem);
@@ -199,6 +200,50 @@ blockquote footer{font-size:var(--text-small);color:var(--color-muted)}
 .foot p{margin:0}
 .foot .credit{text-align:right}
 
+/* ---------- v2: the zoopraxiscope, the furlong rail, the photo finish ---------- */
+.stage{position:relative;overflow:hidden}
+.stage::after{content:"";position:absolute;inset:0;background:url(assets/grain.png);mix-blend-mode:multiply;opacity:.5;pointer-events:none}
+.stage.gl::after{content:none}
+.stage canvas{position:absolute;inset:0;width:100%;height:100%;mix-blend-mode:multiply;pointer-events:none}
+.gate{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:var(--space-xl);margin-top:var(--space-xl);align-items:center}
+.disc{display:block;width:100%;max-width:27rem;height:auto;margin:0 auto;touch-action:none;cursor:grab;-webkit-user-select:none;user-select:none}
+.disc.drag{cursor:grabbing}
+.disc:focus-visible{outline:3px solid var(--color-focus);outline-offset:6px;border-radius:50%}
+.d-face{fill:var(--color-disc)}
+.d-rim{fill:none;stroke:var(--color-disc-rim);stroke-width:12}
+.d-horse{fill:var(--color-albumen-paper)}
+.d-num{fill:var(--color-band-muted);font:600 34px var(--font-text);text-anchor:middle}
+.d-hub{fill:var(--color-disc-rim)}
+.d-pin{fill:var(--color-band-ink)}
+.d-gate{fill:var(--color-air)}
+.cap{font-size:var(--text-small);color:var(--color-band-muted);max-width:34ch;margin:var(--space-sm) auto 0;text-align:center}
+.readings{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-sm);margin:0 0 var(--space-md)}
+.readings dt{font-size:var(--text-small);color:var(--color-band-muted);margin-bottom:.35rem}
+.readings dd{margin:0;font:700 clamp(1.5rem,2.6vw,2.5rem)/1 var(--font-display);letter-spacing:-.02em;font-variant-numeric:tabular-nums lining-nums;white-space:nowrap}
+.readings dd.air{color:var(--color-air)}
+.gauge .sheet{margin-top:var(--space-md)}
+.gauge .why{margin-top:var(--space-lg)}
+.finish{margin-bottom:var(--space-xl)}
+.pf{width:100%;height:auto}
+@media (prefers-color-scheme:dark){.pf{filter:invert(.92)}}
+.pf-scale{position:relative;height:1.6rem;margin-top:.4rem;font-size:var(--text-small);color:var(--color-muted);font-variant-numeric:tabular-nums}
+.pf-scale span{position:absolute;top:0;transform:translateX(50%);white-space:nowrap}
+.pf-scale span:first-child{transform:none}
+.finish figcaption{max-width:62ch}
+body{padding-bottom:var(--rail-h)}
+.rail{position:fixed;left:0;right:0;bottom:0;z-index:5;height:var(--rail-h);background:var(--color-band);color:var(--color-band-ink);transform:translateY(100%);transition:transform 260ms var(--ease-out)}
+.rail.on{transform:none}
+.rail-in{max-width:84rem;margin:0 auto;height:100%;padding:0 var(--margin)}
+.rail-field{position:relative;height:100%;margin:0 28px}
+.rail-track{position:absolute;left:-28px;right:-28px;bottom:6px;width:calc(100% + 56px);height:10px;stroke:var(--color-band-muted);stroke-width:1.5;opacity:.7}
+.rail-prints{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible}
+.rail-prints circle{fill:var(--color-band-muted)}
+.rail-horse{position:absolute;left:-28px;bottom:7px;width:56px;height:40px;fill:var(--color-albumen-paper);will-change:transform}
+.posts{list-style:none;margin:0;padding:0}
+.post{position:absolute;top:0;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;min-width:44px;padding:6px 4px 0;color:var(--color-band-muted);text-decoration:none;font:600 13px/1.2 var(--font-text);white-space:nowrap}
+.post::after{content:"";width:2px;height:20px;margin-top:3px;background:currentColor}
+.post:hover,.post[aria-current="true"]{color:var(--color-band-ink)}
+.post[aria-current="true"]::after{background:var(--color-air)}
 /* entrance: only once JS has marked the page, so nothing stays hidden without it */
 .js .rise{opacity:0;transform:translateY(24px);transition:opacity var(--dur) var(--ease-out),transform var(--dur) var(--ease-out)}
 .js .rise.in{opacity:1;transform:none}
@@ -206,6 +251,7 @@ blockquote footer{font-size:var(--text-small);color:var(--color-muted)}
   html{scroll-behavior:auto}
   .js .rise{transform:none;transition:opacity 150ms linear}
   .btn,.sheet img{transition:none}
+  .rail{transition:none}
 }
 
 @media (max-width:900px){
@@ -213,12 +259,18 @@ blockquote footer{font-size:var(--text-small);color:var(--color-muted)}
   .charts{grid-template-columns:minmax(0,1fr)}
   .skills{grid-template-columns:repeat(2,minmax(0,1fr))}
   .stage{order:2}
+  .gate{grid-template-columns:minmax(0,1fr)}
+  .readings{grid-template-columns:repeat(2,minmax(0,1fr))}
   .contact{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
   .contact > :first-child{grid-column:1/-1}
   .contact img{max-width:13rem}
 }
 @media (max-width:640px){
   .nav .where{display:none}
+  :root{--rail-h:56px}
+  .post .lab{display:none}
+  .post[aria-current="true"] .lab{display:block}
+  .post::after{height:16px}
   h1{font-size:24vw;line-height:.82}
   .figtitle{flex-direction:column;gap:.15rem}
   .nav{justify-content:flex-start}
@@ -280,7 +332,7 @@ blockquote footer{font-size:var(--text-small);color:var(--color-muted)}
           <a class="mail" href="mailto:aak2259@columbia.edu">aak2259@columbia.edu</a>
         </div>
       </div>
-      <figure class="stage" aria-labelledby="stage-cap">
+      <figure class="stage" id="stage" aria-labelledby="stage-cap">
         <svg viewBox="70 20 1150 800" role="img" aria-labelledby="stage-cap">
           <g aria-hidden="true">
             <path class="rule" d="M128 20V700M256 20V700M384 20V700M512 20V700M640 20V700M768 20V700M896 20V700M1024 20V700M1152 20V700"/>
@@ -292,28 +344,58 @@ blockquote footer{font-size:var(--text-small);color:var(--color-muted)}
     </div>
     <div class="figtitle" id="stage-cap"><span><b>Measured, not assumed.</b> Sallie Gardner at a gallop, Palo Alto, 19 June 1878.</span><span>Traced from Eadweard Muybridge's plate</span></div>
 
-    <ol class="sheet" id="sheet" aria-label="The eleven gallop frames of the 1878 plate">
-      <li><button type="button" aria-label="Frame 1"><img src="assets/plate/frame-01.jpg" width="240" height="150" alt="" decoding="async"></button></li>
-      <li><button type="button" aria-label="Frame 2 (all four hooves off the track)"><img src="assets/plate/frame-02.jpg" width="240" height="150" alt="" decoding="async"></button></li>
-      <li><button type="button" aria-label="Frame 3 (all four hooves off the track)"><img src="assets/plate/frame-03.jpg" width="240" height="150" alt="" decoding="async"></button></li>
-      <li><button type="button" aria-label="Frame 4"><img src="assets/plate/frame-04.jpg" width="240" height="150" alt="" decoding="async"></button></li>
-      <li><button type="button" aria-label="Frame 5"><img src="assets/plate/frame-05.jpg" width="240" height="150" alt="" decoding="async"></button></li>
-      <li><button type="button" aria-label="Frame 6"><img src="assets/plate/frame-06.jpg" width="240" height="150" alt="" decoding="async"></button></li>
-      <li><button type="button" aria-label="Frame 7"><img src="assets/plate/frame-07.jpg" width="240" height="150" alt="" decoding="async"></button></li>
-      <li><button type="button" aria-label="Frame 8"><img src="assets/plate/frame-08.jpg" width="240" height="150" alt="" decoding="async"></button></li>
-      <li><button type="button" aria-label="Frame 9"><img src="assets/plate/frame-09.jpg" width="240" height="150" alt="" decoding="async"></button></li>
-      <li><button type="button" aria-label="Frame 10"><img src="assets/plate/frame-10.jpg" width="240" height="150" alt="" decoding="async"></button></li>
-      <li><button type="button" aria-label="Frame 11"><img src="assets/plate/frame-11.jpg" width="240" height="150" alt="" decoding="async"></button></li>
-    </ol>
-    <div class="readout">
-      <output id="readout" aria-live="off">Frame 3 of 11. <span class="air">All four hooves off the track.</span></output>
-      <div class="controls">
-        <button type="button" id="prev" aria-label="Previous frame">Back</button>
-        <button type="button" id="play" aria-pressed="false">Play</button>
-        <button type="button" id="next" aria-label="Next frame">Next</button>
+    <div class="gate">
+      <div class="disc-wrap">
+        <svg class="disc" id="disc" viewBox="-520 -548 1040 1068" role="slider" tabindex="0" aria-label="Zoopraxiscope disc. Drag it, or use the arrow keys, to turn one frame at a time." aria-valuemin="1" aria-valuemax="11" aria-valuenow="3" aria-valuetext="Frame 3 of 11, all four hooves off the track">
+          <g id="spin">
+            <circle r="500" class="d-face"/>
+            <circle r="482" class="d-rim"/>
+            <g transform="rotate(0.000)"><use class="d-horse" href="#h1" x="-120" y="-428" width="240" height="153"/><text class="d-num" y="-448">1</text></g>
+            <g transform="rotate(32.727)"><use class="d-horse" href="#h2" x="-120" y="-428" width="240" height="153"/><text class="d-num" y="-448">2</text></g>
+            <g transform="rotate(65.455)"><use class="d-horse" href="#h3" x="-120" y="-428" width="240" height="153"/><text class="d-num" y="-448">3</text></g>
+            <g transform="rotate(98.182)"><use class="d-horse" href="#h4" x="-120" y="-428" width="240" height="153"/><text class="d-num" y="-448">4</text></g>
+            <g transform="rotate(130.909)"><use class="d-horse" href="#h5" x="-120" y="-428" width="240" height="153"/><text class="d-num" y="-448">5</text></g>
+            <g transform="rotate(163.636)"><use class="d-horse" href="#h6" x="-120" y="-428" width="240" height="153"/><text class="d-num" y="-448">6</text></g>
+            <g transform="rotate(196.364)"><use class="d-horse" href="#h7" x="-120" y="-428" width="240" height="153"/><text class="d-num" y="-448">7</text></g>
+            <g transform="rotate(229.091)"><use class="d-horse" href="#h8" x="-120" y="-428" width="240" height="153"/><text class="d-num" y="-448">8</text></g>
+            <g transform="rotate(261.818)"><use class="d-horse" href="#h9" x="-120" y="-428" width="240" height="153"/><text class="d-num" y="-448">9</text></g>
+            <g transform="rotate(294.545)"><use class="d-horse" href="#h10" x="-120" y="-428" width="240" height="153"/><text class="d-num" y="-448">10</text></g>
+            <g transform="rotate(327.273)"><use class="d-horse" href="#h11" x="-120" y="-428" width="240" height="153"/><text class="d-num" y="-448">11</text></g>
+            <circle r="56" class="d-hub"/><circle r="14" class="d-pin"/>
+          </g>
+          <path class="d-gate" d="M-64 -546H64L0 -500Z"/>
+        </svg>
+        <p class="cap">Muybridge projected these frames from a spinning glass disc, the zoopraxiscope, in 1879. The frame under the pointer is the one on the screen.</p>
+      </div>
+      <div class="gauge">
+        <dl class="readings" aria-hidden="true">
+          <div><dt>Frame</dt><dd id="r-frame">3 of 11</dd></div>
+          <div><dt>Elapsed</dt><dd id="r-time">0.08 s</dd></div>
+          <div><dt>Track covered</dt><dd id="r-track">54 in</dd></div>
+          <div><dt>Hooves down</dt><dd id="r-hoof" class="air">None</dd></div>
+        </dl>
+        <p class="vh" id="readout" aria-live="polite"></p>
+        <div class="controls">
+          <button type="button" id="prev" aria-label="Previous frame">Back</button>
+          <button type="button" id="play" aria-pressed="false">Play</button>
+          <button type="button" id="next" aria-label="Next frame">Next</button>
+        </div>
+        <ol class="sheet" id="sheet" aria-label="The eleven gallop frames of the 1878 plate">
+          <li><button type="button" aria-label="Frame 1"><img src="assets/plate/alb-01.jpg" width="240" height="150" alt="" decoding="async"></button></li>
+      <li><button type="button" aria-label="Frame 2 (all four hooves off the track)"><img src="assets/plate/alb-02.jpg" width="240" height="150" alt="" decoding="async"></button></li>
+      <li><button type="button" aria-label="Frame 3 (all four hooves off the track)"><img src="assets/plate/alb-03.jpg" width="240" height="150" alt="" decoding="async"></button></li>
+      <li><button type="button" aria-label="Frame 4"><img src="assets/plate/alb-04.jpg" width="240" height="150" alt="" decoding="async"></button></li>
+      <li><button type="button" aria-label="Frame 5"><img src="assets/plate/alb-05.jpg" width="240" height="150" alt="" decoding="async"></button></li>
+      <li><button type="button" aria-label="Frame 6"><img src="assets/plate/alb-06.jpg" width="240" height="150" alt="" decoding="async"></button></li>
+      <li><button type="button" aria-label="Frame 7"><img src="assets/plate/alb-07.jpg" width="240" height="150" alt="" decoding="async"></button></li>
+      <li><button type="button" aria-label="Frame 8"><img src="assets/plate/alb-08.jpg" width="240" height="150" alt="" decoding="async"></button></li>
+      <li><button type="button" aria-label="Frame 9"><img src="assets/plate/alb-09.jpg" width="240" height="150" alt="" decoding="async"></button></li>
+      <li><button type="button" aria-label="Frame 10"><img src="assets/plate/alb-10.jpg" width="240" height="150" alt="" decoding="async"></button></li>
+      <li><button type="button" aria-label="Frame 11"><img src="assets/plate/alb-11.jpg" width="240" height="150" alt="" decoding="async"></button></li>
+        </ol>
+        <p class="why">In 1878 people argued over whether a galloping horse ever has all four hooves in the air. Muybridge stopped arguing and set up cameras along the track, 27 inches and about 1/25 of a second apart, each exposure shorter than 1/2000 of a second. <b>Frames 2 and 3 settled it.</b> I bring the same habit to models: set up the measurement first, then read what it says.</p>
       </div>
     </div>
-    <p class="why">In 1878 people argued over whether a galloping horse ever has all four hooves in the air. Muybridge stopped arguing and set up cameras along the track, 27 inches apart, each exposure shorter than 1/2000 of a second. <b>Frames 2 and 3 settled it.</b> I bring the same habit to models: set up the measurement first, then read what it says.</p>
   </div>
 </header>
 
@@ -378,7 +460,7 @@ blockquote footer{font-size:var(--text-small);color:var(--color-muted)}
     </div>
   </section>
 
-  <section aria-labelledby="t-calx">
+  <section id="calx" aria-labelledby="t-calx">
     <div class="wrap calx">
       <div class="rise">
         <h2 id="t-calx">Calx: one structure, two fields</h2>
@@ -403,7 +485,7 @@ blockquote footer{font-size:var(--text-small);color:var(--color-muted)}
     </div>
   </section>
 
-  <section aria-labelledby="t-psc">
+  <section id="psc" aria-labelledby="t-psc">
     <div class="wrap">
       <div class="head rise">
         <h2 id="t-psc">Energy insecurity in Con Edison rate cases</h2>
@@ -431,7 +513,7 @@ blockquote footer{font-size:var(--text-small);color:var(--color-muted)}
     </div>
   </section>
 
-  <section aria-labelledby="t-early">
+  <section id="early" aria-labelledby="t-early">
     <div class="wrap">
       <div class="head rise"><h2 id="t-early">Earlier work</h2></div>
       <div class="pair">
@@ -476,13 +558,20 @@ blockquote footer{font-size:var(--text-small);color:var(--color-muted)}
   </section>
 
   <section id="contact" aria-labelledby="t-contact">
+    <div class="wrap finish rise">
+      <figure>
+        <img class="pf" src="assets/photo-finish.png" width="1309" height="408" loading="lazy" decoding="async" alt="Photo-finish image built from the traced gallop: one fixed slit records time from right to left, so the horse appears stretched and its legs smear in bands.">
+        <div class="pf-scale" aria-hidden="true"><span style="right:0">0 s</span><span style="right:18.3%">0.2 s</span><span style="right:36.7%">0.4 s</span><span style="right:55%">0.6 s</span><span style="right:73.3%">0.8 s</span><span style="right:91.7%">1.0 s</span></div>
+        <figcaption>Photo finish. A finish-line camera watches one slit and records time instead of space. I ran the eleven traced frames past a single slit at 1/25 s per frame; each band is one exposure, and the legs smear wherever they outrun the body.</figcaption>
+      </figure>
+    </div>
     <div class="wrap contact">
       <div class="rise">
         <h2 id="t-contact" class="vh">Contact</h2>
         <p class="statement">Hiring in biostatistics, model risk or analytics? I can start in January 2027.</p>
       </div>
       <figure class="rise">
-        <img src="assets/plate/frame-12.jpg" width="360" height="226" alt="Frame 12 of Muybridge's 1878 plate: the horse standing still." loading="lazy" decoding="async">
+        <img src="assets/plate/alb-12.jpg" width="360" height="226" alt="Frame 12 of Muybridge's 1878 plate: the horse standing still." loading="lazy" decoding="async">
         <figcaption class="cap">Frame 12, at rest.</figcaption>
       </figure>
       <div class="rise">
@@ -506,51 +595,21 @@ blockquote footer{font-size:var(--text-small);color:var(--color-muted)}
   <p class="credit">Plate: Eadweard Muybridge, <i>The Horse in Motion</i>, 1878, public domain. Type: LT Afficher Neue by LyonsType, Alphazet by Type Forward.</p>
 </footer>
 
-<script>
-(function(){
-  var d=document, root=d.documentElement; root.classList.add('js');
-  // section entrances, once each
-  var rise=d.querySelectorAll('.rise');
-  if('IntersectionObserver' in window){
-    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var t=e.target,i=[].indexOf.call(t.parentNode.querySelectorAll(':scope > .rise'),t);t.style.transitionDelay=(Math.max(i,0)*80)+'ms';t.classList.add('in');io.unobserve(t);}});},{rootMargin:'0px 0px -8% 0px'});
-    rise.forEach(function(el){io.observe(el);});
-  } else rise.forEach(function(el){el.classList.add('in');});
-
-  // the gallop: one state drives the drawing, the sheet and the readout
-  var N=11, cur=3, timer=null, horse=d.getElementById('horse'), out=d.getElementById('readout'),
-      play=d.getElementById('play'), sheet=d.getElementById('sheet'), btns=sheet.querySelectorAll('button'),
-      reduce=matchMedia('(prefers-reduced-motion: reduce)'), inView=true, userPaused=false;
-  function show(n){
-    cur=(n+N-1)%N+1;
-    horse.setAttribute('href','#h'+cur);
-    btns.forEach(function(b,i){b.setAttribute('aria-current',i+1===cur?'true':'false');});
-    out.innerHTML='Frame '+cur+' of 11. '+(cur===2||cur===3?'<span class="air">All four hooves off the track.</span>':'At least one hoof on the track.');
-  }
-  function start(){ if(timer||reduce.matches||!inView||userPaused||held) return; timer=setInterval(function(){show(cur+1);},110); play.textContent='Pause'; play.setAttribute('aria-pressed','true'); out.setAttribute('aria-live','off'); }
-  function stop(){ clearInterval(timer); timer=null; play.textContent='Play'; play.setAttribute('aria-pressed','false'); out.setAttribute('aria-live','polite'); }
-  play.addEventListener('click',function(){ if(timer){userPaused=true;stop();} else {userPaused=false;start();} });
-  d.getElementById('prev').addEventListener('click',function(){userPaused=true;stop();show(cur-1);});
-  d.getElementById('next').addEventListener('click',function(){userPaused=true;stop();show(cur+1);});
-  btns.forEach(function(b,i){b.addEventListener('click',function(){userPaused=true;stop();show(i+1);});});
-  sheet.addEventListener('keydown',function(e){
-    if(e.key!=='ArrowRight'&&e.key!=='ArrowLeft') return;
-    e.preventDefault(); userPaused=true; stop(); show(cur+(e.key==='ArrowRight'?1:-1)); btns[cur-1].focus();
-  });
-  if('IntersectionObserver' in window){
-    new IntersectionObserver(function(es){inView=es[0].isIntersecting; inView?start():(timer&&stop());}).observe(d.querySelector('.stage'));
-  }
-  // hover or keyboard focus on the figure holds the gallop (WCAG 2.2.2); leaving resumes it
-  var held=false, zone=[d.querySelector('.stage'),sheet];
-  zone.forEach(function(z){
-    z.addEventListener('mouseenter',function(){held=true;if(timer)stop();});
-    z.addEventListener('mouseleave',function(){held=false;start();});
-    z.addEventListener('focusin',function(){held=true;if(timer)stop();});
-    z.addEventListener('focusout',function(){held=false;});
-  });
-  reduce.addEventListener&&reduce.addEventListener('change',function(){reduce.matches?stop():start();});
-  show(cur); out.setAttribute('aria-live','polite');
-  setTimeout(start,700); // hold on frame 3, the airborne one, before the gallop starts
-})();
-</script>
+<nav class="rail" id="rail" aria-label="Furlong posts: one per section">
+  <div class="rail-in"><div class="rail-field" id="rail-field">
+    <svg class="rail-track" aria-hidden="true" preserveAspectRatio="none" viewBox="0 0 100 10"><path d="M0 3H100M0 8H100" vector-effect="non-scaling-stroke"/></svg>
+    <svg class="rail-prints" id="prints" aria-hidden="true"></svg>
+    <ol class="posts">
+      <li><a class="post" href="#work"><span class="lab">56.69%</span><span class="vh"> Telenav</span></a></li>
+      <li><a class="post" href="#calx"><span class="lab">31.55%</span><span class="vh"> Calx</span></a></li>
+      <li><a class="post" href="#psc"><span class="lab">−3.8</span><span class="vh"> rate cases</span></a></li>
+      <li><a class="post" href="#early"><span class="lab">15%</span><span class="vh"> earlier work</span></a></li>
+      <li><a class="post" href="#record"><span class="lab">1 of 1,000</span><span class="vh"> education and honors</span></a></li>
+      <li><a class="post" href="#contact"><span class="lab">Jan 2027</span><span class="vh"> contact</span></a></li>
+    </ol>
+    <svg class="rail-horse" id="rail-horse" viewBox="100 40 1100 780" aria-hidden="true"><use href="#h1"/></svg>
+  </div></div>
+</nav>
+<script src="assets/site.js" defer></script>
 </body>
 </html>

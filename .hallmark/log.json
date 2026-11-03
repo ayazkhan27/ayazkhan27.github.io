@@ -1,3 +1,20 @@
 [
-  { "date": "2026-11-02", "macrostructure": "custom bespoke (contact-sheet hero, stat-led body)", "theme": "custom", "theme_axes": "dark hero, light body / high-contrast-serif / cool", "vibe": "albumen print, ruled track, measured ink", "enrichment": "E5 hand-built SVG (traced Muybridge frames) + archival plate frames", "brief": "Ayaz Khan personal portfolio for biostat/model-risk hiring leads" }
+  {
+    "date": "2026-11-02",
+    "macrostructure": "custom bespoke v2 (zoopraxiscope hero, furlong-rail flip-book, stat-led body, photo-finish close)",
+    "theme": "custom",
+    "theme_axes": "dark hero, light body / high-contrast-serif / cool + albumen screen",
+    "vibe": "albumen print, spinning disc, timing gate",
+    "enrichment": "E5 hand-built SVG disc + WebGL grain + build-time slit-scan",
+    "brief": "Ayaz Khan portfolio v2, push the gallop motif"
+  },
+  {
+    "date": "2026-11-02",
+    "macrostructure": "custom bespoke (contact-sheet hero, stat-led body)",
+    "theme": "custom",
+    "theme_axes": "dark hero, light body / high-contrast-serif / cool",
+    "vibe": "albumen print, ruled track, measured ink",
+    "enrichment": "E5 hand-built SVG (traced Muybridge frames) + archival plate frames",
+    "brief": "Ayaz Khan personal portfolio for biostat/model-risk hiring leads"
+  }
 ]
