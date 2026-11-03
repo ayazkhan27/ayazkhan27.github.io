@@ -35,6 +35,8 @@ export async function mount(root, opts = {}) {
   }).join('');
   const list = AXES.map((a) => `<div><dt>${a[0]}</dt><dd class="jj-stand__lg"><span class="jj-stand__vh">Grade </span>${a[G]}</dd><dd>${a[2]}</dd></div>`).join('');
 
+  // the Stand itself, inlined so the page's tokens colour it; the card still works without it
+  const fig = await fetch(new URL('stand-figure.svg', import.meta.url)).then((r) => (r.ok ? r.text() : '')).catch(() => '');
   root.innerHTML = `
 <div class="jj-stand">
   <article class="jj-stand__card" aria-labelledby="${id}-n">
@@ -44,6 +46,7 @@ export async function mount(root, opts = {}) {
       <p class="jj-stand__user">Stand user: <b>Ayaz Khan</b></p>
       <p class="jj-stand__ability"><b>Ability.</b> Measures how surprised a model should be, in bits. A calibrator that claims more than the data allows gets caught.</p>
     </header>
+    ${fig.startsWith('<svg') ? `<div class="jj-stand__fig">${fig}</div>` : ''}
     <div class="jj-stand__chart">
       <svg viewBox="-150 -150 300 300" aria-hidden="true" focusable="false">
         <g class="jj-stand__grid">${rings}${spokes}</g>

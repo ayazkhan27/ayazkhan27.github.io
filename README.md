@@ -14,7 +14,8 @@ assets/site.js        zoopraxiscope disc, route rail, entrances, and the race la
                       lazy loading of the JoJo modules and of the episode, the To Be Continued ending (no dependencies)
 assets/grain.js       WebGL albumen grain on the projection screen, loaded when idle; assets/grain.png is the CSS fallback
 assets/jojo/          the Steel Ball Run modules, one ES module and one stylesheet each (see below)
-assets/audio/         original sound cues for assets/jojo/audio.js; nothing loads until the visitor turns sound on
+assets/audio/         sound for assets/jojo/audio.js; nothing loads until the visitor turns sound on. The cues are original;
+                      bgm.mp3 (the quiet loop) and episode.mp3 are an instrumental of "Smooth" by Santana
 assets/photo-finish.png  slit-scan of the traced gallop (tools/build_v2_assets.py)
 assets/gallop-*.gif   two-color gallop GIFs for email signatures (150 px wide, under 10 KB)
 assets/og.png         1200x630 social preview (rendered from tools/og.html)
@@ -84,7 +85,7 @@ when it comes within about 600 px of the viewport (only Rohan, today), and a slo
 Three.js (import map in the page head, pinned to three@0.170.0 on jsDelivr) is imported inside the steel ball's
 `mount()`, so a blocked CDN shows the still image instead of an empty slot.
 
-- `stand.js` the Stand card 「NO SURPRISES」; `ora.js` a simulated bootstrap rush (a teaching sketch);
+- `stand.js` the Stand card 「NO SURPRISES」, with the Stand figure from `stand-figure.svg` inlined beside its parameters; `ora.js` a simulated bootstrap rush (a teaching sketch);
   `rohan.js` the refusal beside the Telenav tally; `golden.js` with `golden.json` the golden rectangle on the
   traced frames; `steelball.js` the Three.js steel ball and its spin-down fit; `joseph.js` the next-question predictor;
   `audio.js` exports `initAudio({ toggle })`, which returns the sound controller.

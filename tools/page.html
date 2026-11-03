@@ -557,6 +557,8 @@ body{padding-bottom:var(--rail-h)}
   .params{grid-template-columns:minmax(0,1fr)}
   .acts{grid-template-columns:minmax(0,1fr)}
   .hl,.tally{grid-template-columns:minmax(0,1fr)}
+  .tile-body{padding:var(--space-md) 0}   /* the open stage uses the full phone width */
+  .tile-body.dark{padding:var(--space-md)}
   .chips li{font-size:.875rem;padding:.4rem .6rem .35rem}
   .leg{flex-wrap:wrap}
   .leg span{flex-basis:100%;text-align:left}
@@ -589,7 +591,7 @@ body{padding-bottom:var(--rail-h)}
         <li><a href="Ayaz_Khan_Resume.pdf">Résumé</a></li>
       </ul>
       <div class="global">
-        <button type="button" class="gbtn" data-sound aria-pressed="false" data-pending><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7.5h3.5L11 4v12l-4.5-3.5H3z"/><path class="on" d="M13.5 7.2a4 4 0 0 1 0 5.6M15.8 5a7 7 0 0 1 0 10"/></svg>Sound</button>
+        <button type="button" class="gbtn" data-sound aria-pressed="false" data-pending title="Sound: music and effects"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7.5h3.5L11 4v12l-4.5-3.5H3z"/><path class="on" d="M13.5 7.2a4 4 0 0 1 0 5.6M15.8 5a7 7 0 0 1 0 10"/></svg>Sound</button>
         <button type="button" class="gbtn" data-time><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="11" r="7"/><path d="M10 7v4l2.5 2.5M8 2h4"/></svg><span class="jp" aria-hidden="true">時よ止まれ</span><span class="lbl">Stop time</span></button>
       </div>
     </nav>
@@ -1005,6 +1007,7 @@ body{padding-bottom:var(--rail-h)}
   <details class="credit">
     <summary>Credits</summary>
     <p>Plate: Eadweard Muybridge, <i>The Horse in Motion</i>, 1878, public domain. Type: LT Afficher Neue by LyonsType, Alphazet by Type Forward, Japanese lettering in Dela Gothic One (SIL Open Font License). The title card is lettered in SF Fedora by ShyFonts and Archivo Narrow (SIL Open Font License), set as outlines.</p>
+    <p>Music: “Smooth” (instrumental), Santana.</p>
     <p>Steel Ball Run and JoJo's Bizarre Adventure are by Hirohiko Araki, published by Shueisha. This page is an unaffiliated fan homage: it uses no art, music or sound from the series, and its sound effects are original.</p>
     <p>This page runs as the 1890 horse race in Steel Ball Run, Part 7 of JoJo's Bizarre Adventure: nine stages and about 6,000 km, from San Diego Beach to Trinity Church in Manhattan. The race ended in New York in January 1891. My next stage starts in January 2027.</p>
   </details>
@@ -1029,7 +1032,7 @@ body{padding-bottom:var(--rail-h)}
     </div>
     <span class="rail-end" aria-hidden="true">New York</span>
     <div class="global">
-      <button type="button" class="gbtn" data-sound aria-pressed="false" aria-label="Sound" data-pending><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7.5h3.5L11 4v12l-4.5-3.5H3z"/><path class="on" d="M13.5 7.2a4 4 0 0 1 0 5.6M15.8 5a7 7 0 0 1 0 10"/></svg></button>
+      <button type="button" class="gbtn" data-sound aria-pressed="false" aria-label="Sound" data-pending title="Sound: music and effects"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7.5h3.5L11 4v12l-4.5-3.5H3z"/><path class="on" d="M13.5 7.2a4 4 0 0 1 0 5.6M15.8 5a7 7 0 0 1 0 10"/></svg></button>
       <button type="button" class="gbtn" data-time aria-label="Stop time"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="11" r="7"/><path d="M10 7v4l2.5 2.5M8 2h4"/></svg></button>
     </div>
   </div>

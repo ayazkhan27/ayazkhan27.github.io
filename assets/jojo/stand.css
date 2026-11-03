@@ -1,7 +1,7 @@
 /* 「NO SURPRISES」 Stand card. Scoped to .jj-stand; printed on the albumen plate in both modes. Sizes use the page tokens. */
 .jj-stand{--jj-ink:var(--color-plate-ink,#2a1f17);--jj-paper:var(--color-plate,#d9ccb2);--jj-rule:var(--color-plate-rule,#bcae94);--jj-menace:var(--color-menace,#6b2fa0);--jj-soft:color-mix(in srgb,var(--jj-ink) 74%,var(--jj-paper));
   position:relative;container-type:inline-size;overflow-x:clip;font-family:var(--font-text)}
-.jj-stand__card{position:relative;display:grid;grid-template-columns:minmax(0,1fr);grid-template-areas:"head" "chart" "list" "note";gap:1.5rem;margin:0;padding:clamp(1.25rem,4cqi,2.5rem);background:var(--jj-paper);color:var(--jj-ink);outline:1px solid var(--jj-rule);outline-offset:-.5rem}
+.jj-stand__card{position:relative;display:grid;grid-template-columns:minmax(0,1fr);grid-template-areas:"head" "fig" "chart" "list" "note";gap:1.5rem;margin:0;padding:clamp(1.25rem,4cqi,2.5rem);background:var(--jj-paper);color:var(--jj-ink);outline:1px solid var(--jj-rule);outline-offset:-.5rem}
 
 /* name block; the right padding leaves the corner to ゴゴゴ */
 .jj-stand__head{grid-area:head;padding-right:3.5rem}
@@ -14,6 +14,10 @@
 .jj-stand__user b{font-weight:600;color:var(--jj-ink)}
 .jj-stand__ability{margin:.6rem 0 0;max-width:44ch;font-size:var(--text-small,.9375rem);line-height:1.5}
 .jj-stand__ability b{font-weight:600}
+
+/* the Stand itself: above the chart on phones, beside the name and the chart on a wide card, like a profile page; it does not move */
+.jj-stand__fig{grid-area:fig;justify-self:center;width:100%;max-width:15rem}
+.jj-stand__fig svg{display:block;width:100%;height:auto}
 
 /* the hexagon */
 .jj-stand__chart{grid-area:chart;position:relative;width:100%;max-width:25rem;aspect-ratio:1;justify-self:center}
@@ -67,8 +71,11 @@
   .jj-stand__head{padding-right:5rem}
 }
 @container (min-width:46rem){
-  .jj-stand__card{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);grid-template-areas:"chart head" "chart list" "note note";column-gap:clamp(1.5rem,4cqi,3rem)}
-  .jj-stand__chart{align-self:center}
+  .jj-stand__card{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);grid-template-areas:"fig head" "fig chart" "list list" "note note";column-gap:clamp(1.5rem,4cqi,3rem)}
+  .jj-stand__fig{max-width:24rem;align-self:center}
+  .jj-stand__chart{max-width:21rem}
+  .jj-stand__list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:2rem}
+  .jj-stand__card:not(:has(.jj-stand__fig)){grid-template-areas:"chart head" "chart list" "note note"}   /* the figure failed to load */
 }
 @media (prefers-reduced-motion:reduce){
   .jj-stand__dots circle,.jj-stand__list>div{transition:none}
