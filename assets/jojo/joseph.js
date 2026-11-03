@@ -3,29 +3,43 @@
 
 const MAIL = 'aak2259@columbia.edu';
 
-// [prior weight, phrasings (canonical first), keyphrases used only for retrieval, answer]
+// [prior weight, phrasings (canonical first), keyphrases used only for retrieval, answer, yes|no]
+// The last field marks a group whose phrasings are all yes-or-no questions with an unhedged answer;
+// such a group holds no other kind of phrasing, so a straight YES or NO never lands on a 'where' or 'when'.
 const DATA = [
-[12, 'Do you need visa sponsorship?|Will you need sponsorship now or in the future?|Are you authorized to work in the US?|Do you need an H-1B?|Are you a US citizen?',
- 'visa, sponsor, sponsorship, h1b, citizenship, work authorization, green card, opt, visa status, immigration',
- "I'm a U.S. citizen, so I can work in the U.S. without sponsorship, now or later."],
+[10, 'Do you need visa sponsorship?|Will you need sponsorship now or in the future?|Do you need an H-1B?|Will you require sponsorship?|Do you require visa sponsorship?',
+ 'visa, sponsor, sponsorship, h1b, green card, opt, visa status, immigration',
+ "I'm a U.S. citizen, so I don't need sponsorship, now or later.", 'no'],
+[6, 'Are you a US citizen?|Are you authorized to work in the US?|Can you work in the US without sponsorship?',
+ 'citizen, citizenship, work authorization, authorized, eligible to work, right to work',
+ "I'm a U.S. citizen, so I can work in the U.S. without sponsorship, now or later.", 'yes'],
 [10, 'When can you start?|When are you available?|What is your start date?|When do you graduate?',
  'start, next week, asap, immediately, soon, availability, begin, join, graduation, finish, notice period',
  'I finish my M.A. in Statistics at Columbia in December 2026 and can start in January 2027.'],
-[6, 'Are you willing to relocate?|Where are you based?|Would you move for this job?|Where do you live?',
- 'relocation, move, moving, located, location, city, new york, nyc',
+[3, 'Can you start in January 2027?|Can you start full time in January?|Are you available in January?',
+ 'january, full time',
+ 'I finish my M.A. in Statistics at Columbia in December 2026 and can start in January 2027.', 'yes'],
+[5, 'Are you willing to relocate?|Would you move for this job?|Can you relocate?|Are you open to relocation?',
+ 'relocation, relocate, move, moving',
+ "I'm in New York and willing to relocate.", 'yes'],
+[3, 'Where are you based?|Where do you live?',
+ 'located, location, city, new york, nyc',
  "I'm in New York, and I'm willing to relocate."],
 [3, 'Can you tell me about yourself?|Who are you?|What is your background?',
  'summary, introduce, bio',
  "A statistician and data scientist in New York, finishing a Columbia M.A. in Statistics in December 2026, and an NSF Graduate Research Fellow. I measure what a model can do before I believe what it reports."],
-[3, 'Are you open to remote work?|Do you want a hybrid role?|Can you work in the office?',
+[3, 'Are you open to remote work?|Do you want a hybrid role?|Can you work in the office?|Can you work remotely?',
  'remote, hybrid, days a week, onsite, on-site, in person, work from home',
  "I'm in New York and willing to relocate. For the on-site or remote setup of a specific role, email me at {mail}."],
 [5, 'What degrees do you have?|Where did you go to school?|Do you have a master\'s degree?',
  'degree, education, school, university, college, masters, graduate degree, bachelor, phd, columbia, hunter, cuny, major, study',
  'An M.A. in Statistics from Columbia University, expected December 2026. Before that, a Special Honors B.A. in Statistics with a computer science minor from CUNY Hunter College, cum laude, December 2024.'],
-[4, 'What programming languages do you use?|Do you know SAS?|Do you know SQL?|Do you code in Python or R?',
- 'programming, programming language, python, r, java, c++, cpp, coding',
+[3, 'What programming languages do you use?|Which languages do you code in?',
+ 'programming, programming language, coding, languages',
  'Python, R, SQL, SAS, Java and C++.'],
+[3, 'Do you know SAS?|Do you know SQL?|Do you code in Python or R?|Do you know Python?|Do you know R?|Do you know Java?|Do you know C++?',
+ 'sas, sql, python, r, java, c++, cpp',
+ 'Python, R, SQL, SAS, Java and C++.', 'yes'],
 [3, 'Which machine learning libraries do you use?|Do you know PyTorch?|What modeling tools do you use?',
  'machine learning, ml, library, framework, torch, scikit-learn, sklearn, transformers, xgboost, lightgbm, lora, deep learning',
  'PyTorch, scikit-learn, transformers, XGBoost, LightGBM and LoRA.'],
@@ -58,7 +72,7 @@ const DATA = [
  'As a Columbia Data Science Institute scholar on NYSERDA energy-insecurity research, I analyzed 317 Con Edison testimony PDFs from the New York PSC. Affordability testimony fell 3.8 points from 2022 to 2025, while rate design rose 4.9.'],
 [3, 'Do you have NLP experience?|Have you done topic modeling?|Can you work with text data?',
  'nlp, natural language processing, text, text mining, topic, bertopic, legalbert, embeddings',
- 'Yes. I split 317 Con Edison rate-case filings into 12,073 segments and modeled 16 docket themes with BERTopic, using LegalBERT embeddings, UMAP and HDBSCAN.'],
+ 'I split 317 Con Edison rate-case filings into 12,073 segments and modeled 16 docket themes with BERTopic, using LegalBERT embeddings, UMAP and HDBSCAN.', 'yes'],
 [3, 'Have you worked with LLMs?|Have you fine-tuned a language model?|Tell me about the FunctionGemma router.',
  'llm, large language model, fine-tune, finetune, fine tuning, function calling, genai, generative ai, ai, gpt',
  'At Telenav I built a 270M-parameter FunctionGemma router: 95.5% function accuracy and 86.4% exact match on 500 held-out prompts, and 95.4% serving accuracy against live Snowflake. LoRA is in my toolkit too.'],
@@ -68,9 +82,12 @@ const DATA = [
 [3, 'Do you have clinical trial experience?|Have you worked in pharma?|Do you know CDISC or SDTM?',
  'clinical, trial, cro, pharmaceutical, adam, fda, regulatory, drug',
  "Clinical-trial work isn't on this page. Survival analysis and causal inference are on my methods list; email {mail} to talk through what your team needs."],
-[3, 'Do you have any publications?|Have you published papers?|What research have you done?',
- 'paper, publish, ieee, icngn, conference, first author, orcid',
+[2, 'What research have you done?|Tell me about your research.',
+ 'research, orcid',
  "I'm first author of an IEEE ICNGN 2024 paper from my NSF REU at Texas A&M University-Kingsville: an Intrusion Effort Index on aperiodic Spectre monotile tilings for wireless sensor network security. It gave a 15% efficiency improvement in 3D deployments."],
+[3, 'Do you have any publications?|Have you published papers?|Have you published?',
+ 'paper, publish, publication, ieee, icngn, conference, first author',
+ "I'm first author of an IEEE ICNGN 2024 paper from my NSF REU at Texas A&M University-Kingsville: an Intrusion Effort Index on aperiodic Spectre monotile tilings for wireless sensor network security. It gave a 15% efficiency improvement in 3D deployments.", 'yes'],
 [3, 'Do you have a patent?|What is the patent about?',
  'provisional, uspto, columbia technology ventures, invention',
  'A provisional one: U.S. provisional patent application 64/029,090, filed through Columbia Technology Ventures. It comes from my work on Calx, a neuro-symbolic engine for cross-domain discovery.'],
@@ -80,9 +97,12 @@ const DATA = [
 [2, 'What is SMA-1?|Can I install SMA-1?',
  'sma, mcp, pypi, package, ontology, retrieval',
  'SMA-1 is structure-mapping retrieval over 594,000 concepts from 11 ontologies, shipped as an MCP server and as the PyPI package structuremappingmemory. The [project page](sma-1/) has the details.'],
-[3, 'What is the NSF fellowship?|Are you an NSF fellow?|What awards have you won?',
- 'grfp, fellowship, fellow, award, honor, scholarship, national science foundation',
+[2, 'What is the NSF fellowship?|What awards have you won?',
+ 'fellowship, award, honor, scholarship, national science foundation',
  "I'm a National Science Foundation Graduate Research Fellow, one of 1,000 awardees from 17,000 applicants."],
+[2, 'Are you an NSF fellow?|Are you an NSF Graduate Research Fellow?|Did you win the NSF fellowship?',
+ 'nsf fellow, grfp',
+ "I'm a National Science Foundation Graduate Research Fellow, one of 1,000 awardees from 17,000 applicants.", 'yes'],
 [6, 'Can I see your résumé?|Do you have a CV?|Where is your resume?',
  'resume, pdf, download',
  'Here it is: [my résumé (PDF)](Ayaz_Khan_Resume.pdf).'],
@@ -100,7 +120,7 @@ const DATA = [
  "I measure what a model can do before I believe what it reports. The examples I'd point to are the 56.69% accuracy ceiling that stopped a release and the leakage audit that took an AUC from 0.806 to an honest 0.7401."],
 [1, "Is this a JoJo reference?|Is this from JoJo's Bizarre Adventure?",
  'jojo, joseph, joestar, reference, anime, manga, next line',
- "Yes. In JoJo's Bizarre Adventure, Joseph Joestar's trick is predicting an opponent's next line before they say it. This box tries it with a trigram model and keeps score."],
+ "In JoJo's Bizarre Adventure, Joseph Joestar's trick is predicting an opponent's next line before they say it; this box tries it with a trigram model and keeps score. The YES! and NO! come from D'Arby's Stand, Atum, which reads a soul through yes-or-no questions.", 'yes'],
 [1, 'How does this work?|Is this a chatbot?',
  'predict, prediction, trigram, bot, autocomplete, guess, this ai',
  'A trigram model of {n} phrasings of these {q} questions guesses how your line ends, weighted by how often I expect each question. TF-IDF cosine similarity picks the answer, and nothing you type leaves this page.'],
@@ -110,6 +130,7 @@ const FALLBACK = "That one isn't in my notes. Ask me directly at {mail}.";
 const A = 0.4;          // stupid-backoff penalty per order dropped (Brants et al. 2007)
 const L = 0.2;          // weight of the trigram against the question priors
 const MIN_SIM = 0.55;   // below this cosine, say so instead of guessing
+const YN_SIM = 0.6;     // a straight yes or no needs the question this close to one of the group's own phrasings
 const STOP = new Set(('a an the do does did done you your i me my is are am was were be been to of in on at for with without from by as and or ' +
   'but any some have has had can could would will should may it its that about tell we our us there here so if then too very just also still ' +
   'really please able know use used using get got ever more much many into than don doesn didn isn aren').split(' '));
@@ -125,7 +146,7 @@ const cap = s => s && s[0].toUpperCase() + s.slice(1);
 export const sameLine = (a, b) => terms(a).join(' ') === terms(b).join(' ');
 
 export function brain() {
-  const Q = DATA.map(([w, p, k, a]) => ({ w, p: p.split('|'), k, a }));
+  const Q = DATA.map(([w, p, k, a, yn]) => ({ w, p: p.split('|'), k, a, yn }));
   const nP = Q.reduce((n, q) => n + q.p.length, 0);
   for (const q of Q) q.a = q.a.replace('{n}', nP).replace('{q}', Q.length);
 
@@ -200,7 +221,7 @@ export function brain() {
   }
 
   // TF-IDF: every phrasing and keyphrase is a document
-  const docs = Q.flatMap(q => [...q.p, ...q.k.split(', ')].map(s => ({ q, t: terms(s) })));
+  const docs = Q.flatMap(q => [...q.p.map(s => ({ q, t: terms(s), ph: true })), ...q.k.split(', ').map(s => ({ q, t: terms(s) }))]);
   const df = new Map();
   for (const d of docs) for (const w of new Set(d.t)) df.set(w, (df.get(w) || 0) + 1);
   const vec = t => {
@@ -221,6 +242,20 @@ export function brain() {
     return [...best].map(([q, s]) => ({ q, s })).sort((a, b) => b.s - a.s);
   }
   const match = text => { const r = rank(text)[0]; return r && r.s >= MIN_SIM ? r : null; };
+  // 'yes' or 'no' only when the question sits close to one of that group's own yes-or-no phrasings;
+  // a looser match still gets the answer, just without the verdict
+  function yesno(text, q) {
+    if (!q || !q.yn) return null;
+    const v = vec(terms(text));
+    let best = 0;
+    for (const d of docs) {
+      if (d.q !== q || !d.ph) continue;
+      let s = 0;
+      for (const [w, x] of v) s += x * (d.v.get(w) || 0);
+      best = Math.max(best, s);
+    }
+    return best >= YN_SIM ? q.yn : null;
+  }
 
   // one line to call out, its ghost completion and three chips
   function predict(text, asked = new Set()) {
@@ -246,11 +281,11 @@ export function brain() {
     const lead = top.length ? top[0].best : c[0];
     return { line: lead ? full(lead.g) : (match(text) || {}).q?.p[0] || null, ghost: lead ? lead.g : '', chips };
   }
-  return { Q, nP, predict, match };
+  return { Q, nP, predict, match, yesno };
 }
 
 const html = s => s.replace(/&/g, '&amp;').replace(/\{mail\}/g, `[${MAIL}](mailto:${MAIL})`).replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
-const sfx = name => document.dispatchEvent(new CustomEvent('sfx', { detail: { name } }));
+const sfx = (name, gain) => document.dispatchEvent(new CustomEvent('sfx', { detail: { name, gain } }));
 
 export async function mount(root, opts = {}) {
   const B = brain(), uid = 'jj' + Math.random().toString(36).slice(2, 8);
@@ -269,8 +304,8 @@ export async function mount(root, opts = {}) {
   const chipEls = [...el.querySelectorAll('.jj-chip')];
 
   // per-visit memory only: questions asked and the score
-  const asked = new Set();
-  let cur, hist = [], took = false, tries = 0, hits = 0, paused = false, timer = 0;
+  const asked = new Set(), reduce = matchMedia('(prefers-reduced-motion: reduce)');
+  let cur, hist = [], took = false, tries = 0, hits = 0, paused = false, timer = 0, beats = [];
 
   function render(p) {
     lineEl.textContent = p.line ? `“${cap(p.line)}”` : "something I haven't heard before.";
@@ -290,19 +325,37 @@ export async function mount(root, opts = {}) {
   }
   function fresh() { hist = []; input.value = ''; update(); }
 
+  // YES! YES! YES! or NO! NO!: the verdict lands like a panel over the answer box, then stays as a stamp.
+  // Decorative (aria-hidden); the answer itself opens with "Yes." or "No.". A still page gets only the stamp.
+  function burst(kind) {
+    if (paused || reduce.matches) return;
+    const n = kind === 'yes' ? 3 : 2, b = document.createElement('div');
+    b.className = 'jj-yn jj-yn--' + kind; b.setAttribute('aria-hidden', 'true');
+    for (let i = 0; i < n; i++) {
+      const w = document.createElement('span'); w.textContent = kind === 'yes' ? 'YES!' : 'NO!';
+      w.style.setProperty('--i', i); b.append(w);
+      beats.push(setTimeout(() => sfx('ora', 0.3), i * 220));
+    }
+    out.append(b); out.classList.add('jj-bursting', 'jj-bursting--' + kind);
+    beats.push(setTimeout(() => { out.classList.remove('jj-bursting', 'jj-bursting--' + kind); out.classList.add('jj-landed'); b.remove(); }, n * 220 + 260));
+  }
   function answer(text, verdict, q) {
     const m = q ? { q } : B.match(text);
     if (m) asked.add(m.q);
-    out.textContent = '';
+    const yn = !m ? null : q ? m.q.yn || null : B.yesno(text, m.q);    // a chip is the group's own phrasing
+    beats.forEach(clearTimeout); beats = [];
+    out.className = 'jj-a'; out.textContent = '';
     const add = (cls, txt, tag = 'p') => { const n = document.createElement(tag); n.className = cls; n.textContent = txt; out.append(n); return n; };
-    if (verdict && verdict.hit) { add('jj-bang', '！？', 'span').setAttribute('aria-hidden', 'true'); sfx('nextline'); }
+    if (verdict && verdict.hit) { add('jj-bang' + (yn ? ' jj-bang--late' : ''), '！？', 'span').setAttribute('aria-hidden', 'true'); sfx('nextline'); }
     add('jj-aq', `“${cap(text.trim())}”`);
-    add('jj-at', '').innerHTML = html(m ? m.q.a : FALLBACK);
+    add('jj-at', '').innerHTML = (yn ? `<span class="jj-stamp jj-stamp--${yn}" aria-hidden="true">${yn === 'yes' ? 'YES!' : 'NO!'}</span>${yn === 'yes' ? 'Yes. ' : 'No. '}` : '')
+      + html(m ? m.q.a : FALLBACK);
     const tally = `Next line called: ${hits} of ${tries}.`;
     if (verdict) add('jj-score', (verdict.hit ? 'Called it. ' : '') + tally);
     else if (took) add('jj-score', "You took my suggestion, so this one isn't scored." + (tries ? ' ' + tally : ''));
     else if (tries) add('jj-score', tally);
     if (verdict && !verdict.hit && verdict.had) add('jj-had', `I had “${cap(verdict.had)}”`);
+    if (yn) burst(yn);
   }
 
   function ask(c) {                       // a chip, or Enter on an empty box
@@ -352,7 +405,7 @@ export async function mount(root, opts = {}) {
   return {
     pause, resume,
     destroy() {
-      clearTimeout(timer);
+      clearTimeout(timer); beats.forEach(clearTimeout);
       document.removeEventListener('timestop', pause);
       document.removeEventListener('timeresume', resume);
       el.remove();

@@ -28,7 +28,7 @@
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Ayaz Khan","jobTitle":"Statistician and data scientist","email":"mailto:aak2259@columbia.edu","telephone":"+1-917-943-3853","address":{"@type":"PostalAddress","addressLocality":"New York","addressRegion":"NY","addressCountry":"US"},"alumniOf":[{"@type":"CollegeOrUniversity","name":"Columbia University"},{"@type":"CollegeOrUniversity","name":"Hunter College, City University of New York"}],"sameAs":["https://www.linkedin.com/in/ayazkhan27","https://github.com/ayazkhan27","https://orcid.org/0009-0008-5695-4934"]}</script>
 <style>
-/* Hallmark · macrostructure: custom (bespoke "Plate" v3: zoopraxiscope hero, work-first race in nine stages on a route rail, Stand-card recap, photo-finish and To Be Continued close) · tone: austere/technical, playful in motion · anchor hue: 250 (ink blue)
+/* Hallmark · macrostructure: custom (bespoke "Plate" v3: zoopraxiscope hero under a title-card lockup, work-first race in nine stages on a route rail, Stand-card recap, photo-finish and To Be Continued close) · tone: austere/technical, playful in motion · anchor hue: 250 (ink blue)
  * theme: custom · vibe: "1890 race broadside, manga SFX on albumen paper" · display LT Afficher Neue + text Alphazet + SFX Dela Gothic One (kana only)
  * axes: dark-hero/light-body · high-contrast-serif · cool + gold/menace accents
  * Hallmark · pre-emit critique: P5 H5 E4 S5 R4 V5
@@ -49,6 +49,11 @@
   /* v3: Gyro's gold and the Stand's menace; both pass AA as text on the page */
   --color-gold:#8a6408; --color-menace:#6b2fa0; --color-gold-lit:#e8b84a; --color-stopped:#dfe5ec;
   --color-menace-plate:#6b2fa0; /* the albumen paper stays light in both modes, so purple text on it stays dark */
+  /* Atum's straight answers in the FAQ: YES in electric yellow on deep blue, NO in hot pink on violet (12.5:1 and 5.3:1) */
+  --color-yes-ink:#ffe94d; --color-yes-field:#0b1f5c; --color-no-ink:#ff5cb8; --color-no-field:#3a0d63;
+  /* the hero's title card, on the band in both modes: gold to orange to red, an ink outline, a purple extrude */
+  --color-lk-orange:#ef8a1d; --color-lk-red:#b3151d; --color-lk-ink:#0c0710; --color-lk-extrude:#5a2390;
+  --color-lk-ivory:#f4ead2; --color-lk-hi:#fff3c4; --color-lk-violet:#8a4fc4;
   /* the hero band is the plate's black in both modes */
   --color-band:#0e1012; --color-band-ink:#ecebe6; --color-band-muted:#a7abaf;
   --color-band-lit:#f8f8f5; --color-air:#ffd7a8; --color-control-edge:#6d7278;
@@ -124,6 +129,28 @@ p{margin:0 0 var(--space-sm);max-width:62ch}
 .gbtn[aria-pressed="true"]{border-color:var(--color-band-ink)}
 .time-stopped .gbtn[data-time]{background:var(--color-gold-lit);border-color:var(--color-gold-lit);color:var(--color-band)}
 .time-stopped .gbtn[data-time] .jp{color:var(--color-band)}
+/* "Ayaz's Bizarre Adventure": the one loud thing in the hero, a title card set above the name, which stays larger */
+.lockup{display:block;width:clamp(15rem,44vw,32rem);height:auto;margin:0 0 var(--space-md);overflow:visible;transform-origin:18% 60%}
+.lockup .lk-ext{fill:var(--color-lk-extrude);stroke:var(--color-lk-extrude);stroke-width:11;stroke-linejoin:round}
+.lockup .lk-ink,.lockup .lk-b-ink{fill:var(--color-lk-ink);stroke:var(--color-lk-ink);stroke-linejoin:round}
+.lockup .lk-ink{stroke-width:11}
+.lockup .lk-b-ink{stroke-width:7}
+.lockup .lk-b-shadow{fill:var(--color-lk-violet);stroke:var(--color-lk-violet);stroke-width:7;stroke-linejoin:round}
+.lockup .lk-b-fill{fill:var(--color-lk-ivory)}
+.lockup .lk-hi{fill:var(--color-lk-hi);opacity:.9}
+.lockup .lk-s1{stop-color:var(--color-gold-lit)}
+.lockup .lk-s2{stop-color:var(--color-lk-orange)}
+.lockup .lk-s3{stop-color:var(--color-lk-red)}
+.lockup .lk-g0{stop-color:var(--color-band-lit);stop-opacity:0}
+.lockup .lk-g1{stop-color:var(--color-band-lit);stop-opacity:.7}
+.lockup .lk-sheen{transform:skewX(-18deg)}
+.js .lockup{animation:lk-slam .5s var(--ease-out) both}
+.js .lockup .lk-sheen{animation:lk-sheen .9s var(--ease-out) .3s both}
+.js .lockup:hover .lk-sheen{animation:lk-sheen-again .9s var(--ease-out)}
+@keyframes lk-slam{0%{opacity:0;transform:translateY(-.4rem) scale(1.22) rotate(-2.5deg)}55%{opacity:1;transform:scale(.985)}100%{opacity:1;transform:none}}
+@keyframes lk-sheen{from{transform:translateX(0) skewX(-18deg)}to{transform:translateX(980px) skewX(-18deg)}}
+@keyframes lk-sheen-again{from{transform:translateX(0) skewX(-18deg)}to{transform:translateX(980px) skewX(-18deg)}}
+.time-stopped .lockup,.time-stopped .lockup .lk-sheen{animation:none!important}
 .top{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:var(--space-lg);align-items:end;padding-top:var(--space-lg)}
 h1{font-size:var(--text-display);line-height:.84;letter-spacing:-.04em}
 .lede{font-size:clamp(1.125rem,1.6vw,1.375rem);line-height:1.45;margin:var(--space-md) 0 var(--space-md);max-width:30ch;color:var(--color-band-ink)}
@@ -363,6 +390,9 @@ body{padding-bottom:var(--rail-h)}
 .qa{margin:0}
 .qa div{padding:var(--space-sm) var(--space-md);background:var(--color-surface);margin-bottom:6px}
 .qa dt{font-weight:600;margin-bottom:.2rem}
+.qa .yn{display:inline-block;margin-left:.4rem;padding:.16rem .4rem .1rem;border:1.5px solid currentColor;font:600 .75rem/1 var(--font-text);letter-spacing:.04em;vertical-align:.1em;transform:rotate(-4deg)}
+.qa .yn-yes{background:var(--color-yes-field);color:var(--color-yes-ink)}
+.qa .yn-no{background:var(--color-no-field);color:var(--color-no-ink)}
 .qa dd{margin:0}
 /* To Be Continued */
 .tbc{position:relative;z-index:5;display:flex;flex-wrap:wrap;justify-content:flex-end;align-items:center;gap:var(--space-sm) var(--space-lg);padding:var(--space-lg) var(--margin) var(--space-xl);max-width:84rem;margin:0 auto;overflow:hidden}
@@ -397,7 +427,7 @@ body{padding-bottom:var(--rail-h)}
   .js .rise{transform:none;transition:opacity 150ms linear}
   .btn,.sheet img{transition:none}
   .rail{transition:none}
-  .js .total.in .sfx span,.js .acts.in .nail .tip{animation:none}
+  .js .total.in .sfx span,.js .acts.in .nail .tip,.js .lockup,.js .lockup .lk-sheen{animation:none}
   .js .tbc-next{opacity:1;transition:none}
   .js .tbc .arrow{transform:none;transition:none}
   .tsay{transition:none}
@@ -490,6 +520,7 @@ body{padding-bottom:var(--rail-h)}
 
     <div class="top">
       <div>
+        <!--LOCKUP-->
         <h1>Ayaz Khan</h1>
         <p class="lede">Statistician and data scientist. I measure what a model can do before I believe what it reports.</p>
         <p class="terms">Columbia M.A. Statistics, expected December 2026. Available January 2027. U.S. citizen, no sponsorship needed.</p>
@@ -822,13 +853,13 @@ body{padding-bottom:var(--rail-h)}
       <div class="faq">
         <div class="head rise">
           <h2 id="t-faq">Questions recruiters ask</h2>
-          <p>Joseph Joestar's trick is telling an opponent “Your next line is...” before they say it. The box tries the same on the questions recruiters ask, and the usual answers sit under it.</p>
+          <p>Joseph Joestar's trick is telling an opponent “Your next line is...” before they say it, and D'Arby's Stand, Atum, reads a soul through yes-or-no questions. The box tries both on the questions recruiters ask; the usual answers sit under it.</p>
         </div>
         <div class="jj-slot" data-module="joseph" data-jj-keep>
           <dl class="qa jj-static">
-            <div><dt>Do you need visa sponsorship?</dt><dd>No. I'm a U.S. citizen, so I can work in the U.S. without sponsorship, now or later.</dd></div>
+            <div><dt>Do you need visa sponsorship? <span class="yn yn-no" aria-hidden="true">NO!</span></dt><dd>No. I'm a U.S. citizen, so I don't need sponsorship, now or later.</dd></div>
             <div><dt>When can you start?</dt><dd>January 2027. My Columbia M.A. in Statistics finishes in December 2026.</dd></div>
-            <div><dt>Where are you based?</dt><dd>New York, and I'm willing to relocate.</dd></div>
+            <div><dt>Are you willing to relocate? <span class="yn yn-yes" aria-hidden="true">YES!</span></dt><dd>Yes. I'm in New York and willing to relocate.</dd></div>
             <div><dt>What kind of role?</dt><dd>Statistics and data science, especially biostatistics, model risk and analytics.</dd></div>
             <div><dt>Can I see a résumé?</dt><dd><a href="Ayaz_Khan_Resume.pdf">Ayaz_Khan_Resume.pdf</a></dd></div>
           </dl>
@@ -888,7 +919,7 @@ body{padding-bottom:var(--rail-h)}
   <p>Ayaz Khan, statistician</p>
   <nav aria-label="Footer"><a href="#work">Work</a><a href="sma-1/">SMA-1</a><a href="Ayaz_Khan_Resume.pdf">Résumé</a></nav>
   <div class="credit">
-    <p>Plate: Eadweard Muybridge, <i>The Horse in Motion</i>, 1878, public domain. Type: LT Afficher Neue by LyonsType, Alphazet by Type Forward, Japanese lettering in Dela Gothic One (SIL Open Font License).</p>
+    <p>Plate: Eadweard Muybridge, <i>The Horse in Motion</i>, 1878, public domain. Type: LT Afficher Neue by LyonsType, Alphazet by Type Forward, Japanese lettering in Dela Gothic One (SIL Open Font License). The title card is lettered in SF Fedora by ShyFonts and Archivo Narrow (SIL Open Font License), set as outlines.</p>
     <p>Steel Ball Run and JoJo's Bizarre Adventure are by Hirohiko Araki, published by Shueisha. This page is an unaffiliated fan homage: it uses no art, music or sound from the series, and its sound effects are original.</p>
   </div>
 </footer>

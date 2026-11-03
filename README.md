@@ -41,6 +41,15 @@ module costs no request and its section keeps its static text. It also lists any
 Dela Gothic One to exactly those characters (it downloads the TTF from github.com/google/fonts unless you pass a path).
 Needs fontTools and brotli.
 
+## The title card
+
+The hero's "Ayaz's Bizarre Adventure" is inline SVG built by `build_page.py` from `tools/lockup_outlines.svg`. That file
+holds outlines only, no font data: AYAZ'S in SF Fedora by ShyFonts (freeware for noncommercial use; the font itself is
+not shipped) and BIZARRE ADVENTURE in Archivo Narrow Bold Italic (SIL OFL 1.1), set and outlined in VectorCraft 0.13.1:
+`text.findFontFiles` and `text.addFontFiles` (in a scratch `VECTORCRAFT_CONFIG_DIR`), `text.create` at 200 pt and 124 pt,
+`type.createOutlines`, then export as SVG. `build_page.py` adds the paint: a stepped purple extrude, an ink outline, a
+gold-to-orange-to-red fill (the top stop is `--color-gold-lit`), a top-edge highlight and one sheen on entrance.
+
 ## The v3 race layer
 
 The page runs as the 1890 Steel Ball Run, San Diego to New York. Each section opens with a stage line, the rail at the

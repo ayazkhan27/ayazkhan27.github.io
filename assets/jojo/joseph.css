@@ -53,12 +53,35 @@
 }
 @keyframes jj-bang-calm{0%,82%{opacity:1}100%{opacity:0}}
 
+/* YES! YES! YES! / NO! NO!: a yes-or-no answer lands like a panel inside the answer box (never past it), in a
+   duotone flash, then the words clear and a small stamp stays beside the answer. Decorative; the text says Yes. or No. */
+.jj-joseph .jj-a > *{transition:opacity .22s var(--ease-out,cubic-bezier(.2,.7,.2,1))}
+.jj-joseph .jj-a{container-type:inline-size}
+.jj-joseph .jj-a.jj-bursting{overflow:hidden}
+.jj-joseph .jj-a.jj-bursting > :not(.jj-yn){opacity:0}
+.jj-joseph .jj-a.jj-bursting--yes{background:var(--color-yes-field,#0b1f5c)}
+.jj-joseph .jj-a.jj-bursting--no{background:var(--color-no-field,#3a0d63)}
+.jj-joseph .jj-yn{position:absolute;inset:0;pointer-events:none}
+.jj-joseph .jj-yn span{position:absolute;left:calc(3% + var(--i) * 32%);top:calc(6% + var(--i) * 24%);font:700 clamp(2rem,12cqi,4.5rem)/1 var(--font-display);letter-spacing:-.01em;white-space:nowrap;
+  transform:rotate(-8deg);animation:jj-yn .34s var(--ease-out,cubic-bezier(.2,.7,.2,1)) calc(var(--i) * 220ms) both}
+.jj-joseph .jj-yn--yes span{color:var(--color-yes-ink,#ffe94d);text-shadow:0 0 .06em var(--color-yes-ink,#ffe94d),0 0 .3em var(--color-yes-ink,#ffe94d)}
+.jj-joseph .jj-yn--no span{left:calc(9% + var(--i) * 44%);top:calc(12% + var(--i) * 30%);color:var(--color-no-ink,#ff5cb8);text-shadow:0 0 .06em var(--color-no-ink,#ff5cb8),0 0 .3em var(--color-no-ink,#ff5cb8)}
+@keyframes jj-yn{0%{opacity:0;transform:rotate(-8deg) scale(1.7)}60%{opacity:1;transform:rotate(-8deg) scale(.95)}100%{opacity:1;transform:rotate(-8deg) scale(1)}}
+.jj-joseph .jj-stamp{display:inline-block;margin:0 .55rem .15rem 0;padding:.2rem .42rem .14rem;border:1.5px solid currentColor;font:600 .8125rem/1 var(--font-text);letter-spacing:.04em;vertical-align:.08em;transform:rotate(-4deg)}
+.jj-joseph .jj-stamp--yes{background:var(--color-yes-field,#0b1f5c);color:var(--color-yes-ink,#ffe94d)}
+.jj-joseph .jj-stamp--no{background:var(--color-no-field,#3a0d63);color:var(--color-no-ink,#ff5cb8)}
+.jj-joseph .jj-landed .jj-stamp{animation:jj-stamp .28s var(--ease-out,cubic-bezier(.2,.7,.2,1)) both}
+@keyframes jj-stamp{0%{opacity:0;transform:rotate(-4deg) scale(1.8)}100%{opacity:1;transform:rotate(-4deg) scale(1)}}
+.jj-joseph .jj-bang--late{animation-delay:.9s}
+
 .jj-joseph .jj-note{margin:var(--space-md,1.5rem) 0 0;max-width:62ch;font-size:var(--text-small,.9375rem);color:var(--color-muted)}
 
 /* Star Platinum: The World. Time stop freezes the beat mid-air */
 .jj-joseph.jj-still *{animation-play-state:paused!important}
 @media (prefers-reduced-motion:reduce){
   .jj-joseph .jj-bang{animation-name:jj-bang-calm}
+  .jj-joseph .jj-yn{display:none}
+  .jj-joseph .jj-landed .jj-stamp{animation:none}
   .jj-joseph .jj-ask:active{transform:none}
 }
 @media (max-width:480px){
