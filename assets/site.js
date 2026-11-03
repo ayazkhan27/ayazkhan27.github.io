@@ -51,7 +51,8 @@
     disc.setAttribute('aria-valuenow', f); disc.setAttribute('aria-valuetext', text.replace(',', ' of 11,'));
     if (!auto) out.textContent = text.replace(',', ' of 11,') + '.';
     var now = performance.now();                 // a hoof lands: ask for the sound (the audio module decides if sound is on)
-    if (!first && LAND[f] && (auto || dragging) && now - lastHoof > 60) { lastHoof = now; sfx('hoof'); }
+    // hoof sounds removed at Ayaz's request
+    //    if (!first && LAND[f] && (auto || dragging) && now - lastHoof > 60) { lastHoof = now; sfx('hoof'); }
   }
   function loop(t) {
     raf = 0;
