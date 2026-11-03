@@ -28,7 +28,7 @@
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Ayaz Khan","jobTitle":"Statistician and data scientist","email":"mailto:aak2259@columbia.edu","telephone":"+1-917-943-3853","address":{"@type":"PostalAddress","addressLocality":"New York","addressRegion":"NY","addressCountry":"US"},"alumniOf":[{"@type":"CollegeOrUniversity","name":"Columbia University"},{"@type":"CollegeOrUniversity","name":"Hunter College, City University of New York"}],"sameAs":["https://www.linkedin.com/in/ayazkhan27","https://github.com/ayazkhan27","https://orcid.org/0009-0008-5695-4934"]}</script>
 <style>
-/* Hallmark · macrostructure: custom (bespoke "Plate" v3: zoopraxiscope hero under a title-card lockup, work-first race in nine stages on a route rail, Stand-card recap, photo-finish and To Be Continued close) · tone: austere/technical, playful in motion · anchor hue: 250 (ink blue)
+/* Hallmark · macrostructure: custom (bespoke "Plate" v3: zoopraxiscope hero, work-first race in nine stages on a route rail, Stand-card recap, photo-finish and a title-card + To Be Continued close) · tone: austere/technical, playful in motion · anchor hue: 250 (ink blue)
  * theme: custom · vibe: "1890 race broadside, manga SFX on albumen paper" · display LT Afficher Neue + text Alphazet + SFX Dela Gothic One (kana only)
  * axes: dark-hero/light-body · high-contrast-serif · cool + gold/menace accents
  * Hallmark · pre-emit critique: P5 H5 E4 S5 R4 V5
@@ -129,7 +129,7 @@ p{margin:0 0 var(--space-sm);max-width:62ch}
 .gbtn[aria-pressed="true"]{border-color:var(--color-band-ink)}
 .time-stopped .gbtn[data-time]{background:var(--color-gold-lit);border-color:var(--color-gold-lit);color:var(--color-band)}
 .time-stopped .gbtn[data-time] .jp{color:var(--color-band)}
-/* "Ayaz's Bizarre Adventure": the one loud thing in the hero, a title card set above the name, which stays larger */
+/* "Ayaz's Bizarre Adventure": the anime-style title card, kept out of the hero (it fought the plate) and used to close the race */
 .lockup{display:block;width:clamp(15rem,44vw,32rem);height:auto;margin:0 0 var(--space-md);overflow:visible;transform-origin:18% 60%}
 .lockup .lk-ext{fill:var(--color-lk-extrude);stroke:var(--color-lk-extrude);stroke-width:11;stroke-linejoin:round}
 .lockup .lk-ink,.lockup .lk-b-ink{fill:var(--color-lk-ink);stroke:var(--color-lk-ink);stroke-linejoin:round}
@@ -151,6 +151,14 @@ p{margin:0 0 var(--space-sm);max-width:62ch}
 @keyframes lk-sheen{from{transform:translateX(0) skewX(-18deg)}to{transform:translateX(980px) skewX(-18deg)}}
 @keyframes lk-sheen-again{from{transform:translateX(0) skewX(-18deg)}to{transform:translateX(980px) skewX(-18deg)}}
 .time-stopped .lockup,.time-stopped .lockup .lk-sheen{animation:none!important}
+/* the title card closes the race, above the To Be Continued arrow: it lands when the arrow does and stays in colour over the freeze */
+.tbc-title{flex-basis:100%;display:flex;justify-content:flex-end}
+.tbc-title .lockup{width:clamp(14rem,40vw,30rem);margin:0}
+.js .tbc .lockup{animation:none;opacity:0;transform:translateY(-.4rem) scale(1.12) rotate(-2deg);transition:opacity 260ms var(--ease-out),transform 500ms var(--ease-out)}
+.js .tbc.on .lockup{opacity:1;transform:none}
+.js .tbc .lockup .lk-sheen{animation:none}
+.js .tbc.on .lockup .lk-sheen{animation:lk-sheen .9s var(--ease-out) .45s both}
+.tbc-freeze .tbc .lockup .lk-sheen{animation-play-state:running!important}
 .top{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:var(--space-lg);align-items:end;padding-top:var(--space-lg)}
 h1{font-size:var(--text-display);line-height:.84;letter-spacing:-.04em}
 .lede{font-size:clamp(1.125rem,1.6vw,1.375rem);line-height:1.45;margin:var(--space-md) 0 var(--space-md);max-width:30ch;color:var(--color-band-ink)}
@@ -428,6 +436,8 @@ body{padding-bottom:var(--rail-h)}
   .btn,.sheet img{transition:none}
   .rail{transition:none}
   .js .total.in .sfx span,.js .acts.in .nail .tip,.js .lockup,.js .lockup .lk-sheen{animation:none}
+  .js .tbc .lockup{opacity:1;transform:none;transition:none}
+  .js .tbc.on .lockup .lk-sheen{animation:none}
   .js .tbc-next{opacity:1;transition:none}
   .js .tbc .arrow{transform:none;transition:none}
   .tsay{transition:none}
@@ -520,7 +530,6 @@ body{padding-bottom:var(--rail-h)}
 
     <div class="top">
       <div>
-        <!--LOCKUP-->
         <h1>Ayaz Khan</h1>
         <p class="lede">Statistician and data scientist. I measure what a model can do before I believe what it reports.</p>
         <p class="terms">Columbia M.A. Statistics, expected December 2026. Available January 2027. U.S. citizen, no sponsorship needed.</p>
@@ -904,6 +913,7 @@ body{padding-bottom:var(--rail-h)}
 </main>
 
 <aside class="tbc" id="tbc" aria-label="End of the page">
+  <div class="tbc-title"><!--LOCKUP--></div>
   <svg class="arrow" viewBox="0 0 640 120" role="img" aria-label="To Be Continued">
     <path class="body" d="M4 60 80 3V31H636L606 60 636 89H80V117Z"/>
     <path class="in" d="M19 60 72 20V39H620L596 60 620 81H72V100Z"/>
