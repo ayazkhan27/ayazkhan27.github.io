@@ -1,0 +1,708 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SMA-1: Structure-Mapping Agentic Memory</title>
+<meta name="description" content="SMA-1 is a retrieval memory that grounds a generalist LLM in a curated ontology, retrieving by logical structure that vector RAG and knowledge graphs discard. It cites its evidence, abstains when nothing grounds, and flags novelty." />
+<meta name="theme-color" content="#080b12" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="SMA-1: Structure-Mapping Agentic Memory" />
+<meta property="og:description" content="Turn a generalist LLM into a verifiable specialist: structure-mapping retrieval over curated ontologies. Cites its evidence, abstains when nothing grounds, flags novelty." />
+<meta property="og:image" content="https://ayazkhan27.github.io/assets/img/og_card.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='5' r='2.4' fill='%2339c2ac'/%3E%3Ccircle cx='5' cy='18' r='2.4' fill='%235b8dff'/%3E%3Ccircle cx='19' cy='18' r='2.4' fill='%235fe0cc'/%3E%3Cpath d='M12 7.2v3.3M10.4 12.2 6.4 16M13.6 12.2 17.6 16' stroke='%2339c2ac' stroke-width='1.4'/%3E%3Ccircle cx='12' cy='12' r='1.7' fill='%23e8b15a'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#080b12; --bg2:#0b0f1a; --panel:#101626; --panel2:#131b2d; --line:#212c42;
+  --ink:#e9eff9; --muted:#9fadc6; --faint:#8b99b4;
+  --teal:#39c2ac; --teal2:#5fe0cc; --blue:#5b8dff; --amber:#e8b15a; --rose:#ff7d7d;
+  --glow: 0 0 0 1px rgba(57,194,172,.18), 0 18px 50px -20px rgba(57,194,172,.25);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:Inter,-apple-system,Segoe UI,Roboto,sans-serif;font-size:16px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;position:relative}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(900px 480px at 72% -8%,rgba(57,194,172,.10),transparent 60%),
+             radial-gradient(700px 400px at 10% 4%,rgba(91,141,255,.07),transparent 55%)}
+section{padding:84px 0;scroll-margin-top:74px;position:relative}
+a{color:inherit;text-decoration:none}
+a:focus-visible,.btn:focus-visible,button:focus-visible,.copy:focus-visible,.hamb:focus-visible,.chiptab:focus-visible{
+  outline:2px solid var(--teal2);outline-offset:3px;border-radius:8px}
+h1,h2,h3{font-family:Newsreader,Georgia,serif;font-weight:600;letter-spacing:-.01em;line-height:1.12;margin:0}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+.wrap{max-width:1120px;margin:0 auto;padding:0 26px}
+.eyebrow{font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);font-weight:600;font-family:Inter}
+.muted{color:var(--muted)} .faint{color:var(--faint)}
+.accent{color:var(--teal)}
+.sec-h{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--teal);font-weight:600;margin-bottom:14px;font-family:Inter}
+h2.title{font-size:clamp(27px,3.6vw,40px)}
+.lead{font-size:clamp(16px,1.7vw,18px);color:var(--muted);max-width:760px;margin-top:14px}
+.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+/* progress bar */
+#progress{position:fixed;top:0;left:0;height:2px;width:0;background:linear-gradient(90deg,var(--teal),var(--teal2));z-index:60}
+
+/* nav */
+nav{position:sticky;top:0;z-index:40;backdrop-filter:blur(10px);
+  background:rgba(8,11,18,.72);border-bottom:1px solid transparent;transition:border-color .3s,background .3s}
+nav.scrolled{border-bottom-color:var(--line);background:rgba(8,11,18,.9)}
+.navwrap{max-width:1120px;margin:0 auto;padding:13px 26px;display:flex;align-items:center;gap:20px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;letter-spacing:-.02em}
+.brand .mk{width:24px;height:24px}
+.navlinks{margin-left:auto;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.navlinks a{font-size:13.5px;color:var(--muted);padding:9px 12px;border-radius:8px;transition:.18s;min-height:40px;display:inline-flex;align-items:center}
+.navlinks a:hover{color:var(--ink);background:var(--panel)}
+.navlinks a.active{color:var(--ink);background:var(--panel)}
+.navlinks a.cta{color:#06120f;background:var(--teal);font-weight:600}
+.navlinks a.cta:hover{background:var(--teal2)}
+.hamb{display:none;margin-left:auto;width:44px;height:44px;border:1px solid var(--line);border-radius:10px;background:var(--panel);cursor:pointer;align-items:center;justify-content:center}
+.hamb span,.hamb span::before,.hamb span::after{content:"";display:block;width:18px;height:2px;background:var(--ink);position:relative;transition:.2s}
+.hamb span::before{position:absolute;top:-5px}.hamb span::after{position:absolute;top:5px}
+
+/* hero */
+.hero{padding:104px 0 72px;position:relative}
+#lattice{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.8;pointer-events:none}
+.hero .wrap{position:relative;z-index:1}
+.herogrid{display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center}
+.hero h1{font-size:clamp(38px,5.2vw,64px);max-width:15ch;margin-top:18px}
+.hero h1 em{font-style:italic;color:var(--teal2)}
+.hero .lead{max-width:640px;margin-top:22px;color:#c4d0e4}
+.byline{margin-top:22px;font-size:14.5px;color:var(--muted)}
+.byline b{color:var(--ink);font-weight:600}
+.btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:13px 18px;border-radius:11px;font-weight:600;font-size:14.5px;
+  border:1px solid var(--line);background:var(--panel);transition:.18s;min-height:46px}
+.btn:hover{transform:translateY(-2px);border-color:#33425f;box-shadow:0 14px 30px -18px rgba(0,0,0,.6)}
+.btn.primary{background:var(--teal);color:#06120f;border-color:transparent}
+.btn.primary:hover{background:var(--teal2)}
+.btn svg{width:17px;height:17px;opacity:.9}
+.pip{display:inline-flex;align-items:center;gap:10px;margin-top:22px;padding:11px 14px;border-radius:10px;
+  border:1px solid var(--line);background:#0a1f1a;font-family:'JetBrains Mono',monospace;font-size:13.5px;color:#bfe9df;flex-wrap:wrap}
+.pip .dollar{color:var(--teal)}
+.copy{cursor:pointer;color:var(--faint);font-size:11px;border:1px solid var(--line);border-radius:7px;padding:6px 10px;min-height:32px;background:transparent;font-family:inherit}
+.copy:hover{color:var(--ink);border-color:#33425f}
+/* receipt */
+.receipt{border:1px solid var(--line);border-radius:18px;background:linear-gradient(180deg,rgba(18,25,40,.92),rgba(13,18,30,.92));
+  padding:20px;box-shadow:0 30px 70px -30px rgba(0,0,0,.8),var(--glow);backdrop-filter:blur(4px)}
+.receipt .rh{display:flex;align-items:center;gap:9px;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.receipt .rh .d{width:8px;height:8px;border-radius:50%;background:var(--teal);box-shadow:0 0 10px var(--teal);animation:pdot 2.2s ease-in-out infinite}
+@keyframes pdot{0%,100%{box-shadow:0 0 4px var(--teal)}50%{box-shadow:0 0 14px var(--teal)}}
+.receipt .asc{margin:16px 0 14px;padding:13px;border:1px dashed #294a44;border-radius:11px;background:#0a1f1a;
+  font-family:'JetBrains Mono',monospace;font-size:12px;color:#bfe9df;line-height:1.7}
+.receipt .asc b{color:var(--teal2)}
+.rrow{display:flex;align-items:center;gap:11px;padding:11px 12px;border-radius:11px;border:1px solid var(--line);margin-top:9px;font-size:13.5px;background:var(--panel);
+  opacity:0;transform:translateY(8px);transition:opacity .5s,transform .5s}
+.rrow.in{opacity:1;transform:none}
+.rrow .ic{width:24px;height:24px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-weight:700;flex:none}
+.rrow.ok .ic{background:#0f3a2c;color:#41e0a3} .rrow.ok b{color:#5fe0cc}
+.rrow.warn .ic{background:#3a330f;color:#f6c75a} .rrow.warn b{color:#f6c75a}
+.rrow.rose .ic{background:#3a1717;color:#ff8a8a} .rrow.rose b{color:#ff9d9d}
+.rrow span{color:var(--muted)}
+.receipt .foot{margin-top:14px;font-size:11.5px;color:var(--faint);text-align:center}
+
+/* stat strip */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:50px;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--panel);border-top:2px solid var(--teal)}
+.stat{padding:22px 20px;border-right:1px solid var(--line);transition:background .2s}
+.stat:hover{background:rgba(57,194,172,.06)}
+.stat:last-child{border-right:none}
+.stat .n{font-size:clamp(24px,2.4vw,30px);font-weight:800;letter-spacing:-.02em;font-family:Inter;font-variant-numeric:tabular-nums}
+.stat .l{font-size:12.5px;color:var(--muted);margin-top:3px}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.3,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* concept / figures */
+.concept{display:grid;grid-template-columns:1.05fr .95fr;gap:34px;align-items:center}
+.figcard{border:1px solid var(--line);border-radius:18px;background:linear-gradient(180deg,#0e1422,#0b101c);
+  padding:14px;box-shadow:0 30px 70px -34px rgba(0,0,0,.85),var(--glow)}
+.figcard img{width:100%;display:block;border-radius:8px;box-shadow:0 0 0 1px rgba(33,44,66,.5)}
+figcaption{font-size:12.5px;color:var(--muted);margin-top:12px;padding:0 4px}
+figcaption a{color:var(--teal);border-bottom:1px solid transparent}
+figcaption a:hover{border-bottom-color:var(--teal)}
+
+/* band */
+.band{background:linear-gradient(180deg,#0c1322,#0e1830);border-top:1px solid var(--line);border-bottom:1px solid var(--line);position:relative}
+.band::before{content:"";position:absolute;top:-1px;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(57,194,172,.5),transparent)}
+.band h2{font-size:clamp(26px,3.4vw,38px);max-width:18ch}
+
+/* table scroll wrapper */
+.tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:14px;margin-top:26px}
+
+/* capability table */
+.captable{width:100%;border-collapse:separate;border-spacing:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;font-size:14.5px;min-width:560px}
+.captable th,.captable td{padding:14px 16px;text-align:left;border-bottom:1px solid var(--line)}
+.captable thead th{background:var(--panel2);font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.captable th.sma{color:var(--teal)}
+.captable tbody tr{transition:background .15s}
+.captable tbody tr:hover{background:rgba(57,194,172,.045)}
+.captable td.c{text-align:center;font-weight:600;width:118px}
+.captable td.cap{color:#d4deee}
+.yes{color:var(--teal)} .no{color:var(--rose)} .partial{color:var(--amber)}
+.captable tr:last-child td{border-bottom:none}
+
+/* interactive results chart */
+.chartcard{border:1px solid var(--line);border-radius:18px;background:var(--panel);padding:22px 22px 16px;margin-top:26px;box-shadow:0 30px 70px -40px rgba(0,0,0,.8)}
+.chart-top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+.toggle{display:inline-flex;background:#0a0f1a;border:1px solid var(--line);border-radius:11px;padding:4px;gap:4px}
+.chiptab{border:none;background:transparent;color:var(--muted);font:inherit;font-size:13px;font-weight:600;padding:8px 13px;border-radius:8px;cursor:pointer;transition:.15s;min-height:38px}
+.chiptab.on{background:var(--teal);color:#06120f}
+.legend{display:flex;gap:16px;font-size:12.5px;color:var(--muted);flex-wrap:wrap}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.chart{margin-top:18px}
+.crow{display:grid;grid-template-columns:118px 1fr;gap:14px;align-items:center;margin:13px 0}
+.crow .clab{font-size:13.5px;color:#d4deee;font-weight:600}
+.bars{display:flex;flex-direction:column;gap:7px}
+.bwrap{position:relative;height:22px;background:#0a0f1a;border-radius:6px;overflow:hidden;border:1px solid var(--line)}
+.bfill{position:absolute;left:0;top:0;height:100%;width:0;border-radius:5px;transition:width 1s cubic-bezier(.2,.7,.3,1)}
+.bfill.sma{background:linear-gradient(90deg,var(--teal),var(--teal2))}
+.bfill.rag{background:#46566f}
+.bval{position:absolute;right:8px;top:50%;transform:translateY(-50%);font-size:11.5px;font-variant-numeric:tabular-nums;color:#eaf4f1;font-weight:600;opacity:0;transition:opacity .5s}
+.dchip{font-size:11.5px;font-weight:700;color:var(--teal);font-variant-numeric:tabular-nums;white-space:nowrap}
+.crow .clab small{display:block;color:var(--faint);font-weight:400;font-size:11px}
+.chart-note{font-size:12px;color:var(--faint);margin-top:14px}
+
+/* results table */
+.restable{width:100%;border-collapse:separate;border-spacing:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;font-size:14.5px;min-width:600px}
+.restable th,.restable td{padding:13px 15px;border-bottom:1px solid var(--line);text-align:center}
+.restable th:first-child,.restable td:first-child{text-align:left}
+.restable thead th{background:var(--panel2);font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:600}
+.restable td.delta{color:var(--teal);font-weight:700}
+.restable td.sma{font-weight:700}
+.restable tr:last-child td{border-bottom:none}
+.restable .dir{color:var(--amber);font-size:12px}
+.callouts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:26px}
+.callout{border:1px solid var(--line);border-radius:14px;padding:20px;background:var(--panel)}
+.callout .big{font-size:26px;font-weight:800;font-family:Inter;color:var(--teal);font-variant-numeric:tabular-nums}
+.callout .lab{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.45}
+.callout .lab b{color:var(--ink)}
+
+/* steps */
+.steps{display:grid;gap:14px;margin-top:8px}
+.step{display:grid;grid-template-columns:46px 1fr;gap:16px;padding:18px 20px;border:1px solid var(--line);border-radius:14px;background:var(--panel);transition:.2s}
+.step:hover{border-color:#2c3b57;box-shadow:var(--glow)}
+.step .num{width:40px;height:40px;border-radius:11px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;
+  font-family:'JetBrains Mono',monospace;color:var(--teal);font-weight:600;background:#0a1f1a}
+.step h3{font-size:18px;font-family:Inter;font-weight:700}
+.step p{margin:5px 0 0;color:var(--muted);font-size:14.5px}
+.step .params{margin-top:8px;display:flex;gap:8px;flex-wrap:wrap}
+.tag{font-family:'JetBrains Mono',monospace;font-size:12px;color:#bfe9df;background:#0a1f1a;border:1px solid #16433a;border-radius:7px;padding:3px 8px}
+
+/* honesty */
+.honest{border:1px solid #3a3320;border-radius:16px;background:linear-gradient(180deg,#16130b,#100d07);padding:28px}
+.honest h3{font-family:Inter;font-weight:700;font-size:20px;color:var(--amber)}
+
+/* demo */
+.demogrid{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
+.demogrid video,.demogrid img{width:100%;border-radius:14px;border:1px solid var(--line);display:block}
+.demonote{font-size:12.5px;color:var(--muted);margin-top:10px}
+
+/* ontologies */
+.ontgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:26px}
+.ont{border:1px solid var(--line);border-radius:12px;padding:15px 16px;background:var(--panel);transition:.18s}
+.ont:hover{border-color:#2c3b57;transform:translateY(-2px)}
+.ont .area{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--teal)}
+.ont .nm{font-weight:700;font-size:16px;margin-top:3px}
+.ont .ct{font-size:12.5px;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:4px}
+
+/* code + bibtex */
+pre.code{background:#0a0f1a;border:1px solid var(--line);border-radius:12px;padding:18px 20px;overflow:auto;
+  font-family:'JetBrains Mono',monospace;font-size:13.5px;color:#cdd9ee;line-height:1.7;margin-top:18px}
+pre.code .cm{color:var(--faint)} pre.code .kw{color:var(--teal2)} pre.code .st{color:var(--amber)}
+.bibhead{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.bib{background:#0a0f1a;border:1px solid var(--line);border-radius:12px;padding:18px 20px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:#bcc8de;white-space:pre;overflow:auto;line-height:1.6}
+footer{border-top:1px solid var(--line);padding:40px 0;color:var(--muted);font-size:13.5px}
+.footrow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+.footlinks{display:flex;gap:18px;flex-wrap:wrap}
+.footlinks a:hover{color:var(--ink)}
+
+/* ---- responsive ---- */
+@media(max-width:920px){
+  .herogrid{grid-template-columns:1fr;gap:34px}
+  .receipt{max-width:540px;margin-left:auto;margin-right:auto}
+}
+@media(max-width:860px){
+  .concept,.demogrid{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr 1fr}
+  .stat{border-bottom:1px solid var(--line)}
+  .stat:nth-child(2n){border-right:none}
+  .stat:nth-last-child(-n+2){border-bottom:none}
+  .callouts,.ontgrid{grid-template-columns:1fr}
+  .hamb{display:flex}
+  .navlinks{position:absolute;top:60px;right:14px;left:14px;flex-direction:column;align-items:stretch;gap:4px;
+    background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:10px;display:none;box-shadow:0 24px 50px -20px rgba(0,0,0,.7)}
+  .navlinks.open{display:flex}
+  .navlinks a{display:flex;padding:12px 13px;font-size:15px;min-height:46px}
+  .navlinks a.cta{justify-content:center;margin-top:4px}
+  .ontgrid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  section{padding:54px 0}
+  .hero{padding:74px 0 46px}
+  .crow{grid-template-columns:92px 1fr;gap:10px}
+  /* capability table -> stacked cards */
+  .captable{min-width:0;border:none;border-radius:0}
+  .captable thead{display:none}
+  .captable,.captable tbody,.captable tr,.captable td{display:block;width:100%}
+  .captable tr{border:1px solid var(--line);border-radius:13px;margin-bottom:12px;background:var(--panel);overflow:hidden}
+  .captable td{border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:14px;text-align:right}
+  .captable td.cap{display:block;text-align:left;font-weight:700;color:var(--ink);background:var(--panel2);font-size:15px}
+  .captable td.c{width:auto}
+  .captable td[data-label]::before{content:attr(data-label);color:var(--muted);font-weight:600;font-size:12.5px;text-align:left}
+  .captable tr:last-child td{border-bottom:1px solid var(--line)}
+  .captable td:last-child{border-bottom:none}
+  /* results table -> stacked cards */
+  .restable{min-width:0;border:none}
+  .restable thead{display:none}
+  .restable,.restable tbody,.restable tr,.restable td{display:block;width:100%}
+  .restable tr{border:1px solid var(--line);border-radius:13px;margin-bottom:12px;background:var(--panel);overflow:hidden}
+  .restable td{border-bottom:1px solid var(--line);display:flex;justify-content:space-between;text-align:right;padding:11px 15px}
+  .restable td:first-child{background:var(--panel2);font-weight:700;font-size:15px;text-align:left}
+  .restable td[data-label]::before{content:attr(data-label);color:var(--muted);font-weight:600;font-size:12.5px}
+  .restable td:last-child{border-bottom:none}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+  html{scroll-behavior:auto}
+  .reveal,.rrow{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<div id="progress" aria-hidden="true"></div>
+
+<nav id="nav">
+  <div class="navwrap">
+    <a class="brand" href="#top" aria-label="SMA-1 home">
+      <svg class="mk" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="5" r="2.4" fill="#39c2ac"/><circle cx="5" cy="18" r="2.4" fill="#5b8dff"/><circle cx="19" cy="18" r="2.4" fill="#5fe0cc"/><path d="M12 7.2v3.3M10.4 12.2 6.4 16M13.6 12.2 17.6 16" stroke="#39c2ac" stroke-width="1.4"/><circle cx="12" cy="12" r="1.7" fill="#e8b15a"/></svg>
+      SMA-1
+    </a>
+    <button class="hamb" id="hamb" aria-label="Menu" aria-expanded="false" aria-controls="navlinks"><span></span></button>
+    <div class="navlinks" id="navlinks">
+      <a href="#how">How it works</a>
+      <a href="#results">Results</a>
+      <a href="#demo">Demo</a>
+      <a href="#ontologies">Ontologies</a>
+      <a href="https://github.com/ayazkhan27/SMA-1" target="_blank" rel="noopener">GitHub</a>
+      <a href="#start" class="cta">pip install</a>
+    </div>
+  </div>
+</nav>
+
+<a id="top"></a>
+<header class="hero">
+  <canvas id="lattice" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="herogrid">
+     <div>
+      <div class="eyebrow reveal">Structure-Mapping Agentic Memory · v1.2.0 · Apache-2.0</div>
+      <h1 class="reveal">Turn a generalist LLM into a <em>verifiable specialist</em>.</h1>
+      <p class="lead reveal">SMA-1 is a retrieval <i>memory</i> that grounds a language model in a curated, expert-maintained ontology. It retrieves by <b style="color:#dbe6f6">logical structure</b>, the subsumption and higher-order relations that vector RAG and knowledge graphs discard. Hold the model and the prompt fixed, swap only the memory, and the same model becomes more accurate, more selective, and structurally attributable.</p>
+      <div class="byline reveal"><b>Ayaz Khan</b> &nbsp;·&nbsp; open-source engine &nbsp;·&nbsp; paper intended for <i>Nature Machine Intelligence</i></div>
+      <div class="btns reveal">
+        <a class="btn primary" href="https://github.com/ayazkhan27/SMA-1" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.5 2 2 6.6 2 12.3c0 4.5 2.9 8.3 6.9 9.7.5.1.7-.2.7-.5v-1.7c-2.8.6-3.4-1.4-3.4-1.4-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.6 2.4 1.1 3 .9.1-.7.4-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.7 1a9.3 9.3 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.3 4.7-4.6 5 .4.3.7.9.7 1.9v2.8c0 .3.2.6.7.5 4-1.4 6.9-5.2 6.9-9.7C22 6.6 17.5 2 12 2Z"/></svg>
+          View on GitHub</a>
+        <a class="btn" href="https://huggingface.co/spaces/zephyr27/SMA-1-demo" target="_blank" rel="noopener">Live demo &rarr;</a>
+      </div>
+      <div class="pip reveal"><span class="dollar">$</span> pip install structuremappingmemory <button class="copy" data-copy="pip install structuremappingmemory" aria-label="Copy install command">copy</button></div>
+     </div>
+     <div class="receipt reveal" id="receipt" aria-hidden="true">
+       <div class="rh"><span class="d"></span> structural receipt</div>
+       <div class="asc">query case<br>&nbsp;&nbsp;<b>└─ is-a ascension</b> (ρ<sup>d</sup>) &rarr; matched concept<br>&nbsp;&nbsp;<b>└─ rarity-weighted</b> (&minus;log&#8322; p)</div>
+       <div class="rrow ok"><span class="ic">✓</span><div><b>cite</b> <span>a checkable structural match</span></div></div>
+       <div class="rrow warn"><span class="ic">⊘</span><div><b>abstain</b> <span>when nothing grounds the case</span></div></div>
+       <div class="rrow rose"><span class="ic">!</span><div><b>flag novelty</b> <span>when expectation is violated</span></div></div>
+       <div class="foot">every result carries one of these, by construction</div>
+     </div>
+    </div>
+
+    <div class="stats reveal">
+      <div class="stat"><div class="n" data-count="11">11</div><div class="l">curated ontologies mounted</div></div>
+      <div class="stat"><div class="n" data-count="594000">594,000</div><div class="l">concepts behind one core</div></div>
+      <div class="stat"><div class="n" data-count="7">7</div><div class="l">knowledge areas</div></div>
+      <div class="stat"><div class="n" data-count="5">5</div><div class="l">evaluation domains</div></div>
+    </div>
+  </div>
+</header>
+
+<section id="concept">
+  <div class="wrap concept">
+    <div class="reveal">
+      <div class="sec-h">The idea</div>
+      <h2 class="title">Every answer is a structural alignment on the ontology lattice.</h2>
+      <p class="lead">A generalist LLM is fluent and broad but unreliable on the rare tail. Bolt on a structure-mapping memory over a curated ontology, with is-a ascension and rarity weighting, and the same model becomes a reliable, attributable specialist. It <b class="accent">cites a structural receipt</b>, <b class="accent">abstains when ungrounded</b>, and <b class="accent">flags novelty</b>. These are capabilities flat retrievers structurally lack.</p>
+    </div>
+    <figure class="figcard reveal">
+      <img src="../assets/img/graphical_abstract.png" alt="A generalist LLM plus an SMA structure-mapping memory yields a reliable, attributable specialist that cites, abstains, and flags novelty." decoding="async" />
+      <figcaption>Graphical abstract, from the SMA-1 manuscript.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="band" id="thesis">
+  <div class="wrap reveal">
+    <div class="sec-h">The thesis</div>
+    <h2>Hold the model and the prompt fixed. Swap only the memory.</h2>
+    <p class="lead" style="max-width:840px">On a memory-swap benchmark where only the retriever varies, the SMA-grounded agent beats a strong RAG and knowledge-graph baseline suite on the rare, long-tail slice that matters most. It does so while citing structurally, abstaining when nothing grounds, and detecting genuinely novel inputs. The advantage is carried by bounded is-a subsumption plus information-content weighting, and it is reported honestly to vanish where no discriminative ontology applies.</p>
+  </div>
+</section>
+
+<section id="why">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="sec-h">Why structure</div>
+      <h2 class="title">Vector RAG averages rarity away. Graphs traverse adjacency.</h2>
+      <p class="lead">Embedding retrieval works when the answer is frequent and lexically similar to the query, and it fails on the cases that define expertise: the rare presentation, the cross-vocabulary analogy, the long-tail entity. Knowledge graphs add typed edges but traverse them by path adjacency. Both discard the two structures an expert reasons with most: the <b style="color:#dbe6f6">subsumption lattice</b> (what generalizes to what) and <b style="color:#dbe6f6">higher-order relations</b> (relations whose arguments are themselves relations).</p>
+    </div>
+    <div class="tscroll reveal">
+    <table class="captable">
+      <caption class="visually-hidden">Capability comparison of SMA, Vector RAG, and Knowledge graph</caption>
+      <thead><tr><th scope="col">Capability</th><th scope="col" class="c sma">SMA</th><th scope="col" class="c">Vector RAG</th><th scope="col" class="c">Knowledge graph</th></tr></thead>
+      <tbody>
+        <tr><td class="cap">Rare / long-tail retrieval, rarity-weighted</td><td class="c yes" data-label="SMA"><span class="visually-hidden">yes</span>✓</td><td class="c no" data-label="Vector RAG">✗ averages rarity away</td><td class="c no" data-label="Knowledge graph">✗</td></tr>
+        <tr><td class="cap">Cross-vocabulary, zero-lexical-overlap match</td><td class="c yes" data-label="SMA">✓</td><td class="c no" data-label="Vector RAG">✗</td><td class="c partial" data-label="Knowledge graph">partial</td></tr>
+        <tr><td class="cap">Subsumption (is-a) reasoning</td><td class="c yes" data-label="SMA">✓</td><td class="c no" data-label="Vector RAG">✗</td><td class="c no" data-label="Knowledge graph">✗ no ascension</td></tr>
+        <tr><td class="cap">Structural citation, checkable provenance</td><td class="c yes" data-label="SMA">✓</td><td class="c no" data-label="Vector RAG">✗</td><td class="c partial" data-label="Knowledge graph">partial</td></tr>
+        <tr><td class="cap">Calibrated abstention</td><td class="c yes" data-label="SMA">✓</td><td class="c no" data-label="Vector RAG">✗ cosine always high</td><td class="c no" data-label="Knowledge graph">✗</td></tr>
+        <tr><td class="cap">Novelty / expectation-violation flag</td><td class="c yes" data-label="SMA">✓</td><td class="c no" data-label="Vector RAG">✗</td><td class="c partial" data-label="Knowledge graph">partial</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</section>
+
+<section id="how" class="band">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="sec-h">How it works</div>
+      <h2 class="title">A universal loader, a certified matcher, an honest decision.</h2>
+      <p class="lead">One loader ingests any open ontology, and a registry and router select the right one per query. Every dial below is <b style="color:#dbe6f6">frozen at pre-registration</b>.</p>
+    </div>
+    <div class="concept" style="margin-top:30px;align-items:start">
+      <figure class="figcard reveal">
+        <img src="../assets/img/fig1_overview.png" alt="SMA system overview: an adapter mounts ontologies, then a MAC to FAC to structure-mapping matcher, then a decision of cite, abstain, or novelty, across five domains." loading="lazy" decoding="async" />
+        <figcaption>System overview: adapter, then MAC/FAC, then structure-mapping, then cite, abstain, or novelty. Manuscript Figure 1.</figcaption>
+      </figure>
+      <div class="steps reveal">
+        <div class="step"><div class="num">1</div><div>
+          <h3>Mount the ontology as an ascension lattice</h3>
+          <p>A universal loader parses any OBO, OWL, STIX, CPC, or MITRE-XML source into a normalized graph and mounts its is-a hierarchy as an ascension lattice, along which specific terms match general ones with a distance penalty.</p>
+          <div class="params"><span class="tag">δ = 2 hops</span><span class="tag">ρ = 0.95 penalty</span></div>
+        </div></div>
+        <div class="step"><div class="num">2</div><div>
+          <h3>Encode each observation as a functor</h3>
+          <p>Each case becomes a functor over a subject, and the ontology's typed relations become higher-order statements that structure-mapping can reward.</p>
+        </div></div>
+        <div class="step"><div class="num">3</div><div>
+          <h3>Retrieve with certified MAC/FAC</h3>
+          <p>An admissible bound (MAC) screens candidates without ever overestimating the true score, then best-first alignment with early stopping (FAC) returns a certified top-k.</p>
+        </div></div>
+        <div class="step"><div class="num">4</div><div>
+          <h3>Score by structure and rarity</h3>
+          <p>Structure-mapping (SME) rewards systematicity through trickle-down, weighted by information content so the rare but decisive term dominates. Scores are scale-free normalized.</p>
+          <div class="params"><span class="tag">γ = 0.25 trickle-down</span><span class="tag">σ₀ = &minus;log₂ p</span><span class="tag">KT-smoothed</span></div>
+        </div></div>
+        <div class="step"><div class="num">5</div><div>
+          <h3>Decide: cite, abstain, or flag novelty</h3>
+          <p>A calibrated gate on the raw structural score cites the structural receipt or abstains. A SAGE expectation-violation score (1 minus the best match) flags genuinely novel inputs.</p>
+          <div class="params"><span class="tag">cite-or-abstain</span><span class="tag">novelty ≥ 0.5</span></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="results">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="sec-h">Results, honest</div>
+      <h2 class="title">Beats enterprise RAG and KG on the slice that matters.</h2>
+      <p class="lead">Memory-swap benchmark, only the retriever varies. Baselines are BM25, BGE dense, hybrid RRF, hybrid plus cross-encoder reranking, and HippoRAG. Use the toggle to switch between the rare-slice retrieval scores and the end-to-end, LLM-in-the-loop run.</p>
+    </div>
+
+    <div class="chartcard reveal" id="chartcard">
+      <div class="chart-top">
+        <div class="toggle" role="tablist" aria-label="Result view">
+          <button class="chiptab on" data-view="tail" role="tab" aria-selected="true">Retrieval: tail top-5</button>
+          <button class="chiptab" data-view="e2e" role="tab" aria-selected="false">End-to-end (medicine)</button>
+        </div>
+        <div class="legend" id="legend"></div>
+      </div>
+      <div class="chart" id="chart"></div>
+      <div class="chart-note" id="chartnote"></div>
+    </div>
+
+    <div class="tscroll reveal">
+    <table class="restable">
+      <caption class="visually-hidden">Tail top-5 retrieval accuracy by domain, SMA versus best RAG</caption>
+      <thead><tr><th scope="col">Domain</th><th scope="col">SMA tail top-5</th><th scope="col">best RAG</th><th scope="col">Δ tail top-5</th><th scope="col">Cliff's δ</th><th scope="col">Holm-significant</th></tr></thead>
+      <tbody>
+        <tr><td>Medicine (HPO / MONDO)</td><td class="sma" data-label="SMA">0.949</td><td data-label="best RAG">0.606</td><td class="delta" data-label="Δ">+0.343</td><td data-label="Cliff's δ">0.333</td><td data-label="Holm" class="yes">yes</td></tr>
+        <tr><td>Finance (US-GAAP)</td><td class="sma" data-label="SMA">0.418</td><td data-label="best RAG">0.231</td><td class="delta" data-label="Δ">+0.187</td><td data-label="Cliff's δ">0.167</td><td data-label="Holm" class="yes">yes</td></tr>
+        <tr><td>Genomics (GO)</td><td class="sma" data-label="SMA">0.849</td><td data-label="best RAG">0.682</td><td class="delta" data-label="Δ">+0.167</td><td data-label="Cliff's δ">0.156</td><td data-label="Holm" class="yes">yes</td></tr>
+        <tr><td>Legal (CPC, all-query)</td><td class="sma" data-label="SMA">0.941</td><td data-label="best RAG">0.870</td><td class="delta" data-label="Δ">+0.071</td><td data-label="Cliff's δ">0.064</td><td data-label="Holm" class="yes">yes</td></tr>
+        <tr><td>Cyber (ATT&amp;CK)</td><td class="sma" data-label="SMA">0.766</td><td data-label="best RAG">0.749</td><td class="delta" data-label="Δ">+0.017</td><td data-label="Cliff's δ">0.073</td><td data-label="Holm" class="dir">directional*</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="faint" style="font-size:12.5px;margin-top:10px">*Cyber survives Holm across domains but not a conservative Bonferroni-over-baselines selection correction (p = 0.035 to 0.17), so it is reported as directional.</p>
+
+    <div class="callouts reveal">
+      <div class="callout"><div class="big" data-count="0.342" data-dec="3">0.342</div><div class="lab">End-to-end medicine accuracy, LLM-in-the-loop, versus <b>0.100</b> dense RAG and <b>0.017</b> closed-book. Same model, memory swapped.</div></div>
+      <div class="callout"><div class="big" data-count="0.79" data-dec="2">0.79</div><div class="lab">Grounding AUROC. SMA cleanly separates known from unknown entities, where vector RAG is near-chance (<b>0.55</b>).</div></div>
+      <div class="callout"><div class="big" data-count="18" data-suffix="×">18×</div><div class="lab">Better-calibrated abstention. Risk-coverage AURC near <b>0.017</b> (medicine) versus <b>0.26 to 0.44</b> for the best RAG. Novelty F1 near <b>0.18</b> where every pure-RAG baseline scores <b>0.000</b>.</div></div>
+    </div>
+
+    <div class="concept reveal" style="margin-top:30px">
+      <figure class="figcard"><img src="../assets/img/figure5_trustworthy.png" alt="End-to-end trustworthy-QA axes: accuracy, citation faithfulness, abstain recall, grounding AUROC, novelty F1, and known versus unknown separation." loading="lazy" decoding="async" /><figcaption>Trustworthy QA, end-to-end. Manuscript Figure 5.</figcaption></figure>
+      <figure class="figcard"><img src="../assets/img/fig3_capabilities.png" alt="Three core capabilities compared to dense RAG: citation faithfulness, grounding AUROC, and novelty F1." loading="lazy" decoding="async" /><figcaption>The three capabilities flat retrievers lack. Manuscript Figure 3.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section id="boundary" class="band">
+  <div class="wrap">
+    <div class="concept" style="align-items:start">
+      <div class="honest reveal">
+        <div class="sec-h" style="color:var(--amber)">Reported, not hidden</div>
+        <h3>Where it does not help.</h3>
+        <p class="muted" style="margin-top:12px">SMA <b style="color:#e9eff9">ties</b> a bespoke ontology information-content oracle (Phenomizer) rather than beating it. On <b style="color:#e9eff9">flat single-record tabular prediction</b>, such as hospital readmission, credit-card fraud, and the Elliptic Bitcoin graph-fraud probe, there is no discriminative subsumption ontology to mount, so SMA reaches only parity and a flat logistic-regression baseline wins. On free-form conversational recall with no ontology, the structure-mapping encoder degenerates to baseline. <b style="color:#e9eff9">The advantage is specific to structure</b>, and these nulls are reported to delimit it.</p>
+      </div>
+      <figure class="figcard reveal"><img src="../assets/img/figure4_boundary_data.png" alt="Boundary chart showing parity with the ontology oracle and honest null results on flat tabular prediction." loading="lazy" decoding="async" /><figcaption>The honest boundary: parity and nulls reported alongside the wins.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section id="demo">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="sec-h">See it run</div>
+      <h2 class="title">Cite-or-abstain, live.</h2>
+      <p class="lead">On the left, the process tour: how a case is mounted, matched, and grounded. On the right, a grounded cyber case study, a generalist LLM plus SMA over the MITRE and CVE ontologies, streaming answers live, grounding when an identifier exists and abstaining when none does.</p>
+    </div>
+    <div class="demogrid reveal" style="margin-top:26px">
+      <div>
+        <img src="../assets/img/sma_tour.gif" alt="Animated tour of SMA retrieval and grounding." loading="lazy" decoding="async" />
+        <div class="demonote">Process tour: how a case is mounted, matched, and grounded.</div>
+      </div>
+      <div>
+        <video src="../assets/video/demo_live.mp4" poster="../assets/img/demo_poster.png" controls muted loop playsinline preload="none"></video>
+        <div class="demonote">Live throughput on a cyber case study. Illustrative; the pre-registered benchmarks are in the Results section.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ontologies" class="band">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="sec-h">Coverage</div>
+      <h2 class="title">Eleven ontologies, one shared core.</h2>
+      <p class="lead">About 594,000 concepts across seven knowledge areas behind one retrieval core plus thin per-domain adapters, and a 271-ontology discovery catalog you can mount on demand.</p>
+    </div>
+    <div class="ontgrid reveal">
+      <div class="ont"><div class="area">Medicine</div><div class="nm">HPO</div><div class="ct">19,810 terms</div></div>
+      <div class="ont"><div class="area">Medicine</div><div class="nm">MONDO</div><div class="ct">56,273 terms</div></div>
+      <div class="ont"><div class="area">Anatomy</div><div class="nm">Uberon</div><div class="ct">14,973 terms</div></div>
+      <div class="ont"><div class="area">Biology</div><div class="nm">GO</div><div class="ct">38,263 terms</div></div>
+      <div class="ont"><div class="area">Chemistry</div><div class="nm">ChEBI</div><div class="ct">205,592 terms</div></div>
+      <div class="ont"><div class="area">Cyber</div><div class="nm">MITRE ATT&amp;CK</div><div class="ct">712 terms</div></div>
+      <div class="ont"><div class="area">Cyber</div><div class="nm">MITRE CAPEC</div><div class="ct">558 terms</div></div>
+      <div class="ont"><div class="area">Cyber</div><div class="nm">MITRE CWE</div><div class="ct">944 terms</div></div>
+      <div class="ont"><div class="area">Legal / IP</div><div class="nm">CPC</div><div class="ct">254,274 terms</div></div>
+      <div class="ont"><div class="area">Legal</div><div class="nm">LKIF-core</div><div class="ct">153 terms</div></div>
+      <div class="ont"><div class="area">Finance</div><div class="nm">FIBO</div><div class="ct">2,948 terms</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="start">
+  <div class="wrap concept" style="align-items:start">
+    <div class="reveal">
+      <div class="sec-h">Get started</div>
+      <h2 class="title">Mount an ontology. Index your cases. Retrieve.</h2>
+      <p class="lead">SMA-1 ships as a Python library and an MCP server. Point the universal loader at any open OBO, OWL, STIX, or CPC ontology, index your observations, and retrieve by structure, with a citation or an abstention on every result.</p>
+      <div class="btns" style="margin-top:24px">
+        <a class="btn primary" href="https://github.com/ayazkhan27/SMA-1" target="_blank" rel="noopener">View on GitHub</a>
+        <a class="btn" href="https://pypi.org/project/structuremappingmemory/" target="_blank" rel="noopener">PyPI package</a>
+        <a class="btn" href="https://huggingface.co/spaces/zephyr27/SMA-1-demo" target="_blank" rel="noopener">Try the demo</a>
+      </div>
+    </div>
+    <div class="reveal">
+<pre class="code"><span class="cm"># install</span>
+$ pip install structuremappingmemory
+
+<span class="cm"># grounded retrieval in a few lines</span>
+<span class="kw">from</span> sma.mcp <span class="kw">import</span> SmaEngine
+e = SmaEngine()
+e.mount_from_catalog(<span class="st">"hpo"</span>)        <span class="cm"># any OBO/OWL/STIX/CPC</span>
+e.index_cases(<span class="st">"hpo"</span>, cases)
+r = e.retrieve(<span class="st">"hpo"</span>, term_ids=obs, k=<span class="st">5</span>)
+<span class="cm"># returns cited structural matches, or abstain=True</span></pre>
+    </div>
+  </div>
+</section>
+
+<section id="bibtex" class="band">
+  <div class="wrap reveal">
+    <div class="sec-h">Cite</div>
+    <div class="bibhead"><h2 class="title" style="margin:0">BibTeX</h2><button class="copy" id="bibcopy" aria-label="Copy BibTeX">copy</button></div>
+<div class="bib" id="bibtext">@article{khan2026sma,
+  title   = {Structure-Mapping Agentic Memory for Trustworthy Specialist Reasoning},
+  author  = {Khan, Ayaz},
+  year    = {2026},
+  journal = {Nature Machine Intelligence (intended)},
+  note    = {Open-source engine: github.com/ayazkhan27/SMA-1}
+}</div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footrow">
+    <div><b style="color:#e9eff9">SMA-1</b>, Structure-Mapping Agentic Memory &nbsp;·&nbsp; © 2026 Ayaz Khan &nbsp;·&nbsp; Apache-2.0</div>
+    <div class="footlinks">
+      <a href="https://github.com/ayazkhan27/SMA-1" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://pypi.org/project/structuremappingmemory/" target="_blank" rel="noopener">PyPI</a>
+      <a href="https://huggingface.co/spaces/zephyr27/SMA-1-demo" target="_blank" rel="noopener">Demo</a>
+      <a href="/">Ayaz Khan, home</a>
+      <a href="#top">Top ↑</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const RM = matchMedia('(prefers-reduced-motion:reduce)').matches;
+// nav shadow + progress
+const nav=document.getElementById('nav'), prog=document.getElementById('progress');
+function onScroll(){
+  nav.classList.toggle('scrolled',scrollY>20);
+  const h=document.documentElement.scrollHeight-innerHeight;
+  prog.style.width=(h>0?(scrollY/h*100):0)+'%';
+}
+addEventListener('scroll',onScroll,{passive:true}); onScroll();
+// mobile menu
+const hamb=document.getElementById('hamb'),navlinks=document.getElementById('navlinks');
+if(hamb){hamb.addEventListener('click',()=>{const o=navlinks.classList.toggle('open');hamb.setAttribute('aria-expanded',o);});
+  navlinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{navlinks.classList.remove('open');hamb.setAttribute('aria-expanded','false');}));}
+// copy buttons
+document.querySelectorAll('.copy[data-copy]').forEach(b=>b.addEventListener('click',()=>{
+  navigator.clipboard.writeText(b.dataset.copy);const t=b.textContent;b.textContent='copied';setTimeout(()=>b.textContent=t,1200);}));
+const bibcopy=document.getElementById('bibcopy');
+if(bibcopy)bibcopy.addEventListener('click',()=>{navigator.clipboard.writeText(document.getElementById('bibtext').textContent);
+  const t=bibcopy.textContent;bibcopy.textContent='copied';setTimeout(()=>bibcopy.textContent=t,1200);});
+// reveal
+const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+// receipt rows stagger
+const rcpt=document.getElementById('receipt');
+if(rcpt){const rio=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){
+  [...rcpt.querySelectorAll('.rrow')].forEach((r,i)=>setTimeout(()=>r.classList.add('in'),RM?0:250+i*180));rio.disconnect();}}),{threshold:.3});
+  rio.observe(rcpt);}
+// scroll-spy
+const navmap={}; document.querySelectorAll('.navlinks a[href^="#"]').forEach(a=>navmap[a.getAttribute('href').slice(1)]=a);
+const spy=new IntersectionObserver((es)=>es.forEach(e=>{const a=navmap[e.target.id];if(a&&e.isIntersecting){
+  Object.values(navmap).forEach(x=>x.classList.remove('active'));a.classList.add('active');}}),{rootMargin:'-45% 0px -50% 0px'});
+['how','results','demo','ontologies'].forEach(id=>{const el=document.getElementById(id);if(el)spy.observe(el);});
+// count-up
+function fmt(n,dec,suf){let s=dec?n.toFixed(dec):(n>=1000?Math.round(n).toLocaleString():Math.round(n).toString());return s+(suf||'');}
+function animateCount(el){const target=+el.dataset.count;if(isNaN(target))return;const dec=+(el.dataset.dec||0),suf=el.dataset.suffix||'';
+  if(RM){el.textContent=fmt(target,dec,suf);return;}
+  const dur=1100,t0=performance.now();
+  function tick(t){const p=Math.min((t-t0)/dur,1);el.textContent=fmt(target*(1-Math.pow(1-p,3)),dec,suf);if(p<1)requestAnimationFrame(tick);}
+  requestAnimationFrame(tick);}
+const cio=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){animateCount(e.target);cio.unobserve(e.target);}}),{threshold:.6});
+document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
+
+// ===== interactive results chart (verified numbers from the manuscript) =====
+const VIEWS={
+  tail:{ scale:1.0, series:['sma','rag'],
+    note:'Tail top-5 retrieval accuracy on the rare / long-tail slice. Bars scale to 1.0. Δ is SMA minus best RAG.',
+    rows:[
+      {k:'Medicine',sub:'HPO / MONDO',sma:0.949,rag:0.606,d:'+0.343'},
+      {k:'Genomics',sub:'GO',sma:0.849,rag:0.682,d:'+0.167'},
+      {k:'Legal',sub:'CPC',sma:0.941,rag:0.870,d:'+0.071'},
+      {k:'Cyber',sub:'ATT&CK',sma:0.766,rag:0.749,d:'+0.017'},
+      {k:'Finance',sub:'US-GAAP',sma:0.418,rag:0.231,d:'+0.187'},
+    ]},
+  e2e:{ scale:0.4, series:['one'],
+    note:'End-to-end answer accuracy, medicine, LLM-in-the-loop. Same model and prompt, memory swapped. Bars scale to 0.4.',
+    rows:[
+      {k:'+ SMA-1',sub:'grounded',one:0.342,d:''},
+      {k:'+ dense RAG',sub:'embedding',one:0.100,d:''},
+      {k:'closed-book',sub:'no memory',one:0.017,d:''},
+    ]}
+};
+const LEG={tail:[['sma','SMA'],['rag','best RAG']],e2e:[['sma','accuracy']]};
+const chart=document.getElementById('chart'),legend=document.getElementById('legend'),chartnote=document.getElementById('chartnote');
+const colorFor=s=>s==='rag'?'rag':'sma';
+function renderChart(view,animate){
+  const V=VIEWS[view]; chart.innerHTML=''; chartnote.textContent=V.note;
+  legend.innerHTML=LEG[view].map(([c,l])=>`<span><i style="background:${c==='rag'?'#46566f':'var(--teal)'}"></i>${l}</span>`).join('');
+  V.rows.forEach(r=>{
+    const row=document.createElement('div'); row.className='crow';
+    const lab=document.createElement('div'); lab.className='clab'; lab.innerHTML=r.k+(r.sub?`<small>${r.sub}</small>`:'');
+    const bars=document.createElement('div'); bars.className='bars';
+    const keys = view==='e2e'?[['one','sma',r.one]]:[['sma','sma',r.sma],['rag','rag',r.rag]];
+    keys.forEach(([key,cls,val])=>{
+      const w=document.createElement('div'); w.className='bwrap';
+      const f=document.createElement('div'); f.className='bfill '+colorFor(cls);
+      const v=document.createElement('div'); v.className='bval'; v.textContent=val.toFixed(3);
+      w.appendChild(f); w.appendChild(v); bars.appendChild(w);
+      const pct=Math.min(val/V.scale*100,100);
+      if(animate&&!RM){requestAnimationFrame(()=>{setTimeout(()=>{f.style.width=pct+'%';v.style.opacity=1;},60);});}
+      else{f.style.width=pct+'%';v.style.opacity=1;}
+    });
+    if(r.d){const dc=document.createElement('div');dc.className='dchip';dc.textContent='Δ '+r.d;bars.appendChild(dc);}
+    row.appendChild(lab); row.appendChild(bars); chart.appendChild(row);
+  });
+}
+let chartShown=false;
+const chartIO=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting&&!chartShown){chartShown=true;renderChart('tail',true);}}),{threshold:.25});
+chartIO.observe(document.getElementById('chartcard'));
+renderChart('tail',false);  // initial static (in case already in view / no-JS-anim)
+document.querySelectorAll('.chiptab').forEach(t=>t.addEventListener('click',()=>{
+  document.querySelectorAll('.chiptab').forEach(x=>{x.classList.remove('on');x.setAttribute('aria-selected','false');});
+  t.classList.add('on');t.setAttribute('aria-selected','true');renderChart(t.dataset.view,true);}));
+
+// ===== hero lattice (pauses off-hero and when tab hidden) =====
+(function(){
+  const c=document.getElementById('lattice'); if(!c||RM) return;
+  const ctx=c.getContext('2d'); let W,H,nodes=[],dpr=Math.min(devicePixelRatio||1,2),running=true,raf=0;
+  function resize(){const r=c.parentElement.getBoundingClientRect();W=c.width=r.width*dpr;H=c.height=r.height*dpr;build();}
+  function build(){nodes=[];const cols=Math.max(7,Math.floor(W/dpr/150)),tiers=4;
+    for(let t=0;t<tiers;t++){const y=H*(0.18+0.64*t/(tiers-1)),n=Math.max(3,cols-t);
+      for(let i=0;i<n;i++){const x=W*((i+0.5)/n)+(Math.sin(i*1.7+t)*22*dpr);
+        nodes.push({x,y,bx:x,by:y,t,ph:i*0.9+t,r:(t===0?3.4:2.4)*dpr});}}}
+  resize(); addEventListener('resize',resize);
+  function frame(time){
+    if(!running){return;}
+    ctx.clearRect(0,0,W,H);const tt=time*0.0006;
+    for(const nd of nodes){nd.x=nd.bx+Math.sin(tt+nd.ph)*10*dpr;nd.y=nd.by+Math.cos(tt*0.8+nd.ph)*7*dpr;}
+    ctx.lineWidth=1*dpr;
+    for(const nd of nodes){if(nd.t===0)continue;
+      const parents=nodes.filter(p=>p.t===nd.t-1).sort((a,b)=>Math.abs(a.x-nd.x)-Math.abs(b.x-nd.x)).slice(0,2);
+      for(const p of parents){const d=Math.hypot(p.x-nd.x,p.y-nd.y),a=Math.max(0,0.34-d/(W*0.9));
+        ctx.strokeStyle='rgba(57,194,172,'+a.toFixed(3)+')';ctx.beginPath();ctx.moveTo(nd.x,nd.y);ctx.lineTo(p.x,p.y);ctx.stroke();}}
+    for(const nd of nodes){const pulse=0.5+0.5*Math.sin(tt*2+nd.ph);
+      const col=nd.t===0?'95,224,204':(nd.t===3?'91,141,255':'57,194,172');
+      ctx.fillStyle='rgba('+col+','+(0.35+0.4*pulse).toFixed(2)+')';ctx.beginPath();ctx.arc(nd.x,nd.y,nd.r,0,6.283);ctx.fill();
+      ctx.fillStyle='rgba('+col+',0.07)';ctx.beginPath();ctx.arc(nd.x,nd.y,nd.r*4,0,6.283);ctx.fill();}
+    raf=requestAnimationFrame(frame);
+  }
+  function start(){if(!running){running=true;raf=requestAnimationFrame(frame);}}
+  function stop(){running=false;cancelAnimationFrame(raf);}
+  raf=requestAnimationFrame(frame);
+  document.addEventListener('visibilitychange',()=>document.hidden?stop():start());
+  const hio=new IntersectionObserver((es)=>es.forEach(e=>e.isIntersecting?start():stop()),{threshold:0});
+  hio.observe(c);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ayaz Khan, statistician and data scientist</title>
+<meta name="description" content="Ayaz Khan is a statistician and data scientist in New York. Columbia M.A. Statistics (Dec 2026), NSF Graduate Research Fellow. Available January 2027; U.S. citizen, no sponsorship needed.">
+<meta name="author" content="Ayaz Khan">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#0e1012">
+<link rel="canonical" href="https://ayazkhan27.github.io/">
+<meta property="og:type" content="profile">
+<meta property="og:site_name" content="Ayaz Khan">
+<meta property="og:url" content="https://ayazkhan27.github.io/">
+<meta property="og:title" content="Ayaz Khan, statistician and data scientist">
+<meta property="og:description" content="Measured, not assumed. Columbia M.A. Statistics, NSF Graduate Research Fellow. Available January 2027, U.S. citizen, no sponsorship needed.">
+<meta property="og:image" content="https://ayazkhan27.github.io/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Ayaz Khan, statistician and data scientist, beside Muybridge's galloping horse.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ayaz Khan, statistician and data scientist">
+<meta name="twitter:description" content="Measured, not assumed. Available January 2027, U.S. citizen, no sponsorship needed.">
+<meta name="twitter:image" content="https://ayazkhan27.github.io/assets/og.png">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/afficher-bold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/alphazet-light.woff2" as="font" type="font/woff2" crossorigin>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Ayaz Khan","jobTitle":"Statistician and data scientist","email":"mailto:aak2259@columbia.edu","telephone":"+1-917-943-3853","address":{"@type":"PostalAddress","addressLocality":"New York","addressRegion":"NY","addressCountry":"US"},"alumniOf":[{"@type":"CollegeOrUniversity","name":"Columbia University"},{"@type":"CollegeOrUniversity","name":"Hunter College, City University of New York"}],"sameAs":["https://www.linkedin.com/in/ayazkhan27","https://github.com/ayazkhan27","https://orcid.org/0009-0008-5695-4934"]}</script>
+<style>
+/* Hallmark · macrostructure: custom (bespoke "Plate": contact-sheet hero, stat-led body) · tone: austere/technical · anchor hue: 250 (ink blue)
+ * theme: custom · vibe: "albumen print, ruled track, measured ink" · display LT Afficher Neue + text Alphazet
+ * axes: dark-hero/light-body · high-contrast-serif · cool
+ * Hallmark · pre-emit critique: P5 H4 E4 S5 R4 V5
+ */
+@font-face{font-family:"Afficher";src:url(assets/fonts/afficher-bold.woff2) format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"Alphazet";src:url(assets/fonts/alphazet-light.woff2) format("woff2");font-weight:300;font-display:swap}
+@font-face{font-family:"Alphazet";src:url(assets/fonts/alphazet-semibold.woff2) format("woff2");font-weight:600;font-display:swap}
+
+:root{
+  --font-display:"Afficher","Didot","Bodoni 72","Bodoni MT",Georgia,serif;
+  --font-text:"Alphazet","Avenir Next","Segoe UI",system-ui,sans-serif;
+  /* page, light */
+  --color-bg:#f6f6f4; --color-surface:#ebebe7; --color-ink:#1b1d1f; --color-muted:#50555a;
+  --color-accent:#035397; --color-on-accent:#fbfbf9;
+  --color-mark:#035397; --color-context:#7b8188;
+  /* the hero band is the plate's black in both modes */
+  --color-band:#0e1012; --color-band-ink:#ecebe6; --color-band-muted:#a7abaf;
+  --color-band-lit:#f8f8f5; --color-air:#ffd7a8; --color-control-edge:#6d7278;
+  --color-plate:#d6d5cf; --color-plate-ink:#15171a; --color-plate-rule:#b3b2ab;
+  --color-focus:#2f8cf0;
+  --text-display:clamp(3.5rem,11vw,10.5rem);
+  --text-figure:clamp(3.25rem,8.4vw,8rem);
+  --text-h2:clamp(1.75rem,3.3vw,2.75rem);
+  --text-body:1.125rem;
+  --text-small:0.9375rem;
+  --space-xs:.5rem; --space-sm:1rem; --space-md:1.5rem; --space-lg:2.5rem; --space-xl:4rem; --space-2xl:clamp(5rem,11vw,9.5rem);
+  --margin:clamp(1rem,4.4vw,3.5rem);
+  --ease-out:cubic-bezier(.2,.7,.2,1); --dur:520ms;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --color-bg:#15181b; --color-surface:#1f2327; --color-ink:#ebeae5; --color-muted:#a9aeb3;
+    --color-accent:#8fc0f0; --color-on-accent:#0b1a29;
+    --color-mark:#4a94d8; --color-context:#686e74;
+    --color-band:#060708;
+  }
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{overflow-x:clip}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--color-bg);color:var(--color-ink);font:300 var(--text-body)/1.55 var(--font-text);font-feature-settings:"lnum","tnum" 0;text-rendering:optimizeLegibility}
+img,svg{display:block;max-width:100%}
+a{color:var(--color-accent);text-decoration-thickness:1px;text-underline-offset:.2em}
+a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:3px solid var(--color-focus);outline-offset:3px}
+strong,b{font-weight:600}
+.wrap{max-width:84rem;margin:0 auto;padding:0 var(--margin)}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.skip{position:absolute;left:var(--margin);top:-4rem;background:var(--color-band-ink);color:var(--color-band);padding:.6rem 1rem;z-index:9}
+.skip:focus{top:.75rem}
+h1,h2{font-family:var(--font-display);font-weight:700;font-style:normal;letter-spacing:-.02em;margin:0;overflow-wrap:anywhere;min-width:0}
+h2{font-size:var(--text-h2);line-height:1.05;max-width:30ch}
+p{margin:0 0 var(--space-sm);max-width:62ch}
+.fig{font-family:var(--font-display);font-weight:700;font-size:var(--text-figure);line-height:.86;letter-spacing:-.035em;font-variant-numeric:lining-nums}
+.small{font-size:var(--text-small)}
+.muted{color:var(--color-muted)}
+.btn{display:inline-flex;align-items:center;min-height:48px;padding:.7rem 1.35rem;font:600 1rem/1.2 var(--font-text);text-decoration:none;border:2px solid transparent;border-radius:0;transition:transform 140ms var(--ease-out),background-color 140ms var(--ease-out);white-space:nowrap;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+
+/* ---------- hero: the plate ---------- */
+.hero{background:var(--color-band);color:var(--color-band-ink);padding:0 0 var(--space-xl)}
+.hero a{color:var(--color-band-ink)}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:var(--space-sm);min-height:4.25rem}
+.nav .where{color:var(--color-band-muted);font-size:var(--text-small)}
+.nav ul{display:flex;gap:clamp(.9rem,2.4vw,2rem);list-style:none;margin:0;padding:0;font-size:var(--text-small);font-weight:600}
+.nav a{text-decoration:none;display:inline-block;padding:.6rem 0;white-space:nowrap}
+.nav a:hover{text-decoration:underline}
+.top{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:var(--space-lg);align-items:end;padding-top:var(--space-lg)}
+h1{font-size:var(--text-display);line-height:.84;letter-spacing:-.04em}
+.lede{font-size:clamp(1.125rem,1.6vw,1.375rem);line-height:1.45;margin:var(--space-md) 0 var(--space-md);max-width:30ch;color:var(--color-band-ink)}
+.terms{color:var(--color-band-muted);font-size:var(--text-small);margin-bottom:var(--space-md);max-width:38ch}
+.actions{display:flex;flex-wrap:wrap;gap:var(--space-sm) var(--space-md);align-items:center}
+.hero .btn-primary{background:var(--color-band-ink);color:var(--color-band)}
+.hero .btn-primary:hover{background:var(--color-band-lit)}
+.hero .mail{font-weight:600;font-size:var(--text-small);padding:.75rem 0;white-space:nowrap}
+.stage{margin:0;background:var(--color-plate);color:var(--color-plate-ink)}
+.stage svg{width:100%;height:auto}
+.stage .rule{stroke:var(--color-plate-rule);stroke-width:3}
+.stage .track{stroke:var(--color-plate-ink);stroke-width:4;opacity:.55}
+.stage .num{fill:var(--color-plate-ink);opacity:.7;font:600 30px var(--font-text)}
+.horse{fill:var(--color-plate-ink)}
+.figtitle{display:flex;justify-content:space-between;gap:var(--space-sm);font-size:var(--text-small);color:var(--color-band-muted);padding:.65rem 0 0}
+.figtitle b{color:var(--color-band-ink)}
+/* the contact sheet */
+.sheet{display:grid;grid-template-columns:repeat(11,minmax(0,1fr));gap:6px;margin:var(--space-lg) 0 0;padding:0;list-style:none}
+.sheet button{display:block;width:100%;padding:0;border:0;background:none;cursor:pointer;position:relative}
+.sheet img{width:100%;height:auto;aspect-ratio:316/198;object-fit:cover;filter:brightness(.5) grayscale(1);transition:filter 160ms var(--ease-out)}
+.sheet button:hover img,.sheet button[aria-current="true"] img{filter:none}
+.sheet button[aria-current="true"]::after{content:"";position:absolute;left:0;right:0;bottom:-8px;height:3px;background:var(--color-band-ink)}
+.readout{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:var(--space-sm) var(--space-lg);margin-top:var(--space-md)}
+.readout output{font-size:clamp(1rem,1.4vw,1.25rem);font-weight:600;min-height:1.6em}
+.readout output .air{color:var(--color-air)}
+.controls{display:flex;gap:6px}
+.controls button{min-width:48px;min-height:48px;padding:0 1rem;background:transparent;color:var(--color-band-ink);border:2px solid var(--color-control-edge);font:600 var(--text-small) var(--font-text);cursor:pointer;border-radius:0}
+.controls button:hover{border-color:var(--color-band-ink)}
+.why{color:var(--color-band-muted);font-size:var(--text-small);max-width:60ch;margin-top:var(--space-md)}
+.why b{color:var(--color-band-ink)}
+
+/* ---------- sections ---------- */
+section{padding:var(--space-2xl) 0 0}
+.head{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--space-sm);margin-bottom:var(--space-lg)}
+.role{font-size:var(--text-small);color:var(--color-muted);margin:0}
+/* total and its receipt */
+.receipt{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:var(--space-xl);align-items:start}
+.total .fig{font-size:clamp(4rem,13vw,12rem)}
+.total p{margin-top:var(--space-sm);max-width:34ch}
+.lines{list-style:none;margin:0;padding:0}
+.lines li{padding:var(--space-sm) 0 var(--space-sm) var(--space-md);margin:0 0 6px;background:var(--color-surface)}
+.lines li{padding-right:var(--space-md)}
+.lines b{font-weight:600}
+.charts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-xl);margin-top:var(--space-xl)}
+figure{margin:0}
+figcaption{font-size:var(--text-small);color:var(--color-muted);margin-top:var(--space-xs);max-width:52ch}
+.chart{width:100%;max-width:28rem;height:auto;overflow:visible}
+.chart text{font:300 14px var(--font-text);fill:var(--color-ink)}
+.chart .t{font-weight:600}
+.chart .m{fill:var(--color-muted)}
+.chart .axis{stroke:var(--color-context);stroke-width:1}
+.chart .ci{stroke:var(--color-mark);stroke-width:2;stroke-linecap:round}
+.chart .link{stroke:var(--color-context);stroke-width:2}
+.chart .mark{fill:var(--color-mark);stroke:var(--color-bg);stroke-width:2}
+.chart .ctx{fill:var(--color-context);stroke:var(--color-bg);stroke-width:2}
+.chart .bar{fill:var(--color-mark)}
+.chart .zero{stroke:var(--color-ink);stroke-width:1.5}
+.legend{display:flex;gap:var(--space-md);font-size:var(--text-small);color:var(--color-muted);margin-bottom:var(--space-xs)}
+.legend span::before{content:"";display:inline-block;width:.7em;height:.7em;border-radius:50%;margin-right:.4em;vertical-align:-.02em;background:var(--color-context)}
+.legend .after::before{background:var(--color-mark)}
+/* ledger, aligned on the figures */
+.calx{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:var(--space-xl)}
+.ledger{width:100%;border-collapse:collapse}
+.ledger th,.ledger td{text-align:left;vertical-align:baseline;padding:.85rem var(--space-sm)}
+.ledger tr:nth-child(odd){background:var(--color-surface)}
+.ledger th{font:700 clamp(1.75rem,3.2vw,2.75rem)/1 var(--font-display);letter-spacing:-.02em;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums lining-nums;width:1%}
+.ledger td{font-size:1rem}
+.ledger .sign{font:600 .7em var(--font-text);vertical-align:.18em;margin-right:.08em}
+.linkrow{display:flex;flex-wrap:wrap;gap:var(--space-xs) var(--space-md);margin-top:var(--space-md);font-weight:600}
+/* figures inside a sentence */
+.statement{font-family:var(--font-display);font-weight:700;font-size:clamp(1.6rem,3.2vw,2.25rem);line-height:1.15;letter-spacing:-.015em;max-width:30ch;margin-bottom:var(--space-lg)}
+.split{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:var(--space-xl);align-items:start}
+/* earlier work */
+.pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-xl)}
+.pair .fig{margin-bottom:var(--space-sm)}
+.pair h3{font:600 1.25rem/1.3 var(--font-text);margin:0 0 var(--space-xs)}
+blockquote{margin:var(--space-xl) 0 0;padding:var(--space-lg) var(--space-lg);background:var(--color-surface);max-width:none}
+blockquote p{font-family:var(--font-display);font-weight:700;font-size:clamp(1.4rem,2.6vw,2rem);line-height:1.2;letter-spacing:-.01em;max-width:38ch;margin:0 0 var(--space-sm)}
+blockquote footer{font-size:var(--text-small);color:var(--color-muted)}
+/* record table */
+.record{width:100%;border-collapse:collapse}
+.record td{padding:1rem var(--space-sm);vertical-align:top}
+.record tr:nth-child(odd){background:var(--color-surface)}
+.record td:first-child{font-weight:600;width:44%}
+.record td:last-child{color:var(--color-muted)}
+.skills{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-lg);margin:var(--space-xl) 0 0}
+.skills dt{font-weight:600;margin-bottom:var(--space-xs)}
+.skills dd{margin:0}
+/* contact */
+.contact{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,3fr) minmax(0,4fr);gap:var(--space-lg);align-items:start;padding-bottom:var(--space-2xl)}
+.contact .statement{margin:0}
+.contact img{width:100%;height:auto;max-width:15rem}
+.contact .cap{font-size:var(--text-small);color:var(--color-muted);margin-top:var(--space-xs)}
+.reach{list-style:none;margin:0 0 var(--space-md);padding:0;font-weight:600}
+.reach li{margin:0 0 .35rem}
+.reach a{display:inline-block;padding:.2rem 0}
+.btn-accent{background:var(--color-accent);color:var(--color-on-accent)}
+.btn-accent:hover{filter:brightness(1.1)}
+.foot{display:grid;grid-template-columns:1fr auto 1fr;gap:var(--space-md);align-items:baseline;padding:var(--space-lg) var(--margin) var(--space-md);max-width:84rem;margin:0 auto;font-size:var(--text-small);color:var(--color-muted)}
+.foot nav{display:flex;gap:var(--space-md)}
+.foot nav a{color:var(--color-ink)}
+.foot p{margin:0}
+.foot .credit{text-align:right}
+
+/* entrance: only once JS has marked the page, so nothing stays hidden without it */
+.js .rise{opacity:0;transform:translateY(24px);transition:opacity var(--dur) var(--ease-out),transform var(--dur) var(--ease-out)}
+.js .rise.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .js .rise{transform:none;transition:opacity 150ms linear}
+  .btn,.sheet img{transition:none}
+}
+
+@media (max-width:900px){
+  .top,.receipt,.calx,.split,.pair,.contact{grid-template-columns:minmax(0,1fr)}
+  .charts{grid-template-columns:minmax(0,1fr)}
+  .skills{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stage{order:2}
+  .contact{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .contact > :first-child{grid-column:1/-1}
+  .contact img{max-width:13rem}
+}
+@media (max-width:640px){
+  .nav .where{display:none}
+  h1{font-size:24vw;line-height:.82}
+  .figtitle{flex-direction:column;gap:.15rem}
+  .nav{justify-content:flex-start}
+  .sheet{grid-template-columns:repeat(6,minmax(0,1fr));gap:4px}
+  .sheet li:nth-child(n+7){transform:translateX(50%)}
+  .skills{grid-template-columns:minmax(0,1fr)}
+  .record td{display:block;width:auto!important;padding:.15rem var(--space-sm)}
+  .record td:first-child{padding-top:.8rem}
+  .record td:last-child{padding-bottom:.8rem}
+  .ledger th{font-size:1.6rem}
+  .statement{font-size:1.375rem}
+  blockquote p{font-size:1.25rem}
+  .contact{grid-template-columns:minmax(0,1fr)}
+  .ledger th,.ledger td{padding:.75rem .5rem}
+  blockquote{padding:var(--space-md)}
+  .foot{grid-template-columns:minmax(0,1fr)}
+  .foot .credit{text-align:left}
+  .foot nav{flex-wrap:wrap;gap:var(--space-xs) var(--space-md)}
+  .readout{align-items:flex-start;flex-direction:column}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<!--SYMBOLS-->
+</svg>
+
+<header class="hero">
+  <div class="wrap">
+    <nav class="nav" aria-label="Main">
+      <span class="where">New York</span>
+      <ul>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#record">Record</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="Ayaz_Khan_Resume.pdf">Résumé</a></li>
+      </ul>
+    </nav>
+
+    <div class="top">
+      <div>
+        <h1>Ayaz Khan</h1>
+        <p class="lede">Statistician and data scientist. I measure what a model can do before I believe what it reports.</p>
+        <p class="terms">Columbia M.A. Statistics, December 2026. Available January 2027. U.S. citizen, no sponsorship needed.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="Ayaz_Khan_Resume.pdf" download>Download résumé (PDF)</a>
+          <a class="mail" href="mailto:aak2259@columbia.edu">aak2259@columbia.edu</a>
+        </div>
+      </div>
+      <figure class="stage" aria-labelledby="stage-cap">
+        <svg viewBox="70 20 1150 800" role="img" aria-labelledby="stage-cap">
+          <g aria-hidden="true">
+            <path class="rule" d="M128 20V700M256 20V700M384 20V700M512 20V700M640 20V700M768 20V700M896 20V700M1024 20V700M1152 20V700"/>
+            <path class="track" d="M70 728H1220M70 748H1220M70 768H1220"/>
+            <use class="horse" id="horse" href="#h3"/>
+          </g>
+        </svg>
+      </figure>
+    </div>
+    <div class="figtitle" id="stage-cap"><span><b>Measured, not assumed.</b> Sallie Gardner at a gallop, Palo Alto, 19 June 1878.</span><span>Traced from Eadweard Muybridge's plate</span></div>
+
+    <ol class="sheet" id="sheet" aria-label="The eleven gallop frames of the 1878 plate">
+      <!--SHEET-->
+    </ol>
+    <div class="readout">
+      <output id="readout" aria-live="off">Frame 3 of 11. <span class="air">All four hooves off the track.</span></output>
+      <div class="controls">
+        <button type="button" id="prev" aria-label="Previous frame">Back</button>
+        <button type="button" id="play" aria-pressed="false">Play</button>
+        <button type="button" id="next" aria-label="Next frame">Next</button>
+      </div>
+    </div>
+    <p class="why">In 1878 people argued over whether a galloping horse ever has all four hooves in the air. Muybridge stopped arguing and set up cameras along the track, 27 inches apart, each exposure shorter than 1/2000 of a second. <b>Frames 2 and 3 settled it.</b> I bring the same habit to models: set up the measurement first, then read what it says.</p>
+  </div>
+</header>
+
+<main id="main">
+  <section id="work" aria-labelledby="t-telenav">
+    <div class="wrap">
+      <div class="head rise">
+        <h2 id="t-telenav">The ceiling that stopped a release</h2>
+        <p class="role">Telenav, Santa Clara. Applied ML and Data Engineering Intern, June to August 2026, on Novo Insurance's scoring stack.</p>
+      </div>
+      <div class="receipt">
+        <div class="total rise">
+          <p class="fig" aria-describedby="ceil-note">56.69%</p>
+          <p id="ceil-note">A nonparametric estimate of the best accuracy any calibrator could reach on this data: 95% CI [55.13, 58.08] on 4,338 true-ping rows.</p>
+        </div>
+        <ul class="lines rise">
+          <li>The production calibrator ran <b>9 points below</b> that bound. The finding cancelled a release that would have degraded pricing.</li>
+          <li>Caught target leakage and non-temporal splits, which corrected an inflated <b>0.806 AUC</b> to an honest <b>0.7401</b> and surfaced <b>$127K</b> of campaign waste.</li>
+          <li>Privileged-features distillation lifted ping-stage AUC from <b>0.6206 to 0.6457</b> on 23,559 holdout rows.</li>
+          <li>A 270M-parameter FunctionGemma router: <b>95.5%</b> function accuracy and <b>86.4%</b> exact match on 500 held-out prompts, <b>95.4%</b> serving accuracy against live Snowflake.</li>
+        </ul>
+      </div>
+
+      <div class="charts">
+        <figure class="rise">
+          <svg class="chart" viewBox="12 0 316 150" role="img" aria-labelledby="c1t">
+            <title id="c1t">Accuracy ceiling 56.69 percent with 95 percent interval 55.13 to 58.08; production calibrator 9 points below.</title>
+            <text x="16" y="24" class="t">Production</text>
+            <text x="16" y="42" class="m">9 points lower</text>
+            <text x="324" y="24" class="t" text-anchor="end">Ceiling 56.69%</text>
+            <text x="324" y="42" class="m" text-anchor="end">95% CI 55.13 to 58.08</text>
+            <line class="link" x1="78" y1="80" x2="249" y2="80"/>
+            <line class="ci" x1="224" y1="80" x2="284.6" y2="80"/>
+            <line class="ci" x1="224" y1="72" x2="224" y2="88"/><line class="ci" x1="284.6" y1="72" x2="284.6" y2="88"/>
+            <circle class="ctx" cx="71.2" cy="80" r="7"><title>Production calibrator, 9 points below the ceiling</title></circle>
+            <circle class="mark" cx="256" cy="80" r="7"><title>Ceiling 56.69%, 95% CI 55.13 to 58.08</title></circle>
+            <line class="axis" x1="16" y1="112" x2="324" y2="112"/>
+            <text x="16" y="136" class="m">45%</text><text x="118.7" y="136" class="m" text-anchor="middle">50%</text><text x="221.3" y="136" class="m" text-anchor="middle">55%</text><text x="324" y="136" class="m" text-anchor="end">60%</text>
+          </svg>
+          <figcaption>Accuracy on 4,338 true-ping rows. The interval is the 95% CI of the nonparametric bound.</figcaption>
+        </figure>
+        <figure class="rise">
+          <div class="legend" aria-hidden="true"><span>Before</span><span class="after">After</span></div>
+          <svg class="chart" viewBox="12 0 316 214" role="img" aria-labelledby="c2t">
+            <title id="c2t">AUC before and after. Leakage and split fix: 0.806 reported, 0.7401 honest. Distillation at ping stage: 0.6206 to 0.6457.</title>
+            <text x="16" y="18" class="t">Leakage and split fix</text>
+            <line class="link" x1="219" y1="48" x2="297" y2="48"/>
+            <circle class="ctx" cx="304.4" cy="48" r="7"><title>Reported AUC 0.806, inflated by leakage</title></circle>
+            <circle class="mark" cx="212.1" cy="48" r="7"><title>Honest AUC 0.7401</title></circle>
+            <text x="212.1" y="76" text-anchor="middle">0.7401</text><text x="324" y="76" text-anchor="end" class="m">0.806</text>
+            <text x="16" y="112" class="t">Distillation, ping stage</text>
+            <line class="link" x1="52" y1="140" x2="73" y2="140"/>
+            <circle class="ctx" cx="44.8" cy="140" r="7"><title>Baseline AUC 0.6206</title></circle>
+            <circle class="mark" cx="80" cy="140" r="7"><title>Distilled AUC 0.6457</title></circle>
+            <text x="16" y="168" class="m">0.6206</text><text x="76" y="168">0.6457</text>
+            <line class="axis" x1="16" y1="182" x2="324" y2="182"/>
+            <text x="16" y="204" class="m">0.60</text><text x="156" y="204" class="m" text-anchor="middle">0.70</text><text x="296" y="204" class="m" text-anchor="middle">0.80</text>
+          </svg>
+          <figcaption>AUC on one shared axis. Distillation results are on 23,559 holdout rows.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="t-calx">
+    <div class="wrap calx">
+      <div class="rise">
+        <h2 id="t-calx">Calx: one structure, two fields</h2>
+        <p class="role" style="margin-top:var(--space-sm)">Founder and lead researcher, 2025 to present.</p>
+        <p style="margin-top:var(--space-md)">Calx is a neuro-symbolic engine for cross-domain discovery. It ports the Structure-Mapping Engine to find the same relational structure in problems from different fields. U.S. Provisional Patent 64/029,090, filed through Columbia Technology Ventures.</p>
+        <div class="linkrow">
+          <a href="sma-1/">SMA-1 project page</a>
+          <a href="https://pypi.org/project/structuremappingmemory/">PyPI package</a>
+          <a href="https://github.com/ayazkhan27/SMA-1">Source on GitHub</a>
+        </div>
+      </div>
+      <table class="ledger rise">
+        <caption class="vh">Calx results</caption>
+        <tbody>
+          <tr><th scope="row">31.55%</th><td>mean reduction in operations from the Certified Affine Corridor dynamic program, exact on 45 of 45 cases</td></tr>
+          <tr><th scope="row">2</th><td>new square-root Kalman filter variants</td></tr>
+          <tr><th scope="row">594,000</th><td>concepts across 11 ontologies in SMA-1, structure-mapping retrieval shipped as an MCP server</td></tr>
+          <tr><th scope="row"><span class="sign">+</span>0.34</th><td>over the strongest RAG baseline on long-tail top-5 retrieval, medicine</td></tr>
+          <tr><th scope="row"><span class="sign">+</span>0.17</th><td>on the same test, genomics</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section aria-labelledby="t-psc">
+    <div class="wrap">
+      <div class="head rise">
+        <h2 id="t-psc">Energy insecurity in Con Edison rate cases</h2>
+        <p class="role">Columbia Data Science Institute scholar, NYSERDA energy insecurity research, January to May 2026.</p>
+      </div>
+      <div class="split">
+        <div class="rise">
+          <p class="statement">317 Con Edison testimony PDFs, 16 docket themes. Affordability testimony fell 3.8 points from 2022 to 2025.</p>
+          <p>The filings came from the New York Public Service Commission. I split them into 12,073 segments, 10,225 of them substantive, and modeled topics with BERTopic: LegalBERT embeddings, UMAP, then HDBSCAN. Over the same years, rate-design testimony rose 4.9 points and IT-systems testimony rose 3.4.</p>
+        </div>
+        <figure class="rise">
+          <svg class="chart" viewBox="0 0 360 150" role="img" aria-labelledby="c3t">
+            <title id="c3t">Change in share of testimony from 2022 to 2025: affordability minus 3.8 points, rate design plus 4.9, IT systems plus 3.4.</title>
+            <rect class="bar" x="73.6" y="14" width="106.4" height="24"><title>Affordability, down 3.8 points</title></rect>
+            <text x="188" y="31">Affordability</text><text x="66" y="31" text-anchor="end" class="t">−3.8</text>
+            <rect class="bar" x="180" y="58" width="137.2" height="24"><title>Rate design, up 4.9 points</title></rect>
+            <text x="172" y="75" text-anchor="end">Rate design</text><text x="323" y="75" class="t">+4.9</text>
+            <rect class="bar" x="180" y="102" width="95.2" height="24"><title>IT systems, up 3.4 points</title></rect>
+            <text x="172" y="119" text-anchor="end">IT systems</text><text x="281" y="119" class="t">+3.4</text>
+            <line class="zero" x1="180" y1="6" x2="180" y2="134"/>
+          </svg>
+          <figcaption>Change in each theme's share of testimony, in points, 2022 to 2025.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="t-early">
+    <div class="wrap">
+      <div class="head rise"><h2 id="t-early">Earlier work</h2></div>
+      <div class="pair">
+        <div class="rise">
+          <p class="fig">15%</p>
+          <h3>Aperiodic tilings for sensor network security</h3>
+          <p>NSF REU at Texas A&amp;M International, June to August 2024. I built the Intrusion Effort Index on aperiodic Spectre monotile tilings for wireless sensor network security. It gave a 15% efficiency improvement in 3D deployments. First author, IEEE ICNGN 2024.</p>
+        </div>
+        <div class="rise">
+          <p class="fig">0.172%</p>
+          <h3>Credit card fraud detection</h3>
+          <p>Fraud was 0.172% of the data. I worked through the imbalance with SMOTE-NC, Bayesian networks and calibrated XGBoost, and built a Dash app to monitor the model.</p>
+        </div>
+      </div>
+      <blockquote class="rise">
+        <p>“Rare even among experienced researchers, his ability to close the distance between abstract theory and practical application.”</p>
+        <footer>Dr. Habib M. Ammari, Texas A&amp;M International University, from his recommendation letter</footer>
+      </blockquote>
+    </div>
+  </section>
+
+  <section id="record" aria-labelledby="t-record">
+    <div class="wrap">
+      <div class="head rise"><h2 id="t-record">Education and honors</h2></div>
+      <table class="record rise">
+        <caption class="vh">Education and honors</caption>
+        <tbody>
+          <tr><td>National Science Foundation Graduate Research Fellow</td><td>1 of 1,000 awardees from 17,000 applicants</td></tr>
+          <tr><td>Columbia University, M.A. Statistics</td><td>Expected December 2026</td></tr>
+          <tr><td>CUNY Hunter College, Special Honors B.A. Statistics, computer science minor, cum laude</td><td>December 2024</td></tr>
+          <tr><td>U.S. Provisional Patent 64/029,090</td><td>Through Columbia Technology Ventures</td></tr>
+          <tr><td>First author, IEEE ICNGN 2024</td><td>Intrusion Effort Index for wireless sensor networks</td></tr>
+        </tbody>
+      </table>
+      <dl class="skills rise">
+        <div><dt>Languages</dt><dd>Python, R, SQL, SAS, Java, C++</dd></div>
+        <div><dt>Modeling</dt><dd>PyTorch, scikit-learn, transformers, XGBoost, LightGBM, LoRA</dd></div>
+        <div><dt>Data and cloud</dt><dd>Snowflake, Docker, GCP, AWS</dd></div>
+        <div><dt>Methods</dt><dd>Causal inference, survival analysis, Bayesian networks, stochastic processes, SHAP, A/B testing</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section id="contact" aria-labelledby="t-contact">
+    <div class="wrap contact">
+      <div class="rise">
+        <h2 id="t-contact" class="vh">Contact</h2>
+        <p class="statement">Hiring in biostatistics, model risk or analytics? I can start in January 2027.</p>
+      </div>
+      <figure class="rise">
+        <img src="assets/plate/frame-12.jpg" width="360" height="226" alt="Frame 12 of Muybridge's 1878 plate: the horse standing still." loading="lazy" decoding="async">
+        <figcaption class="cap">Frame 12, at rest.</figcaption>
+      </figure>
+      <div class="rise">
+        <ul class="reach">
+          <li><a href="mailto:aak2259@columbia.edu">aak2259@columbia.edu</a></li>
+          <li><a href="tel:+19179433853">+1 (917) 943-3853</a></li>
+          <li><a href="https://www.linkedin.com/in/ayazkhan27">linkedin.com/in/ayazkhan27</a></li>
+          <li><a href="https://github.com/ayazkhan27">github.com/ayazkhan27</a></li>
+          <li><a href="https://orcid.org/0009-0008-5695-4934">ORCID 0009-0008-5695-4934</a></li>
+        </ul>
+        <a class="btn btn-accent" href="Ayaz_Khan_Resume.pdf" download>Download résumé (PDF)</a>
+        <p class="small muted" style="margin-top:var(--space-sm)">New York. U.S. citizen, no sponsorship needed.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <p>Ayaz Khan, statistician</p>
+  <nav aria-label="Footer"><a href="#work">Work</a><a href="sma-1/">SMA-1</a><a href="Ayaz_Khan_Resume.pdf">Résumé</a></nav>
+  <p class="credit">Plate: Eadweard Muybridge, <i>The Horse in Motion</i>, 1878, public domain. Type: LT Afficher Neue by LyonsType, Alphazet by Type Forward.</p>
+</footer>
+
+<script>
+(function(){
+  var d=document, root=d.documentElement; root.classList.add('js');
+  // section entrances, once each
+  var rise=d.querySelectorAll('.rise');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var t=e.target,i=[].indexOf.call(t.parentNode.querySelectorAll(':scope > .rise'),t);t.style.transitionDelay=(Math.max(i,0)*80)+'ms';t.classList.add('in');io.unobserve(t);}});},{rootMargin:'0px 0px -8% 0px'});
+    rise.forEach(function(el){io.observe(el);});
+  } else rise.forEach(function(el){el.classList.add('in');});
+
+  // the gallop: one state drives the drawing, the sheet and the readout
+  var N=11, cur=3, timer=null, horse=d.getElementById('horse'), out=d.getElementById('readout'),
+      play=d.getElementById('play'), sheet=d.getElementById('sheet'), btns=sheet.querySelectorAll('button'),
+      reduce=matchMedia('(prefers-reduced-motion: reduce)'), inView=true, userPaused=false;
+  function show(n){
+    cur=(n+N-1)%N+1;
+    horse.setAttribute('href','#h'+cur);
+    btns.forEach(function(b,i){b.setAttribute('aria-current',i+1===cur?'true':'false');});
+    out.innerHTML='Frame '+cur+' of 11. '+(cur===2||cur===3?'<span class="air">All four hooves off the track.</span>':'At least one hoof on the track.');
+  }
+  function start(){ if(timer||reduce.matches||!inView||userPaused||held) return; timer=setInterval(function(){show(cur+1);},110); play.textContent='Pause'; play.setAttribute('aria-pressed','true'); out.setAttribute('aria-live','off'); }
+  function stop(){ clearInterval(timer); timer=null; play.textContent='Play'; play.setAttribute('aria-pressed','false'); out.setAttribute('aria-live','polite'); }
+  play.addEventListener('click',function(){ if(timer){userPaused=true;stop();} else {userPaused=false;start();} });
+  d.getElementById('prev').addEventListener('click',function(){userPaused=true;stop();show(cur-1);});
+  d.getElementById('next').addEventListener('click',function(){userPaused=true;stop();show(cur+1);});
+  btns.forEach(function(b,i){b.addEventListener('click',function(){userPaused=true;stop();show(i+1);});});
+  sheet.addEventListener('keydown',function(e){
+    if(e.key!=='ArrowRight'&&e.key!=='ArrowLeft') return;
+    e.preventDefault(); userPaused=true; stop(); show(cur+(e.key==='ArrowRight'?1:-1)); btns[cur-1].focus();
+  });
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){inView=es[0].isIntersecting; inView?start():(timer&&stop());}).observe(d.querySelector('.stage'));
+  }
+  // hover or keyboard focus on the figure holds the gallop (WCAG 2.2.2); leaving resumes it
+  var held=false, zone=[d.querySelector('.stage'),sheet];
+  zone.forEach(function(z){
+    z.addEventListener('mouseenter',function(){held=true;if(timer)stop();});
+    z.addEventListener('mouseleave',function(){held=false;start();});
+    z.addEventListener('focusin',function(){held=true;if(timer)stop();});
+    z.addEventListener('focusout',function(){held=false;});
+  });
+  reduce.addEventListener&&reduce.addEventListener('change',function(){reduce.matches?stop():start();});
+  show(cur); out.setAttribute('aria-live','polite');
+  setTimeout(start,700); // hold on frame 3, the airborne one, before the gallop starts
+})();
+</script>
+</body>
+</html>
