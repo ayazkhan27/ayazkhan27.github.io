@@ -281,6 +281,9 @@
       e.preventDefault(); e.stopImmediatePropagation();
       loadEpisode().then(function () { epBtn.click(); }, function () { epBtn.disabled = true; });
     });
+    // load the engine (not its mp3) at idle, so a first tap on iOS is a real gesture and the soundtrack may start
+    var idle = window.requestIdleCallback || function (f) { return setTimeout(f, 2500); };
+    addEventListener('load', function () { idle(function () { loadEpisode().catch(function () {}); }); }, { once: true });
   }
 
   /* ---- JoJo modules: a slot in the main path loads as it comes within ~600 px; a slot behind a toggle (the Lab,

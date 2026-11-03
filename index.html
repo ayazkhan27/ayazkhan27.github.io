@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-audio>
+<html lang="en" data-ep-ready data-audio>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -50,7 +50,7 @@
   --color-accent:#035397; --color-on-accent:#fbfbf9;
   --color-mark:#035397; --color-context:#7b8188;
   /* v3: Gyro's gold and the Stand's menace; both pass AA as text on the page */
-  --color-gold:#8a6408; --color-menace:#6b2fa0; --color-gold-lit:#e8b84a; --color-stopped:#dfe5ec;
+  --color-gold:#8a6408; --color-menace:#6b2fa0; --color-gold-lit:#e8b84a; --color-stopped:#dfe5ec; --color-hover:#dfe5ec;
   --color-menace-plate:#6b2fa0; /* the albumen paper stays light in both modes, so purple text on it stays dark */
   /* Atum's straight answers in the FAQ: YES in electric yellow on deep blue, NO in hot pink on violet (12.5:1 and 5.3:1) */
   --color-yes-ink:#ffe94d; --color-yes-field:#0b1f5c; --color-no-ink:#ff5cb8; --color-no-field:#3a0d63;
@@ -81,7 +81,7 @@
     --color-accent:#8fc0f0; --color-on-accent:#0b1a29;
     --color-mark:#4a94d8; --color-context:#686e74;
     --color-gold:#e2b450; --color-menace:#b48ae6;
-    --color-band:#060708; --color-band-2:#181b1f;
+    --color-band:#060708; --color-band-2:#181b1f; --color-hover:#2a2f35;
   }
   /* the Stand card's purple is drawn both on its light paper and on the dark page: one value at 3:1 on each */
   [data-jj="stand"]{--color-menace:#8a4fc4}
@@ -216,7 +216,7 @@ section{padding:var(--space-2xl) 0 0}
 /* the four results: a figure, a small honest chart of it, one line; each card opens its detail */
 .hl{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;list-style:none;margin:0;padding:0}
 .hl a{display:flex;flex-direction:column;gap:var(--space-sm);height:100%;padding:var(--space-md) var(--space-md) var(--space-lg);background:var(--color-surface);color:var(--color-ink);text-decoration:none;transition:background-color 140ms var(--ease-out)}
-.hl a:hover{background:var(--color-stopped)}
+.hl a:hover{background:var(--color-hover)}
 .hl .fig{align-self:flex-start;font-size:clamp(2.75rem,4.4vw,4.25rem);white-space:nowrap}
 .hl .fig small{font:600 .3em/1 var(--font-text);letter-spacing:0;vertical-align:.5em;margin:0 .25em}
 .hl del{display:block;margin-bottom:.45rem;font:600 1rem/1 var(--font-text);letter-spacing:0;color:var(--color-muted);text-decoration-thickness:2px}
@@ -618,7 +618,7 @@ body{padding-bottom:var(--rail-h)}
           <li data-ep-chip>NSF Graduate Research Fellow</li>
         </ul>
         <div class="actions">
-          <p class="ep"><button type="button" class="btn btn-ep" data-episode><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9.5-5.5z"/></svg>Play the 26-second episode</button><span class="ep-note">sound on</span></p>
+          <p class="ep"><button type="button" class="btn btn-ep" data-episode data-ep-css><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9.5-5.5z"/></svg>Play the 26-second episode</button><span class="ep-note">sound on</span></p>
           <a class="btn btn-res" href="Ayaz_Khan_Resume.pdf" download>Download résumé (PDF)</a>
           <a class="mail" href="mailto:aak2259@columbia.edu">aak2259@columbia.edu</a>
         </div>
