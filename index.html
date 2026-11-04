@@ -328,6 +328,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .bar .b{color:var(--ink)}
 .res:not(.seen) .bar i{transform:scaleX(.02)}
 .tbl{overflow-x:auto;min-width:0}
+.ladder{display:grid;gap:.6rem;min-width:0}.ladder p{margin:0;max-width:60ch}.ladder table{min-width:38rem}.ladder .tbl td:nth-child(n+2){opacity:1;font-weight:300}.ladder .tbl td:last-child,.ladder .tbl th:last-child{text-align:right;white-space:nowrap;font-weight:600}.ladder .tbl .me td{background:#b81f6622;font-weight:600}
 .tbl table{width:100%;border-collapse:collapse;font-size:.9375rem}
 .tbl th{text-align:left;font-weight:600;padding:.35rem .5rem .35rem 0;vertical-align:bottom}
 .tbl td{padding:.45rem .5rem .45rem 0;border-top:1px solid #1c122640}
@@ -782,6 +783,16 @@ button{font:inherit;color:inherit;cursor:pointer}
                 <tr><td>Abstain when nothing grounds the case</td><td>Yes</td><td>No</td><td>No</td></tr>
                 <tr><td>Flag something novel</td><td>Yes</td><td>No</td><td>Partly</td></tr>
               </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="ladder" id="ladder">
+          <h5>If you already know LangChain</h5>
+          <p>LangChain wires retrieval together; how the retrieving works depends on what sits behind it, usually one of the methods below. SMA-1 takes the same slot as any of them. I ran each on the same medical queries, and only the retriever changed.</p>
+          <div class="tbl">
+            <table>
+              <thead><tr><th scope="col">Method</th><th scope="col">Matches on</th><th scope="col">Where it falls short</th><th scope="col">Rare-case top-5</th></tr></thead>
+              <tbody><tr><td>BM25</td><td>Shared words, weighted by rarity</td><td>No shared word, no match</td><td>0.485</td></tr><tr><td>Dense embeddings</td><td>Text that sounds similar</td><td>Scores stay high when nothing relevant exists</td><td>0.496</td></tr><tr><td>Hybrid with RRF</td><td>BM25 and dense ranks, fused</td><td>Combines both lists and adds no structure</td><td>0.511</td></tr><tr><td>Hybrid with a cross-encoder</td><td>Those candidates, re-scored</td><td>Can only reorder what retrieval already found</td><td>0.606</td></tr><tr><td>HippoRAG-style graph (my LLM-free adaptation)</td><td>PageRank over entities and their links</td><td>Links carry no is-a distance</td><td>0.361</td></tr><tr class="me"><td>SMA-1</td><td>Is-a distance in an ontology, weighted by information content</td><td>Needs a curated ontology for your domain</td><td>0.949</td></tr></tbody>
             </table>
           </div>
         </div>
