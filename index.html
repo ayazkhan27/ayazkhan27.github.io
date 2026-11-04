@@ -85,7 +85,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .play svg{width:1.05rem;height:1.05rem;fill:currentColor}
 .play{white-space:nowrap}
 .play small{font-weight:300;font-size:.875rem}
-@media (max-width:480px){.play small{display:none}.ctl #timeL{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}}
+@media (max-width:480px){.play small{display:none}}
 .flash{position:absolute;inset:0;z-index:6;background:#fff3cf;opacity:0;pointer-events:none}
 .sill{position:absolute;z-index:4;left:0;right:0;bottom:0;height:clamp(1.1rem,3vh,2rem);background:linear-gradient(#efe2c8,#a58e72);box-shadow:0 -10px 26px #1a0a3055}
 .win::after{content:"";position:absolute;inset:0;z-index:4;pointer-events:none;box-shadow:inset 0 0 0 clamp(7px,1.3vmin,15px) #0a0512}
@@ -164,13 +164,8 @@ button{font:inherit;color:inherit;cursor:pointer}
 @media (max-width:340px){.qs button{font-size:.8125rem;padding:.35rem .5rem}}
 .ctl button:hover{background:#2a1846}
 @media (max-width:959px){.reading:not(.eps) .ctl{visibility:hidden;opacity:0;pointer-events:none}}
-@media (min-width:960px){.reading:not(.eps) .ctl{flex-direction:column;right:.25rem}.reading:not(.eps) .ctl button{min-width:2.5rem;padding:0}.reading:not(.eps) #timeL{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}}
+@media (min-width:960px){.reading:not(.eps) .ctl{flex-direction:column;right:.25rem}.reading:not(.eps) .ctl button{min-width:2.5rem;padding:0}}
 .ctl [aria-pressed=false] .on{display:none}
-#vol{width:5.5rem;min-height:2.9rem;margin:0;padding:0 .55rem;background:#0a0512e0;border:1px solid #ffe08a77;border-radius:.2rem;accent-color:var(--gold);cursor:pointer}
-@media (min-width:960px){.reading:not(.eps) #vol{writing-mode:vertical-lr;direction:rtl;width:2.5rem;height:5.5rem;min-height:0;padding:.5rem 0}}
-@media (max-width:480px){#vol{width:4.25rem;padding:0 .35rem}}
-.stopped .win,.stopped .papers,.stopped .close,.stopped .deep{filter:saturate(.16) contrast(1.05)}
-.stopped .sfx{animation-play-state:paused}
 
 /* the episode */
 :is(.ep0,.ep1,.ep2) .win{height:100svh}
@@ -912,11 +907,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 </footer>
 
 <nav class="ctl" id="ctl" aria-label="Page controls" hidden>
-  <button type="button" id="pause" aria-pressed="false" hidden>Pause</button>
-  <button type="button" id="exit" hidden>Exit</button>
   <button type="button" id="sound" aria-pressed="true" aria-label="Sound"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7.5h3.5L11 4v12l-4.5-3.5H3z"/><path class="on" d="M13.5 7.2a4 4 0 0 1 0 5.6M15.8 5a7 7 0 0 1 0 10"/></svg></button>
-  <input type="range" id="vol" min="0" max="100" value="100" aria-label="Volume">
-  <button type="button" id="time" aria-pressed="false"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="11" r="7"/><path d="M10 7v4l2.5 2.5M8 2h4"/></svg><span id="timeL">Stop time</span></button>
 </nav>
 
 <i id="epBar"></i>
@@ -937,6 +928,6 @@ button{font:inherit;color:inherit;cursor:pointer}
   <div class="line jan" data-k="jan"><small>I can start in</small><b>January <i class="jy">2027</i></b><span><a class="btn" href="Ayaz_Khan_Resume.pdf" download>Résumé (PDF)</a><a href="mailto:aak2259@columbia.edu">aak2259@columbia.edu</a></span></div>
   <svg id="tbcArrow" class="arrow" data-k="tbc" viewBox="0 0 640 120" role="img" aria-label="To Be Continued"><path class="body" d="M4 60 80 3V31H636L606 60 636 89H80V117Z"/><path class="in" d="M19 60 72 20V39H620L596 60 620 81H72V100Z"/><text x="343" y="75" text-anchor="middle">To Be Continued</text></svg>
 </template>
-<script src="assets/site.js" defer></script>
+<script src="assets/site.js?v=bd692f2e" defer></script>
 </body>
 </html>

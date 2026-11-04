@@ -58,7 +58,7 @@
   });
 
   /* the long version loads when someone comes near it */
-  const sfxApi = { hiss() {}, thud() {}, buzz() {}, wake() {} }, deepUrl = new URL('deep.js', d.currentScript.src).href;
+  const sfxApi = { hiss() {}, thud() {}, buzz() {}, wake() {} }, deepUrl = new URL('deep.js' + new URL(d.currentScript.src).search, d.currentScript.src).href;
   new IntersectionObserver(([e]) => d.documentElement.classList.toggle('reading', e.isIntersecting)).observe($('#deep'));
   const deepIo = new IntersectionObserver((es, o) => { if (es.some(e => e.isIntersecting)) { o.disconnect(); import(deepUrl).then(m => m.init(sfxApi)); } }, { rootMargin: '1400px 0px' });
   deepIo.observe($('#deep'));
@@ -66,11 +66,10 @@
   if (STILL) { $$('.sheet').forEach(s => s.classList.add('open')); return; }
 
   /* sound: the gesture that opens the window also wakes the audio */
-  let ac, master, noiseBuf, soundOn = true, quiet = false, vol = 1;
+  let ac, noiseBuf, soundOn = true, quiet = false;
   const wake = () => {
     if (ac || CAPTURE || !window.AudioContext) return;
     ac = new AudioContext();
-    master = ac.createGain(); master.gain.value = vol; master.connect(ac.destination);
     noiseBuf = ac.createBuffer(1, ac.sampleRate * 2, ac.sampleRate);
     const c = noiseBuf.getChannelData(0);
     for (let i = 0; i < c.length; i++) c[i] = Math.random() * 2 - 1;
@@ -82,14 +81,14 @@
     s.buffer = noiseBuf; s.loop = true; f.type = 'bandpass'; f.Q.value = .8;
     f.frequency.setValueAtTime(f0, t); f.frequency.exponentialRampToValueAtTime(f1, t + dur);
     v.gain.setValueAtTime(.0001, t); v.gain.exponentialRampToValueAtTime(g, t + dur * .22); v.gain.exponentialRampToValueAtTime(.0001, t + dur);
-    s.connect(f).connect(v).connect(master); s.start(t); s.stop(t + dur);
+    s.connect(f).connect(v).connect(ac.destination); s.start(t); s.stop(t + dur);
   };
   const thud = g => {
     if (!ac || !soundOn || quiet) return;
     const o = ac.createOscillator(), v = ac.createGain(), t = ac.currentTime;
     o.frequency.setValueAtTime(120, t); o.frequency.exponentialRampToValueAtTime(36, t + .2);
     v.gain.setValueAtTime(g, t); v.gain.exponentialRampToValueAtTime(.0001, t + .26);
-    o.connect(v).connect(master); o.start(t); o.stop(t + .28);
+    o.connect(v).connect(ac.destination); o.start(t); o.stop(t + .28);
   };
   const buzz = p => { if (ac && navigator.vibrate) navigator.vibrate(p); };
   Object.assign(sfxApi, { hiss, thud, buzz, wake });
@@ -371,7 +370,6 @@
   const ease = p => p < .5 ? 4 * p * p * p : 1 - (-2 * p + 2) ** 3 / 2;
   function bite() {
     if (biting || ep) return;
-    if (frozen) setFrozen(false);
     wake(); biting = true; dir = -1; goal = 1; hiss(1.2, 2600, 300, .16); buzz([20, 30, 20]);
     flash.animate([{ opacity: .85, background: '#ff5cb8' }, { opacity: 0 }], { duration: 700, easing: SPRING });
     const y = scrollY;
@@ -387,12 +385,8 @@
   $('#reset').addEventListener('click', bite);
 
   /* time stop: the wind hangs where it is */
-  const timeB = $('#time'), timeL = $('#timeL');
-  const setFrozen = v => { frozen = v; root.classList.toggle('stopped', v && !ep); root.classList.toggle('time-stopped', v && !ep); d.dispatchEvent(new Event(v ? 'timestop' : 'timeresume')); timeB.setAttribute('aria-pressed', v); timeL.textContent = v ? 'Resume time' : 'Stop time'; };
-  timeB.addEventListener('click', () => { if (!frozen) { wake(); thud(.25); } setFrozen(!frozen); });
   const soundB = $('#sound'), au = $('#epAudio');
   soundB.addEventListener('click', () => { soundOn = !soundOn; soundB.setAttribute('aria-pressed', soundOn); au.muted = !soundOn; wake(); });
-  $('#vol').addEventListener('input', e => { vol = e.target.value / 100; au.volume = vol; if (master) master.gain.value = vol; soundOn = vol > 0; soundB.setAttribute('aria-pressed', soundOn); au.muted = !soundOn; wake(); });
 
   /* the episode: "Smooth", cut to the song's real accents. Everything holds still between hits, and each card acts out what happened. */
   const slot = $('#slot'), lines = $('#lines'), bigsfx = $('#bigsfx'), said = $('#said'), tpl = $('#ep').content;
@@ -615,14 +609,13 @@
   function startEp() {
     if (ep) return;
     wake();
-    if (frozen) setFrozen(false);
     const wasOpen = opened;
     ep = { t0: now(), i: 0, cur: null, sc: null };
     scrollTo(0, 0);
     stage.style.setProperty('--bg', 'transparent');
     root.classList.remove('ep1', 'ep2', 'epsay', 'epfacts');
     root.classList.add('eps');
-    ctl.hidden = false; pauseB.hidden = false; timeB.hidden = true;
+    ctl.hidden = false; pauseB.hidden = false;
     opened = false; oGoal = 0; shut.classList.remove('open');
     if (wasOpen) {   // the wind takes the words and slams the shutters, and they land on the song's first big hit
       goal = .7; hiss(.5, 500, 2600, .1);
@@ -636,6 +629,7 @@
     }
     if (!CAPTURE) { au.currentTime = 0; au.muted = !soundOn; au.play().catch(() => { if (ep) ep.silent = true; }); }
   }
+  ctl.insertAdjacentHTML('afterbegin', '<button type="button" id="pause" aria-pressed="false" hidden>Pause</button><button type="button" id="exit" hidden>Exit</button>');
   const pauseB = $('#pause'), exitB = $('#exit');
   let heldAnims = [];
   const setPaused = v => {
@@ -654,7 +648,7 @@
     if (!ep) return;
     setPaused(false);
     ep = null; au.pause(); stage.hidden = true; stage.classList.remove('tbc'); slot.replaceChildren(); $('#tbcArrow')?.remove(); bigsfx.textContent = ''; said.textContent = '';
-    root.classList.remove('eps', 'ep0', 'ep1', 'ep2', 'epsay', 'epfacts'); sizeC(); frozen = false; pauseB.hidden = true; timeB.hidden = false; ambient = .15;
+    root.classList.remove('eps', 'ep0', 'ep1', 'ep2', 'epsay', 'epfacts'); sizeC(); frozen = false; pauseB.hidden = true; ambient = .15;
     if (!opened) open(false);
     if (toContact) $('.reach').scrollIntoView();
   }

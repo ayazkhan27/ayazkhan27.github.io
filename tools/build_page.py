@@ -1,4 +1,5 @@
 """Assemble index.html from tools/page.html: inlines the horse symbols, the title card and the Stand figure."""
+import hashlib
 import pathlib
 import re
 
@@ -59,5 +60,7 @@ s = s.replace("<!--SYMBOLS-->", (T / "horse_symbols.svg").read_text())
 s = s.replace("<!--LOCKUP-->", lockup())
 s = s.replace("<!--FIGURE-->", (R / "assets" / "jojo" / "stand-figure.svg").read_text())
 
+stamp = hashlib.sha1((R / "assets/site.js").read_bytes() + (R / "assets/deep.js").read_bytes()).hexdigest()[:8]
+s = s.replace('src="assets/site.js"', f'src="assets/site.js?v={stamp}"')
 (R / "index.html").write_text(s)
 print(len(s.encode()), "bytes")
