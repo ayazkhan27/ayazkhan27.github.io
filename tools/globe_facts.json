@@ -359,7 +359,7 @@
   "name": "Kenya",
   "lat": 0.62,
   "lon": 37.53,
-  "fact": "A random forest matched wild elephant calls recorded in Kenya to their intended receiver better than chance, evidence of individually specific, name-like calls.",
+  "fact": "A machine learning model matched wild elephant calls recorded in Kenya to their intended receiver better than chance, evidence of individually specific, name-like calls.",
   "src": "https://www.nature.com/articles/s41559-024-02420-w"
  },
  {
