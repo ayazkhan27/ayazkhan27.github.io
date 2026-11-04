@@ -150,8 +150,8 @@ export const FACTS = [
 "id": 32,
 "lat": 50.3755,
 "lon": -4.1427,
-"fact": "At a Plymouth livestock show, 787 sixpenny guesses at an ox’s dressed weight had a middle value 9 lb too high, Francis Galton found.",
-"src": "https://galton.org/essays/1900-1911/galton-1907-vox-populi.pdf"
+"fact": "Rechecking Galton’s 787 sixpenny guesses at a Plymouth ox’s dressed weight, a 2014 paper found their mean, 1,197 lb, exactly matched the true weight.",
+"src": "https://arxiv.org/pdf/1410.3989"
 },
 {
 "iso": "ie",
@@ -159,7 +159,7 @@ export const FACTS = [
 "id": 141,
 "lat": 53.3419,
 "lon": -6.2867,
-"fact": "The t-test came from a Guinness chemist in Dublin, William Gosset, handling small samples for brewing quality control and writing as Student.",
+"fact": "Guinness chemist William Gosset of the Dublin brewery developed the t-test for small-sample brewing quality control, publishing under the name Student.",
 "src": "https://mathshistory.st-andrews.ac.uk/Biographies/Gosset/"
 },
 {
@@ -168,8 +168,8 @@ export const FACTS = [
 "id": 161,
 "lat": 48.8566,
 "lon": 2.3522,
-"fact": "Probability theory grew from 1654 letters on splitting stakes in an unfinished dice game; Pascal wrote to Fermat in July while still bedridden.",
-"src": "https://mathshistory.st-andrews.ac.uk/Biographies/Pascal/"
+"fact": "Still in bed in July 1654, Pascal told Fermat their probability solutions agreed: \"truth is the same in Toulouse as in Paris.\"",
+"src": "https://gtfp.cs.rhul.ac.uk/pulskamp/Pascal/Sources/pasfer.pdf"
 },
 {
 "iso": "de",
@@ -177,7 +177,7 @@ export const FACTS = [
 "id": 157,
 "lat": 51.5413,
 "lon": 9.9158,
-"fact": "Germany’s 10-mark banknote printed the normal curve and its equation beside a portrait of Carl Friedrich Gauss of Göttingen.",
+"fact": "A German 10-mark banknote printed the normal curve and its equation beside a portrait of Carl Friedrich Gauss of Göttingen.",
 "src": "https://parabola.unsw.edu.au/sites/default/files/2024-02/vol36_no1_1.pdf"
 },
 {
@@ -195,7 +195,7 @@ export const FACTS = [
 "id": 49,
 "lat": 60.1282,
 "lon": 18.6435,
-"fact": "Sweden began the world’s oldest regular national population statistics in 1749 but first published a population figure in 1764: 2,383,113 in Sweden and Finland.",
+"fact": "Statistics Sweden calls its 1749 tables the world’s oldest regular national population statistics, yet the first published figure, 2,383,113 including Finland, appeared in 1764.",
 "src": "https://www.scb.se/en/About-us/main-activity/history-of-statistics-sweden/"
 },
 {
@@ -204,7 +204,7 @@ export const FACTS = [
 "id": 89,
 "lat": 60.472,
 "lon": 8.4689,
-"fact": "Anders Kiær, first director of Statistics Norway, presented sample surveys in 1895; critic von Mayr’s answer: no calculations when observations can be made.",
+"fact": "Anders Kiær, first director of Statistics Norway, presented sample surveys in 1895; critic von Mayr’s answer: \"no calculations when observations can be made.\"",
 "src": "https://sit.stat.gov.pl/SiT/2023/3/gus_sit_2023_02_graham_kalton_probability_vs._nonprobability_sampling.pdf"
 },
 {
@@ -222,7 +222,7 @@ export const FACTS = [
 "id": 170,
 "lat": 60.1699,
 "lon": 24.9384,
-"fact": "Tent-bound for days on a 1935 Greenland mapping trip, Finland’s Gustav Elfving thought about least squares and switched his research to statistics.",
+"fact": "Tent-bound for days on a 1935 Greenland mapping trip, Finland’s Gustav Elfving thought about least squares and moved his research toward probability and statistics.",
 "src": "https://mathshistory.st-andrews.ac.uk/Biographies/Elfving/"
 },
 {
@@ -231,8 +231,8 @@ export const FACTS = [
 "id": 146,
 "lat": 64.9631,
 "lon": -19.0208,
-"fact": "Iceland’s 1703 census recorded 725 given names, yet almost every fifth woman was named Guðrún and just under a quarter of men were Jón.",
-"src": "https://heimildir.is/wp-content/uploads/pdf-library/manntalid-1703-en_web.pdf"
+"fact": "Iceland’s 1703 census shows 725 given names in use, yet 19.7% of women were Guðrún and 23.5% of men were Jón.",
+"src": "https://heimildir.skjalasafn.is/wp-content/uploads/pdf-library/manntalid-1703-en_web.pdf"
 },
 {
 "iso": "ch",
@@ -241,7 +241,7 @@ export const FACTS = [
 "lat": 47.5596,
 "lon": 7.5886,
 "fact": "Jacob Bernoulli’s worked example for his law of large numbers called for 25,550 observations, more than the population of Basel at the time.",
-"src": "https://home.ipipan.waw.pl/j.mielniczuk/Historia3_final.pdf"
+"src": "https://link.springer.com/content/pdf/10.1007/BF02837935.pdf"
 },
 {
 "iso": "it",
@@ -258,7 +258,7 @@ export const FACTS = [
 "id": 55,
 "lat": 40.4168,
 "lon": -3.7038,
-"fact": "Spanish engineer Leonardo Torres y Quevedo’s Essays on Automatics contains, almost casually, what is believed to be the first proposal of floating-point arithmetic.",
+"fact": "Spanish engineer Leonardo Torres y Quevedo’s Essays on Automatics mentions floating-point arithmetic in passing, believed to be the idea’s first proposal.",
 "src": "https://history.computer.org/pioneers/torres.html"
 },
 {
@@ -267,8 +267,8 @@ export const FACTS = [
 "id": 218,
 "lat": 50.8503,
 "lon": 4.3517,
-"fact": "Body mass index began in 1832 as the Quetelet Index, from Belgian statistician and astronomer Adolphe Quetelet; Ancel Keys coined today’s name in 1972.",
-"src": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10693914"
+"fact": "What we call body mass index was described in 1832 by Belgian statistician Adolphe Quetelet; Ancel Keys gave it that name in 1972.",
+"src": "https://academic.oup.com/ndt/article/23/1/47/1923176"
 },
 {
 "iso": "cz",
@@ -276,7 +276,7 @@ export const FACTS = [
 "id": 185,
 "lat": 49.1951,
 "lon": 16.6068,
-"fact": "R. A. Fisher’s 1936 analysis of Mendel’s Brno pea experiments implied repeats under ideal conditions would fit better only 7 times in 100,000.",
+"fact": "Ronald Fisher’s 1936 analysis of Mendel’s Brno pea data implied repeats under ideal conditions would fit better 7 times in 100,000; why remains debated.",
 "src": "https://arxiv.org/pdf/1104.2975"
 },
 {
@@ -285,7 +285,7 @@ export const FACTS = [
 "id": 80,
 "lat": 51.1079,
 "lon": 17.0385,
-"fact": "In 1956 Hugo Steinhaus was first to propose multidimensional k-means explicitly, and his motivation was mechanics: partitioning a solid body into parts.",
+"fact": "Hugo Steinhaus first proposed multidimensional k-means explicitly in 1956, motivated by mechanics: how to split a solid body into parts.",
 "src": "https://www.jehps.net/Decembre2008/Bock.pdf"
 },
 {
@@ -294,7 +294,7 @@ export const FACTS = [
 "id": 147,
 "lat": 47.4979,
 "lon": 19.0402,
-"fact": "Alfréd Rényi’s 1958 paper implies randomly parked cars occupy about 75% of a long street, yet he was not really interested in car parking.",
+"fact": "Alfréd Rényi’s 1958 paper implies randomly parked cars fill about 75% of a long street, though his real subject was random space filling.",
 "src": "https://www.karlin.mff.cuni.cz/~slavik/papers/parking-constant.pdf"
 },
 {
@@ -303,7 +303,7 @@ export const FACTS = [
 "id": 225,
 "lat": 48.2082,
 "lon": 16.3738,
-"fact": "The principal exhibits at Otto Neurath’s Social and Economic Museum of Vienna were statistical charts, built from the repeatable pictograms later named Isotype.",
+"fact": "Otto Neurath’s Social and Economic Museum of Vienna mainly exhibited charts, made in a pictorial statistics method later named Isotype.",
 "src": "https://isotyperevisited.org/Isotype%20V%26A%20gallery%20guide.pdf"
 },
 {
@@ -312,7 +312,7 @@ export const FACTS = [
 "id": 77,
 "lat": 44.4268,
 "lon": 26.1025,
-"fact": "Chairing Romania’s 1930 census and needing statisticians, Octav Onicescu founded a School of Statistics, Actuarial Science and Computing in Bucharest that same year.",
+"fact": "Facing too few statisticians for Romania’s 1930 census, Octav Onicescu founded a School of Statistics, Actuarial Science and Computing in Bucharest that year.",
 "src": "https://mathshistory.st-andrews.ac.uk/Biographies/Onicescu/"
 },
 {
@@ -321,7 +321,7 @@ export const FACTS = [
 "id": 155,
 "lat": 38.2187,
 "lon": 23.273,
-"fact": "At Plataea, Thucydides reports, many men counted a wall’s brick layers over and over, trusting that most would get it right, to size ladders.",
+"fact": "At Plataea, Thucydides reports, many people counted a wall’s brick layers over and over, trusting that most would get it right, to size ladders.",
 "src": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.01.0200%3Abook%3D3%3Achapter%3D20"
 },
 {
@@ -339,7 +339,7 @@ export const FACTS = [
 "id": 34,
 "lat": 49.9935,
 "lon": 36.2304,
-"fact": "Sergei Bernstein’s two-page 1912 Kharkiv paper built polynomials from binomial probabilities; decades later they were identified with Bézier’s curves in computer design.",
+"fact": "Sergei Bernstein’s two-page 1912 Kharkiv paper built polynomials from binomial probabilities; decades later they were identified with Bézier’s curves in computer-aided design.",
 "src": "https://faculty.engineering.ucdavis.edu/farouki/wp-content/uploads/sites/41/2013/02/Bernstein-polynomial-basis.pdf"
 },
 {
@@ -447,8 +447,8 @@ export const FACTS = [
 "id": 142,
 "lat": 33.3152,
 "lon": 44.3661,
-"fact": "Al-Kindi, a ninth-century Baghdad scholar, based the letter counts behind his cipher-breaking method on 7 pages totaling 3,667 letters.",
-"src": "https://arxiv.org/pdf/1211.6847"
+"fact": "Algorithm and algebra both trace to one Baghdad scholar: algorithm from al-Khwarizmi’s name, algebra from the title of his treatise.",
+"src": "https://mathshistory.st-andrews.ac.uk/Biographies/Al-Khwarizmi/"
 },
 {
 "iso": "ir",
@@ -492,7 +492,7 @@ export const FACTS = [
 "id": 145,
 "lat": 22.5726,
 "lon": 88.3639,
-"fact": "Mahalanobis’s 1941-42 sample of Bengal’s jute acreage had about a 2% margin of error at one fifteenth the cost of that year’s complete census.",
+"fact": "Mahalanobis’s 1941-42 Bengal jute acreage sample reported about a 2% margin of error at one fifteenth the cost of that year’s complete census.",
 "src": "https://doi.org/10.1098/rstb.1944.0002"
 },
 {
@@ -510,8 +510,8 @@ export const FACTS = [
 "id": 87,
 "lat": 32.728,
 "lon": 73.2359,
-"fact": "At Nandana Fort in Punjab, al-Biruni measured the Earth’s radius with one hill: its height, then the dip of the horizon from its top.",
-"src": "https://arxiv.org/pdf/1312.7288"
+"fact": "Near Nandana fort, al-Biruni sized the Earth from one peak’s height and horizon dip; historian Raymond Mercier argues the dip was computed, not observed.",
+"src": "https://press.uchicago.edu/books/HOC/HOC_V2_B1/HOC_VOLUME2_Book1_chapter8.pdf"
 },
 {
 "iso": "lk",
@@ -535,9 +535,9 @@ export const FACTS = [
 "iso": "cn",
 "name": "China",
 "id": 196,
-"lat": 32.0733,
-"lon": 118.79,
-"fact": "In 1381 Ming China built its Yellow Register census archive on an islet in Nanjing’s Xuanwu Lake and declared the lake forbidden.",
+"lat": 32.0731,
+"lon": 118.7983,
+"fact": "Ming China’s Yellow Register census, launched in 1381, was archived on an islet in Nanjing’s Xuanwu Lake, and the lake was declared forbidden.",
 "src": "https://www.xuanwuhu.net/UploadFile/20250417122718.pdf"
 },
 {
@@ -546,7 +546,7 @@ export const FACTS = [
 "id": 136,
 "lat": 35.6762,
 "lon": 139.6503,
-"fact": "Hirotugu Akaike’s AIC grew from modelling a cement kiln; the key idea struck him taking a commuter train seat on March 16, 1971.",
+"fact": "Hirotugu Akaike’s AIC grew from modeling a cement kiln; the key idea struck as he took a commuter train seat on March 16, 1971.",
 "src": "https://garfield.library.upenn.edu/classics1981/A1981MS54100001.pdf"
 },
 {
@@ -555,7 +555,7 @@ export const FACTS = [
 "id": 56,
 "lat": 37.5665,
 "lon": 126.978,
-"fact": "Joseon court records let researchers rebuild 130 years of daily Seoul rainfall, 1778 to 1907, measured with a copper gauge devised in 1441.",
+"fact": "Joseon court records let researchers rebuild 130 years of daily Seoul rainfall, 1778 to 1907, measured with the cheugugi, a gauge devised in 1441.",
 "src": "https://www.nature.com/articles/s41597-024-03335-8"
 },
 {
@@ -573,8 +573,8 @@ export const FACTS = [
 "id": 81,
 "lat": 15.1429,
 "lon": 120.3496,
-"fact": "Forecasts by Philippine and US scientists let people near Mount Pinatubo evacuate before its June 1991 eruption, saving at least 5,000 lives.",
-"src": "https://pubs.usgs.gov/fs/1997/fs113-97/"
+"fact": "In 1991, software called RSAM helped Philippine and US scientists analyze Pinatubo’s seismic data; USGS credits their forecast with saving more than 5,000 lives.",
+"src": "https://www.usgs.gov/news/featured-story/remembering-mount-pinatubo-25-years-ago-mitigating-a-crisis"
 },
 {
 "iso": "vn",
@@ -582,15 +582,15 @@ export const FACTS = [
 "id": 4,
 "lat": 21.0285,
 "lon": 105.8542,
-"fact": "In 1902 French authorities in Hanoi paid about a penny per rat tail; three months later they found tailless rats and rat farms.",
-"src": "https://distantreader.org/stacks/journals-ojs/whc/whc-3804.htm"
+"fact": "Hanoi’s city hall paid about a penny per rat tail in 1902; about three months later, officials found tailless rats and rat farms.",
+"src": "https://journals.gmu.edu/whc/article/download/3804/2200"
 },
 {
 "iso": "th",
 "name": "Thailand",
 "id": 43,
-"lat": 11.7,
-"lon": 99.76,
+"lat": 11.7155,
+"lon": 99.75,
 "fact": "King Mongkut of Siam calculated totality for the 1868 eclipse at Wakor as 6 minutes 46 seconds, within two seconds of French astronomers’ figure.",
 "src": "https://www.sciencehistory.org/stories/magazine/the-eclipse-that-killed-a-king-and-may-have-saved-a-kingdom/"
 },
@@ -600,7 +600,7 @@ export const FACTS = [
 "id": 116,
 "lat": 2.982,
 "lon": 102.313,
-"fact": "A census of one 50-hectare plot at Pasoh, Malaysia found 335,240 trees and more woody species, 814, than all North America north of Mexico.",
+"fact": "Pasoh’s 50-hectare census tagged, identified and mapped 335,240 trees to the nearest 10 cm, finding 814 species, almost a third of Peninsular Malaysia’s total.",
 "src": "https://forestgeo.si.edu/sites/default/files/pasoh.pdf"
 },
 {
@@ -618,7 +618,7 @@ export const FACTS = [
 "id": 8,
 "lat": 39.6747,
 "lon": 67.0058,
-"fact": "Ulugh Beg’s Samarkand data set the year at 365 days, 5 hours, 49 minutes, 15 seconds; his quadrant needed ground removed to fit.",
+"fact": "Ulugh Beg’s Samarkand data put the solar year at 365 days, 5 hours, 49 minutes, 15 seconds; one large instrument sat partly underground.",
 "src": "https://mathshistory.st-andrews.ac.uk/Biographies/Ulugh_Beg/"
 },
 {
@@ -627,7 +627,7 @@ export const FACTS = [
 "id": 107,
 "lat": 46.8625,
 "lon": 103.8467,
-"fact": "Mongolia’s statistics office counts livestock every December, and herder insurance payouts trigger at county level when recorded mortality exceeds 6%.",
+"fact": "Mongolia’s statistics office counts livestock every December, and index insurance for herders has most commonly paid out when county mortality passes 6%.",
 "src": "https://iopscience.iop.org/article/10.1088/1748-9326/10/7/074012"
 },
 {
@@ -643,9 +643,9 @@ export const FACTS = [
 "iso": "kh",
 "name": "Cambodia",
 "id": 205,
-"lat": 13.567,
-"lon": 104.1,
-"fact": "Twenty hours of lidar flights around Angkor in April 2012 revealed an entire, previously undocumented cityscape etched into Phnom Kulen beneath the forest.",
+"lat": 13.6128,
+"lon": 104.1125,
+"fact": "Twenty hours of lidar flights around Angkor in April 2012 mapped a cityscape on Phnom Kulen, beneath the forest, previously known mainly from inscriptions.",
 "src": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3732978/"
 }
 ];
