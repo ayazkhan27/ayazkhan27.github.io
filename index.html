@@ -166,6 +166,9 @@ button{font:inherit;color:inherit;cursor:pointer}
 @media (max-width:959px){.reading:not(.eps) .ctl{visibility:hidden;opacity:0;pointer-events:none}}
 @media (min-width:960px){.reading:not(.eps) .ctl{flex-direction:column;right:.25rem}.reading:not(.eps) .ctl button{min-width:2.5rem;padding:0}.reading:not(.eps) #timeL{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}}
 .ctl [aria-pressed=false] .on{display:none}
+#vol{width:5.5rem;min-height:2.9rem;margin:0;padding:0 .55rem;background:#0a0512e0;border:1px solid #ffe08a77;border-radius:.2rem;accent-color:var(--gold);cursor:pointer}
+@media (min-width:960px){.reading:not(.eps) #vol{writing-mode:vertical-lr;direction:rtl;width:2.5rem;height:5.5rem;min-height:0;padding:.5rem 0}}
+@media (max-width:480px){#vol{width:4.25rem;padding:0 .35rem}}
 .stopped .win,.stopped .papers,.stopped .close,.stopped .deep{filter:saturate(.16) contrast(1.05)}
 .stopped .sfx{animation-play-state:paused}
 
@@ -911,6 +914,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 <nav class="ctl" id="ctl" aria-label="Page controls" hidden>
   <button type="button" id="stop" hidden>Stop</button>
   <button type="button" id="sound" aria-pressed="true" aria-label="Sound"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7.5h3.5L11 4v12l-4.5-3.5H3z"/><path class="on" d="M13.5 7.2a4 4 0 0 1 0 5.6M15.8 5a7 7 0 0 1 0 10"/></svg></button>
+  <input type="range" id="vol" min="0" max="100" value="100" aria-label="Volume">
   <button type="button" id="time" aria-pressed="false"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="11" r="7"/><path d="M10 7v4l2.5 2.5M8 2h4"/></svg><span id="timeL">Stop time</span></button>
 </nav>
 

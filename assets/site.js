@@ -65,10 +65,11 @@
   if (STILL) { $$('.sheet').forEach(s => s.classList.add('open')); return; }
 
   /* sound: the gesture that opens the window also wakes the audio */
-  let ac, noiseBuf, soundOn = true, quiet = false;
+  let ac, master, noiseBuf, soundOn = true, quiet = false, vol = 1;
   const wake = () => {
     if (ac || CAPTURE || !window.AudioContext) return;
     ac = new AudioContext();
+    master = ac.createGain(); master.gain.value = vol; master.connect(ac.destination);
     noiseBuf = ac.createBuffer(1, ac.sampleRate * 2, ac.sampleRate);
     const c = noiseBuf.getChannelData(0);
     for (let i = 0; i < c.length; i++) c[i] = Math.random() * 2 - 1;
@@ -80,14 +81,14 @@
     s.buffer = noiseBuf; s.loop = true; f.type = 'bandpass'; f.Q.value = .8;
     f.frequency.setValueAtTime(f0, t); f.frequency.exponentialRampToValueAtTime(f1, t + dur);
     v.gain.setValueAtTime(.0001, t); v.gain.exponentialRampToValueAtTime(g, t + dur * .22); v.gain.exponentialRampToValueAtTime(.0001, t + dur);
-    s.connect(f).connect(v).connect(ac.destination); s.start(t); s.stop(t + dur);
+    s.connect(f).connect(v).connect(master); s.start(t); s.stop(t + dur);
   };
   const thud = g => {
     if (!ac || !soundOn || quiet) return;
     const o = ac.createOscillator(), v = ac.createGain(), t = ac.currentTime;
     o.frequency.setValueAtTime(120, t); o.frequency.exponentialRampToValueAtTime(36, t + .2);
     v.gain.setValueAtTime(g, t); v.gain.exponentialRampToValueAtTime(.0001, t + .26);
-    o.connect(v).connect(ac.destination); o.start(t); o.stop(t + .28);
+    o.connect(v).connect(master); o.start(t); o.stop(t + .28);
   };
   const buzz = p => { if (ac && navigator.vibrate) navigator.vibrate(p); };
   Object.assign(sfxApi, { hiss, thud, buzz, wake });
@@ -390,6 +391,7 @@
   timeB.addEventListener('click', () => { if (!frozen) { wake(); thud(.25); } setFrozen(!frozen); });
   const soundB = $('#sound'), au = $('#epAudio');
   soundB.addEventListener('click', () => { soundOn = !soundOn; soundB.setAttribute('aria-pressed', soundOn); au.muted = !soundOn; wake(); });
+  $('#vol').addEventListener('input', e => { vol = e.target.value / 100; au.volume = vol; if (master) master.gain.value = vol; soundOn = vol > 0; soundB.setAttribute('aria-pressed', soundOn); au.muted = !soundOn; wake(); });
 
   /* the episode: "Smooth", cut to the song's real accents. Everything holds still between hits, and each card acts out what happened. */
   const slot = $('#slot'), lines = $('#lines'), bigsfx = $('#bigsfx'), said = $('#said'), tpl = $('#ep').content;
