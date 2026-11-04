@@ -531,9 +531,9 @@ body{padding-bottom:var(--rail-h)}
   .nav{flex-wrap:nowrap;gap:.5rem}
   .nav ul{margin:0}
   .nav .global{margin-left:auto}
-  .nav .gbtn[data-sound]{display:none}
-  .nav .gbtn[data-time]{width:44px;padding:0;justify-content:center}
-  .nav .gbtn[data-time] .jp,.nav .gbtn[data-time] .lbl{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+  /* phones: room for one icon up top; Sound wins (time stop lives in the rail) */
+  .nav .gbtn[data-time]{display:none}
+  .nav .gbtn[data-sound]{width:44px;padding:0;justify-content:center;font-size:0;gap:0}
   .post .lab,.post[aria-current="true"] .lab{display:none}
   :root{--rail-h:56px}
   .rail-end{display:none}
@@ -677,7 +677,7 @@ body{padding-bottom:var(--rail-h)}
         <div class="jj-slot refuse" data-module="rohan">
           <div class="jj-static">
             <p class="jp" aria-hidden="true">だが断る</p>
-            <p>I refused to ship a leaky 0.806 and reported the honest 0.7401.</p>
+            <p>Leakage said 0.806. The honest number: 0.7401.</p>
             <p><a href="Ayaz_Khan_Resume.pdf">Heaven's Door: read the résumé (PDF)</a></p>
           </div>
         </div>
@@ -685,7 +685,7 @@ body{padding-bottom:var(--rail-h)}
       <details class="more">
         <summary>More from Telenav</summary>
         <div class="more-body">
-          <p>On Novo Insurance's scoring stack. The 56.69% is a nonparametric estimate of the best accuracy any calibrator could reach on this data: 95% CI [55.13, 58.08] on 4,338 true-ping rows. The production calibrator ran 9 points below that bound. The finding cancelled a release that would have degraded pricing.</p>
+          <p>The 56.69% is a nonparametric estimate of the best accuracy any calibrator could reach on this data: 95% CI [55.13, 58.08] on 4,338 true-ping rows. The production calibrator ran 9 points below that bound. The finding cancelled a release that would have degraded pricing.</p>
           <div class="split">
             <p>Target leakage and non-temporal splits had inflated the AUC to 0.806. With both fixed it was an honest 0.7401, and the audit surfaced $127K of campaign waste. Privileged-features distillation lifted ping-stage AUC from 0.6206 to 0.6457 on 23,559 holdout rows.</p>
             <figure>
