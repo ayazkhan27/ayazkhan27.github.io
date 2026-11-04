@@ -1,0 +1,651 @@
+/* Written by tools/build_globe.py from tools/globe_facts.json. */
+export const FACTS = [
+{
+"iso": "us",
+"name": "United States",
+"id": 17,
+"lat": 35.88,
+"lon": -106.3031,
+"fact": "The Monte Carlo method from Los Alamos owes its name partly to Stan Ulam’s uncle, who borrowed from relatives to go to Monte Carlo.",
+"src": "https://mcnpx.lanl.gov/pdf_files/Article_1987_LAS_Metropolis_125--130.pdf"
+},
+{
+"iso": "ca",
+"name": "Canada",
+"id": 203,
+"lat": 43.6629,
+"lon": -79.3957,
+"fact": "AlexNet, the 2012 University of Toronto neural network, was trained on two NVIDIA cards in Alex Krizhevsky’s bedroom at his parents’ house.",
+"src": "https://computerhistory.org/blog/chm-releases-alexnet-source-code/"
+},
+{
+"iso": "mx",
+"name": "Mexico",
+"id": 110,
+"lat": 19.5731,
+"lon": -98.8214,
+"fact": "Aztec surveyors near Mexico City measured fields in arrows, hearts and hands: two arrows made one land rod, five hearts made two.",
+"src": "https://www.scientificamerican.com/article/aztec-math-uses-hearts-and-arrows/"
+},
+{
+"iso": "br",
+"name": "Brazil",
+"id": 211,
+"lat": -22.9799,
+"lon": -43.2332,
+"fact": "Lua came from data-entry tools built in Brazil for Petrobras engineers; it modified a language called Sol (sun), so a friend suggested Lua (moon).",
+"src": "https://www.lua.org/history.html"
+},
+{
+"iso": "ar",
+"name": "Argentina",
+"id": 232,
+"lat": -34.9215,
+"lon": -57.9545,
+"fact": "Juan Vucetich devised the first workable fingerprint identification system after joining the La Plata Police Office of Identification and Statistics in Argentina.",
+"src": "https://www.nlm.nih.gov/exhibition/visibleproofs/galleries/biographies/vucetich.html"
+},
+{
+"iso": "co",
+"name": "Colombia",
+"id": 195,
+"lat": 2.4448,
+"lon": -76.6147,
+"fact": "In 1801 Francisco José de Caldas, in present-day Colombia, found altitude could be read from water’s boiling temperature, no mercury barometer needed.",
+"src": "https://diposit.ub.edu/items/79abcd83-cfe3-4161-bb5d-9e8c01fe2511"
+},
+{
+"iso": "pe",
+"name": "Peru",
+"id": 82,
+"lat": -8.9889,
+"lon": -78.6142,
+"fact": "During spring break, a Harvard freshman matched six knotted khipu cords from Peru to a 1670 census of 132 Recuay tribute payers.",
+"src": "https://news.harvard.edu/gazette/story/2017/08/a-students-mines-voices-from-the-incan-past"
+},
+{
+"iso": "cl",
+"name": "Chile",
+"id": 199,
+"lat": -23.0234,
+"lon": -67.7538,
+"fact": "At 5,000 metres in Chile, the ALMA telescope’s supercomputer could not use spinning disk drives, because their read heads need a cushion of air.",
+"src": "https://www.eso.org/public/news/eso1253/"
+},
+{
+"iso": "cu",
+"name": "Cuba",
+"id": 188,
+"lat": 23.1339,
+"lon": -82.3549,
+"fact": "In Havana, Benito Viñes forecast an 1875 hurricane from cloud data and past storms; next year, the only captain ignoring him lost his ship.",
+"src": "https://www.encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/vines-y-martorell-benito-1837-1893"
+},
+{
+"iso": "au",
+"name": "Australia",
+"id": 226,
+"lat": -37.8305,
+"lon": 144.9166,
+"fact": "David Warren’s prototype flight recorder in Melbourne stored up to four hours of voice and instrument data; skeptics expected “more expletives than explanations.”",
+"src": "https://www.imperial.ac.uk/news/122905/obituary-dr-david-ronald-de-mey/"
+},
+{
+"iso": "nz",
+"name": "New Zealand",
+"id": 94,
+"lat": -36.8523,
+"lon": 174.7691,
+"fact": "R began at the University of Auckland as about 1,000 lines of C, written because a Macintosh teaching lab needed better statistics software.",
+"src": "https://cran.r-project.org/doc/html/interface98-paper/paper_1.html"
+},
+{
+"iso": "bo",
+"name": "Bolivia",
+"id": 214,
+"lat": -20.1338,
+"lon": -67.4891,
+"fact": "GPS surveyors on Bolivia’s Salar de Uyuni measured a 77-centimeter height range and could tell their SUVs rode 5 millimeters higher on empty tanks.",
+"src": "https://www.sciencenews.org/article/salt-flat-isnt-flat-worlds-largest-playa-sports-ridges-valleys"
+},
+{
+"iso": "pa",
+"name": "Panama",
+"id": 85,
+"lat": 9.1543,
+"lon": -79.8461,
+"fact": "Panama’s Barro Colorado Island has a census of trees: a 50-hectare plot recounted every 5 years from 1985 through 2015, logging 423,617 trees.",
+"src": "https://datadryad.org/dataset/doi:10.15146/5xcp-0d46"
+},
+{
+"iso": "ve",
+"name": "Venezuela",
+"id": 5,
+"lat": 9.75,
+"lon": -71.6,
+"fact": "With 16 years of space-based lightning data, researchers ranked Venezuela’s Lake Maracaibo Earth’s top hotspot, at about 233 flashes per square kilometer yearly.",
+"src": "https://www.nasa.gov/centers-and-facilities/marshall/earths-new-lightning-capital-revealed/"
+},
+{
+"iso": "jm",
+"name": "Jamaica",
+"id": 137,
+"lat": 18.0179,
+"lon": -76.8099,
+"fact": "Jamaican toddlers randomized to weekly home visits, where mothers learned play, were earning 25 percent more than controls twenty years later.",
+"src": "https://news.berkeley.edu/2014/05/29/study-shows-early-childhood-stimulation-intervention-in-jamaica-yields-later-earnings-benefits/"
+},
+{
+"iso": "mh",
+"name": "Marshall Islands",
+"id": 11,
+"lat": 7.1315,
+"lon": 171.1845,
+"fact": "Marshall Islanders recorded ocean swells on charts of sticks and shells, then memorised the patterns: the charts were not carried on voyages.",
+"src": "https://www.lib.cam.ac.uk/node/2992"
+},
+{
+"iso": "gb",
+"name": "United Kingdom",
+"id": 32,
+"lat": 50.3755,
+"lon": -4.1427,
+"fact": "At a Plymouth livestock show, 787 sixpenny guesses at an ox’s dressed weight had a middle value 9 lb too high, Francis Galton found.",
+"src": "https://galton.org/essays/1900-1911/galton-1907-vox-populi.pdf"
+},
+{
+"iso": "ie",
+"name": "Ireland",
+"id": 141,
+"lat": 53.3419,
+"lon": -6.2867,
+"fact": "The t-test came from a Guinness chemist in Dublin, William Gosset, handling small samples for brewing quality control and writing as Student.",
+"src": "https://mathshistory.st-andrews.ac.uk/Biographies/Gosset/"
+},
+{
+"iso": "fr",
+"name": "France",
+"id": 161,
+"lat": 48.8566,
+"lon": 2.3522,
+"fact": "Probability theory grew from 1654 letters on splitting stakes in an unfinished dice game; Pascal wrote to Fermat in July while still bedridden.",
+"src": "https://mathshistory.st-andrews.ac.uk/Biographies/Pascal/"
+},
+{
+"iso": "de",
+"name": "Germany",
+"id": 157,
+"lat": 51.5413,
+"lon": 9.9158,
+"fact": "Germany’s 10-mark banknote printed the normal curve and its equation beside a portrait of Carl Friedrich Gauss of Göttingen.",
+"src": "https://parabola.unsw.edu.au/sites/default/files/2024-02/vol36_no1_1.pdf"
+},
+{
+"iso": "nl",
+"name": "Netherlands",
+"id": 97,
+"lat": 52.3563,
+"lon": 4.9516,
+"fact": "Guido van Rossum started Python in December 1989 as a hobby for the week around Christmas, when his Amsterdam research lab would be closed.",
+"src": "https://www.python.org/doc/essays/foreword/"
+},
+{
+"iso": "se",
+"name": "Sweden",
+"id": 49,
+"lat": 60.1282,
+"lon": 18.6435,
+"fact": "Sweden began the world’s oldest regular national population statistics in 1749 but first published a population figure in 1764: 2,383,113 in Sweden and Finland.",
+"src": "https://www.scb.se/en/About-us/main-activity/history-of-statistics-sweden/"
+},
+{
+"iso": "no",
+"name": "Norway",
+"id": 89,
+"lat": 60.472,
+"lon": 8.4689,
+"fact": "Anders Kiær, first director of Statistics Norway, presented sample surveys in 1895; critic von Mayr’s answer: no calculations when observations can be made.",
+"src": "https://sit.stat.gov.pl/SiT/2023/3/gus_sit_2023_02_graham_kalton_probability_vs._nonprobability_sampling.pdf"
+},
+{
+"iso": "dk",
+"name": "Denmark",
+"id": 184,
+"lat": 56.39,
+"lon": 9.37,
+"fact": "Interned in Denmark from 1940, South African mathematician John Kerrich passed the time flipping a coin 10,000 times, getting 5,067 heads.",
+"src": "https://uio.no/studier/emner/matnat/math/MAT4010/data/forelesningsnotater/the-cenetral-limit-theorem.pdf"
+},
+{
+"iso": "fi",
+"name": "Finland",
+"id": 170,
+"lat": 60.1699,
+"lon": 24.9384,
+"fact": "Tent-bound for days on a 1935 Greenland mapping trip, Finland’s Gustav Elfving thought about least squares and switched his research to statistics.",
+"src": "https://mathshistory.st-andrews.ac.uk/Biographies/Elfving/"
+},
+{
+"iso": "is",
+"name": "Iceland",
+"id": 146,
+"lat": 64.9631,
+"lon": -19.0208,
+"fact": "Iceland’s 1703 census recorded 725 given names, yet almost every fifth woman was named Guðrún and just under a quarter of men were Jón.",
+"src": "https://heimildir.is/wp-content/uploads/pdf-library/manntalid-1703-en_web.pdf"
+},
+{
+"iso": "ch",
+"name": "Switzerland",
+"id": 48,
+"lat": 47.5596,
+"lon": 7.5886,
+"fact": "Jacob Bernoulli’s worked example for his law of large numbers called for 25,550 observations, more than the population of Basel at the time.",
+"src": "https://home.ipipan.waw.pl/j.mielniczuk/Historia3_final.pdf"
+},
+{
+"iso": "it",
+"name": "Italy",
+"id": 138,
+"lat": 42.8333,
+"lon": 12.8333,
+"fact": "Galileo showed why three dice favor 10 over 9, though each has six combinations: 27 different throws make 10, only 25 make 9.",
+"src": "https://web.universiteitleiden.nl/fsw/verduin/stathist/galileo.htm"
+},
+{
+"iso": "es",
+"name": "Spain",
+"id": 55,
+"lat": 40.4168,
+"lon": -3.7038,
+"fact": "Spanish engineer Leonardo Torres y Quevedo’s Essays on Automatics contains, almost casually, what is believed to be the first proposal of floating-point arithmetic.",
+"src": "https://history.computer.org/pioneers/torres.html"
+},
+{
+"iso": "be",
+"name": "Belgium",
+"id": 218,
+"lat": 50.8503,
+"lon": 4.3517,
+"fact": "Body mass index began in 1832 as the Quetelet Index, from Belgian statistician and astronomer Adolphe Quetelet; Ancel Keys coined today’s name in 1972.",
+"src": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10693914"
+},
+{
+"iso": "cz",
+"name": "Czech Republic",
+"id": 185,
+"lat": 49.1951,
+"lon": 16.6068,
+"fact": "R. A. Fisher’s 1936 analysis of Mendel’s Brno pea experiments implied repeats under ideal conditions would fit better only 7 times in 100,000.",
+"src": "https://arxiv.org/pdf/1104.2975"
+},
+{
+"iso": "pl",
+"name": "Poland",
+"id": 80,
+"lat": 51.1079,
+"lon": 17.0385,
+"fact": "In 1956 Hugo Steinhaus was first to propose multidimensional k-means explicitly, and his motivation was mechanics: partitioning a solid body into parts.",
+"src": "https://www.jehps.net/Decembre2008/Bock.pdf"
+},
+{
+"iso": "hu",
+"name": "Hungary",
+"id": 147,
+"lat": 47.4979,
+"lon": 19.0402,
+"fact": "Alfréd Rényi’s 1958 paper implies randomly parked cars occupy about 75% of a long street, yet he was not really interested in car parking.",
+"src": "https://www.karlin.mff.cuni.cz/~slavik/papers/parking-constant.pdf"
+},
+{
+"iso": "at",
+"name": "Austria",
+"id": 225,
+"lat": 48.2082,
+"lon": 16.3738,
+"fact": "The principal exhibits at Otto Neurath’s Social and Economic Museum of Vienna were statistical charts, built from the repeatable pictograms later named Isotype.",
+"src": "https://isotyperevisited.org/Isotype%20V%26A%20gallery%20guide.pdf"
+},
+{
+"iso": "ro",
+"name": "Romania",
+"id": 77,
+"lat": 44.4268,
+"lon": 26.1025,
+"fact": "Chairing Romania’s 1930 census and needing statisticians, Octav Onicescu founded a School of Statistics, Actuarial Science and Computing in Bucharest that same year.",
+"src": "https://mathshistory.st-andrews.ac.uk/Biographies/Onicescu/"
+},
+{
+"iso": "gr",
+"name": "Greece",
+"id": 155,
+"lat": 38.2187,
+"lon": 23.273,
+"fact": "At Plataea, Thucydides reports, many men counted a wall’s brick layers over and over, trusting that most would get it right, to size ladders.",
+"src": "https://www.perseus.tufts.edu/hopper/text?doc=Perseus%3Atext%3A1999.01.0200%3Abook%3D3%3Achapter%3D20"
+},
+{
+"iso": "ru",
+"name": "Russia",
+"id": 76,
+"lat": 59.9343,
+"lon": 30.3351,
+"fact": "Andrei Markov tallied the first 20,000 letters of Pushkin’s Eugene Onegin and found vowel pairs about a third as common as independence predicts.",
+"src": "https://mathshistory.st-andrews.ac.uk/Strick/markov.pdf"
+},
+{
+"iso": "ua",
+"name": "Ukraine",
+"id": 34,
+"lat": 49.9935,
+"lon": 36.2304,
+"fact": "Sergei Bernstein’s two-page 1912 Kharkiv paper built polynomials from binomial probabilities; decades later they were identified with Bézier’s curves in computer design.",
+"src": "https://faculty.engineering.ucdavis.edu/farouki/wp-content/uploads/sites/41/2013/02/Bernstein-polynomial-basis.pdf"
+},
+{
+"iso": "hr",
+"name": "Croatia",
+"id": 189,
+"lat": 45.815,
+"lon": 15.9819,
+"fact": "Reading seismograms of an 8 October 1909 quake, Zagreb’s Andrija Mohorovičić noticed curious echoes and calculated a rock boundary about 30 miles down.",
+"src": "https://www.lindahall.org/about/news/scientist-of-the-day/andrija-mohorovicic/"
+},
+{
+"iso": "ee",
+"name": "Estonia",
+"id": 173,
+"lat": 58.3786,
+"lon": 26.7204,
+"fact": "To determine Earth’s shape and size, Tartu’s F.G.W. Struve oversaw measuring an arc across 10 modern nations, marked mostly by cairns or lead-filled holes.",
+"src": "https://ut.ee/en/content/struves-geodetic-arc-inscribed-unesco-world-heritage-list"
+},
+{
+"iso": "eg",
+"name": "Egypt",
+"id": 177,
+"lat": 30.0068,
+"lon": 31.2249,
+"fact": "The R package longmemo ships yearly Nile minimums from the Roda gauge near Cairo, starting in 622, with some years typed in by hand.",
+"src": "https://search.r-project.org/CRAN/refmans/longmemo/html/NileMin.html"
+},
+{
+"iso": "ma",
+"name": "Morocco",
+"id": 104,
+"lat": 31.6295,
+"lon": -7.9811,
+"fact": "Around 1200, probably at the court in Marrakech, Ibn Mun’im counted tassels from 10 silk colours with a table we now call Pascal’s triangle.",
+"src": "https://bms.ulb.ac.be/mathconf2017/presentaties/Jeanine_Daems-History.pdf"
+},
+{
+"iso": "ng",
+"name": "Nigeria",
+"id": 91,
+"lat": 7.43,
+"lon": 3.28,
+"fact": "Igbo-Ora, Nigeria, has the highest non-identical twinning rate reported anywhere: 45 per 1,000 live births, though hospital surveys later found it falling.",
+"src": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7714157/"
+},
+{
+"iso": "gh",
+"name": "Ghana",
+"id": 156,
+"lat": 6.69,
+"lon": -1.62,
+"fact": "Akan goldsmiths in today’s Ghana and Côte d’Ivoire cast roughly three million brass weights from 1400 to about 1908 to weigh gold-dust money.",
+"src": "https://artmuseum.princeton.edu/art/collections/objects/1525"
+},
+{
+"iso": "ke",
+"name": "Kenya",
+"id": 133,
+"lat": 0.62,
+"lon": 37.53,
+"fact": "A machine learning model could predict which elephant was being addressed from the acoustics of wild calls recorded in Kenya, evidence of name-like calls.",
+"src": "https://www.nature.com/articles/s41559-024-02420-w"
+},
+{
+"iso": "ug",
+"name": "Uganda",
+"id": 35,
+"lat": 0.3476,
+"lon": 32.5825,
+"fact": "Makerere University’s AirQo air monitors ride on Kampala’s boda-boda motorcycles, so one device collects data from many points instead of one.",
+"src": "https://theconversation.com/how-were-measuring-air-quality-in-kampala-and-why-it-works-for-african-cities-143006"
+},
+{
+"iso": "rw",
+"name": "Rwanda",
+"id": 75,
+"lat": -1.9441,
+"lon": 30.0619,
+"fact": "Phone surveys of 856 Rwandan subscribers trained a model that predicted wealth for 1.5 million others from call records.",
+"src": "https://escholarship.org/content/qt3k9724q8/qt3k9724q8.pdf"
+},
+{
+"iso": "tz",
+"name": "Tanzania",
+"id": 44,
+"lat": -2.33,
+"lon": 34.83,
+"fact": "Of 1.2 million image sets from Serengeti camera traps, volunteers found animals in only 322,653; heat or vegetation triggered the rest.",
+"src": "https://www.nature.com/articles/sdata201526"
+},
+{
+"iso": "za",
+"name": "South Africa",
+"id": 57,
+"lat": -26.2,
+"lon": 28.05,
+"fact": "Kriging, kin to Gaussian process regression, honours Daniel Krige, who saw Witwatersrand gold estimates undervalue low-grade mine panels and overvalue high-grade ones.",
+"src": "https://arxiv.org/pdf/2408.02331"
+},
+{
+"iso": "iq",
+"name": "Iraq",
+"id": 142,
+"lat": 33.3152,
+"lon": 44.3661,
+"fact": "Both algorithm and algebra come from one scholar at Baghdad’s House of Wisdom: algorithm from al-Khwarizmi’s name, algebra from his treatise’s title.",
+"src": "https://mathshistory.st-andrews.ac.uk/Biographies/Al-Khwarizmi/"
+},
+{
+"iso": "ir",
+"name": "Iran",
+"id": 143,
+"lat": 32.6546,
+"lon": 51.668,
+"fact": "Omar Khayyam at Esfahan measured the year as 365.24219858156 days, though its true length shifts in the sixth decimal within one lifetime.",
+"src": "https://mathshistory.st-andrews.ac.uk/Biographies/Khayyam/"
+},
+{
+"iso": "il",
+"name": "Israel",
+"id": 139,
+"lat": 31.5,
+"lon": 34.85,
+"fact": "In Israel, to show flight instructors regression to the mean, Daniel Kahneman had them toss two coins at a target behind their backs.",
+"src": "https://www.nobelprize.org/prizes/economic-sciences/2002/kahneman/biographical/"
+},
+{
+"iso": "tr",
+"name": "Turkey",
+"id": 37,
+"lat": 41.013,
+"lon": 28.9637,
+"fact": "The paper that triggered studies of the birthday problem was written in Istanbul, where Richard von Mises held a university chair.",
+"src": "https://mathshistory.st-andrews.ac.uk/Strick/mises.pdf"
+},
+{
+"iso": "jo",
+"name": "Jordan",
+"id": 135,
+"lat": 30.28,
+"lon": 36.95,
+"fact": "Python graph code scored a Neolithic plan carved on a 92 kg Jordanian monolith 75.90% similar to a stone hunting trap 16.3 km away.",
+"src": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0277927"
+},
+{
+"iso": "in",
+"name": "India",
+"id": 145,
+"lat": 22.5726,
+"lon": 88.3639,
+"fact": "Mahalanobis’s 1941-42 sample of Bengal’s jute acreage had about a 2% margin of error at one fifteenth the cost of that year’s complete census.",
+"src": "https://doi.org/10.1098/rstb.1944.0002"
+},
+{
+"iso": "bd",
+"name": "Bangladesh",
+"id": 221,
+"lat": 23.734,
+"lon": 90.3928,
+"fact": "From the University of Dhaka, Satyendranath Bose sent Einstein a four-page statistical derivation of Planck’s law in 1924; Einstein translated it into German himself.",
+"src": "https://mathshistory.st-andrews.ac.uk/Biographies/Bose/"
+},
+{
+"iso": "pk",
+"name": "Pakistan",
+"id": 87,
+"lat": 32.728,
+"lon": 73.2359,
+"fact": "At Nandana Fort in Punjab, al-Biruni measured the Earth’s radius with one hill: its height, then the dip of the horizon from its top.",
+"src": "https://arxiv.org/pdf/1312.7288"
+},
+{
+"iso": "lk",
+"name": "Sri Lanka",
+"id": 54,
+"lat": 7.8731,
+"lon": 80.7718,
+"fact": "Sri Lanka’s first scientific census ran on 27 March 1871; the one intended for 1951 was postponed to 1953 by a shortage of paper.",
+"src": "https://www.statistics.gov.lk/about_us/history"
+},
+{
+"iso": "np",
+"name": "Nepal",
+"id": 100,
+"lat": 27.9881,
+"lon": 86.925,
+"fact": "Everest’s 29,002 feet was the unweighted mean from six Indian survey stations 108 to 118 miles away, about 200 feet above sea level.",
+"src": "https://publications.americanalpineclub.org/articles/12199511300"
+},
+{
+"iso": "cn",
+"name": "China",
+"id": 196,
+"lat": 32.0733,
+"lon": 118.79,
+"fact": "In 1381 Ming China built its Yellow Register census archive on an islet in Nanjing’s Xuanwu Lake and declared the lake forbidden.",
+"src": "https://www.xuanwuhu.net/UploadFile/20250417122718.pdf"
+},
+{
+"iso": "jp",
+"name": "Japan",
+"id": 136,
+"lat": 35.6762,
+"lon": 139.6503,
+"fact": "Hirotugu Akaike’s AIC grew from modelling a cement kiln; the key idea struck him taking a commuter train seat on March 16, 1971.",
+"src": "https://garfield.library.upenn.edu/classics1981/A1981MS54100001.pdf"
+},
+{
+"iso": "kr",
+"name": "South Korea",
+"id": 56,
+"lat": 37.5665,
+"lon": 126.978,
+"fact": "Joseon court records let researchers rebuild 130 years of daily Seoul rainfall, 1778 to 1907, measured with a copper gauge devised in 1441.",
+"src": "https://www.nature.com/articles/s41597-024-03335-8"
+},
+{
+"iso": "id",
+"name": "Indonesia",
+"id": 144,
+"lat": -6.1352,
+"lon": 106.8133,
+"fact": "In an 1890s beriberi study in Java, Adolphe Vorderman kept rice analysts blind using sample bottles marked only with letters or numbers.",
+"src": "https://www.jameslindlibrary.org/articles/adolphe-vordermans-1897-study-on-beriberi-an-example-of-scrupulous-efforts-to-avoid-bias/"
+},
+{
+"iso": "ph",
+"name": "Philippines",
+"id": 81,
+"lat": 15.1429,
+"lon": 120.3496,
+"fact": "Forecasts by Philippine and US scientists let people near Mount Pinatubo evacuate before its June 1991 eruption, saving at least 5,000 lives.",
+"src": "https://pubs.usgs.gov/fs/1997/fs113-97/"
+},
+{
+"iso": "vn",
+"name": "Vietnam",
+"id": 4,
+"lat": 21.0285,
+"lon": 105.8542,
+"fact": "In 1902 French authorities in Hanoi paid about a penny per rat tail; three months later they found tailless rats and rat farms.",
+"src": "https://distantreader.org/stacks/journals-ojs/whc/whc-3804.htm"
+},
+{
+"iso": "th",
+"name": "Thailand",
+"id": 43,
+"lat": 11.7,
+"lon": 99.76,
+"fact": "King Mongkut of Siam calculated totality for the 1868 eclipse at Wakor as 6 minutes 46 seconds, within two seconds of French astronomers’ figure.",
+"src": "https://www.sciencehistory.org/stories/magazine/the-eclipse-that-killed-a-king-and-may-have-saved-a-kingdom/"
+},
+{
+"iso": "my",
+"name": "Malaysia",
+"id": 116,
+"lat": 2.982,
+"lon": 102.313,
+"fact": "A census of one 50-hectare plot at Pasoh, Malaysia found 335,240 trees and more woody species, 814, than all North America north of Mexico.",
+"src": "https://forestgeo.si.edu/sites/default/files/pasoh.pdf"
+},
+{
+"iso": "sg",
+"name": "Singapore",
+"id": 63,
+"lat": 1.3521,
+"lon": 103.8198,
+"fact": "Singapore has tested robots disguised as white swans that swim its reservoirs and send real-time water quality data over the Internet.",
+"src": "https://arl.nus.edu.sg/wp-content/publications/WaterConvention2016.pdf"
+},
+{
+"iso": "uz",
+"name": "Uzbekistan",
+"id": 8,
+"lat": 39.6747,
+"lon": 67.0058,
+"fact": "Ulugh Beg’s Samarkand data set the year at 365 days, 5 hours, 49 minutes, 15 seconds; his quadrant needed ground removed to fit.",
+"src": "https://mathshistory.st-andrews.ac.uk/Biographies/Ulugh_Beg/"
+},
+{
+"iso": "mn",
+"name": "Mongolia",
+"id": 107,
+"lat": 46.8625,
+"lon": 103.8467,
+"fact": "Mongolia’s statistics office counts livestock every December, and herder insurance payouts trigger at county level when recorded mortality exceeds 6%.",
+"src": "https://iopscience.iop.org/article/10.1088/1748-9326/10/7/074012"
+},
+{
+"iso": "bt",
+"name": "Bhutan",
+"id": 215,
+"lat": 27.5142,
+"lon": 90.4336,
+"fact": "Bhutan’s Gross National Happiness Index calls you happy at sufficiency in at least 66% of 33 weighted indicators; in 2022, 9.5% were deeply happy.",
+"src": "https://ophi.org.uk/gross-national-happiness"
+},
+{
+"iso": "kh",
+"name": "Cambodia",
+"id": 205,
+"lat": 13.567,
+"lon": 104.1,
+"fact": "Twenty hours of lidar flights around Angkor in April 2012 revealed an entire, previously undocumented cityscape etched into Phnom Kulen beneath the forest.",
+"src": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3732978/"
+}
+];

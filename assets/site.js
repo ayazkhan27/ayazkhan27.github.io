@@ -11,7 +11,7 @@
   const tween = (ms, fn, done) => fx.push({ t0: now(), ms, fn, done });
   const later = (ms, done) => tween(ms, () => {}, done);
 
-  /* figures: drawn to scale from the numbers beside them */
+  /* figures: sketches of the numbers beside them */
   const svg = (h, body) => `<svg viewBox="0 0 320 ${h}" aria-hidden="true">${body}</svg>`;
   const FIG = {
     leak() {
@@ -22,7 +22,7 @@
     },
     ceil() {
       const X = v => 4 + v * 3.12;
-      return svg(44, `<path d="M4 22H316M4 14V30M316 14V30" stroke="currentColor" stroke-width="1.5"/><rect x="${X(55.13)}" y="4" width="${X(58.08) - X(55.13)}" height="36" fill="var(--mag)"/><path d="M${X(47.69)} 10V34" stroke="currentColor" stroke-width="3" stroke-dasharray="4 3"/>`);
+      return svg(44, `<path d="M4 22H316M4 14V30M316 14V30" stroke="currentColor" stroke-width="1.5"/><rect x="${X(55.13)}" y="4" width="${X(58.08) - X(55.13)}" height="36" fill="var(--mag)"/><path d="M${X(47.69)} 10V34" stroke="currentColor" stroke-width="3" stroke-dasharray="4 3"/><text x="${X(47.69) + 2}" y="0" font-size="11" text-anchor="end" fill="currentColor">production</text><text x="${X(55.13)}" y="0" font-size="11" fill="currentColor">ceiling</text>`);
     },
     route() {
       let s = '<circle cx="14" cy="34" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M26 34H96" stroke="currentColor" stroke-width="1.5"/>';
@@ -41,7 +41,7 @@
     },
     slope() {
       const Y = v => 46 - (v - .6206) / (.6457 - .6206) * 34;
-      return svg(54, `<path d="M16 ${Y(.6206)}L304 ${Y(.6457)}" stroke="currentColor" stroke-width="2"/><circle cx="16" cy="${Y(.6206)}" r="5.5" fill="currentColor"/><circle cx="304" cy="${Y(.6457)}" r="7" fill="var(--mag)"/>`);
+      return svg(54, `<path d="M16 ${Y(.6206)}L304 ${Y(.6457)}" stroke="currentColor" stroke-width="2"/><circle cx="16" cy="${Y(.6206)}" r="5.5" fill="currentColor"/><circle cx="304" cy="${Y(.6457)}" r="7" fill="var(--mag)"/><text x="16" y="${Y(.6206) - 10}" font-size="12" fill="currentColor">0.6206</text><text x="304" y="${Y(.6457) - 12}" font-size="12" text-anchor="end" fill="currentColor">0.6457</text>`);
     },
     bars() {
       return svg(38, `<rect y="2" width="${.949 * 320}" height="15" fill="var(--mag)"/><rect y="21" width="${.606 * 320}" height="15" fill="currentColor" opacity=".4"/>`);
@@ -56,10 +56,16 @@
     catch { copied.textContent = 'Copy failed: select the line above'; }
   });
 
+  /* the long version loads when someone comes near it */
+  const sfxApi = { hiss() {}, thud() {}, buzz() {}, wake() {} }, deepUrl = new URL('deep.js', d.currentScript.src).href;
+  new IntersectionObserver(([e]) => d.documentElement.classList.toggle('reading', e.isIntersecting)).observe($('#deep'));
+  const deepIo = new IntersectionObserver((es, o) => { if (es.some(e => e.isIntersecting)) { o.disconnect(); import(deepUrl).then(m => m.init(sfxApi)); } }, { rootMargin: '1400px 0px' });
+  deepIo.observe($('#deep'));
+
   if (STILL) { $$('.sheet').forEach(s => s.classList.add('open')); return; }
 
   /* sound: the gesture that opens the window also wakes the audio */
-  let ac, noiseBuf, soundOn = true;
+  let ac, noiseBuf, soundOn = true, quiet = false;
   const wake = () => {
     if (ac || CAPTURE || !window.AudioContext) return;
     ac = new AudioContext();
@@ -68,7 +74,7 @@
     for (let i = 0; i < c.length; i++) c[i] = Math.random() * 2 - 1;
   };
   const hiss = (dur, f0, f1, g) => {
-    if (!ac || !soundOn) return;
+    if (!ac || !soundOn || quiet) return;
     if (ac.state === 'suspended') ac.resume();
     const s = ac.createBufferSource(), f = ac.createBiquadFilter(), v = ac.createGain(), t = ac.currentTime;
     s.buffer = noiseBuf; s.loop = true; f.type = 'bandpass'; f.Q.value = .8;
@@ -77,13 +83,14 @@
     s.connect(f).connect(v).connect(ac.destination); s.start(t); s.stop(t + dur);
   };
   const thud = g => {
-    if (!ac || !soundOn) return;
+    if (!ac || !soundOn || quiet) return;
     const o = ac.createOscillator(), v = ac.createGain(), t = ac.currentTime;
     o.frequency.setValueAtTime(120, t); o.frequency.exponentialRampToValueAtTime(36, t + .2);
     v.gain.setValueAtTime(g, t); v.gain.exponentialRampToValueAtTime(.0001, t + .26);
     o.connect(v).connect(ac.destination); o.start(t); o.stop(t + .28);
   };
   const buzz = p => { if (ac && navigator.vibrate) navigator.vibrate(p); };
+  Object.assign(sfxApi, { hiss, thud, buzz, wake });
 
   /* the wind: gold threads plus the foil flakes they carry */
   const stage = $('#stage'), wc = $('#wind'), w = wc.getContext('2d');
@@ -210,21 +217,24 @@
     { transform: 'none', opacity: 1 }
   ], { duration: 1250, delay: base + i * 52, easing: SPRING, fill: 'backwards' }));
   const windIn = (el, delay = 0) => el.animate([{ transform: 'translateX(-16vw)', opacity: 0, filter: 'blur(6px)' }, { transform: 'none', opacity: 1, filter: 'blur(0)' }], { duration: 1000, delay, easing: SPRING, fill: 'backwards' });
-  function open(byHand, quietText) {
-    if (opened) return;
-    opened = true; oGoal = 1; ov = Math.max(ov, .06); shut.classList.add('open');
+  function rush(quietText) {
     goal = 1; level = Math.max(level, .5); ambient = .15; exposure = 1;
     flash.animate([{ opacity: .96 }, { opacity: 0 }], { duration: 1500, easing: SPRING });
     $('.sky').animate([{ transform: 'scale(1.14)' }, { transform: 'none' }], { duration: 3600, easing: SPRING });
     $('.sun').animate([{ translate: '0 16vh', scale: 1.25 }, { translate: '0 0', scale: 1 }], { duration: 4200, easing: SPRING });
     for (let i = 0; i < 6; i++) later(i * 70, () => burst(W / 2 + R(-40, 40), H * .45 + R(-H * .32, H * .32), R(8, 20), R(-5, 5), 26));
+    letters();
+    if (!quietText) { windIn($('.say'), 620); windIn($('.facts'), 740); windIn($('.creds'), 800); windIn($('.cta'), 860); }
+  }
+  function open(byHand, quietText) {
+    if (opened) return;
+    opened = true; oGoal = 1; ov = Math.max(ov, .06); shut.classList.add('open');
     if (byHand) { hiss(1.5, 350, 1900, .16); thud(.22); buzz([12, 40, 18]); }
     ctl.hidden = false;
-    letters();
-    if (!quietText) { windIn($('.say'), 620); windIn($('.facts'), 740); windIn($('.play'), 860); }
+    rush(quietText);
   }
   let dragX = 0, moved = 0;
-  shut.addEventListener('pointerdown', e => { wake(); touched = true; dragging = true; dragX = e.clientX; moved = 0; shut.setPointerCapture(e.pointerId); });
+  shut.addEventListener('pointerdown', e => { if (ep) return; wake(); touched = true; dragging = true; dragX = e.clientX; moved = 0; shut.setPointerCapture(e.pointerId); });
   shut.addEventListener('pointermove', e => {
     if (!dragging || opened) return;
     moved = Math.abs(e.clientX - dragX); o = clamp(moved / (W * .44)); ov = 0;
@@ -237,7 +247,7 @@
   };
   shut.addEventListener('pointerup', release);
   shut.addEventListener('pointercancel', () => { dragging = false; });
-  $('#latch').addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); wake(); open(true); } });
+  $('#latch').addEventListener('keydown', e => { if (!ep && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); wake(); open(true); } });
   addEventListener('scroll', () => { if (!opened && !ep && scrollY > 6 && !biting) open(false); }, { passive: true });
   let idle;
   const armIdle = () => { const mine = idle = {}; later(3400, () => { if (idle === mine && !opened && !touched && !ep) open(false); }); };
@@ -248,6 +258,7 @@
     f.c.width = WW * s; f.c.height = HH * s; g.setTransform(s, 0, 0, s, 0, 0); f.W = WW; f.H = HH;
     const cell = Math.max(15, WW / 26), cols = Math.ceil(WW / cell) + 1, rows = Math.ceil(HH / cell) + 1, pt = [];
     for (let y = 0; y <= rows; y++) for (let x = 0; x <= cols; x++) pt.push([x * cell + R(-cell, cell) * .42, y * cell + R(-cell, cell) * .42]);
+    g.fillStyle = 'hsl(42 90% 52%)'; g.fillRect(0, 0, WW, HH);
     const tri = (a, b_, c_) => {
       const mx = (a[0] + b_[0] + c_[0]) / 3, my = (a[1] + b_[1] + c_[1]) / 3, u = (mx + my) / (WW + HH);
       const L = 45 + R(15) + 17 * Math.exp(-((u - .34) ** 2) / .011) + 11 * Math.exp(-((u - .77) ** 2) / .005);
@@ -357,7 +368,8 @@
   let biting = false;
   const ease = p => p < .5 ? 4 * p * p * p : 1 - (-2 * p + 2) ** 3 / 2;
   function bite() {
-    if (biting) return;
+    if (biting || ep) return;
+    if (frozen) setFrozen(false);
     wake(); biting = true; dir = -1; goal = 1; hiss(1.2, 2600, 300, .16); buzz([20, 30, 20]);
     flash.animate([{ opacity: .85, background: '#ff5cb8' }, { opacity: 0 }], { duration: 700, easing: SPRING });
     const y = scrollY;
@@ -374,82 +386,278 @@
 
   /* time stop: the wind hangs where it is */
   const timeB = $('#time'), timeL = $('#timeL');
-  const setFrozen = v => { frozen = v; root.classList.toggle('stopped', v && !ep); timeB.setAttribute('aria-pressed', v); timeL.textContent = v ? 'Resume time' : 'Stop time'; };
+  const setFrozen = v => { frozen = v; root.classList.toggle('stopped', v && !ep); root.classList.toggle('time-stopped', v && !ep); d.dispatchEvent(new Event(v ? 'timestop' : 'timeresume')); timeB.setAttribute('aria-pressed', v); timeL.textContent = v ? 'Resume time' : 'Stop time'; };
   timeB.addEventListener('click', () => { if (!frozen) { wake(); thud(.25); } setFrozen(!frozen); });
   const soundB = $('#sound'), au = $('#epAudio');
   soundB.addEventListener('click', () => { soundOn = !soundOn; soundB.setAttribute('aria-pressed', soundOn); au.muted = !soundOn; wake(); });
 
-  /* the episode: "Smooth", cut to the bar */
+  /* the episode: "Smooth", cut to the song's real accents. Everything holds still between hits, and each card acts out what happened. */
   const slot = $('#slot'), lines = $('#lines'), bigsfx = $('#bigsfx'), said = $('#said'), tpl = $('#ep').content;
   let ep = null;
   const piece = k => tpl.querySelector(`[data-k="${k}"]`).cloneNode(true);
   const hit = () => lines.animate([{ opacity: .85, transform: 'scale(1.28) rotate(0deg)' }, { opacity: 0, transform: 'scale(1) rotate(4deg)' }], { duration: 560, easing: 'ease-out' });
   const shake = () => stage.animate([0, 1, 2, 3, 4, 5, 6].map(i => ({ transform: `translate(${(6 - i) * (i % 2 ? 2 : -2)}px,${(6 - i) * (i % 2 ? -1.4 : 1.4)}px)` })), { duration: 300, easing: 'linear' });
+  const pop = (el, peak = 1.5) => { el.style.visibility = 'visible'; el.animate([{ scale: peak, opacity: .2 }, { scale: 1, opacity: 1 }], { duration: 150, easing: 'cubic-bezier(.1,.9,.2,1)' }); };
   const clearOut = () => [...slot.children].forEach(el => { el.animate([{ transform: getComputedStyle(el).transform }, { transform: 'translate(-135vw,-14vh) rotate(-32deg)' }], { duration: 400, easing: 'cubic-bezier(.55,0,.9,.35)', fill: 'forwards' }); later(400, () => el.remove()); });
-  const land = (n, bg) => {
-    clearOut(); stage.hidden = false; stage.style.setProperty('--bg', bg); bigsfx.textContent = '';
+  const impact = (bg, g = .3) => { stage.style.setProperty('--bg', bg); hit(); thud(g); };
+  /* a sheet flies in ahead of its hit so it arrives on it; impact() then cuts the colour on the note */
+  const land = (n, build) => {
+    clearOut(); stage.hidden = false; bigsfx.textContent = '';
     const s = $(`.papers .sheet[data-n="${n}"]`).cloneNode(true);
-    s._f = null; s.querySelector('.foil')?.remove(); s.querySelector('.pip button')?.remove(); s.querySelector('#copied')?.remove();
+    s._f = null; s.querySelector('.foil')?.remove(); s.querySelector('.pip')?.remove();
     s.querySelectorAll('[id]').forEach(x => x.removeAttribute('id'));
-    s.style.setProperty('--r', (n % 2 ? -1.4 : 1.2) + 'deg');
-    slot.append(s); ep.cur = foil(s); flutter(s, 1, 780); hit();
+    s.classList.add('scn'); s.style.setProperty('--r', (n % 2 ? -.8 : .7) + 'deg');
+    const sc = d.createElement('div'); sc.className = 'sc'; s.querySelector('.fig').replaceWith(sc);
     said.textContent = s.querySelector('h3').textContent + ' ' + s.querySelector('p').textContent;
+    slot.append(s); ep.sc = build(s, sc); ep.cur = foil(s); flutter(s, 1, 620);
   };
-  const gust = () => { blow(ep.cur, 500); ep.cur.el.animate([{ scale: 1, translate: '0 0', rotate: '0deg' }, { scale: 1.04, translate: '20px -10px', rotate: '2deg', offset: .3 }, { scale: 1, translate: '0 0', rotate: '0deg' }], { duration: 760, easing: SPRING }); };
+  const gust = () => blow(ep.cur, 500);
+  const spoken = el => { const c = el.cloneNode(true); c.querySelectorAll('style,svg,[aria-hidden=true]').forEach(x => x.remove()); c.querySelectorAll('*').forEach(x => x.append(' ')); return c.textContent.trim().replace(/\s+/g, ' '); };
   const slam = (el, bg, sfx = '') => {
-    slot.replaceChildren(el); stage.style.setProperty('--bg', bg); bigsfx.textContent = sfx;
-    shake(); hit(); thud(.3);
-    el.animate([{ transform: 'scale(2.6) rotate(-6deg)', opacity: 0, filter: 'blur(8px)' }, { transform: 'scale(.96) rotate(.6deg)', opacity: 1, filter: 'blur(0)', offset: .55 }, { transform: 'none', opacity: 1 }], { duration: 420, easing: 'cubic-bezier(.2,.8,.3,1)' });
-    said.textContent = el.textContent.trim().replace(/\s+/g, ' ');
+    slot.replaceChildren(el); stage.hidden = false; stage.style.setProperty('--bg', bg); bigsfx.textContent = sfx;
+    hit(); thud(.3);
+    el.animate([{ scale: 1.5, opacity: .2 }, { scale: 1, opacity: 1 }], { duration: 150, easing: 'cubic-bezier(.1,.9,.2,1)' });
+    said.textContent = spoken(el);
   };
+
+  /* the leak: three fixes, one per hit, and the number only moves when all three are in */
+  const sLeak = (s, sc) => {
+    const h = s.querySelector('h3'); h.textContent = '0.806 AUC';
+    sc.classList.add('lk');
+    sc.innerHTML = '<svg viewBox="0 0 360 120" aria-hidden="true"><path class="pipe"/><text x="4" y="14">priors leak backward</text><g class="threads"></g><g class="dots"></g><line class="cut" y1="52" y2="118"/></svg><div class="chips"><span><i></i>Sort by event time</span><span><i></i>One side per user</span><span><i></i>Priors from training only</span></div>';
+    const q = x => sc.querySelector(x), n = 32, test = 8, order = []; let tr = 0, te = n - test;
+    [...'00100100100010010001000000010010'].forEach(g => order.push(g === '1' ? te++ : tr++));
+    const X = i => 10 + i * (340 / (n - 1));
+    let shown = order.map((_, i) => X(i)), tied = true;
+    q('.dots').innerHTML = order.map(r => `<circle r="5" cy="85" fill="${r >= n - test ? 'var(--mag)' : 'var(--ink)'}" opacity="${r >= n - test ? 1 : .45}"/>`).join('');
+    const dots = [...q('.dots').children], pairs = [[3, 29], [9, 26], [14, 31], [20, 25]];
+    const draw = () => {
+      dots.forEach((c, i) => c.setAttribute('cx', shown[i]));
+      const at = r => shown[order.indexOf(r)];
+      q('.threads').innerHTML = !tied ? '' : pairs.map(([a, b]) => { const xa = at(a), xb = at(b), top = 85 - Math.min(38, Math.abs(xb - xa) * .28 + 10); return `<path class="thread" d="M${xa} 85Q${(xa + xb) / 2} ${top} ${xb} 85"/>`; }).join('');
+      const xs = at(n - test), xe = X(2);
+      q('.pipe').setAttribute('d', `M${at(n - 1)} 76C${(xs + xe) / 2 + 60} 8 ${(xs + xe) / 2 - 60} 8 ${xe} 76`);
+    };
+    draw();
+    const chips = [...sc.querySelectorAll('.chips span')];
+    return {
+      fix(i) {
+        chips[i].classList.add('on'); pop(chips[i].firstChild, 2.2); thud(.14);
+        if (i === 0) {
+          const from = shown.slice(), to = order.map(r => X(r)), cx = X(n - test) - 340 / (n - 1) / 2;
+          q('.cut').setAttribute('x1', cx); q('.cut').setAttribute('x2', cx); q('.cut').style.opacity = 1;
+          tween(340, p => { const e = 1 - (1 - p) ** 3; shown = from.map((v, k) => v + (to[k] - v) * e); draw(); });
+        }
+        if (i === 1) { tied = false; draw(); }
+        if (i === 2) { q('.pipe').style.opacity = 0; q('text').style.opacity = 0; }
+      },
+      slam() { h.textContent = '0.7401 AUC'; pop(h, 2); shake(); hit(); thud(.4); }
+    };
+  };
+
+  /* the channels: the guitar run writes the tally */
+  const sChan = (s, sc) => {
+    sc.classList.add('ch');
+    let marks = '', x = 3;
+    for (let g = 0; g < 7; g++) {
+      const c = g < 6 ? 4 : 3;
+      for (let i = 0; i < c; i++) marks += `<path d="M${x + i * 8} 8l-1 34"/>`;
+      if (g < 6) marks += `<path class="sl" d="M${x - 5} 36L${x + 29} 12"/>`;
+      x += 46;
+    }
+    sc.innerHTML = `<svg viewBox="0 0 320 48" aria-hidden="true">${marks}</svg><b class="stampx">$127K</b>`;
+    const m = [...sc.querySelectorAll('path')]; let done = 0;
+    return {
+      to(k) { for (; done < k && done < m.length; done++) m[done].style.strokeDashoffset = 0; hiss(.06, 4200, 6400, .035); },
+      stamp() { pop(sc.querySelector('.stampx'), 2.2); hit(); thud(.34); }
+    };
+  };
+
+  /* the ceiling: bigger and bigger models hit it and fall back */
+  const sCeil = (s, sc) => {
+    sc.classList.add('ce');
+    sc.innerHTML = '<i class="band"></i><i class="lid"><b>56.69%</b></i><i class="prod"><span>Production, 9 points below</span></i><div class="pile"><span class="mdl">Gradient boosting</span><span class="mdl">Quantile regression</span><span class="mdl">270M-parameter LLM</span></div><b class="stampx">Release cancelled</b>';
+    const lid = sc.querySelector('.lid'), ms = [...sc.querySelectorAll('.mdl')];
+    return {
+      launch(i) {
+        const el = ms[i]; el.style.visibility = 'visible';
+        const dy = lid.getBoundingClientRect().bottom + 3 - el.getBoundingClientRect().top;
+        el.animate([{ transform: 'translateY(0)', easing: 'cubic-bezier(.5,0,1,.7)' }, { transform: `translateY(${dy}px)`, offset: .4, easing: 'cubic-bezier(.3,0,.9,.6)' }, { transform: 'translateY(0)' }], { duration: 545 });
+      },
+      bump(i) { lid.animate([{ opacity: .2 }, { opacity: 1 }], { duration: 160 }); thud(.16 + i * .1); if (i === 2) { shake(); hit(); } },
+      prod() { pop(sc.querySelector('.prod'), 1.04); },
+      stamp() { pop(sc.querySelector('.stampx'), 2.2); hit(); thud(.34); }
+    };
+  };
+
+  /* the router: one question gets a tool, the other gets refused */
+  const sRoute = (s, sc) => {
+    sc.classList.add('ro');
+    sc.innerHTML = `<div class="slots">${'<i></i>'.repeat(8)}</div><div class="log"><p class="q">“Compare this week with last”</p><p class="a">compare_cohorts → read-only SQL on Snowflake</p></div><div class="log"><p class="q">“What will this driver pay?”</p><p class="a"><b>Refused.</b> No tool can answer that.</p></div><small>Sample questions, renamed tools</small>`;
+    const slots = sc.querySelector('.slots'), logs = [...sc.querySelectorAll('.log')];
+    return {
+      ask(i) { pop(logs[i].querySelector('.q'), 1.14); [...slots.children].forEach(x => x.classList.remove('on')); },
+      pick() { slots.children[3].classList.add('on'); pop(logs[0].querySelector('.a'), 1.06); thud(.16); },
+      refuse() { slots.classList.add('no'); pop(logs[1].querySelector('.a'), 1.5); hit(); thud(.34); }
+    };
+  };
+
+  /* the retrieval: the bars grow over the long held note, and the number lands on the chorus */
+  const sRag = (s, sc) => {
+    const h = s.querySelector('h3'); h.style.visibility = 'hidden';
+    sc.classList.add('ra');
+    const RR = [['Cyber', .766, .749, 'directional only'], ['Legal', .941, .870, 'all queries'], ['Genomics', .849, .682], ['Finance', .418, .231], ['Medicine', .949, .606]];
+    sc.innerHTML = '<p class="lg"><i class="a"></i>SMA-1<i class="b"></i>Best RAG overall</p>' + RR.map(([n, a, b, note]) => `<div class="rw"><span>${n}${note ? `<small>${note}</small>` : ''}</span><div class="tr"><i class="a" style="--v:${a}"><em>${a.toFixed(3)}</em></i><i class="b" style="--v:${b}"><em>${b.toFixed(3)}</em></i></div></div>`).join('');
+    const rows = [...sc.querySelectorAll('.rw')];
+    return {
+      grow() { tween(3580, p => rows.forEach((r, i) => { const q = clamp((p - i * .12) / .5); r.style.setProperty('--g', (1 - (1 - q) ** 3).toFixed(3)); if (q >= 1) r.classList.add('done'); })); },
+      stamp() { pop(h, 1.8); hit(); thud(.4); }
+    };
+  };
+
+  /* the Stand gets the bar where the beat changes, and keeps the stage after it */
   const standSlam = () => {
-    const box = d.createElement('div'); box.className = 'slam';
-    const st = $('.stand'); box.append(st.querySelector('.fg').cloneNode(true), st.querySelector('h2').cloneNode(true));
+    const box = d.createElement('div'); box.className = 'slam sx';
+    const st = $('.stand'), fg = st.querySelector('.fg').cloneNode(true), h2 = st.querySelector('h2').cloneNode(true);
+    const side = d.createElement('div'); side.className = 'sxt';
+    const heads = $$('.stand thead th');
+    side.innerHTML = `<p class="su">Stand user: <b>Ayaz Khan</b></p><ul class="rules"><li class="hd"><span>${heads[0].textContent}</span><span>${heads[1].textContent}</span></li>${$$('.stand tbody tr').map(tr => `<li><span>${tr.cells[0].textContent}</span><b>${tr.cells[1].textContent}</b></li>`).join('')}</ul>`;
+    side.prepend(h2); box.append(fg, side);
     box.querySelectorAll('[id]').forEach(x => x.removeAttribute('id'));
-    slam(box, '#a81b5f', 'ドドド');
+    slam(box, '#a81b5f');
+    said.textContent = spoken(h2) + ' Stand user: Ayaz Khan.';
+    fg.animate([{ translate: '0 16vh', scale: 1.3 }, { translate: '0 0', scale: 1 }], { duration: 170, easing: 'cubic-bezier(.1,.9,.2,1)' });
+    const lis = [...side.querySelectorAll('li:not(.hd)')];
+    ep.sc = {
+      mark(k) { bigsfx.textContent = 'ド'.repeat(k); bigsfx.animate([{ scale: 1.2 }, { scale: 1 }], { duration: 120, easing: 'ease-out' }); thud(.2); if (k > 1) hit(); },
+      title() { pop(h2, 1.9); pop(side.querySelector('.su'), 1.1); pop(side.querySelector('.hd'), 1.06); shake(); hit(); thud(.42); for (let i = 0; i < 4; i++) burst(R(W), R(H), R(-20, 20), R(-14, 8), 16); },
+      rule(i) { pop(lis[i], 1.12); thud(.12); }
+    };
   };
+
+  /* the fellowship, to scale: one dot for every 1,000 applicants */
+  const nsfSlam = () => {
+    const el = piece('nsf'), pool = el.querySelector('.pool'), w_ = pool.children[11], lo = el.querySelector('.nsf');
+    slam(el, '#0b1f5c');
+    ep.sc = {
+      cull() { pool.classList.add('cut'); w_.classList.add('won'); hit(); thud(.3); },
+      rise() {
+        const a = w_.getBoundingClientRect(), b_ = lo.getBoundingClientRect();
+        lo.style.visibility = 'visible';
+        lo.animate([{ transform: `translate(${a.left + a.width / 2 - b_.left - b_.width / 2}px,${a.top + a.height / 2 - b_.top - b_.height / 2}px) scale(${a.width / b_.width})` }, { transform: 'none' }], { duration: 170, easing: 'cubic-bezier(.1,.9,.2,1)' });
+        pop(el.querySelector('.t'), 1.1); pop(el.querySelector('.u'), 1.1); thud(.3);
+      }
+    };
+  };
+  const cuSlam = () => {
+    const el = piece('cu'); slam(el, '#1d6f6a');
+    ep.sc = { sub() { hit(); thud(.3); } };
+  };
+  /* the wind blows in the rest of the résumé, a sheet to a hit */
+  const scrapsIn = () => {
+    const el = piece('scraps');
+    slot.replaceChildren(el); stage.style.setProperty('--bg', '#241738'); bigsfx.textContent = '';
+    said.textContent = spoken(el);
+    ep.sc = { fly(i) { const p = el.children[i]; p.style.visibility = 'visible'; flutter(p, i % 2 ? -.7 : .7, 420); } };
+  };
+  const scrapHit = () => { hit(); thud(.2); };
+  const stampIn = (el, peak = 1.5) => el.animate([{ scale: peak, opacity: 0 }, { scale: 1, opacity: 1 }], { duration: 150, easing: 'cubic-bezier(.1,.9,.2,1)' });
+  const askLine = (k, bg) => { const el = piece(k), big = el.querySelector('b'); big.style.visibility = 'hidden'; slam(el, bg); };
+  const answer = () => { const big = slot.lastElementChild?.querySelector('b'); if (!big) return; big.style.visibility = ''; stampIn(big, 2.2); shake(); hit(); thud(.35); };
+  const RUN = [10.107, 10.248, 10.366, 10.48, 10.612, 10.757, 10.885, 11.017, 11.16, 11.272, 11.402, 11.532, 11.648];
+  const END = 47;
   const CUES = [
-    [.53, () => { ov += .026; thud(.12); }], [1.04, () => { ov += .036; goal = .14; thud(.16); }], [1.55, () => { ov += .05; goal = .24; thud(.2); }],
-    [2.065, () => { root.classList.replace('ep0', 'ep1'); open(false, true); hiss(1.4, 350, 2000, .14); thud(.3); }],
-    [4.161, () => { root.classList.replace('ep1', 'ep2'); windIn($('.say')); windIn($('.facts'), 160); goal = .75; }],
-    [6.22, () => land(1, '#2a0e63')], [6.74, gust],
-    [8.303, () => land(2, '#06504c')], [8.82, gust],
-    [10.366, () => land(3, '#6d0f4a')], [10.89, gust],
-    [12.451, () => land(4, '#0e2a6b')], [12.97, gust],
-    [14.508, () => land(6, '#7a2a06')], [15.04, gust],
-    [16.581, standSlam],
-    [18.639, () => slam(piece('nsf'), '#0b1f5c')], [19.68, () => slam(piece('cu'), '#1d6f6a')],
-    [20.717, () => slam(piece('us'), '#0b1f5c')], [21.75, () => slam(piece('sp'), '#3a0d63')],
-    [22.78, () => { stage.classList.add('tbc'); frozen = true; const a = piece('tbc'); stage.append(a); a.animate([{ transform: 'translateX(115%)' }, { transform: 'translateX(-4%)', offset: .7 }, { transform: 'none' }], { duration: 460, easing: 'ease-out' }); thud(.3); said.textContent = 'To be continued.'; }],
-    [24.853, () => { stage.classList.remove('tbc'); frozen = false; goal = 1; $('#tbcArrow')?.remove(); slam(piece('jan'), '#ffc83d'); }],
-    [28.2, () => stopEp(true)]
-  ];
+    [.502, () => { root.classList.add('ep0'); sizeC(); exposure = .25; level = goal = .03; ambient = .03; dir = 1; o = 0; ov = .02; thud(.36); buzz(20); win.animate([0, 1, 2, 3, 4].map(i => ({ transform: `translate(${(4 - i) * (i % 2 ? 2.4 : -2.4)}px,${(4 - i) * (i % 2 ? -1 : 1)}px)` })), { duration: 220, easing: 'linear' }); burst(W / 2, H * .5, R(-8, 8), R(-10, 2), 26); }],
+    [1.007, () => { ov += .036; thud(.14); }],
+    [1.263, () => { ov += .03; thud(.16); }],
+    [1.547, () => { ov += .05; goal = .24; thud(.2); }],
+    [2.069, () => { root.classList.replace('ep0', 'ep1'); open(false, true); hiss(1.4, 350, 2000, .14); thud(.3); }],
+    [2.859, () => { root.classList.add('epsay'); windIn($('.say')); }],
+    [3.358, () => { root.classList.add('epfacts'); windIn($('.facts')); windIn($('.creds'), 80); }],
+    [4.086, () => land(1, sLeak)], [4.386, () => impact('#2a0e63')], [4.914, gust],
+    [5.169, () => ep.sc.fix(0)], [5.692, () => ep.sc.fix(1)], [6.203, () => ep.sc.fix(2)], [6.464, () => ep.sc.slam()],
+    [8.23, () => land(4, sChan)], [8.53, () => impact('#0e2a6b')], [9.314, gust],
+    [9.575, () => ep.sc.to(1)], [9.837, () => ep.sc.to(2)], [9.999, () => ep.sc.to(4)],
+    ...RUN.map((t, i) => [t, () => { ep.sc.to(Math.round(5 + (i + 1) / RUN.length * 28)); burst(R(W), R(H * .25, H * .85), R(10, 30), R(-10, 10), 5 + i * 2); goal = Math.max(goal, .5 + i / RUN.length * .5); }]),
+    [11.648, () => ep.sc.stamp()],
+    [12.387, () => land(2, sCeil)], [12.687, () => impact('#06504c')], [13.459, gust],
+    [13.758, () => ep.sc.launch(0)], [13.976, () => ep.sc.bump(0)],
+    [14.541, () => ep.sc.launch(1)], [14.759, () => ep.sc.bump(1)],
+    [14.802, () => ep.sc.launch(2)], [15.02, () => ep.sc.bump(2)],
+    [15.525, () => ep.sc.prod()], [15.787, () => ep.sc.stamp()],
+    [16.565, standSlam],                                                                  // the beat changes here
+    [16.82, () => ep.sc.mark(1)], [17.081, () => ep.sc.mark(2)], [17.598, () => ep.sc.mark(3)],
+    [18.114, () => ep.sc.title()],
+    [18.904, () => ep.sc.rule(0)], [19.159, () => ep.sc.rule(1)], [19.931, () => ep.sc.rule(2)], [20.709, () => ep.sc.rule(3)],
+    [20.71, () => { const g = goal, me = ep; tween(8285, p => { if (ep === me) goal = g + (1 - g) * p; }); }],   // the walk-up: the wind climbs with it
+    [21.965, () => land(3, sRoute)], [22.265, () => impact('#6d0f4a')], [22.787, gust],
+    [23.101, () => ep.sc.ask(0)], [23.827, () => ep.sc.pick()], [24.337, () => ep.sc.ask(1)], [25.115, () => ep.sc.refuse()],
+    [26.11, () => land(6, sRag)], [26.41, () => { impact('#7a2a06', .4); shake(); }],
+    [26.932, () => { gust(); ep.sc.grow(); }],
+    [31.315, () => ep.sc.stamp()],
+    [32.354, nsfSlam], [33.149, () => ep.sc.cull()], [33.411, () => ep.sc.rise()],
+    [35.21, cuSlam], [35.471, () => ep.sc.sub()],
+    [36.566, () => { scrapsIn(); ep.sc.fly(0); }], [36.766, scrapHit],
+    [37.088, () => ep.sc.fly(1)], [37.288, scrapHit],
+    [37.332, () => ep.sc.fly(2)], [37.532, scrapHit],
+    [37.878, () => ep.sc.fly(3)], [38.078, scrapHit],
+    [38.383, () => ep.sc.fly(4)], [38.583, scrapHit],
+    [40.15, () => askLine('us', '#0b1f5c')], [40.649, answer],
+    [41.427, () => askLine('sp', '#3a0d63')], [41.956, answer],
+    [42.96, () => { stage.classList.add('tbc'); frozen = true; const a = piece('tbc'); stage.append(a); a.animate([{ transform: 'translateX(115%)' }, { transform: 'translateX(-4%)', offset: .7 }, { transform: 'none' }], { duration: 420, easing: 'ease-out' }); thud(.3); said.textContent = 'To be continued.'; }],   // the band stops dead here
+    [44.25, () => { stage.classList.remove('tbc'); frozen = false; goal = 1; $('#tbcArrow')?.remove(); slam(piece('jan'), '#ffc83d'); }],
+    [44.78, () => { const el = slot.lastElementChild; pop(el.querySelector('.jy'), 2); pop(el.querySelector('span'), 1.1); shake(); hit(); thud(.45); for (let i = 0; i < 5; i++) burst(R(W), R(H), R(-20, 20), R(-14, 8), 18); }],
+    [END, () => stopEp(true)]
+  ].sort((a, b) => a[0] - b[0]);
   function startEp() {
+    if (ep) return;
     wake();
     if (frozen) setFrozen(false);
-    ep = { t0: now(), i: 0, cur: null };
+    const wasOpen = opened;
+    ep = { t0: now(), i: 0, cur: null, sc: null };
     scrollTo(0, 0);
-    root.classList.add('ep0'); root.classList.remove('ep1', 'ep2'); sizeC();
-    opened = false; oGoal = 0; o = 0; ov = 0; shut.classList.remove('open'); exposure = .25; level = goal = .03; ambient = .03; dir = 1;
+    stage.style.setProperty('--bg', 'transparent');
+    root.classList.remove('ep1', 'ep2', 'epsay', 'epfacts');
+    root.classList.add('eps');
     ctl.hidden = false; $('#stop').hidden = false; timeB.hidden = true;
-    if (!CAPTURE) { au.currentTime = 0; au.muted = !soundOn; au.play().catch(() => {}); }
+    opened = false; oGoal = 0; shut.classList.remove('open');
+    if (wasOpen) {   // the wind takes the words and slams the shutters, and they land on the song's first big hit
+      goal = .7; hiss(.5, 500, 2600, .1);
+      const gone = [...$$('#name span').map((s, i) => s.animate([{ transform: 'none', opacity: 1 }, { transform: `translate(${60 + R(40)}vw,${R(-30, 30)}vh) rotate(${R(40, 130)}deg)`, opacity: 0, filter: 'blur(6px)' }], { duration: 300, delay: i * 12, easing: 'cubic-bezier(.5,0,.8,.4)', fill: 'forwards' })),
+        ...['.say', '.facts', '.creds', '.cta'].map(q => $(q).animate([{ transform: 'none', opacity: 1 }, { transform: 'translateX(34vw)', opacity: 0, filter: 'blur(6px)' }], { duration: 300, easing: 'cubic-bezier(.5,0,.8,.4)', fill: 'forwards' }))];
+      const o0 = o, me = ep;
+      tween(490, p => { if (ep === me) { o = o0 * (1 - p ** 3); ov = 0; } }, () => gone.forEach(a => a.cancel()));
+    } else {
+      root.classList.add('ep0'); sizeC();
+      o = 0; ov = 0; exposure = .25; level = goal = .03; ambient = .03; dir = 1;
+    }
+    if (!CAPTURE) { au.currentTime = 0; au.muted = !soundOn; au.play().catch(() => { if (ep) ep.silent = true; }); }
   }
   function stopEp(toContact) {
     if (!ep) return;
     ep = null; au.pause(); stage.hidden = true; stage.classList.remove('tbc'); slot.replaceChildren(); $('#tbcArrow')?.remove(); bigsfx.textContent = ''; said.textContent = '';
-    root.classList.remove('ep0', 'ep1', 'ep2'); sizeC(); frozen = false; $('#stop').hidden = true; timeB.hidden = false; ambient = .15;
+    root.classList.remove('eps', 'ep0', 'ep1', 'ep2', 'epsay', 'epfacts'); sizeC(); frozen = false; $('#stop').hidden = true; timeB.hidden = false; ambient = .15;
     if (!opened) open(false);
-    if (toContact) $('#contact').scrollIntoView();
+    if (toContact) $('.reach').scrollIntoView();
   }
-  const epT = () => (!CAPTURE && !au.paused && au.currentTime > 0) ? au.currentTime : (now() - ep.t0) / 1000;
+  const epT = () => {
+    const clock = (now() - ep.t0) / 1000;
+    if (CAPTURE) return clock;
+    if (ep.silent) { if (au.currentTime > 0) { ep.silent = false; au.currentTime = clock; } return clock; }
+    if (au.ended || (au.currentTime > 0 && au.readyState < 3)) return Math.max(au.ended ? au.duration : au.currentTime, clock - (ep.lag || 0));
+    if (au.currentTime > 0) { ep.lag = clock - au.currentTime; return au.currentTime; }
+    if (clock > 2.5) { ep.silent = true; return clock; }
+    return 0;
+  };
   $('#play').addEventListener('click', startEp);
+  ['pointerenter', 'focus'].forEach(e => $('#play').addEventListener(e, () => { au.preload = 'auto'; }, { once: true }));
   $('#stop').addEventListener('click', () => stopEp(false));
   addEventListener('keydown', e => { if (e.key === 'Escape') stopEp(false); });
 
   /* the pointer stirs the air */
   addEventListener('pointermove', e => { ptr.vx = clamp((e.clientX - ptr.x) * .35, -40, 40); ptr.vy = clamp((e.clientY - ptr.y) * .35, -40, 40); ptr.x = e.clientX; ptr.y = e.clientY; }, { passive: true });
   let scrollWas = scrollY;
-  addEventListener('scroll', () => { const dy = scrollY - scrollWas; scrollWas = scrollY; for (const th of threads) th.y -= dy * .5; for (const f of flakes) f.y -= dy * .8; }, { passive: true });
+  addEventListener('scroll', () => { const dy = scrollY - scrollWas; scrollWas = scrollY; if (Math.abs(dy) > innerHeight * .4) { threads.forEach(th => seed(th, true)); flakes.length = 0; return; } for (const th of threads) th.y -= dy * .5; for (const f of flakes) f.y -= dy * .8; }, { passive: true });
   addEventListener('resize', () => { resize(); sizeC(); papers.forEach(el => { const f = el._f; if (f && !f.done && !f.cells.size) paint(f); }); });
 
   /* one loop */
@@ -461,7 +669,7 @@
       a.fn(p);
       if (p >= 1) { fx.splice(fx.indexOf(a), 1); a.done && a.done(); }
     }
-    if (ep) { const T = epT(); while (ep && ep.i < CUES.length && T >= CUES[ep.i][0]) CUES[ep.i++][1](); }
+    if (ep) { const T = epT(); $('#epBar').style.transform = `scaleX(${Math.min(1, T / END)})`; while (ep && ep.i < CUES.length && T >= CUES[ep.i][0]) { quiet = T - CUES[ep.i][0] > .6; CUES[ep.i++][1](); } quiet = false; }
     if (!dragging) { ov += ((oGoal - o) * .05 - ov * .17) * k; o += ov * k; if (o < 0) { o = 0; ov = 0; } if (o > 1.05) { o = 1.05; ov *= -.3; } }
     if (!opened && !dragging && !biting && t > nextRattle) { nextRattle = t + R(1100, 2400); ov += .009; }
     shut.style.setProperty('--o', o.toFixed(4));
