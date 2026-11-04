@@ -882,7 +882,8 @@ button{font:inherit;color:inherit;cursor:pointer}
 </footer>
 
 <nav class="ctl" id="ctl" aria-label="Page controls" hidden>
-  <button type="button" id="stop" hidden>Stop</button>
+  <button type="button" id="pause" aria-pressed="false" hidden>Pause</button>
+  <button type="button" id="exit" hidden>Exit</button>
   <button type="button" id="sound" aria-pressed="true" aria-label="Sound"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7.5h3.5L11 4v12l-4.5-3.5H3z"/><path class="on" d="M13.5 7.2a4 4 0 0 1 0 5.6M15.8 5a7 7 0 0 1 0 10"/></svg></button>
   <input type="range" id="vol" min="0" max="100" value="100" aria-label="Volume">
   <button type="button" id="time" aria-pressed="false"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="11" r="7"/><path d="M10 7v4l2.5 2.5M8 2h4"/></svg><span id="timeL">Stop time</span></button>

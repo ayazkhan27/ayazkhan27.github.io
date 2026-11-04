@@ -2,7 +2,8 @@
 (() => {
   const d = document, root = d.documentElement, $ = s => d.querySelector(s), $$ = s => [...d.querySelectorAll(s)];
   const STILL = root.classList.contains('still'), CAPTURE = window.__t != null;
-  const now = () => window.__t ?? performance.now();
+  let heldAt = 0, heldFor = 0;
+  const now = () => window.__t ?? (heldAt || performance.now()) - heldFor;
   const R = (a = 1, b = 0) => b + (a - b) * Math.random(), clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
   const SPRING = 'cubic-bezier(.16,1,.3,1)';
 
@@ -621,7 +622,7 @@
     stage.style.setProperty('--bg', 'transparent');
     root.classList.remove('ep1', 'ep2', 'epsay', 'epfacts');
     root.classList.add('eps');
-    ctl.hidden = false; $('#stop').hidden = false; timeB.hidden = true;
+    ctl.hidden = false; pauseB.hidden = false; timeB.hidden = true;
     opened = false; oGoal = 0; shut.classList.remove('open');
     if (wasOpen) {   // the wind takes the words and slams the shutters, and they land on the song's first big hit
       goal = .7; hiss(.5, 500, 2600, .1);
@@ -635,10 +636,25 @@
     }
     if (!CAPTURE) { au.currentTime = 0; au.muted = !soundOn; au.play().catch(() => { if (ep) ep.silent = true; }); }
   }
+  const pauseB = $('#pause'), exitB = $('#exit');
+  let heldAnims = [];
+  const setPaused = v => {
+    if (!ep || CAPTURE || v === !!heldAt) return;
+    if (v) {
+      heldAt = performance.now(); au.pause();
+      heldAnims = d.getAnimations().filter(a => a.playState === 'running'); heldAnims.forEach(a => a.pause());
+    } else {
+      heldFor += performance.now() - heldAt; heldAt = 0; lastT = now();
+      heldAnims.forEach(a => a.play()); heldAnims = [];
+      if (!au.ended && !ep.silent) au.play().catch(() => {});
+    }
+    root.classList.toggle('ep-paused', v); pauseB.textContent = v ? 'Resume' : 'Pause'; pauseB.setAttribute('aria-pressed', v); exitB.hidden = !v;
+  };
   function stopEp(toContact) {
     if (!ep) return;
+    setPaused(false);
     ep = null; au.pause(); stage.hidden = true; stage.classList.remove('tbc'); slot.replaceChildren(); $('#tbcArrow')?.remove(); bigsfx.textContent = ''; said.textContent = '';
-    root.classList.remove('eps', 'ep0', 'ep1', 'ep2', 'epsay', 'epfacts'); sizeC(); frozen = false; $('#stop').hidden = true; timeB.hidden = false; ambient = .15;
+    root.classList.remove('eps', 'ep0', 'ep1', 'ep2', 'epsay', 'epfacts'); sizeC(); frozen = false; pauseB.hidden = true; timeB.hidden = false; ambient = .15;
     if (!opened) open(false);
     if (toContact) $('.reach').scrollIntoView();
   }
@@ -653,8 +669,12 @@
   };
   $('#play').addEventListener('click', startEp);
   ['pointerenter', 'focus'].forEach(e => $('#play').addEventListener(e, () => { au.preload = 'auto'; }, { once: true }));
-  $('#stop').addEventListener('click', () => stopEp(false));
-  addEventListener('keydown', e => { if (e.key === 'Escape') stopEp(false); });
+  pauseB.addEventListener('click', () => setPaused(!heldAt));
+  exitB.addEventListener('click', () => stopEp(false));
+  addEventListener('keydown', e => {
+    if (e.key === 'Escape') stopEp(false);
+    if (e.key === ' ' && ep && !/^(BUTTON|A|INPUT|TEXTAREA)$/.test(d.activeElement?.tagName)) { e.preventDefault(); setPaused(!heldAt); }
+  });
 
   /* the pointer stirs the air */
   addEventListener('pointermove', e => { ptr.vx = clamp((e.clientX - ptr.x) * .35, -40, 40); ptr.vy = clamp((e.clientY - ptr.y) * .35, -40, 40); ptr.x = e.clientX; ptr.y = e.clientY; }, { passive: true });
@@ -665,6 +685,7 @@
   /* one loop */
   let lastT = now();
   function tick() {
+    if (heldAt) return;
     const t = now(), dt = Math.min(50, t - lastT) || 16.7, k = dt / 16.7; lastT = t;
     for (let i = fx.length - 1; i >= 0; i--) {
       const a = fx[i], p = clamp((t - a.t0) / a.ms);
