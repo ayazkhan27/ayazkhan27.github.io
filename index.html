@@ -1,13 +1,13 @@
 <!doctype html>
-<html lang="en" data-ep-ready data-audio>
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ayaz Khan, statistician and data scientist</title>
 <meta name="description" content="Ayaz Khan is a statistician and data scientist in New York. Columbia M.A. Statistics (Dec 2026), NSF Graduate Research Fellow. Available January 2027; U.S. citizen, no sponsorship needed.">
 <meta name="author" content="Ayaz Khan">
-<meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#0e1012">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#110b0e">
 <link rel="canonical" href="https://ayazkhan27.github.io/">
 <meta property="og:type" content="profile">
 <meta property="og:site_name" content="Ayaz Khan">
@@ -17,7 +17,7 @@
 <meta property="og:image" content="https://ayazkhan27.github.io/assets/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Ayaz Khan, statistician and data scientist, beside Muybridge's galloping horse.">
+<meta property="og:image:alt" content="Ayaz Khan, statistician and data scientist, beside a galloping horse.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Ayaz Khan, statistician and data scientist">
 <meta name="twitter:description" content="Measured, not assumed. Available January 2027, U.S. citizen, no sponsorship needed.">
@@ -26,115 +26,176 @@
 <link rel="preload" href="assets/fonts/afficher-bold.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/alphazet-light.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/alphazet-semibold.woff2" as="font" type="font/woff2" crossorigin>
-<script>document.documentElement.classList.add("js")</script><!-- before the first paint, so script-only controls hold their place from the start -->
-<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}</script>
+<script>document.documentElement.classList.add("js");if(matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("still")</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Ayaz Khan","jobTitle":"Statistician and data scientist","email":"mailto:aak2259@columbia.edu","telephone":"+1-917-943-3853","address":{"@type":"PostalAddress","addressLocality":"New York","addressRegion":"NY","addressCountry":"US"},"alumniOf":[{"@type":"CollegeOrUniversity","name":"Columbia University"},{"@type":"CollegeOrUniversity","name":"Hunter College, City University of New York"}],"sameAs":["https://www.linkedin.com/in/ayazkhan27","https://github.com/ayazkhan27","https://orcid.org/0009-0008-5695-4934"]}</script>
 <style>
-/* Hallmark · macrostructure: custom (bespoke "Plate" v4: status hero beside the plate, four result cards, then the detail legs on a route rail, the Lab of bonus stages behind tiles, quick answers, photo finish and a title-card + To Be Continued close) · tone: austere/technical, playful in motion · anchor hue: 250 (ink blue)
- * theme: custom · vibe: "1890 race broadside, manga SFX on albumen paper" · display LT Afficher Neue + text Alphazet + SFX Dela Gothic One (kana only)
- * axes: dark-hero/light-body · high-contrast-serif · cool + gold/menace accents
- * Hallmark · pre-emit critique: P5 H5 E4 S5 R5 V5
- */
 @font-face{font-family:"Afficher";src:url(assets/fonts/afficher-bold.woff2) format("woff2");font-weight:700;font-display:swap}
-/* the text face is preloaded and optional: if it misses the first ~100 ms the page keeps the system face for that view instead of reflowing the hero */
 @font-face{font-family:"Alphazet";src:url(assets/fonts/alphazet-light.woff2) format("woff2");font-weight:300;font-display:optional}
 @font-face{font-family:"Alphazet";src:url(assets/fonts/alphazet-semibold.woff2) format("woff2");font-weight:600;font-display:optional}
 @font-face{font-family:"Dela SFX";src:url(assets/fonts/dela-sfx.woff2) format("woff2");font-weight:400;font-display:swap;unicode-range:U+3000-30FF,U+3400-9FFF,U+FF00-FFEF}
-
 :root{
   --font-display:"Afficher","Didot","Bodoni 72","Bodoni MT",Georgia,serif;
   --font-text:"Alphazet","Avenir Next","Segoe UI",system-ui,sans-serif;
   --font-sfx:"Dela SFX","Hiragino Kaku Gothic StdN","Yu Gothic","Noto Sans JP",sans-serif;
-  /* page, light */
-  --color-bg:#f6f6f4; --color-surface:#ebebe7; --color-ink:#1b1d1f; --color-muted:#50555a;
-  --color-accent:#035397; --color-on-accent:#fbfbf9;
-  --color-mark:#035397; --color-context:#7b8188;
-  /* v3: Gyro's gold and the Stand's menace; both pass AA as text on the page */
-  --color-gold:#8a6408; --color-menace:#6b2fa0; --color-gold-lit:#e8b84a; --color-stopped:#dfe5ec; --color-hover:#dfe5ec;
-  --color-menace-plate:#6b2fa0; /* the albumen paper stays light in both modes, so purple text on it stays dark */
-  /* Atum's straight answers in the FAQ: YES in electric yellow on deep blue, NO in hot pink on violet (12.5:1 and 5.3:1) */
+  --color-bg:#110b0e; --color-ink:#f1e7da; --color-muted:#b9a99f; --color-mark:#f0b98f; --color-focus:#7cc0ff;
+  --color-gold:#e2b450; --color-gold-lit:#e8b84a; --color-menace:#b48ae6; --color-air:#ffd7a8;
   --color-yes-ink:#ffe94d; --color-yes-field:#0b1f5c; --color-no-ink:#ff5cb8; --color-no-field:#3a0d63;
-  /* the hero's title card, on the band in both modes: gold to orange to red, an ink outline, a purple extrude */
   --color-lk-orange:#ef8a1d; --color-lk-red:#b3151d; --color-lk-ink:#0c0710; --color-lk-extrude:#5a2390;
   --color-lk-ivory:#f4ead2; --color-lk-hi:#fff3c4; --color-lk-violet:#8a4fc4;
-  /* the hero band is the plate's black in both modes */
-  --color-band:#0e1012; --color-band-2:#1f2328; --color-band-ink:#ecebe6; --color-band-muted:#a7abaf;
-  --color-band-lit:#f8f8f5; --color-air:#ffd7a8; --color-control-edge:#6d7278;
-  --color-plate:#d9ccb2; --color-plate-ink:#2a1f17; --color-plate-rule:#bcae94; --color-plate-muted:#5a4a3a;
-  --color-albumen-paper:#d9ccb2; --color-disc:#1c1a17; --color-disc-rim:#3b352c; --rail-h:64px;
-  --color-focus:#2f8cf0;
-  --text-display:clamp(3.5rem,11vw,10.5rem);
-  --text-figure:clamp(3.25rem,8.4vw,8rem);
-  --text-h2:clamp(1.75rem,3.3vw,2.75rem);
-  --text-h3:1.25rem;
-  --text-statement:clamp(1.6rem,3.2vw,2.25rem);
-  --text-readout:clamp(1.5rem,2.6vw,2.5rem);
-  --text-body:1.125rem;
-  --text-small:0.9375rem;
-  --space-xs:.5rem; --space-sm:1rem; --space-md:1.5rem; --space-lg:2.5rem; --space-xl:4rem; --space-2xl:clamp(5rem,11vw,9.5rem);
-  --margin:clamp(1rem,4.4vw,3.5rem);
-  --ease-out:cubic-bezier(.2,.7,.2,1); --ease-in-out:cubic-bezier(.6,0,.3,1); --dur:520ms;
+  --color-band:#060405; --color-band-ink:#ecebe6; --color-band-lit:#f8f8f5; --color-control-edge:#6f6467;
+  --color-plate:#d9ccb2; --color-plate-ink:#2a1f17; --color-plate-rule:#a89878; --color-albumen-paper:#d9ccb2;
+  --text-small:.9375rem; --margin:clamp(1rem,4.4vw,3.5rem); --rail-h:56px;
+  --space-sm:1rem; --space-md:1.5rem; --space-lg:2.5rem; --ease-out:cubic-bezier(.2,.7,.2,1);
 }
-@media (prefers-color-scheme:dark){
-  :root{
-    --color-bg:#15181b; --color-surface:#1f2327; --color-ink:#ebeae5; --color-muted:#a9aeb3;
-    --color-accent:#8fc0f0; --color-on-accent:#0b1a29;
-    --color-mark:#4a94d8; --color-context:#686e74;
-    --color-gold:#e2b450; --color-menace:#b48ae6;
-    --color-band:#060708; --color-band-2:#181b1f; --color-hover:#2a2f35;
-  }
-  /* the Stand card's purple is drawn both on its light paper and on the dark page: one value at 3:1 on each */
-  [data-jj="stand"]{--color-menace:#8a4fc4}
-}
+:root{--room:#120a1c;--ink:#1c1226;--gold:#ffc83d;--mag:#b81f66;--text:#f8f0e2;--soft:#d9cde0;--m:clamp(1.1rem,4.6vw,4rem);--spring:cubic-bezier(.16,1,.3,1)}
 *,*::before,*::after{box-sizing:border-box}
-[hidden],html:not(.js) [data-time],html:not(.js) [data-sound],html:not([data-audio]) [data-sound],html:not(.js) .rail,html:not(.js) .controls{display:none!important}
-/* the Sound button holds its place from the first paint (no nav reflow when audio.js arrives) */
-.js [data-sound][data-pending]{visibility:hidden}
+[hidden]{display:none!important}
 html,body{overflow-x:clip}
-html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-bottom:calc(var(--rail-h) + 1rem)}
-body{margin:0;background:var(--color-bg);color:var(--color-ink);font:300 var(--text-body)/1.55 var(--font-text);font-feature-settings:"lnum","tnum" 0;text-rendering:optimizeLegibility}
-::selection{background:var(--color-air);color:var(--color-plate-ink)}
-img,svg{display:block;max-width:100%}
-a{color:var(--color-accent);text-decoration-thickness:1px;text-underline-offset:.2em}
+html{background:var(--room);scrollbar-color:var(--gold) var(--room);-webkit-text-size-adjust:100%}
+body{margin:0;color:var(--text);font:300 1.0625rem/1.5 var(--font-text);-webkit-font-smoothing:antialiased}
+::selection{background:var(--gold);color:var(--ink)}
+a{color:inherit;text-underline-offset:.2em;text-decoration-thickness:1px}
 a:hover{text-decoration-thickness:2px}
-:focus-visible{outline:3px solid var(--color-focus);outline-offset:3px}
-strong,b{font-weight:600}
-.wrap{max-width:84rem;margin:0 auto;padding:0 var(--margin)}
-.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
-.skip{position:absolute;left:var(--margin);top:-4rem;background:var(--color-band-ink);color:var(--color-band);padding:.6rem 1rem;z-index:9}
-.skip:focus{top:.75rem}
-h1,h2,h3{font-style:normal;margin:0;overflow-wrap:anywhere;min-width:0}
-h1,h2{font-family:var(--font-display);font-weight:700;letter-spacing:-.02em}
-h2{font-size:var(--text-h2);line-height:1.05;max-width:30ch;text-wrap:balance}
-h3{font:600 var(--text-h3)/1.3 var(--font-text)}
-p{margin:0 0 var(--space-sm);max-width:62ch}
-.fig{font-family:var(--font-display);font-weight:700;font-size:var(--text-figure);line-height:.86;letter-spacing:-.035em;font-variant-numeric:lining-nums}
-.small{font-size:var(--text-small)}
-.muted{color:var(--color-muted)}
-.btn{display:inline-flex;align-items:center;min-height:48px;padding:.7rem 1.35rem;font:600 1rem/1.2 var(--font-text);text-decoration:none;border:2px solid transparent;border-radius:0;transition:transform 140ms var(--ease-out),background-color 140ms var(--ease-out);white-space:nowrap;cursor:pointer}
-.btn:active{transform:translateY(1px)}
-.jp{font-family:var(--font-sfx);font-weight:400;letter-spacing:0}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+h1,h2,h3,p,figure{margin:0}
+h1,h2,h3{font-family:var(--font-display);font-weight:700;line-height:1.02;text-wrap:balance}
+button{font:inherit;color:inherit;cursor:pointer}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+#wind{position:fixed;inset:0;width:100%;height:100%;z-index:60;pointer-events:none}
+.still #wind,.still .shut,.still #curtains,html:not(.js) #wind,html:not(.js) #play,html:not(.js) #copy,html:not(.js) .ctl,html:not(.js) .shut,html:not(.js) #reset,.still #play{display:none}
 
-/* ---------- hero: the plate ---------- */
-.hero{background:var(--color-band);color:var(--color-band-ink);padding:0 0 var(--space-xl)}
-.hero a{color:var(--color-band-ink)}
-.nav{display:flex;flex-wrap:wrap;align-items:center;gap:.25rem var(--space-md);min-height:4.25rem;padding:.6rem 0}
-.nav .where{color:var(--color-band-muted);font-size:var(--text-small)}
-.nav ul{display:flex;gap:clamp(.9rem,2.4vw,2rem);list-style:none;margin:0 0 0 auto;padding:0;font-size:var(--text-small);font-weight:600}
-.nav ul a{text-decoration:none;display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;white-space:nowrap}
-.nav ul a:hover{text-decoration:underline}
-/* global controls: sound and the time stop */
-.global{display:flex;gap:6px;position:relative;z-index:6}
-.gbtn{display:inline-flex;align-items:center;gap:.5rem;min-height:44px;min-width:44px;padding:0 .8rem;background:transparent;color:var(--color-band-ink);border:2px solid var(--color-control-edge);border-radius:0;font:600 var(--text-small)/1 var(--font-text);cursor:pointer;white-space:nowrap}
-.gbtn:hover{border-color:var(--color-band-ink)}
-.gbtn svg{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:square}
-.gbtn .jp{color:var(--color-gold-lit);font-size:1rem}
-.gbtn .on{display:none}
-.gbtn[aria-pressed="true"] .on{display:inline}
-.gbtn[aria-pressed="true"]{border-color:var(--color-band-ink)}
-.time-stopped .gbtn[data-time]{background:var(--color-gold-lit);border-color:var(--color-gold-lit);color:var(--color-band)}
-.time-stopped .gbtn[data-time] .jp{color:var(--color-band)}
-/* "Ayaz's Bizarre Adventure": the anime-style title card, kept out of the hero (it fought the plate) and used to close the race */
+/* the window */
+.win{position:relative;height:calc(100svh - 3.25rem);min-height:33rem;overflow:hidden;background:#050308;perspective:1150px;perspective-origin:50% 46%}
+.sky{position:absolute;inset:0;background:linear-gradient(180deg,#1d1049 0,#4a1a6e 24%,#9c2868 50%,#e0583f 69%,#ffb340 84%,#ffe39a 100%)}
+.sun{position:absolute;left:68%;bottom:17%;width:min(40vmin,24rem);aspect-ratio:1;border-radius:50%;transform:translateX(-50%);background:radial-gradient(circle,#fff8df 0 40%,#ffe08a 55%,#ffc04d80 66%,#ffb34000 72%)}
+.land{position:absolute;left:0;bottom:0;width:100%;height:36%}
+.land .far{fill:#6d2a78}.land .sea{fill:#f2a24a}.land .near{fill:#1f0d38}
+#curtains{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none}
+.hero{position:absolute;z-index:3;left:var(--m);right:var(--m);top:clamp(3.5rem,13vh,8rem);max-width:58rem}
+#name{font-size:clamp(4rem,14.5vw,10rem);line-height:.92;letter-spacing:-.02em;color:#fff7e6;white-space:nowrap}
+#name span{display:inline-block;will-change:transform}
+.say{margin-top:clamp(.8rem,2.4vh,1.4rem);font:700 clamp(1.45rem,3.8vw,2.6rem)/1.12 var(--font-display);color:#fff7e6;text-wrap:balance}
+.facts{margin-top:.8rem;max-width:36rem;font-weight:600;font-size:clamp(.95rem,1.5vw,1.0625rem);color:#fff1dc}
+.play{display:inline-flex;align-items:center;gap:.7rem;margin-top:clamp(1.1rem,3vh,1.75rem);min-height:3.25rem;padding:0 1.35rem;border:0;border-radius:.2rem;background:var(--gold);color:var(--ink);font-weight:600;box-shadow:0 10px 26px #1208285c;transition:transform .35s var(--spring),background .2s}
+.play:hover{background:#ffe08a;transform:translateY(-2px) rotate(-.6deg)}
+.play svg{width:1.05rem;height:1.05rem;fill:currentColor}
+.play{white-space:nowrap}
+.play small{font-weight:300;font-size:.875rem}
+@media (max-width:480px){.play small{display:none}.ctl #timeL{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}}
+.flash{position:absolute;inset:0;z-index:6;background:#fff3cf;opacity:0;pointer-events:none}
+.sill{position:absolute;z-index:4;left:0;right:0;bottom:0;height:clamp(1.1rem,3vh,2rem);background:linear-gradient(#efe2c8,#a58e72);box-shadow:0 -10px 26px #1a0a3055}
+.win::after{content:"";position:absolute;inset:0;z-index:4;pointer-events:none;box-shadow:inset 0 0 0 clamp(7px,1.3vmin,15px) #0a0512}
+
+/* shutters: green Italian persiane, late sun in every gap */
+.shut{position:absolute;inset:0;z-index:5;transform-style:preserve-3d;cursor:grab;touch-action:pan-y;--o:0;--f:1}
+.shut:active{cursor:grabbing}
+.shut.open{pointer-events:none}
+.sh{position:absolute;display:block;top:0;bottom:0;width:50%;will-change:transform;background:repeating-linear-gradient(180deg,#0f3b37 0,#1c5f54 10px,#114540 17px,#04191700 17px,#041917 18px,#ffcf66 19px,#041917 20.5px);box-shadow:inset 0 0 0 clamp(10px,2.2vmin,24px) #0c2e2a,inset 0 0 0 clamp(11px,2.35vmin,26px) #06201d,inset 0 0 70px #0009}
+.sh.l{left:0;transform-origin:0 50%;transform:rotateY(calc(var(--o)*114deg))}
+.sh.r{right:0;transform-origin:100% 50%;transform:rotateY(calc(var(--o)*-114deg))}
+.seam{position:absolute;left:50%;top:0;bottom:0;width:calc(3px + var(--o)*60px);transform:translateX(-50%);background:#ffe7a8;box-shadow:0 0 34px 10px #ffc83dcc;opacity:var(--f)}
+.plate,.latch{position:absolute;left:50%;transform:translateX(-50%);opacity:var(--f);white-space:nowrap}
+.plate{top:calc(50% - 5.4rem);padding:.5rem 1.15rem;font:700 clamp(1.45rem,5vw,2.25rem)/1 var(--font-display);color:#2a1605;background:linear-gradient(135deg,#f6d67c,#c8952f 55%,#efcb6c);box-shadow:0 8px 20px #000a,inset 0 0 0 1px #fff2bd88}
+.latch{top:50%;min-height:3rem;padding:0 1.35rem;border:1px solid #ffe08a;border-radius:.2rem;background:#07201dee;color:#ffe9b0;font-weight:600;box-shadow:0 8px 22px #0009;transition:background .2s}
+.latch:hover{background:#0f3b37}
+.sfx{position:absolute;font:400 clamp(2.4rem,9vw,5.5rem)/1 var(--font-sfx);color:var(--gold);opacity:calc(var(--f)*.95);text-shadow:0 3px 0 #2a0d4a,0 0 26px #ffc83d66;writing-mode:vertical-rl;letter-spacing:.06em;animation:go 1.6s ease-in-out infinite alternate;pointer-events:none}
+.sfx.a{left:9%;top:9%;--t:-5deg}.sfx.b{right:9%;bottom:10%;--t:6deg;animation-delay:-.7s}
+@keyframes go{from{transform:rotate(var(--t)) scale(.94)}to{transform:rotate(var(--t)) scale(1.08) translateY(-.4rem)}}
+
+/* the desk: what the wind blew in */
+.papers{position:relative;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:clamp(1.1rem,2.2vw,2.25rem);padding:clamp(1rem,3vw,2.5rem) var(--m) clamp(3rem,7vw,6rem)}
+.papers h2{grid-column:6/13;grid-row:1;align-self:center;font-size:clamp(2.1rem,5.2vw,4.4rem);color:var(--gold)}
+.sheet{position:relative;overflow:hidden;display:flex;flex-direction:column;gap:.55rem;min-height:clamp(16.5rem,27vw,22rem);padding:clamp(1.25rem,2.2vw,2rem);color:var(--ink);background:var(--c);transform:rotate(var(--r));box-shadow:0 22px 44px #05020ccc,0 3px 8px #05020c99;touch-action:pan-y}
+.sheet::before{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;background:linear-gradient(115deg,#fff0 42%,#fff8 50%,#fff0 58%);background-size:300% 100%;mix-blend-mode:overlay;animation:glint 4.4s ease-in-out infinite}
+.sheet.open::before,.still .sheet::before,.stopped .sheet::before{animation:none;opacity:0}
+@keyframes glint{from{background-position:130% 0}to{background-position:-60% 0}}
+.foil{position:absolute;inset:0;width:100%;height:100%;z-index:2;cursor:grab}
+.foil:active{cursor:grabbing}
+.claim{font-size:.9375rem;font-weight:600;text-decoration-thickness:2px;opacity:.72}
+.sheet h3{font-size:clamp(2.1rem,4vw,3.75rem)}
+.sheet p{font-size:clamp(1.0625rem,1.5vw,1.25rem);font-weight:300;max-width:36rem;text-wrap:pretty}
+.fig{margin-top:auto;padding-top:.75rem;color:var(--ink)}
+.fig svg{display:block;width:100%;max-width:30rem;height:auto;overflow:visible}
+.fig figcaption{font-size:.8125rem;margin-top:.15rem}
+.s1{--c:#f6ecd8;--r:-1.5deg;grid-column:1/6;grid-row:1/3;align-self:start;margin-top:-6.5rem;z-index:5}
+.s2{--c:#f8c3cf;--r:.9deg;grid-column:6/13;grid-row:2}
+.s3{--c:#bdeed6;--r:.7deg;grid-column:1/8}
+.s4{--c:#fbe27a;--r:-1.2deg;grid-column:8/13;margin-top:1.5rem}
+.s5{--c:#dcc8f6;--r:-.6deg;grid-column:2/7}
+.s6{--c:#b9dcf8;--r:1.1deg;grid-column:7/13;margin-top:-1rem}
+.pip{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin-top:.25rem;font-size:.9375rem}
+.pip code{font:600 .875rem/1.3 ui-monospace,Menlo,Consolas,monospace;overflow-wrap:anywhere}
+.pip button{min-height:2.75rem;padding:0 .85rem;background:none;border:1px solid currentColor;border-radius:.2rem}
+.pip button:hover{background:#1c122618}
+.tiny{font-size:.8125rem!important}
+@media (max-width:820px){.papers{grid-template-columns:minmax(0,1fr)}.papers>*{grid-column:1!important;grid-row:auto!important;margin-top:0!important}.papers h2{margin:.25rem 0 .5rem}}
+
+/* close */
+.close{display:grid;gap:clamp(2rem,5vw,4rem);padding:0 var(--m) clamp(3rem,6vw,5rem)}
+@media (min-width:960px){.close{grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);align-items:center}}
+.close .stand h2{font-size:clamp(1.75rem,3vw,2.75rem);overflow-wrap:normal;white-space:nowrap}
+.stand{transform:rotate(-.6deg);box-shadow:0 22px 44px #05020ccc}
+.reach .lockup{width:100%;max-width:25rem;margin:0}
+.reach h2{font-size:clamp(2.6rem,6vw,5rem);color:var(--gold);margin-top:.75rem}
+.reach p{margin-top:.75rem;max-width:32rem}
+.reach ul{list-style:none;margin:1rem 0 0;padding:0;display:flex;flex-wrap:wrap;align-items:center;gap:.35rem 1.25rem}
+.reach li a:not(.btn){display:inline-flex;align-items:center;min-height:2.75rem}
+.btn{display:inline-flex;align-items:center;min-height:3rem;padding:0 1.25rem;background:var(--gold);color:var(--ink);font-weight:600;text-decoration:none;border-radius:.2rem}
+.btn:hover{background:#ffe08a}
+#reset{display:inline-flex;align-items:center;gap:.5rem;margin-top:1.25rem;min-height:2.75rem;padding:0 .9rem;background:none;border:1px solid #ffe08a88;border-radius:.2rem;color:#ffe9b0}
+#reset:hover{background:#ffe08a22}
+#reset svg,.ctl svg{width:1.15rem;height:1.15rem;fill:none;stroke:currentColor;stroke-width:1.75}
+.foot{padding:0 var(--m) 4.75rem;font-size:.8125rem;color:var(--soft)}
+.ctl{position:fixed;z-index:70;right:clamp(.6rem,2vw,1.25rem);bottom:clamp(.6rem,2vw,1.25rem);display:flex;gap:.4rem}
+.ctl button{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;min-width:2.9rem;min-height:2.9rem;padding:0 .7rem;background:#0a0512e0;border:1px solid #ffe08a77;border-radius:.2rem;color:#ffe9b0;font-size:.875rem;font-weight:600}
+.ctl button:hover{background:#2a1846}
+.ctl [aria-pressed=false] .on{display:none}
+.stopped .win,.stopped main{filter:saturate(.16) contrast(1.05)}
+.stopped .sfx{animation-play-state:paused}
+
+/* the episode */
+:is(.ep0,.ep1,.ep2) .win{height:100svh}
+:is(.ep0,.ep1,.ep2) .papers .s1{visibility:hidden}
+.ep0 .latch{visibility:hidden}
+.ep0 .hero>*{visibility:hidden}
+.ep1 .say,.ep1 .facts,.ep1 .play,.ep2 .play{visibility:hidden}
+#stage{position:fixed;inset:0;z-index:50;overflow:hidden;display:grid;place-items:center;background:var(--bg,#120a1c);transition:background-color .18s linear}
+.lines{position:absolute;inset:-30%;opacity:0;pointer-events:none;background:repeating-conic-gradient(#fff0 0 2.2deg,#fff 2.2deg 2.9deg,#fff0 2.9deg 6.3deg);-webkit-mask:radial-gradient(circle,#0000 24%,#000 62%);mask:radial-gradient(circle,#0000 24%,#000 62%)}
+.bigsfx{position:absolute;top:4%;left:3%;font:400 clamp(4rem,17vw,12rem)/1 var(--font-sfx);color:var(--gold);opacity:.9;text-shadow:0 5px 0 #2a0d4a;transform:rotate(-7deg);pointer-events:none}
+#slot{display:grid;place-items:center;width:100%;padding:0 clamp(1rem,5vw,3rem);perspective:1000px}
+#slot>*{grid-area:1/1}
+#slot .sheet{width:min(100%,50rem);min-height:clamp(21rem,64vh,34rem);margin:0!important;padding:clamp(1.25rem,3vw,2.75rem);gap:.8rem}
+#slot .sheet h3{font-size:clamp(2.7rem,8vw,5.5rem)}
+#slot .claim{font-size:clamp(1rem,2vw,1.25rem)}
+#slot .sheet p{font-size:clamp(1.125rem,2.6vw,1.6rem);max-width:none}
+.slam{display:flex;flex-direction:column;align-items:center;text-align:center;color:#fff7e6}
+.slam .fg{width:min(58vw,17rem)}.slam .fg svg{width:100%;height:auto}
+.slam h2{font-size:clamp(2.6rem,9vw,5.5rem);text-transform:uppercase;margin-top:.5rem}
+.slam h2 span{font:400 .8em var(--font-sfx)}
+.line{text-align:center;color:#fff7e6;padding:0 .5rem}
+.line b{display:block;font:700 clamp(3.4rem,13vw,8.5rem)/.98 var(--font-display)}
+.line span{display:block;margin-top:.6rem;font-size:clamp(1.15rem,3vw,1.75rem);font-weight:600}
+.line.q span{font:700 clamp(2.2rem,8vw,5rem)/1.05 var(--font-display);margin:0}
+.line .yes,.line .no{font:700 clamp(5.5rem,24vw,14rem)/.95 var(--font-display);transform:rotate(-6deg);margin-top:.4rem;text-shadow:0 .05em 0 #0a0512}
+.line .yes{color:var(--color-yes-ink)}.line .no{color:var(--color-no-ink)}
+.line.jan{color:#1c1226}.line.jan a{color:#1c1226}
+.line.jan span{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:.5rem 1.25rem;margin-top:1rem}
+.line.jan .btn{background:#1c1226;color:#ffe08a}
+#stage.tbc #slot{filter:sepia(.95) contrast(1.08) brightness(.78)}
+#stage.tbc{--bg:#6d5230!important}
+#tbcArrow{position:absolute;right:clamp(.75rem,4vw,3rem);left:auto;margin:0;transform:none;translate:none;opacity:1;bottom:clamp(3rem,9vh,5.5rem);width:min(90vw,42rem)}
+
+.stand{display:grid;gap:var(--space-md);padding:clamp(1.25rem,4vw,2.5rem);background:var(--color-plate);color:var(--color-plate-ink);outline:1px solid var(--color-plate-rule);outline-offset:-.5rem}
+.stand h2{font-size:clamp(1.75rem,5.4vw,3.25rem);text-transform:uppercase;line-height:1;overflow-wrap:anywhere}
+.stand h2 span{font:400 .8em var(--font-sfx)}
+.stand>p{font-size:var(--text-small)}
+.stand .fg{justify-self:center;width:100%;max-width:min(13rem,44vw)}
+.stand .fg svg{width:100%;height:auto}
+.stand table{border-collapse:collapse;width:100%;font-size:var(--text-small);line-height:1.35}
+.stand th{font-weight:600;text-align:left;padding:0 .75rem .5rem 0;font-size:.8125rem}
+.stand td{padding:.55rem .75rem .55rem 0;border-top:1px solid var(--color-plate-rule);vertical-align:top;width:50%}
+.stand td+td{font-weight:600}
+@media (min-width:768px){.stand{grid-template-columns:minmax(0,15rem) minmax(0,1fr);column-gap:clamp(1.5rem,4vw,3rem)}.stand .fg{grid-row:1/4;max-width:none;align-self:center}}
 .lockup{display:block;width:clamp(15rem,44vw,32rem);height:auto;margin:0 0 var(--space-md);overflow:visible;transform-origin:18% 60%}
 .lockup .lk-ext{fill:var(--color-lk-extrude);stroke:var(--color-lk-extrude);stroke-width:11;stroke-linejoin:round}
 .lockup .lk-ink,.lockup .lk-b-ink{fill:var(--color-lk-ink);stroke:var(--color-lk-ink);stroke-linejoin:round}
@@ -149,926 +210,168 @@ p{margin:0 0 var(--space-sm);max-width:62ch}
 .lockup .lk-g0{stop-color:var(--color-band-lit);stop-opacity:0}
 .lockup .lk-g1{stop-color:var(--color-band-lit);stop-opacity:.7}
 .lockup .lk-sheen{transform:skewX(-18deg)}
-.js .lockup{animation:lk-slam .5s var(--ease-out) both}
-.js .lockup .lk-sheen{animation:lk-sheen .9s var(--ease-out) .3s both}
-.js .lockup:hover .lk-sheen{animation:lk-sheen-again .9s var(--ease-out)}
-@keyframes lk-slam{0%{opacity:0;transform:translateY(-.4rem) scale(1.22) rotate(-2.5deg)}55%{opacity:1;transform:scale(.985)}100%{opacity:1;transform:none}}
-@keyframes lk-sheen{from{transform:translateX(0) skewX(-18deg)}to{transform:translateX(980px) skewX(-18deg)}}
-@keyframes lk-sheen-again{from{transform:translateX(0) skewX(-18deg)}to{transform:translateX(980px) skewX(-18deg)}}
-.time-stopped .lockup,.time-stopped .lockup .lk-sheen{animation:none!important}
-/* the title card closes the race, above the To Be Continued arrow: it lands when the arrow does and stays in colour over the freeze */
-.tbc-title{flex-basis:100%;display:flex;justify-content:flex-end}
-.tbc-title .lockup{width:clamp(14rem,40vw,30rem);margin:0}
-.js .tbc .lockup{animation:none;opacity:0;transform:translateY(-.4rem) scale(1.12) rotate(-2deg);transition:opacity 260ms var(--ease-out),transform 500ms var(--ease-out)}
-.js .tbc.on .lockup{opacity:1;transform:none}
-.js .tbc .lockup .lk-sheen{animation:none}
-.js .tbc.on .lockup .lk-sheen{animation:lk-sheen .9s var(--ease-out) .45s both}
-.tbc-freeze .tbc .lockup .lk-sheen{animation-play-state:running!important}
-.top{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:var(--space-lg) var(--space-xl);align-items:start;padding-top:var(--space-lg)}
-h1{font-size:var(--text-display);line-height:.84;letter-spacing:-.04em}
-.lede{font-size:clamp(1.125rem,1.6vw,1.375rem);line-height:1.45;margin:var(--space-md) 0;max-width:34ch;color:var(--color-band-ink)}
-/* status chips: four facts a recruiter checks first, as flat tone steps on the band */
-.chips{display:grid;grid-template-columns:minmax(0,max-content);gap:6px;list-style:none;margin:0 0 var(--space-lg);padding:0}   /* one chip per row in every face: a late font cannot add a row or push into the plate */
-.chips li{padding:.45rem .75rem .4rem;background:var(--color-band-2);color:var(--color-band-ink);font:600 var(--text-small)/1.25 var(--font-text);white-space:nowrap}
-.actions{display:flex;flex-wrap:wrap;gap:var(--space-sm) var(--space-md);align-items:center}
-.ep{display:flex;flex-wrap:wrap;align-items:center;gap:.25rem .75rem;margin:0;flex-basis:100%;max-width:none}
-.btn-ep{gap:.6rem;background:var(--color-gold-lit);color:var(--color-band)}
-.btn-ep:hover{background:var(--color-lk-hi)}
-.btn-ep svg{width:16px;height:16px;fill:currentColor;flex:none}
-.ep-note{font-size:var(--text-small);color:var(--color-band-muted)}
-/* the episode button appears only when its engine ships, and never without script */
-html:not([data-ep-ready]) .ep,html:not(.js) .ep{display:none}
-.hero .btn-res{background:var(--color-band-ink);color:var(--color-band)}
-.hero .btn-res:hover{background:var(--color-band-lit)}
-html.js[data-ep-ready] .hero .btn-res{background:transparent;color:var(--color-band-ink);border-color:var(--color-band-ink)}
-html.js[data-ep-ready] .hero .btn-res:hover{background:var(--color-band-2)}
-.hero .mail{flex-basis:100%;display:inline-flex;align-items:center;min-height:44px;font-weight:600;font-size:var(--text-small);white-space:nowrap}
-.stage{margin:0;background:var(--color-plate);color:var(--color-plate-ink)}
-.stage svg{width:100%;height:auto}
-.stage .rule{stroke:var(--color-plate-rule);stroke-width:3}
-.stage .track{stroke:var(--color-plate-ink);stroke-width:4;opacity:.55}
-.horse{fill:var(--color-plate-ink)}
-.figtitle{font-size:var(--text-small);color:var(--color-band-muted);margin:.65rem 0 0;max-width:none}
-/* the contact sheet */
-.sheet{display:grid;grid-template-columns:repeat(11,minmax(0,1fr));gap:2px 6px;margin:var(--space-lg) 0 0;padding:0;list-style:none}
-.sheet button{display:block;width:100%;padding:6px 0;border:0;background:none;cursor:pointer;position:relative}
-.sheet img{width:100%;height:auto;aspect-ratio:316/198;object-fit:cover;filter:brightness(.5) grayscale(1);transition:filter 160ms var(--ease-out)}
-.sheet button:hover img,.sheet button[aria-current="true"] img{filter:none}
-.sheet button[aria-current="true"]::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--color-band-ink)}
-.controls{display:flex;gap:6px}
-.controls button{min-width:48px;min-height:48px;padding:0 1rem;background:transparent;color:var(--color-band-ink);border:2px solid var(--color-control-edge);font:600 var(--text-small) var(--font-text);cursor:pointer;border-radius:0}
-.controls button:hover{border-color:var(--color-band-ink)}
-.why{color:var(--color-band-muted);font-size:var(--text-small);max-width:60ch;margin-top:var(--space-md)}
-.plate-note{color:var(--color-band-muted);font-size:var(--text-small);margin:0}
-.why b{color:var(--color-band-ink)}
-
-/* ---------- sections ---------- */
-section{padding:var(--space-2xl) 0 0}
-#results{padding-top:var(--space-xl)}
-.head{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--space-sm);margin-bottom:var(--space-lg)}
-.role{font-size:var(--text-small);color:var(--color-muted);margin:0}
-/* the stage line: every section is a leg of the 1890 race, San Diego to New York */
-.leg{display:flex;align-items:baseline;gap:.5rem var(--space-sm);max-width:none;margin:0 0 var(--space-lg);font:700 1.375rem/1.1 var(--font-display);letter-spacing:-.01em}
-.leg b{font-weight:700;white-space:nowrap}
-.leg i{flex:1 1 4rem;min-width:2rem;height:7px;border-top:3px solid var(--color-ink);border-bottom:1px solid var(--color-ink);align-self:center}
-.leg span{text-align:right}
-.leg small{font:300 var(--text-small)/1.3 var(--font-text);letter-spacing:0;color:var(--color-muted);margin-left:.4em}
-/* the four results: a figure, a small honest chart of it, one line; each card opens its detail */
-.hl{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;list-style:none;margin:0;padding:0}
-.hl a{display:flex;flex-direction:column;gap:var(--space-sm);height:100%;padding:var(--space-md) var(--space-md) var(--space-lg);background:var(--color-surface);color:var(--color-ink);text-decoration:none;transition:background-color 140ms var(--ease-out)}
-.hl a:hover{background:var(--color-hover)}
-.hl .fig{align-self:flex-start;font-size:clamp(2.75rem,4.4vw,4.25rem);white-space:nowrap}
-.hl .fig small{font:600 .3em/1 var(--font-text);letter-spacing:0;vertical-align:.5em;margin:0 .25em}
-.hl del{display:block;margin-bottom:.45rem;font:600 1rem/1 var(--font-text);letter-spacing:0;color:var(--color-muted);text-decoration-thickness:2px}
-.hl-l{font-size:1rem;line-height:1.4;max-width:26ch}
-.hl a:hover .hl-l{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.2em}
-.spark{width:100%;max-width:9.5rem;height:auto;overflow:visible}
-.spark .axis{stroke:var(--color-context);stroke-width:1}
-.spark .link{stroke:var(--color-context);stroke-width:2}
-.spark .ci{fill:none;stroke:var(--color-mark);stroke-width:2}
-.spark .mark,.spark .bar{fill:var(--color-mark)}
-.spark .ctx{fill:var(--color-context)}
-.spark .box{fill:none;stroke:var(--color-context);stroke-width:1}
-/* Telenav: the chart beside the heading, then the tally and Rohan's call */
-.work{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:var(--space-lg) var(--space-xl);align-items:end;margin-bottom:var(--space-lg)}
-.work .head{margin:0}
-.bench{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:var(--space-lg) var(--space-xl);align-items:start}
-.tally{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;list-style:none;margin:0;padding:0}
-.tally li{padding:var(--space-md);background:var(--color-surface);font-size:1rem;line-height:1.4}
-.tally b{display:block;margin-bottom:.4rem;font:700 clamp(1.75rem,2.8vw,2.5rem)/1 var(--font-display);letter-spacing:-.02em;font-variant-numeric:lining-nums;white-space:nowrap}
-/* the "more" toggles: the depth of each leg, one click away */
-.more{margin-top:var(--space-md)}
-.more > summary{display:inline-flex;align-items:center;gap:.5rem;min-height:44px;cursor:pointer;font-weight:600;color:var(--color-accent);list-style:none}
-.more > summary::-webkit-details-marker{display:none}
-.more > summary::before{content:"";width:.5em;height:.5em;border:solid currentColor;border-width:0 2px 2px 0;transform:rotate(-45deg);transition:transform 140ms var(--ease-out)}
-.more[open] > summary::before{transform:rotate(45deg)}
-.more > summary:hover{text-decoration:underline;text-underline-offset:.2em}
-.more-body{padding:var(--space-md) 0 0;max-width:72rem}
-.more-body h3{margin:var(--space-lg) 0 var(--space-xs)}
-.more-body > .split{margin:var(--space-md) 0}
-.more-body blockquote{margin:var(--space-md) 0}
-.lines{list-style:none;margin:0;padding:0}
-.lines li{padding:var(--space-sm) var(--space-md);margin:0 0 6px;background:var(--color-surface)}
-.lines b{font-weight:600}
-figure{margin:0}
-figcaption{font-size:var(--text-small);color:var(--color-muted);margin-top:var(--space-xs);max-width:52ch}
-.chart{width:100%;max-width:28rem;height:auto;overflow:visible}
-.chart text{font:300 14px var(--font-text);fill:var(--color-ink)}
-.chart .t{font-weight:600}
-.chart .m{fill:var(--color-muted)}
-.chart .axis{stroke:var(--color-context);stroke-width:1}
-.chart .ci{stroke:var(--color-mark);stroke-width:2;stroke-linecap:round}
-.chart .link{stroke:var(--color-context);stroke-width:2}
-.chart .mark{fill:var(--color-mark);stroke:var(--color-bg);stroke-width:2}
-.chart .ctx{fill:var(--color-context);stroke:var(--color-bg);stroke-width:2}
-.chart .bar{fill:var(--color-mark)}
-.chart .zero{stroke:var(--color-ink);stroke-width:1.5}
-.legend{display:flex;gap:var(--space-md);font-size:var(--text-small);color:var(--color-muted);margin-bottom:var(--space-xs)}
-.legend span::before{content:"";display:inline-block;width:.7em;height:.7em;border-radius:50%;margin-right:.4em;vertical-align:-.02em;background:var(--color-context)}
-.legend .after::before{background:var(--color-mark)}
-/* ledger, aligned on the figures */
-.calx{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:var(--space-xl)}
-.ledger{width:100%;border-collapse:collapse}
-.ledger th,.ledger td{text-align:left;vertical-align:baseline;padding:.85rem var(--space-sm)}
-.ledger tr:nth-child(odd){background:var(--color-surface)}
-.ledger th{font:700 clamp(1.75rem,3.2vw,2.75rem)/1 var(--font-display);letter-spacing:-.02em;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums lining-nums;width:1%}
-.ledger td{font-size:1rem}
-.ledger .sign{font:600 .7em var(--font-text);vertical-align:.18em;margin-right:.08em}
-.linkrow{display:flex;flex-wrap:wrap;gap:0 var(--space-md);margin-top:var(--space-sm);font-weight:600}
-.linkrow a{display:inline-flex;align-items:center;min-height:44px}
-/* figures inside a sentence */
-.statement{font-family:var(--font-display);font-weight:700;font-size:var(--text-statement);line-height:1.15;letter-spacing:-.015em;max-width:30ch;margin-bottom:var(--space-lg)}
-.split{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:var(--space-xl);align-items:start}
-blockquote{margin:var(--space-xl) 0 0;padding:var(--space-lg);background:var(--color-surface);max-width:none}
-blockquote p{font-family:var(--font-display);font-weight:700;font-size:clamp(1.4rem,2.6vw,2rem);line-height:1.2;letter-spacing:-.01em;max-width:38ch;margin:0 0 var(--space-sm)}
-blockquote footer{font-size:var(--text-small);color:var(--color-muted)}
-/* record table */
-.record{width:100%;border-collapse:collapse}
-.record td{padding:1rem var(--space-sm);vertical-align:top}
-.record tr:nth-child(odd){background:var(--color-surface)}
-.record td:first-child{font-weight:600;width:44%}
-.record td:last-child{color:var(--color-muted)}
-.skills{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-lg);margin:var(--space-lg) 0 0}
-.rec-wrap{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:var(--space-lg) var(--space-xl);align-items:start}
-.tools{display:flex;flex-wrap:wrap;gap:6px;list-style:none;margin:var(--space-md) 0 0;padding:0}
-.tools li{padding:.4rem .75rem .35rem;background:var(--color-surface);font:600 var(--text-small)/1.25 var(--font-text)}
-/* the Lab: bonus stages as albumen tiles; one opens at a time and drops its stage below the strip, and nothing loads until it opens */
-.lab{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));grid-auto-flow:dense;gap:6px}
-.lab:has(.tile[open]){grid-template-columns:repeat(4,minmax(0,1fr))}
-.tile{min-width:0;background:var(--color-plate);color:var(--color-plate-ink)}
-.tile[open]{grid-column:1/-1;grid-row:2}
-.tile > summary{display:flex;flex-direction:column;justify-content:space-between;gap:var(--space-md);min-height:10rem;padding:var(--space-md);cursor:pointer;list-style:none;font:700 1.375rem/1.05 var(--font-display);letter-spacing:-.01em;transition:background-color 140ms var(--ease-out)}
-.tile > summary::-webkit-details-marker{display:none}
-.tile > summary:hover{background:var(--color-plate-rule)}
-.tile[open] > summary{flex-direction:row;align-items:center;justify-content:flex-start;min-height:0;background:var(--color-plate-ink);color:var(--color-plate)}
-.tile[open] > summary .ico{width:40px;height:40px}
-.ico{width:60px;height:60px;flex:none;overflow:visible;fill:none;stroke:currentColor;stroke-width:2.25;stroke-linejoin:round}
-.ico .fill{fill:var(--color-menace-plate);fill-opacity:.25;stroke:var(--color-menace-plate)}
-.ico .dot{fill:currentColor;stroke:none}
-.ico .hot{stroke:var(--color-menace-plate);stroke-width:2.5}
-.tile[open] .ico .hot,.tile[open] .ico .fill{stroke:var(--color-gold-lit)}
-.tile[open] .ico .fill{fill:var(--color-gold-lit)}
-.tile-body{padding:var(--space-lg) var(--space-md);background:var(--color-bg);color:var(--color-ink)}
-.tile-body > p:first-child{max-width:62ch}
-.tile-body.dark{background:var(--color-band);color:var(--color-band-ink)}
-.tile-body.dark .gate{margin-top:var(--space-lg)}
-.note{color:var(--color-muted);font-size:var(--text-small)}
-/* the no-script notes and the steel ball still stay out of the way while a module loads; they return only if it fails */
-.js .jj-slot:not(.jj-off) > .note,.js [data-jj="steelball"]:not(.jj-off) > .jj-static{display:none}
-
-.skills dt{font-weight:600;margin-bottom:var(--space-xs)}
-.skills dd{margin:0}
-/* contact */
-.contact{position:relative;z-index:5;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,3fr) minmax(0,4fr);gap:var(--space-lg);align-items:start;padding-bottom:var(--space-xl)}
-.contact .statement{margin:0}
-.contact img{width:100%;height:auto;max-width:15rem}
-.contact .cap{font-size:var(--text-small);color:var(--color-muted);margin:var(--space-xs) 0 0;max-width:none;text-align:left}
-.reach{list-style:none;margin:0 0 var(--space-md);padding:0;font-weight:600}
-.reach a{display:inline-flex;align-items:center;min-height:44px;white-space:nowrap}
-.btn-accent{background:var(--color-accent);color:var(--color-on-accent)}
-.btn-accent:hover{filter:brightness(1.1)}
-.foot{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1.4fr);gap:var(--space-md) var(--space-lg);align-items:baseline;padding:var(--space-lg) var(--margin) var(--space-md);max-width:84rem;margin:0 auto;font-size:var(--text-small);color:var(--color-muted)}
-.foot nav{display:flex;gap:0 var(--space-md)}
-.foot nav a{color:var(--color-ink);display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px}
-.foot p{margin:0}
-.foot .credit summary{display:inline-flex;align-items:center;min-height:44px;cursor:pointer;font-weight:600;color:var(--color-ink)}
-.foot .credit p{margin-top:var(--space-xs);max-width:70ch}
-
-/* ---------- v2: the zoopraxiscope, the rail, the photo finish ---------- */
-.stage{position:relative;overflow:hidden}
-.stage::after{content:"";position:absolute;inset:0;background:url(assets/grain.png);mix-blend-mode:multiply;opacity:.5;pointer-events:none}
-.stage.gl::after{content:none}
-.stage canvas{position:absolute;inset:0;width:100%;height:100%;mix-blend-mode:multiply;pointer-events:none}
-.gate{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:var(--space-xl);margin-top:var(--space-xl);align-items:center}
-.disc{display:block;width:100%;max-width:27rem;height:auto;margin:0 auto;touch-action:none;cursor:grab;-webkit-user-select:none;user-select:none}
-.disc.drag{cursor:grabbing}
-.disc:focus-visible{outline:3px solid var(--color-focus);outline-offset:6px;border-radius:50%}
-.d-face{fill:var(--color-disc)}
-.d-rim{fill:none;stroke:var(--color-disc-rim);stroke-width:12}
-.d-horse{fill:var(--color-albumen-paper)}
-.d-num{fill:var(--color-band-muted);font:600 34px var(--font-text);text-anchor:middle}
-.d-hub{fill:var(--color-disc-rim)}
-.d-pin{fill:var(--color-band-ink)}
-.d-gate{fill:var(--color-air)}
-.cap{font-size:var(--text-small);color:var(--color-band-muted);max-width:34ch;margin:var(--space-sm) auto 0;text-align:center}
-.readings{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) minmax(0,1.35fr);gap:var(--space-sm);margin:0 0 var(--space-md)}
-.readings dt{font-size:var(--text-small);color:var(--color-band-muted);margin-bottom:.35rem}
-.readings dd{margin:0;font:700 var(--text-readout)/1 var(--font-display);letter-spacing:-.02em;font-variant-numeric:tabular-nums lining-nums;white-space:nowrap}
-.readings dd.air{color:var(--color-air)}
-.gauge .sheet{margin-top:var(--space-md)}
-.gauge .why{margin-top:var(--space-lg)}
-.finish{margin-bottom:var(--space-xl)}
-.pf{width:100%;height:auto}
-@media (prefers-color-scheme:dark){.pf{filter:invert(.92)}}
-.pf-scale{position:relative;height:1.6rem;margin-top:.4rem;font-size:var(--text-small);color:var(--color-muted);font-variant-numeric:tabular-nums}
-.pf-scale span{position:absolute;top:0;transform:translateX(50%);white-space:nowrap}
-.pf-scale span:first-child{transform:none}
-.finish figcaption{max-width:62ch}
-body{padding-bottom:var(--rail-h)}
-/* the rail is the route: San Diego at the left end, New York at the right, one post per stage */
-.rail{position:fixed;left:0;right:0;bottom:0;z-index:5;height:var(--rail-h);background:var(--color-band);color:var(--color-band-ink);transform:translateY(100%);transition:transform 260ms var(--ease-out)}
-.rail.on{transform:none}
-.rail-in{max-width:84rem;margin:0 auto;height:100%;padding:0 var(--margin);display:flex;align-items:stretch;gap:var(--space-sm)}
-.rail-end{align-self:flex-end;margin-bottom:20px;font:700 1rem/1 var(--font-display);color:var(--color-band-muted);white-space:nowrap}
-.rail-field{position:relative;flex:1;min-width:0;height:100%;margin:0 28px}
-.rail-track{position:absolute;left:-28px;right:-28px;bottom:6px;width:calc(100% + 56px);height:10px;stroke:var(--color-band-muted);stroke-width:1.5;opacity:.7}
-.rail-prints{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible}
-.rail-prints circle{fill:var(--color-band-muted)}
-.rail-horse{position:absolute;left:-28px;bottom:7px;width:56px;height:40px;fill:var(--color-albumen-paper);will-change:transform}
-.posts{list-style:none;margin:0;padding:0}
-.post{position:absolute;top:0;transform:translateX(-50%);display:flex;flex-direction:column;justify-content:flex-end;align-items:center;min-width:44px;height:46px;padding:0 4px;color:var(--color-band-muted);text-decoration:none;font:600 13px/1.2 var(--font-text);white-space:nowrap}
-.post::after{content:"";width:2px;height:20px;margin-top:3px;background:currentColor}
-.post:hover,.post[aria-current="true"]{color:var(--color-band-ink)}
-.post[aria-current="true"]::after{background:var(--color-air)}
-.rail .global{align-self:center}
-.rail .gbtn{padding:0;justify-content:center;width:44px}
-/* entrance: only once JS has marked the page, so nothing stays hidden without it */
-.js .rise{opacity:0;transform:translateY(24px);transition:opacity var(--dur) var(--ease-out),transform var(--dur) var(--ease-out)}
-.js .rise.in{opacity:1;transform:none}
-
-/* ---------- v3: the race layer ---------- */
-/* manga sound effects beside the big number: decorative; they drift twice as it arrives, then rest */
-.fig:has(.sfx){display:inline-block;position:relative}
-.sfx{position:absolute;left:100%;top:.02em;width:1em;margin-left:.1em;white-space:normal;word-break:break-all;text-align:center;font:400 .27em/.95 var(--font-sfx);letter-spacing:0;color:var(--color-menace);pointer-events:none;-webkit-user-select:none;user-select:none}
-.js .hl .sfx{animation:drift 1.3s var(--ease-in-out) 2 alternate}
-@keyframes drift{from{transform:translate(0,0) rotate(-7deg)}to{transform:translate(.06em,-.08em) rotate(6deg)}}
-/* the Stand card: an entry card on albumen paper */
-.card{background:var(--color-plate);color:var(--color-plate-ink);padding:var(--space-lg);outline:1px solid var(--color-plate-rule);outline-offset:-8px}
-.card-top{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:var(--space-sm) var(--space-xl);align-items:end;padding-bottom:var(--space-md);margin-bottom:var(--space-lg);border-bottom:2px solid var(--color-plate-ink)}
-.card-id{display:grid;grid-template-columns:auto minmax(0,1fr);gap:.35rem var(--space-md);margin:0;align-items:baseline}
-.card-id dt{font-size:var(--text-small);color:var(--color-plate-muted)}
-.card-id dd{margin:0;font-weight:600}
-.card-id .name{font:700 clamp(1.6rem,3.4vw,2.6rem)/1 var(--font-display);letter-spacing:-.02em}
-.card-id .name .jp{font-size:.8em;color:var(--color-menace-plate)}
-.card-body{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:var(--space-xl);align-items:center}
-.hex{width:100%;max-width:20rem;margin:0 auto;overflow:visible}
-.hex .ring{fill:none;stroke:var(--color-plate-rule);stroke-width:1}
-.hex .spoke{stroke:var(--color-plate-rule);stroke-width:1}
-.hex .shape{fill:var(--color-menace-plate);fill-opacity:.22;stroke:var(--color-menace-plate);stroke-width:2.5;stroke-linejoin:miter}
-.hex text{font:600 12px var(--font-text);fill:var(--color-plate-ink)}
-.hex .g{font:600 15px var(--font-text);fill:var(--color-menace-plate)}
-.params{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 var(--space-lg);margin:0}
-.params div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.1rem var(--space-sm);padding:.8rem 0 .9rem;border-top:1px solid var(--color-plate-rule);align-items:baseline}
-.params dt{font-size:var(--text-small);font-weight:600}
-.params dd{margin:0}
-.params .gr{font:700 2rem/.8 var(--font-display);color:var(--color-menace-plate)}
-.params .ev{grid-column:1/-1;font-size:1rem;line-height:1.4}
-.params a{color:var(--color-plate-ink)}
-.ability{margin:0;max-width:44ch;font-size:1rem}
-/* module slots: static content shows until a module mounts in its place. Slots that start empty hold
-   roughly the module's height, so a jump down the page does not land short while modules mount. */
-.jj-on:not([data-jj-keep]) > .jj-static{display:none}
-[data-jj-keep] > .jj-host{margin-bottom:var(--space-lg)}
-.js [data-jj="ora"]{min-height:540px}
-.js [data-jj="golden"]{min-height:1650px}
-.js [data-jj="steelball"]{min-height:560px}
-@media (min-width:641px){.js [data-jj="golden"]{min-height:1540px}.js [data-jj="steelball"]{min-height:670px}}
-@media (min-width:900px){.js [data-jj="ora"]{min-height:580px}.js [data-jj="golden"]{min-height:980px}}
-.jj-on,.jj-off{min-height:0!important}
-.jj-host:empty{display:none}
-/* the refusal, beside the tally */
-.refuse .jj-static{background:var(--color-surface);padding:var(--space-md)}
-.refuse .jp{display:block;font-size:clamp(2.75rem,6vw,4.5rem);line-height:1;color:var(--color-menace);margin:0 0 var(--space-sm)}
-.ps{max-width:62ch;margin:var(--space-md) 0 0;color:var(--color-muted)}
-.spin{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:var(--space-xl);align-items:center}
-.spin h3{margin-bottom:var(--space-xs)}
-/* Tusk ACT 1 to ACT 4 */
-.acts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-lg);list-style:none;margin:0;padding:0;counter-reset:act}
-.acts > li{display:flex;flex-direction:column;gap:var(--space-xs);min-width:0}
-.act-k{display:flex;align-items:center;gap:var(--space-sm);margin:0 0 var(--space-xs);font-size:var(--text-small);color:var(--color-muted)}
-.act-k span{display:flex;flex-direction:column;gap:.2rem}
-.act-k b{font:700 1.5rem/1 var(--font-display);letter-spacing:-.01em;color:var(--color-ink);white-space:nowrap}
-.nail{width:48px;height:48px;flex:none;overflow:visible}
-.nail .orbit{fill:none;stroke:var(--color-context);stroke-width:1}
-.nail .arc{fill:none;stroke:var(--color-ink);stroke-width:3}
-.nail .tip{fill:var(--color-ink);transform-box:view-box;transform-origin:24px 24px}
-.js .acts.in .nail .tip{animation:spin 1.8s var(--ease-out) 1}
-.js .acts.in li:nth-child(2) .tip{animation-duration:1.5s}
-.js .acts.in li:nth-child(3) .tip{animation-duration:1.2s}
-.js .acts.in li:nth-child(4) .tip{animation-duration:.9s}
-.acts li:nth-child(4) .arc,.acts li:nth-child(4) .tip{stroke:var(--color-gold);fill:var(--color-gold)}
-.acts li:nth-child(4) .arc{fill:none}
-@keyframes spin{to{transform:rotate(360deg)}}
-.acts .fig{font-size:clamp(3rem,5.4vw,4.75rem);margin:var(--space-xs) 0}
-.acts p{font-size:1rem}
-#research h2{margin-bottom:var(--space-lg)}
-/* Joseph: the next question */
-.faq{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:var(--space-xl);align-items:start}
-.qa{margin:0}
-.qa div{padding:var(--space-sm) var(--space-md);background:var(--color-surface);margin-bottom:6px}
-.qa dt{font-weight:600;margin-bottom:.2rem}
-.faq .more{margin-top:var(--space-sm)}
-.qa .yn{display:inline-block;margin-left:.4rem;padding:.16rem .4rem .1rem;border:1.5px solid currentColor;font:600 .75rem/1 var(--font-text);letter-spacing:.04em;vertical-align:.1em;transform:rotate(-4deg)}
-.qa .yn-yes{background:var(--color-yes-field);color:var(--color-yes-ink)}
-.qa .yn-no{background:var(--color-no-field);color:var(--color-no-ink)}
-.qa dd{margin:0}
-/* To Be Continued */
-.tbc{position:relative;z-index:5;display:flex;flex-wrap:wrap;justify-content:flex-end;align-items:center;gap:var(--space-sm) var(--space-lg);padding:var(--space-lg) var(--margin) var(--space-xl);max-width:84rem;margin:0 auto;overflow:hidden}
-.tbc p{margin:0;font:700 clamp(1.25rem,2.4vw,1.75rem)/1.1 var(--font-display);letter-spacing:-.01em}
 .arrow{width:min(100%,34rem);height:auto;overflow:visible}
-.arrow .body{fill:var(--color-gold-lit);stroke:var(--color-band);stroke-width:5;stroke-linejoin:miter}
-.arrow .in{fill:none;stroke:var(--color-band);stroke-width:1.5;stroke-linejoin:miter}
+.arrow .body{fill:var(--color-gold-lit);stroke:var(--color-band);stroke-width:5}
+.arrow .in{fill:none;stroke:var(--color-band);stroke-width:1.5}
 .arrow text{font:700 44px var(--font-display);fill:var(--color-band);letter-spacing:-.5px}
-.js .tbc .arrow{transform:translateX(115%);transition:transform 640ms var(--ease-out)}
-.js .tbc.on .arrow{transform:none}
-.js .tbc-next{opacity:0;transition:opacity 300ms var(--ease-out) 640ms}
-.js .tbc.on .tbc-next{opacity:1}
-/* time stop: a flash of inverted colour, then the page holds in a cold grey. The end of the race freezes like a
-   toned print: the backdrop loses its colour, then albumen paper is multiplied over it. Controls stay above both. */
-.tint,.tone{position:fixed;inset:0;z-index:4;pointer-events:none}
-.tone{mix-blend-mode:multiply}
-.tbc-freeze .tint{-webkit-backdrop-filter:grayscale(1);backdrop-filter:grayscale(1)}
-.tbc-freeze .tone{background:var(--color-albumen-paper)}
-.time-stopped .tint{-webkit-backdrop-filter:grayscale(.94) contrast(1.05);backdrop-filter:grayscale(.94) contrast(1.05)}
-.time-stopped .tone{background:var(--color-stopped)}
-.ts-flash .tint{-webkit-backdrop-filter:invert(1) hue-rotate(180deg);backdrop-filter:invert(1) hue-rotate(180deg)}
-.ts-flash .tone{background:none}
-.time-stopped *,.time-stopped *::before,.time-stopped *::after,.tbc-freeze *,.tbc-freeze *::before,.tbc-freeze *::after{animation-play-state:paused!important}
-.time-stopped *,.time-stopped *::before,.time-stopped *::after{transition-duration:0s!important;transition-delay:0s!important}
-.tsay{position:fixed;left:50%;top:38%;z-index:7;margin:0;max-width:none;transform:translate(-50%,-50%);padding:.5rem 1rem;background:var(--color-band);color:var(--color-gold-lit);font:400 clamp(1.5rem,6vw,3.5rem)/1.1 var(--font-sfx);white-space:nowrap;pointer-events:none;opacity:0;visibility:hidden;transition:opacity 240ms var(--ease-out),visibility 0s linear 240ms}
-.tsay.on{opacity:1;visibility:visible;transition:opacity 240ms var(--ease-out)}
-.tsay{display:flex;flex-direction:column;align-items:center;gap:.3rem}
-.tsay .en{font:600 var(--text-small)/1.2 var(--font-text);color:var(--color-band-ink)}
-
-@media (prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
-  .js .rise{transform:none;transition:opacity 150ms linear}
-  .btn,.sheet img{transition:none}
-  .rail{transition:none}
-  .js .hl .sfx,.js .acts.in .nail .tip,.js .lockup,.js .lockup .lk-sheen{animation:none}
-  .js .tbc .lockup{opacity:1;transform:none;transition:none}
-  .js .tbc.on .lockup .lk-sheen{animation:none}
-  .js .tbc-next{opacity:1;transition:none}
-  .js .tbc .arrow{transform:none;transition:none}
-  .tsay{transition:none}
-}
-
-@media (max-width:1100px){
-  .post .lab{display:none}
-  .post[aria-current="true"] .lab{display:block}
-}
-@media (max-width:900px){
-  .rail-end{display:none}
-  .nav .where,.nav .gbtn[data-time] .jp{display:none}   /* one nav row in every face from 641 px up */
-  .top,.work,.bench,.rec-wrap,.calx,.split,.contact,.card-top,.card-body,.faq,.spin{grid-template-columns:minmax(0,1fr)}
-  .hl{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .lab,.lab:has(.tile[open]){grid-template-columns:minmax(0,1fr)}
-  .tile[open]{grid-row:auto}
-  .tile > summary{flex-direction:row;align-items:center;justify-content:flex-start;min-height:4.5rem;padding:.75rem var(--space-md)}
-  .tile > summary .ico{width:44px;height:44px}
-  .skills{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .acts{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:var(--space-xl)}
-  .gate{grid-template-columns:minmax(0,1fr)}
-  .readings{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .contact{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
-  .contact > :first-child{grid-column:1/-1}
-  .contact img{max-width:13rem}
-  .foot{grid-template-columns:minmax(0,1fr) auto}
-  .foot .credit{grid-column:1/-1}
-}
-@media (max-width:640px){
-  .nav .where{display:none}
-  .nav{flex-wrap:nowrap;gap:.5rem}
-  .nav ul{margin:0}
-  .nav .global{margin-left:auto}
-  /* phones: room for one icon up top; Sound wins (time stop lives in the rail) */
-  .nav .gbtn[data-time]{display:none}
-  .nav .gbtn[data-sound]{width:44px;padding:0;justify-content:center;font-size:0;gap:0}
-  .post .lab,.post[aria-current="true"] .lab{display:none}
-  :root{--rail-h:56px}
-  .rail-end{display:none}
-  .post{pointer-events:none}
-  .post::after{height:16px}
-  h1{font-size:24vw;line-height:.82}
-  .sheet{grid-template-columns:repeat(6,minmax(0,1fr));gap:0 4px}
-  .sheet button{padding:9px 0}
-  .sheet li:nth-child(n+7){transform:translateX(50%)}
-  .skills{grid-template-columns:minmax(0,1fr)}
-  .record td{display:block;width:auto!important;padding:.15rem var(--space-sm)}
-  .record td:first-child{padding-top:.8rem}
-  .record td:last-child{padding-bottom:.8rem}
-  .ledger th{font-size:1.6rem}
-  .statement{font-size:1.375rem}
-  blockquote p{font-size:1.25rem}
-  .contact{grid-template-columns:minmax(0,1fr)}
-  .ledger th,.ledger td{padding:.75rem .5rem}
-  blockquote,.refuse .jj-static{padding:var(--space-md)}
-  .card{padding:var(--space-md)}
-  .params{grid-template-columns:minmax(0,1fr)}
-  .acts{grid-template-columns:minmax(0,1fr)}
-  .hl,.tally{grid-template-columns:minmax(0,1fr)}
-  .tile-body{padding:var(--space-md) 0}   /* the open stage uses the full phone width */
-  .tile-body.dark{padding:var(--space-md)}
-  .chips li{font-size:.875rem;padding:.4rem .6rem .35rem}
-  .leg{flex-wrap:wrap}
-  .leg span{flex-basis:100%;text-align:left}
-  .foot{grid-template-columns:minmax(0,1fr)}
-  .foot nav{flex-wrap:wrap}
-}
-@media (max-width:360px){
-  .nav ul{gap:.55rem;font-size:.875rem}
-  .btn-ep{padding:.7rem .9rem;font-size:.9375rem}
-}
 </style>
 </head>
 <body>
-<a class="skip" href="#main">Skip to content</a>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-<symbol id="h1" viewBox="0 0 1280 816"><path fill-rule="evenodd" d="M1072 263L1067 257L1049 250L987 212L921 183L903 179L899 181L901 188L900 197L892 206L877 219L871 228L846 237L843 253L829 260L824 268L817 269L785 261L760 237L759 233L766 215L767 200L772 179L771 161L767 147L787 132L790 120L789 112L794 106L785 96L782 82L778 75L771 73L761 74L739 82L732 88L733 118L743 130L738 145L713 161L696 176L675 210L672 231L665 252L657 256L662 264L655 290L655 300L658 313L655 319L637 320L621 316L620 318L623 324L622 328L608 331L574 328L507 314L472 315L449 319L419 328L387 333L375 343L359 342L323 351L313 352L307 355L302 362L281 369L258 373L245 381L237 383L229 392L233 397L232 400L223 404L215 405L202 401L195 394L184 389L179 383L172 380L169 371L157 379L157 396L172 426L170 437L173 442L187 449L201 454L212 455L242 451L272 438L282 430L304 422L317 415L324 406L335 398L347 394L356 388L372 369L376 369L378 371L379 374L374 393L377 418L402 466L398 469L370 474L332 470L322 470L315 479L314 486L317 514L316 575L308 589L304 591L296 590L296 599L288 602L280 610L275 626L276 634L280 638L308 629L317 628L320 616L335 603L339 528L343 521L354 517L359 519L363 530L385 552L397 567L414 583L427 604L437 611L437 615L429 626L428 634L436 645L447 653L456 653L460 651L453 591L449 585L415 555L401 539L399 531L407 524L421 521L445 520L457 515L480 510L490 505L507 484L516 481L531 480L541 483L592 507L637 520L677 526L726 530L729 535L728 549L722 578L706 619L695 628L685 631L678 630L648 622L633 614L624 607L611 606L606 596L599 593L581 597L570 605L567 612L571 617L589 620L619 633L654 643L679 649L687 655L698 659L697 676L687 714L692 728L689 731L674 735L680 740L681 752L684 756L690 758L755 761L763 758L766 749L765 741L771 734L752 732L740 714L732 709L720 707L715 698L719 662L724 654L729 631L737 619L739 606L738 594L747 588L778 547L817 530L832 520L842 507L860 445L869 430L884 413L902 386L915 356L920 338L924 330L934 324L970 310L993 304L1016 295L1023 294L1048 301L1055 300L1062 296L1071 282Z M988 294L989 298L987 301L968 309L933 320L930 320L927 317L931 302L948 293L972 290L985 292Z M719 270L726 261L732 260L772 276L781 277L789 282L794 292L789 296L788 303L783 306L755 312L739 313L727 311L717 306L714 297Z"/></symbol>
-<symbol id="h2" viewBox="0 0 1280 816"><path fill-rule="evenodd" d="M381 376L373 372L369 363L363 359L334 360L306 368L256 391L250 395L248 402L238 405L236 411L233 413L224 414L212 411L196 405L189 395L177 395L168 404L156 405L154 416L168 437L177 447L181 459L190 468L211 474L228 474L239 471L258 454L269 448L272 443L288 432L292 430L300 432L311 426L336 400Z M1071 263L1065 257L1056 253L1021 229L988 201L926 168L914 165L906 166L901 172L887 176L883 184L876 184L849 200L848 203L849 208L862 214L865 220L859 224L849 226L841 232L842 252L840 256L828 260L808 264L804 264L794 258L767 237L764 231L766 225L778 211L782 196L787 185L791 167L791 154L787 145L788 139L790 134L800 129L806 120L809 106L807 100L809 93L800 83L791 66L785 64L765 65L749 75L743 83L743 95L748 111L761 123L761 128L737 141L724 151L695 192L691 214L692 221L679 237L670 240L676 247L664 281L664 290L671 306L670 310L664 312L650 311L627 305L625 306L625 312L622 315L603 317L535 306L519 301L487 301L464 311L441 327L397 349L394 355L394 365L402 378L395 414L399 433L407 443L429 461L456 473L461 478L457 486L440 503L402 528L400 534L402 540L417 553L443 563L487 588L501 600L513 604L513 610L502 616L499 622L501 636L509 653L511 653L513 646L523 642L527 635L528 621L522 612L522 607L533 599L543 597L556 600L591 613L617 628L617 634L603 639L588 632L581 632L564 641L556 649L557 652L564 654L569 660L588 660L604 663L625 662L649 658L660 653L677 653L703 647L708 643L717 622L725 610L729 608L743 607L752 616L773 621L863 604L870 597L876 587L874 576L845 538L835 528L827 515L829 511L848 493L852 485L854 477L865 463L868 454L869 435L872 425L901 373L920 319L1006 289L1031 292L1037 300L1054 300L1067 284L1067 275L1072 266Z M746 583L765 551L777 542L788 538L819 556L830 565L838 574L843 584L841 589L834 591L785 601L761 595L751 595L748 592Z M455 532L462 526L473 521L495 516L504 517L507 522L510 534L510 545L506 565L499 567L470 553L453 541L452 537Z M570 480L579 479L637 501L706 516L731 523L733 530L722 546L712 581L704 590L703 600L697 611L683 625L660 633L650 631L635 620L630 610L621 602L552 577L541 566L537 553L552 502L556 494Z M923 307L924 303L934 287L944 282L973 282L981 284L984 287L983 290L980 293L965 298L956 299L950 304L932 310L927 310Z M723 293L737 262L744 257L775 268L784 269L799 280L800 284L797 290L788 294L757 301L735 299L727 297Z"/></symbol>
-<symbol id="h3" viewBox="0 0 1280 816"><path fill-rule="evenodd" d="M409 367L403 359L389 358L352 363L335 369L327 368L281 390L273 400L245 417L238 425L232 424L227 414L213 409L199 412L194 419L192 425L185 429L195 434L198 438L193 448L195 453L204 459L212 468L221 472L237 472L252 467L275 450L305 422L314 419L331 406L335 406L340 410L350 408L358 415L365 419L381 415L408 413L418 401L416 398L405 396L399 390L402 384L409 378Z M1093 269L1078 259L1074 251L1063 249L1014 208L981 190L951 178L936 169L928 167L922 169L919 176L920 184L912 189L910 196L898 201L887 202L891 207L892 214L890 219L886 224L863 231L861 238L868 251L860 262L854 265L839 266L819 264L813 262L806 256L798 244L782 227L781 223L794 207L808 164L807 140L812 134L829 129L832 122L837 117L839 105L838 99L841 92L832 83L822 64L816 62L803 63L795 65L782 73L774 82L780 110L787 118L784 125L780 129L761 133L753 138L732 158L706 193L706 207L710 212L712 219L699 231L700 238L693 272L694 286L702 305L700 310L696 312L678 311L653 304L644 310L634 311L589 306L542 297L516 297L502 301L424 354L422 368L432 379L431 416L437 434L447 448L460 459L486 471L509 477L516 483L514 500L509 517L503 528L492 541L485 557L485 562L491 567L505 571L525 572L587 589L591 591L599 602L607 607L623 607L668 619L684 627L697 628L708 643L722 643L737 639L768 641L778 636L781 630L783 621L780 614L776 610L764 609L747 617L737 617L718 613L709 610L704 604L689 602L684 594L676 591L661 591L658 588L659 579L653 574L624 568L619 566L613 553L611 530L608 520L613 494L612 487L615 484L618 484L674 508L706 518L736 522L754 527L761 544L760 574L762 586L766 592L773 594L780 594L786 589L803 539L809 535L827 530L843 533L881 533L904 538L915 542L919 549L917 560L912 570L900 582L869 596L865 595L855 588L846 589L832 597L827 603L825 610L826 615L832 617L880 617L889 620L892 618L894 608L923 580L941 567L951 548L951 541L947 536L917 513L899 502L885 488L893 470L903 453L906 439L904 424L908 407L931 356L939 329L946 314L947 306L953 297L962 290L976 285L1004 288L1007 290L1008 293L1004 296L981 300L976 305L966 308L967 311L1012 300L1027 294L1036 295L1059 305L1075 305L1090 290L1089 281Z M530 545L546 527L557 519L562 519L567 523L577 539L580 548L580 559L577 562L572 563L543 556L534 553Z M758 257L764 256L774 259L813 279L815 284L808 290L807 298L790 302L767 301L761 299L753 285Z"/></symbol>
-<symbol id="h4" viewBox="0 0 1280 816"><path fill-rule="evenodd" d="M1113 300L1109 295L1079 271L1031 223L997 202L983 196L963 192L952 191L941 198L928 201L915 200L905 204L906 208L916 214L915 220L887 226L886 228L889 235L886 238L871 238L871 241L878 247L878 252L862 258L855 268L841 270L842 278L839 282L833 281L824 276L810 263L792 228L807 204L816 178L815 148L820 141L837 137L851 125L851 108L855 102L846 92L844 80L840 72L829 69L814 70L792 78L786 83L785 110L793 123L792 128L787 131L759 141L748 151L719 182L713 191L706 209L704 230L690 235L695 245L683 272L683 289L691 303L705 319L706 323L703 326L690 327L645 317L642 317L639 325L632 327L548 313L526 313L509 315L493 321L471 333L446 350L423 362L417 368L396 365L376 368L318 372L302 376L284 377L272 386L268 392L258 396L240 410L229 426L203 456L198 457L173 450L166 451L164 454L166 460L175 468L177 474L183 478L183 488L189 496L197 498L212 498L221 494L229 485L258 461L279 449L305 429L317 428L333 416L340 414L345 415L354 420L374 425L380 424L388 426L402 420L401 405L403 397L417 384L425 385L429 391L427 399L427 419L437 450L448 465L461 479L520 518L534 530L547 554L557 596L557 612L562 621L578 635L596 642L597 651L601 658L608 661L627 685L636 688L638 694L652 710L656 713L665 712L679 716L688 745L691 749L700 752L701 762L707 763L713 761L715 754L720 751L725 740L717 719L684 698L676 689L665 682L645 663L636 660L632 653L608 627L599 608L597 597L604 593L623 594L661 602L715 618L731 619L735 622L736 632L743 636L759 637L771 635L777 633L778 629L764 612L733 600L719 593L701 588L669 582L647 576L621 566L616 555L612 519L613 515L620 514L655 525L725 536L750 537L774 541L798 540L842 555L874 563L887 573L888 577L886 581L867 592L845 599L826 599L823 596L823 585L809 575L797 573L786 575L786 580L792 590L813 615L826 623L837 625L872 607L903 596L908 592L914 583L915 574L913 566L883 541L879 535L880 530L886 528L948 514L968 513L974 515L981 519L985 529L988 571L984 590L990 600L988 606L980 614L976 623L984 636L996 644L999 644L1002 641L1005 621L1003 604L1008 584L1002 561L1002 517L995 511L995 501L993 495L989 490L980 487L910 482L903 480L900 477L901 473L912 458L919 446L924 418L923 396L939 364L954 329L959 324L1018 315L1036 315L1061 322L1072 331L1085 334L1095 326L1105 322L1107 312L1113 305Z M993 308L992 313L986 315L973 317L967 313L970 307L983 303L990 305Z M746 287L758 271L768 267L775 268L797 280L803 289L814 296L817 302L813 305L791 311L776 312L756 309L748 303Z"/></symbol>
-<symbol id="h5" viewBox="0 0 1280 816"><path fill-rule="evenodd" d="M369 368L365 364L359 363L334 364L313 362L299 365L289 363L281 365L259 364L242 369L226 378L213 388L193 407L171 419L166 424L166 428L174 432L175 436L168 461L155 487L145 493L133 496L132 509L137 514L146 514L181 491L192 490L210 472L219 470L251 434L262 429L280 412L294 409L311 417L319 416L325 418L336 415L340 404L348 394L373 385Z M1077 307L1039 272L1025 253L1001 228L976 214L960 201L940 194L934 196L910 210L893 215L883 215L878 222L867 223L867 226L873 230L873 235L870 236L853 238L849 240L861 246L861 250L858 255L841 259L836 263L821 268L821 273L818 276L810 278L803 277L778 262L755 234L754 227L781 191L783 184L782 172L786 153L793 143L805 138L808 130L814 125L814 116L811 108L814 100L802 90L797 76L792 71L772 74L748 84L746 91L751 112L755 120L766 130L766 135L760 139L742 143L720 154L704 165L679 200L671 216L668 227L658 233L663 241L651 259L644 284L651 303L658 307L672 325L671 329L661 332L652 331L641 332L607 324L604 325L600 331L593 332L573 329L558 328L510 318L484 319L464 323L451 329L420 347L398 357L392 363L391 374L397 386L389 399L384 415L384 432L392 456L416 504L433 525L439 538L432 565L404 609L401 620L403 627L414 643L417 654L424 664L431 680L439 681L442 683L443 711L454 730L459 744L456 747L452 748L368 748L364 749L361 757L363 759L378 761L389 756L403 756L411 760L455 752L463 748L512 752L516 755L515 763L520 766L526 763L527 755L534 752L546 756L566 756L581 760L584 760L583 757L568 754L559 748L529 747L526 744L528 735L521 724L515 719L485 717L481 715L478 709L469 706L455 682L449 664L449 654L443 649L442 642L446 627L455 607L479 572L481 562L489 545L509 521L515 518L522 520L529 525L551 556L565 586L570 593L656 635L679 649L684 656L691 657L694 651L700 650L706 656L726 665L744 659L763 656L756 653L752 643L731 637L718 636L681 623L633 599L613 585L606 579L593 563L585 541L581 523L582 519L588 518L650 530L712 530L737 535L784 534L825 526L849 530L867 529L905 536L906 540L891 565L878 578L874 589L868 590L860 585L854 585L848 587L840 593L833 613L834 619L836 622L894 599L898 594L916 557L928 538L933 535L947 538L980 548L1008 569L1020 582L1023 591L1037 599L1040 607L1039 618L1043 622L1057 628L1075 628L1076 625L1072 618L1052 593L1040 573L1006 547L985 528L974 525L969 516L958 510L958 493L952 482L945 479L919 479L878 472L874 470L873 466L883 436L885 422L884 408L889 388L913 347L922 327L933 318L937 312L957 308L978 311L984 313L992 324L1014 325L1039 334L1046 341L1051 343L1063 340L1074 332L1081 316Z M715 294L728 264L732 261L736 261L764 272L768 276L772 286L789 293L792 298L789 301L769 309L743 313L729 312L723 310L717 300Z"/></symbol>
-<symbol id="h6" viewBox="0 0 1280 816"><path fill-rule="evenodd" d="M1102 347L1083 318L1065 299L1037 256L1021 238L994 225L985 218L965 211L957 210L955 217L952 219L931 220L929 227L926 229L907 232L907 234L912 241L910 246L896 250L886 250L868 258L862 264L851 268L841 275L839 278L842 284L839 287L824 289L799 281L780 261L760 248L754 241L776 187L779 158L783 154L800 150L802 144L808 139L812 127L809 121L812 113L805 103L801 88L792 84L779 85L762 90L751 95L748 99L752 126L759 139L756 146L731 155L717 163L687 189L672 204L667 215L664 224L666 240L658 246L662 256L649 275L644 286L644 292L650 312L677 343L678 346L675 349L655 352L602 343L600 345L600 352L594 354L522 340L485 338L456 345L422 359L379 372L322 378L274 372L242 378L230 382L220 391L206 396L187 408L157 410L144 413L142 419L137 422L137 424L163 422L169 424L170 428L156 439L154 445L148 452L140 468L140 476L136 488L137 495L132 505L133 512L128 519L135 524L144 521L152 512L159 500L178 482L189 468L202 455L221 442L236 435L269 422L380 401L382 403L383 407L371 424L367 437L372 529L362 544L327 573L302 589L296 623L287 633L282 657L274 661L275 670L270 682L262 687L264 694L257 718L266 724L284 731L287 735L286 744L281 753L260 754L257 755L257 758L259 760L280 763L298 768L310 773L316 772L320 767L328 763L329 752L325 740L316 725L316 717L314 715L297 715L289 699L291 692L299 688L297 679L307 655L311 642L324 627L353 600L375 586L434 543L449 537L462 543L475 561L484 584L490 642L508 666L521 671L522 675L522 692L531 697L542 711L545 720L551 724L560 741L562 754L558 762L591 767L633 769L638 767L638 760L629 755L629 749L626 743L614 725L607 720L582 719L571 713L559 699L558 692L552 688L541 671L541 665L533 658L527 634L522 621L526 585L522 563L523 521L525 516L531 514L543 514L603 532L633 539L663 543L755 546L817 538L842 532L863 535L873 538L937 572L964 596L967 600L965 606L952 613L948 622L952 636L963 647L967 648L970 645L980 613L983 609L989 607L1008 618L1052 651L1058 653L1081 653L1095 663L1097 669L1100 669L1125 648L1128 644L1127 640L1121 638L1089 636L1077 633L1043 619L1034 611L1025 608L1003 591L988 572L985 560L986 537L991 516L988 501L979 493L971 491L933 488L914 484L902 485L895 483L892 478L894 460L893 453L887 436L897 409L941 343L945 339L970 339L1024 347L1047 357L1056 371L1065 374L1087 370L1094 359L1102 352Z M928 521L946 516L955 516L963 519L968 529L969 545L967 552L960 554L952 549L930 529L927 525Z M966 331L970 328L986 328L991 330L992 334L986 338L970 336L967 334Z M710 299L720 273L725 269L729 268L782 291L800 301L802 306L799 309L789 312L783 319L752 323L736 330L723 321L711 304Z"/></symbol>
-<symbol id="h7" viewBox="0 0 1280 816"><path fill-rule="evenodd" d="M1137 347L1123 329L1112 310L1088 285L1068 257L1053 246L1043 230L1022 222L999 221L989 222L983 227L987 232L986 235L980 238L950 240L919 238L913 243L916 257L922 262L919 268L909 272L878 273L873 277L859 282L830 273L818 261L794 248L791 241L801 227L804 215L811 201L816 178L814 160L816 153L820 150L831 148L843 133L841 122L835 115L836 111L842 106L832 98L827 83L822 80L807 82L781 92L774 99L774 105L781 120L782 129L792 140L790 146L785 150L750 166L732 180L723 192L704 222L703 244L700 246L691 247L688 250L693 259L682 285L681 294L685 309L696 323L707 343L708 348L705 351L684 355L647 355L642 361L621 362L518 344L504 344L466 351L442 350L411 356L396 361L329 377L319 382L305 385L291 385L274 391L248 392L243 398L209 401L197 413L173 418L176 426L172 430L150 438L133 442L119 453L118 457L122 460L141 459L148 469L162 467L208 450L254 441L262 437L305 424L318 421L401 389L407 388L410 391L395 428L390 453L387 482L383 496L379 502L358 521L342 532L325 542L301 551L285 562L270 587L238 614L216 626L197 632L191 640L184 642L180 642L170 638L164 638L152 644L142 653L134 656L134 658L139 667L147 670L219 657L224 648L267 614L320 576L355 560L386 549L392 548L396 553L393 558L360 585L351 599L348 612L349 642L346 656L347 673L344 685L345 703L342 723L345 733L351 740L355 741L365 738L371 740L371 756L375 763L383 766L392 765L406 767L414 764L418 758L419 752L417 745L394 718L374 714L368 706L366 676L372 630L386 611L419 589L438 568L475 540L492 513L498 508L517 504L559 506L579 511L645 531L669 537L710 543L806 540L847 533L858 536L873 547L891 571L915 595L924 608L937 632L956 649L961 656L960 663L968 667L973 673L980 688L984 691L995 715L1011 716L1017 718L1024 733L1024 762L1046 766L1062 763L1065 761L1069 753L1070 746L1068 740L1060 730L1056 722L1048 717L1035 714L1026 709L1013 694L1006 690L1004 685L993 669L995 662L987 659L982 655L970 638L964 621L939 586L920 545L918 534L924 531L950 533L982 538L1028 549L1074 577L1082 583L1093 599L1104 601L1109 603L1112 607L1111 614L1113 620L1120 627L1126 628L1144 627L1153 624L1153 619L1119 592L1108 575L1090 566L1042 533L1036 531L1031 523L1022 516L981 507L917 483L915 478L920 462L922 442L920 426L929 404L967 359L977 343L984 340L992 341L998 340L990 333L991 329L995 327L1025 334L1028 337L1028 343L1030 345L1066 351L1086 362L1089 366L1090 373L1097 377L1115 377L1126 370L1130 365Z M751 311L751 304L764 273L767 271L791 281L819 285L827 293L837 296L838 300L837 305L833 307L819 309L792 321L775 325L757 324Z"/></symbol>
-<symbol id="h8" viewBox="0 0 1280 816"><path fill-rule="evenodd" d="M1131 354L1094 310L1090 302L1052 253L1027 232L1009 222L995 219L990 222L988 225L993 231L992 235L973 244L940 235L901 232L900 235L904 240L907 251L916 254L919 258L918 262L911 266L887 269L881 280L874 283L848 283L838 285L833 281L825 278L813 266L800 259L774 234L771 228L782 191L785 162L792 154L804 151L806 144L813 138L816 128L814 121L817 116L802 87L790 84L780 86L760 93L753 99L753 112L756 129L764 139L764 144L754 152L725 166L713 177L689 207L684 216L681 227L684 242L681 252L669 257L674 263L675 266L661 291L659 304L665 319L687 344L688 347L685 350L659 354L640 351L628 360L620 362L524 344L459 343L410 345L366 355L342 364L328 372L287 383L281 389L241 386L238 387L234 393L210 394L188 391L171 392L156 397L150 395L140 397L136 403L117 406L110 413L110 418L126 425L129 429L127 434L118 437L119 441L134 441L147 447L164 449L222 451L247 446L258 440L276 436L340 407L362 388L387 372L387 365L390 362L394 361L399 363L403 370L402 375L389 394L381 413L376 438L375 463L371 480L367 488L345 503L322 513L284 520L247 551L191 580L176 584L164 591L160 590L148 582L134 585L120 598L116 608L121 613L143 613L153 610L180 611L190 609L246 575L260 569L303 555L322 552L328 554L329 558L326 561L312 569L306 575L295 599L261 646L257 656L248 659L246 663L237 668L229 681L200 683L202 690L195 714L201 716L214 713L221 714L228 704L261 684L263 677L273 665L276 657L282 654L291 641L318 608L376 564L403 539L442 521L463 507L474 502L487 498L525 494L545 501L563 510L617 530L654 538L705 542L748 542L769 547L805 544L822 547L827 555L833 588L837 625L837 646L842 659L849 665L867 663L884 658L874 656L868 653L864 611L864 596L869 550L873 537L882 532L892 534L898 537L913 539L936 546L1005 580L1042 591L1090 619L1101 621L1115 616L1131 620L1145 625L1151 626L1168 614L1172 608L1171 604L1153 600L1116 600L1097 596L1076 589L1043 573L1028 561L989 540L954 511L922 489L919 486L922 464L914 441L921 422L965 357L972 348L984 342L990 335L998 333L1012 333L1028 336L1031 339L1032 342L1026 347L1026 349L1048 352L1061 359L1082 366L1087 370L1089 378L1092 379L1107 379L1116 376L1130 359Z M721 308L722 298L734 271L741 267L765 271L804 284L816 291L828 295L831 298L830 302L819 308L769 326L752 330L726 326L723 323Z"/></symbol>
-<symbol id="h9" viewBox="0 0 1280 816"><path fill-rule="evenodd" d="M1121 337L1096 311L1092 304L1081 297L1071 287L1053 265L1045 251L1016 225L990 213L963 212L955 214L953 219L949 221L931 219L905 222L905 232L896 240L893 263L874 268L857 278L831 279L806 270L799 261L763 233L766 214L776 177L773 152L776 149L786 146L794 134L797 122L794 114L799 109L790 99L781 79L777 78L762 79L739 88L731 95L740 128L749 137L746 143L739 148L728 151L701 170L680 192L666 215L664 228L669 238L668 246L666 253L657 255L653 258L658 264L659 268L650 289L647 303L671 337L673 343L670 346L659 348L624 343L622 344L620 350L617 353L600 353L494 330L425 331L376 339L358 340L331 346L254 387L231 387L173 371L171 371L171 377L167 385L161 386L150 380L145 369L137 360L133 359L128 360L121 367L110 372L108 375L115 385L124 395L151 416L156 425L166 430L170 435L181 440L196 443L227 442L241 439L263 432L271 431L285 425L316 405L346 379L371 371L378 372L382 375L369 399L363 419L362 445L365 474L364 480L349 484L339 483L325 486L302 481L283 483L270 500L265 512L254 529L230 558L218 569L198 575L191 580L177 574L169 575L155 587L145 590L128 600L122 609L127 614L144 621L152 620L181 626L201 623L261 587L285 579L302 568L338 554L363 540L376 536L401 534L444 526L455 520L465 509L484 496L498 492L528 492L537 495L553 506L573 516L622 534L661 542L719 545L736 549L740 553L728 576L722 592L700 623L697 642L688 660L683 664L671 688L665 692L660 705L659 714L661 722L665 725L678 727L689 736L687 756L681 758L561 758L559 760L561 762L579 761L591 765L631 764L671 769L695 768L702 770L708 777L711 777L722 769L774 761L774 759L767 757L764 754L761 740L763 731L751 734L738 741L732 742L727 739L723 730L704 723L693 717L688 702L689 689L695 684L703 668L704 661L710 657L717 648L725 644L739 616L766 588L791 552L797 549L833 538L842 538L849 540L888 561L905 574L953 622L976 636L997 659L1005 662L1021 687L1031 693L1042 694L1052 697L1056 702L1057 710L1061 716L1069 719L1082 719L1101 705L1101 693L1068 683L1052 675L1044 665L1029 657L993 624L977 602L950 576L913 524L896 509L893 503L890 462L893 450L900 437L939 384L957 351L966 344L974 333L999 328L1008 330L1018 334L1027 344L1047 347L1054 352L1066 354L1091 369L1101 368L1114 361L1116 354L1121 347Z M712 297L729 265L735 263L757 267L767 272L788 279L812 292L816 299L812 303L790 304L786 312L777 315L730 324L723 323L719 321L716 304Z"/></symbol>
-<symbol id="h10" viewBox="0 0 1280 816"><path fill-rule="evenodd" d="M1103 325L1098 317L1087 310L1036 268L1021 249L1009 238L967 215L955 212L948 213L953 222L952 226L928 243L912 248L897 243L889 245L896 257L895 263L889 271L877 275L873 283L851 295L827 294L817 296L813 287L808 282L775 262L766 251L766 231L779 182L776 170L779 167L789 166L793 163L795 156L801 151L803 139L801 132L805 126L795 115L789 98L782 96L768 96L746 104L736 113L735 117L740 140L750 153L751 158L745 166L724 178L706 195L697 206L683 232L676 269L670 277L672 285L669 313L673 336L670 339L665 341L635 338L634 340L635 344L644 348L645 351L642 354L636 356L579 347L521 335L503 334L441 341L376 356L363 355L349 362L332 366L326 371L309 378L281 381L268 387L237 388L207 382L177 371L162 372L160 375L164 380L166 389L180 398L188 407L190 414L194 419L190 429L202 441L202 451L229 456L250 456L290 447L346 417L389 384L395 383L398 386L390 405L390 431L398 458L411 481L410 486L406 488L394 490L376 490L342 485L330 485L324 487L316 499L308 520L302 527L274 579L262 586L257 592L253 592L242 586L229 590L221 597L214 610L214 616L220 621L229 620L256 613L273 611L284 606L293 586L301 576L304 565L323 538L329 534L348 532L353 535L366 557L380 585L379 601L384 610L369 619L365 634L366 641L370 650L374 655L378 656L384 653L389 645L396 627L407 608L405 595L393 571L384 546L384 539L387 538L433 539L481 533L496 522L517 514L528 502L535 500L552 503L561 506L592 524L624 536L645 541L682 545L698 545L724 548L731 550L733 555L728 569L720 582L700 629L686 649L668 656L637 662L607 659L604 661L602 666L599 668L593 667L585 653L577 651L561 659L555 667L548 672L548 676L552 678L578 683L606 685L622 682L635 682L681 674L691 670L705 668L712 665L718 657L723 641L734 625L779 578L785 580L788 591L793 631L790 653L795 667L803 674L810 674L817 672L821 666L822 651L819 627L820 608L834 550L853 531L861 520L867 517L875 505L885 457L918 413L931 391L943 361L951 353L954 341L960 333L971 328L995 329L1004 331L1007 336L1003 339L990 342L991 345L1008 345L1022 342L1037 342L1058 350L1065 355L1074 357L1083 355L1096 347L1097 335L1102 328Z M734 290L738 287L751 286L766 295L788 304L812 311L815 316L812 319L795 326L787 332L769 335L741 332L737 329L735 316L731 309Z"/></symbol>
-<symbol id="h11" viewBox="0 0 1280 816"><path fill-rule="evenodd" d="M1088 301L1076 294L1027 250L1012 232L981 211L966 204L939 199L925 200L913 216L881 229L868 237L864 247L857 251L860 259L854 267L853 277L846 283L836 288L820 289L803 284L782 265L764 255L762 251L773 226L778 207L782 182L778 174L777 161L781 158L792 156L799 151L806 138L808 129L806 122L810 114L802 105L793 86L789 85L751 90L745 93L737 101L736 110L739 129L751 141L751 147L746 153L723 168L701 187L684 210L675 225L671 239L676 256L671 264L662 266L660 269L666 278L659 303L660 318L665 329L662 334L654 334L634 328L631 331L632 337L630 342L614 344L521 327L504 326L483 329L448 339L441 345L430 349L399 358L393 363L331 374L286 364L274 364L262 369L243 365L213 365L183 372L174 377L170 383L160 384L160 387L175 393L178 399L169 410L159 410L156 412L174 420L195 441L195 447L183 457L183 459L199 460L215 464L235 466L248 464L257 460L265 454L282 451L319 437L343 419L377 406L396 391L402 392L403 396L397 410L395 425L397 442L411 463L430 479L432 486L422 494L404 500L361 508L357 512L355 520L357 527L366 538L378 547L406 577L420 598L421 614L428 622L429 625L420 634L418 649L424 657L437 668L447 668L449 666L448 610L446 604L440 596L441 593L444 591L471 596L511 613L523 621L528 628L543 633L544 640L538 653L551 667L555 668L573 667L571 645L562 632L553 608L515 592L482 575L477 569L479 561L486 551L523 523L539 506L550 503L567 505L637 529L679 538L726 544L729 548L728 552L698 589L692 592L672 594L662 597L656 602L657 608L672 617L673 621L668 632L650 654L630 671L625 679L608 692L603 700L607 710L606 725L593 746L587 749L572 746L568 748L569 752L585 752L588 757L587 761L581 763L454 763L450 765L454 767L530 769L544 772L552 777L566 770L650 773L680 771L699 774L710 778L714 777L723 769L739 769L745 767L746 764L743 763L649 763L643 761L633 735L627 731L622 722L625 714L634 703L643 689L655 678L659 670L665 667L678 649L692 639L706 638L714 640L725 645L769 655L773 654L779 648L792 648L799 643L801 639L800 628L791 620L797 608L799 555L808 547L832 540L843 532L861 510L866 501L872 468L910 408L920 388L935 348L944 342L941 334L942 329L953 314L963 311L978 311L986 313L994 317L995 320L992 323L968 331L966 333L968 335L978 334L1006 326L1024 323L1041 327L1051 336L1058 337L1066 335L1081 325L1088 306Z M780 621L772 631L756 633L725 624L716 619L713 613L716 608L753 580L759 578L763 581L771 609L779 618Z M455 535L456 539L454 543L428 563L421 561L407 542L409 537L418 534L440 532Z M729 313L734 289L739 285L787 303L794 309L791 314L766 326L743 323Z"/></symbol>
-<symbol id="h12" viewBox="0 0 1280 816"><path fill-rule="evenodd" d="M1011 227L996 215L951 188L931 177L919 173L906 161L880 150L862 131L858 130L854 132L851 142L851 149L859 163L858 168L831 194L816 214L805 235L780 261L772 263L742 255L736 249L730 246L696 248L683 240L678 235L672 203L658 169L662 151L679 139L678 131L681 115L676 105L675 89L672 86L664 84L636 84L625 87L619 107L620 115L623 123L632 137L632 144L623 159L600 174L596 192L591 252L594 261L600 271L611 277L613 281L603 299L603 316L601 324L589 332L585 333L562 326L550 320L540 319L513 311L495 308L475 309L455 315L426 321L414 327L373 336L358 346L348 357L342 367L335 392L335 421L342 458L356 491L369 514L393 550L402 569L397 582L398 612L395 668L386 704L388 708L396 714L403 722L405 730L401 739L397 741L383 737L368 737L354 740L332 738L309 742L308 758L311 766L305 771L295 769L291 770L290 773L292 784L289 791L289 794L294 796L308 794L330 794L332 791L330 784L332 777L331 772L335 768L365 772L417 768L427 770L465 769L528 773L568 770L565 767L520 767L514 765L512 752L500 733L484 722L473 698L469 694L463 675L466 668L460 662L458 654L455 656L456 695L450 705L450 716L454 723L463 727L471 736L470 740L458 746L442 742L433 724L422 716L419 707L420 695L417 687L416 670L418 663L418 627L421 624L425 624L432 633L439 635L448 634L453 629L455 611L454 592L467 534L477 514L494 495L504 474L508 468L514 466L525 470L555 490L577 501L604 510L652 519L690 522L727 521L733 523L736 529L735 566L729 621L735 639L731 644L729 661L726 666L726 674L723 688L719 693L717 719L722 723L733 725L741 724L744 726L744 732L732 747L732 758L736 764L753 767L764 766L768 764L772 757L772 745L752 728L750 719L746 715L745 701L735 690L734 640L738 637L751 635L756 630L763 588L767 569L773 559L777 559L779 561L783 587L787 594L794 596L801 596L805 594L809 588L819 528L820 506L841 482L852 459L853 442L851 429L855 401L879 323L883 293L888 288L942 266L958 261L973 261L987 271L998 268L1004 260L1015 253Z M398 473L402 473L404 475L415 496L418 512L418 520L415 523L408 521L395 502L399 494L392 482Z M759 265L760 268L757 272L763 276L764 280L760 286L751 294L735 299L724 299L715 303L711 309L707 311L693 309L684 300L682 282L685 277L691 275L707 282L715 279L723 282L750 271L750 266L753 263L757 263Z M888 272L894 261L901 255L923 258L927 261L924 266L896 275L891 275Z"/></symbol>
-</svg>
-<div class="tint" aria-hidden="true"></div><div class="tone" aria-hidden="true"></div>
-<p class="tsay" id="tsay" aria-hidden="true"><span class="jp">時は動き出す</span><span class="en">Time moves again</span></p>
-<p class="vh" id="status" aria-live="polite"></p>
-
-<header class="hero" data-ep="hero">
-  <div class="wrap">
-    <nav class="nav" aria-label="Main">
-      <span class="where">New York</span>
-      <ul>
-        <li><a href="#work">Work</a></li>
-        <li><a href="#record">Record</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="Ayaz_Khan_Resume.pdf">Résumé</a></li>
-      </ul>
-      <div class="global">
-        <button type="button" class="gbtn" data-sound aria-pressed="false" data-pending title="Sound: music and effects"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7.5h3.5L11 4v12l-4.5-3.5H3z"/><path class="on" d="M13.5 7.2a4 4 0 0 1 0 5.6M15.8 5a7 7 0 0 1 0 10"/></svg>Sound</button>
-        <button type="button" class="gbtn" data-time><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="11" r="7"/><path d="M10 7v4l2.5 2.5M8 2h4"/></svg><span class="jp" aria-hidden="true">時よ止まれ</span><span class="lbl">Stop time</span></button>
-      </div>
-    </nav>
-
-    <div class="top">
-      <div class="intro">
-        <h1>Ayaz <br>Khan</h1>
-        <p class="lede">Statistician and data scientist. I measure what a model can do before I believe what it reports.</p>
-        <ul class="chips" data-ep="status" aria-label="Status">
-          <li data-ep-chip>U.S. citizen, no sponsorship</li>
-          <li data-ep-chip>Available January 2027</li>
-          <li data-ep-chip>Columbia M.A. Statistics, Dec 2026</li>
-          <li data-ep-chip>NSF Graduate Research Fellow</li>
-        </ul>
-        <div class="actions">
-          <p class="ep"><button type="button" class="btn btn-ep" data-episode data-ep-css><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9.5-5.5z"/></svg>Play the 26-second episode</button><span class="ep-note">sound on</span></p>
-          <a class="btn btn-res" href="Ayaz_Khan_Resume.pdf" download>Download résumé (PDF)</a>
-          <a class="mail" href="mailto:aak2259@columbia.edu">aak2259@columbia.edu</a>
-        </div>
-      </div>
-      <div class="plate">
-        <figure class="stage" id="stage" aria-labelledby="stage-cap">
-          <svg viewBox="70 20 1150 800" role="img" aria-labelledby="stage-cap">
-            <g aria-hidden="true">
-              <path class="rule" d="M128 20V700M256 20V700M384 20V700M512 20V700M640 20V700M768 20V700M896 20V700M1024 20V700M1152 20V700"/>
-              <path class="track" d="M70 728H1220M70 748H1220M70 768H1220"/>
-              <use class="horse" id="horse" href="#h3"/>
-            </g>
-          </svg>
-        </figure>
-        <p class="figtitle" id="stage-cap">Sallie Gardner at a gallop, traced from Muybridge's 1878 plate</p>
-      </div>
-    </div>
+<canvas id="wind" aria-hidden="true"></canvas>
+<header class="win" id="win">
+  <div class="sky" aria-hidden="true">
+    <i class="sun"></i>
+    <svg class="land" viewBox="0 0 1600 300" preserveAspectRatio="xMidYMax slice"><path class="far" d="M0 222 300 216C520 202 640 122 760 72 790 60 810 64 830 80 860 58 880 62 900 76 1000 132 1180 202 1600 216V300H0Z"/><rect class="sea" y="218" width="1600" height="82"/><path class="near" d="M0 300V236h70l26-16 26 16h44v-22h60v30h40l34-20 34 20h30v-46h12v-30h10v30h12v46h60v-16c0-30 22-52 52-56v-14h6v14c30 4 52 26 52 56v16h50v-20l30-18 30 18h70v-30h66v24h40l30-22 30 22h40v-38h8v-20h8v20h8v38h54l28-18 28 18h60v-26h70v26h42l26-16 26 16h48V300Z"/></svg>
   </div>
+  <canvas id="curtains" aria-hidden="true"></canvas>
+  <div class="hero">
+    <h1 id="name">Ayaz Khan</h1>
+    <p class="say">Statistician. I check what everyone assumes.</p>
+    <p class="facts">U.S. citizen. Columbia M.A. Statistics, December 2026. NSF Graduate Research Fellow. Can start January 2027.</p>
+    <button type="button" class="play" id="play"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 1.5v13L14 8z"/></svg>Play the 26-second episode <small>sound on</small></button>
+  </div>
+  <i class="sill" aria-hidden="true"></i>
+  <div class="shut" id="shut">
+    <i class="sh l"></i><i class="sh r"></i><i class="seam"></i>
+    <b class="sfx a" aria-hidden="true">ゴゴゴ</b><b class="sfx b" aria-hidden="true">ゴゴゴ</b>
+    <b class="plate" aria-hidden="true">Ayaz Khan</b>
+    <button type="button" class="latch" id="latch">Open the window</button>
+  </div>
+  <i class="flash" id="flash" aria-hidden="true"></i>
 </header>
 
-<main id="main">
-  <section id="results" aria-labelledby="t-results">
-    <div class="wrap">
-      <p class="leg"><b>Stage 1</b><i></i><span>15,000 Meters</span></p>
-      <h2 id="t-results" class="vh">Results</h2>
-      <ul class="hl">
-        <li><a href="#work" data-ep="ceiling"><svg class="spark" viewBox="0 0 120 28" aria-hidden="true"><line class="axis" x1="4" y1="26" x2="116" y2="26"/><line class="link" x1="24.1" y1="13" x2="91.3" y2="13"/><path class="ci" d="M79.6 13H101.7M79.6 8V18M101.7 8V18"/><circle class="ctx" cx="24.1" cy="13" r="4.5"/><circle class="mark" cx="91.3" cy="13" r="4.5"/></svg><span class="fig">56.69%<span class="sfx" aria-hidden="true">ドドド</span></span><span class="hl-l">Accuracy ceiling that cancelled a pricing release</span></a></li>
-        <li><a href="#leak" data-ep="leak"><svg class="spark" viewBox="0 0 120 28" aria-hidden="true"><line class="axis" x1="4" y1="26" x2="116" y2="26"/><line class="link" x1="41.4" y1="13" x2="102.9" y2="13"/><circle class="ctx" cx="102.9" cy="13" r="4.5"/><circle class="mark" cx="41.4" cy="13" r="4.5"/></svg><span class="fig"><del>0.806</del> 0.7401</span><span class="hl-l">Honest AUC after I caught target leakage; $127K of waste found</span></a></li>
-        <li><a href="#calx" data-ep="calx"><svg class="spark" viewBox="0 0 120 28" aria-hidden="true"><rect class="bar ctx" x="4" y="4" width="112" height="7"/><rect class="bar" x="4" y="16" width="76.7" height="7"/></svg><span class="fig">31.55%</span><span class="hl-l">Fewer operations on average in Calx, exact on 45 of 45; provisional patent</span></a></li>
-        <li><a href="#record" data-ep="nsf"><svg class="spark" viewBox="0 0 120 28" aria-hidden="true"><rect class="bar" x="4.0" y="1.0" width="7" height="7"/><rect class="box" x="13.0" y="1.0" width="7" height="7"/><rect class="box" x="22.0" y="1.0" width="7" height="7"/><rect class="box" x="31.0" y="1.0" width="7" height="7"/><rect class="box" x="40.0" y="1.0" width="7" height="7"/><rect class="box" x="49.0" y="1.0" width="7" height="7"/><rect class="box" x="4.0" y="10.0" width="7" height="7"/><rect class="box" x="13.0" y="10.0" width="7" height="7"/><rect class="box" x="22.0" y="10.0" width="7" height="7"/><rect class="box" x="31.0" y="10.0" width="7" height="7"/><rect class="box" x="40.0" y="10.0" width="7" height="7"/><rect class="box" x="49.0" y="10.0" width="7" height="7"/><rect class="box" x="4.0" y="19.0" width="7" height="7"/><rect class="box" x="13.0" y="19.0" width="7" height="7"/><rect class="box" x="22.0" y="19.0" width="7" height="7"/><rect class="box" x="31.0" y="19.0" width="7" height="7"/><rect class="box" x="40.0" y="19.0" width="7" height="7"/></svg><span class="fig">1<small> of </small>1,000</span><span class="hl-l">NSF Graduate Research Fellow, from 17,000 applicants</span></a></li>
+<main>
+  <section class="papers" aria-labelledby="t-gold">
+    <h2 id="t-gold">Rub off the gold. What's left is measured.</h2>
+    <article class="sheet s1" data-n="1">
+      <s class="claim">0.806. Ship it.</s>
+      <h3>0.7401.</h3>
+      <p>The future was in the training data. I caught it.</p>
+      <figure class="fig" data-fig="leak"><figcaption>Sketch of the split. AUC, time-sorted holdout.</figcaption></figure>
+    </article>
+    <article class="sheet s2" data-n="2">
+      <s class="claim">A bigger model will fix it.</s>
+      <h3>56.69% is the ceiling.</h3>
+      <p>Accuracy within ±40%, 95% CI [55.13, 58.08], 4,338 rows. Production ran 9 points below it. The limit is in the data, and it stopped a bad release.</p>
+      <figure class="fig" data-fig="ceil"></figure>
+    </article>
+    <article class="sheet s3" data-n="3">
+      <s class="claim">Let the LLM do the math.</s>
+      <h3>The LLM routes. The database answers.</h3>
+      <p>95.5% function accuracy on 500 held-out prompts. The arithmetic never enters the weights.</p>
+      <figure class="fig" data-fig="route"></figure>
+    </article>
+    <article class="sheet s4" data-n="4">
+      <s class="claim">You need another model.</s>
+      <h3>33 channels. No model.</h3>
+      <p>About $127K of waste identified, 13 binds lost on holdout.</p>
+      <figure class="fig" data-fig="tally"></figure>
+    </article>
+    <article class="sheet s5" data-n="5">
+      <s class="claim">No signal left without new features.</s>
+      <h3>+2.5 AUC points.</h3>
+      <p>0.6206 to 0.6457 on 23,559 holdout rows. Nothing changes at serve time.</p>
+      <figure class="fig" data-fig="slope"></figure>
+    </article>
+    <article class="sheet s6" data-n="6">
+      <s class="claim">Just add RAG.</s>
+      <h3>0.949 vs 0.606.</h3>
+      <p>Rare-case top-5 retrieval in medicine, against the best RAG: SMA-1, my open-source memory. My benchmark, not peer reviewed. On flat tabular data, use logistic regression.</p>
+      <p class="pip"><a href="https://pypi.org/project/structuremappingmemory/"><code>pip install structuremappingmemory</code></a><button type="button" id="copy">Copy</button><span id="copied" role="status"></span></p>
+      <figure class="fig" data-fig="bars"></figure>
+    </article>
+  </section>
+
+  <section class="close" id="contact">
+    <article class="stand">
+      <div class="fg ill"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 480" class="jj-stand-fig" role="img" aria-label="Stand figure, an armoured guardian with a calibration plot on its chest">
+<style>.jj-stand-fig{--sf-k:var(--jj-ink,var(--color-plate-ink,#2a1f17));--sf-p:var(--jj-paper,var(--color-plate,#d9ccb2));--sf-m:var(--jj-menace,var(--color-menace,#6b2fa0));--sf-g:var(--jj-gold,var(--color-gold-plate,#8a6408));--sf-h:var(--jj-rule,var(--color-plate-rule,#bcae94))}.jj-stand-fig *{stroke-linejoin:round}.jsf-k{fill:var(--sf-k)}.jsf-p{fill:var(--sf-p)}.jsf-u{fill:var(--sf-h);stroke:var(--sf-k);stroke-width:7}.jsf-b{fill:var(--sf-h);stroke:var(--sf-k);stroke-width:2.2}.jsf-h,.jsf-hd{fill:var(--sf-p);stroke:var(--sf-k);stroke-width:2.2}.jsf-hd{stroke-width:2.6}.jsf-l,.jsf-r,.jsf-t,.jsf-f,.jsf-s,.jsf-v,.jsf-x,.jsf-q,.jsf-d{fill:none;stroke:var(--sf-k)}.jsf-l,.jsf-r{stroke-width:2.5}.jsf-t{stroke-width:1.5}.jsf-f{stroke-width:1.2}.jsf-r2{stroke-width:1.8}.jsf-s{stroke-width:2.6}.jsf-v{stroke-width:5}.jsf-x{stroke-width:5;stroke-linecap:square;stroke-linejoin:miter}.jsf-q,.jsf-s,.jsf-f{stroke:var(--sf-p)}.jsf-q{stroke-width:2}.jsf-d{stroke-opacity:.7;stroke-width:2;stroke-dasharray:5 5}.jsf-n{fill:var(--sf-p);stroke:var(--sf-k);stroke-width:2}.jsf-g{fill:var(--sf-g);stroke:var(--sf-k);stroke-width:2.5}.jsf-w{fill:var(--sf-g)}.jsf-e{fill:var(--sf-g);stroke:var(--sf-p);stroke-width:2}.jsf-m{fill:none;stroke:var(--sf-m);stroke-width:2.5}.jsf-a{stroke:var(--sf-m);stroke-width:3}.jsf-z{stroke-dasharray:3 4}.jsf-pt{fill:var(--sf-m);stroke:var(--sf-p);stroke-width:1.5}.jsf-hk{fill:var(--sf-h)}.jsf-c{fill:var(--sf-m);stroke:var(--sf-k);stroke-width:2.5}.jj-stand-fig .aura{fill:var(--sf-m);fill-opacity:.44}</style>
+<g class="aura"><circle cx="161.3" cy="104.9" r="42"/></g>
+<path class="jsf-k" fill-rule="evenodd" d="M107.3,104.9c0-29.8,24.2-54,54-54,29.1,0,52.8,23,54,51.7l-12.1-.8c-1.6-21.8-19.7-38.9-41.9-38.9-23.2,0-42,18.8-42,42,0,9.7,3.3,18.6,8.8,25.7l-.2.2c-2.4-1.1-5.2-1.9-8-2.3-2.5-.4-5-.6-7.4-.4-3.3-7-5.2-14.9-5.2-23.2zm64.8-51.2c-.2.2-.4.4-.4.7l-1.8,6.7c-.1.5.2,1.1.7,1.2l3.9,1.1c.5.1,1.1-.2,1.2-.7l1.8-6.8c.1-.5-.2-1.1-.7-1.2l-3.9-1.1c-.3-.1-.5,0-.8.1zm-22.5-.1-3.8,1.1c-.3,0-.5.2-.7.4-.1.3-.2.5-.1.8l1.9,6.8c.1.5.7.8,1.2.7l3.8-1.1c.3,0,.5-.2.7-.4.1-.3.2-.5.1-.8l-1.9-6.7c0-.3-.2-.5-.4-.7-.3-.1-.5-.2-.8-.1zm-24,12.7-2.9,2.9c-.4.4-.4,1,0,1.4l5,4.9c.4.4,1,.4,1.4,0l2.8-2.8c.4-.4.4-1,0-1.4l-4.9-5c-.4-.4-1-.4-1.4,0zm70,0-5,5c-.4.4-.4,1,0,1.4l2.8,2.8c.2.2.5.3.8.3.2,0,.5-.1.7-.3l4.9-4.9c.4-.4.4-1,0-1.4l-2.8-2.9c-.4-.4-1-.4-1.4,0zm14.6,22.3-6.7,1.9c-.5.1-.8.7-.7,1.2l1,3.8c0,.3.2.5.4.7.3.1.5.2.8.1l6.8-1.9c.5-.1.8-.7.7-1.2l-1-3.8c0-.3-.2-.5-.5-.7-.2-.2-.5-.2-.8-.1zm-98.7.1c-.2.2-.4.4-.4.7l-1.1,3.8c-.1.3,0,.5.1.8.2.2.4.4.7.4l6.7,1.9c.3.1.5,0,.8-.1.2-.2.4-.4.4-.7l1.1-3.8c.1-.5-.2-1.1-.7-1.2l-6.8-1.9c-.3-.1-.5,0-.8.1zm6,24.8-6.7,1.8c-.3,0-.5.2-.7.4-.1.3-.2.5-.1.8l1.1,3.9c.1.5.7.8,1.2.7l6.8-1.8c.5-.1.8-.7.7-1.2l-1.1-3.9c-.1-.5-.7-.8-1.2-.7z"/><path class="jsf-w" d="M172.9,53.6L176.8,54.7A1,1 0 0 1 177.5,55.9L175.7,62.7A1,1 0 0 1 174.5,63.4L170.6,62.3A1,1 0 0 1 169.9,61.1L171.7,54.4A1,1 0 0 1 172.9,53.6Z"/>
+<path class="jsf-d" d="M98.6,276.6L294.7,34.5"/>
+<path class="jsf-r" d="M16,452H344"/><path class="jsf-r jsf-r2" d="M16,458H344M16,463H344"/><path class="jsf-t" d="M36,450.8v-5M90,450.8v-5M144,450.8v-5M198,450.8v-5M252,450.8v-5M306,450.8v-5"/>
+<path class="jsf-k" fill-rule="evenodd" transform="matrix(.10573 0 0 .10573 -3.56 375.02)" d="M409,367l-6-8-14-1-37,5-17,6-8-1-46,22-8,10-28,17-7,8-6-1-5-10-14-5-14,3-5,7-2,6-7,4,10,5,3,4-5,10,2,5,9,6,8,9,9,4,16,0,15-5,23-17,30-28,9-3,17-13,4,0,5,4,10-2,8,7,7,4,16-4,27-2,10-12-2-3-11-2-6-6,3-6,7-6zm684-98-15-10-4-8-11-2-49-41-33-18-30-12-15-9-8-2-6,2-3,7,1,8-8,5-2,7-12,5-11,1,4,5,1,7-2,5-4,5-23,7-2,7,7,13-8,11-6,3-15,1-20-2-6-2-7-6-8-12-16-17-1-4,13-16,14-43-1-24,5-6,17-5,3-7,5-5,2-12-1-6,3-7-9-9-10-19-6-2-13,1-8,2-13,8-8,9,6,28,7,8-3,7-4,4-19,4-8,5-21,20-26,35,0,14,4,5,2,7-13,12,1,7-7,34,1,14,8,19-2,5-4,2-18-1-25-7-9,6-10,1-45-5-47-9-26,0-14,4-78,53-2,14,10,11-1,37,6,18,10,14,13,11,26,12,23,6,7,6-2,17-5,17-6,11-11,13-7,16,0,5,6,5,14,4,20,1,62,17,4,2,8,11,8,5,16,0,45,12,16,8,13,1,11,15,14,0,15-4,31,2,10-5,3-6,2-9-3-7-4-4-12-1-17,8-10,0-19-4-9-3-5-6-15-2-5-8-8-3-15,0-3-3,1-9-6-5-29-6-5-2-6-13-2-23-3-10,5-26-1-7,3-3,3,0,56,24,32,10,30,4,18,5,7,17-1,30,2,12,4,6,7,2,7,0,6-5,17-50,6-4,18-5,16,3,38,0,23,5,11,4,4,7-2,11-5,10-12,12-31,14-4-1-10-7-9,1-14,8-5,6-2,7,1,5,6,2,48,0,9,3,3-2,2-10,29-28,18-13,10-19,0-7-4-5-30-23-18-11-14-14,8-18,10-17,3-14-2-15,4-17,23-51,8-27,7-15,1-8,6-9,9-7,14-5,28,3,3,2,1,3-4,3-23,4-5,5-10,3,1,3,45-11,15-6,9,1,23,10,16,0,15-15-1-9zm-563,276,16-18,11-8,5,0,5,4,10,16,3,9,0,11-3,3-5,1-29-7-9-3zm228-288,6-1,10,3,39,20,2,5-7,6-1,8-17,4-23-1-6-2-8-14z"/>
+<path class="jsf-k" d="M82.5,275.8l68.9-8.4c-1.5,3-2.7,6.3-3.3,9.6-1.1,6.1-1.1,14.6-1.1,23,0,8.1.3,17.4,1,26.2,0,0,0,0,0,.1.4,4.3,1.1,9.2,1.8,13.8l-10.4,23.7-.1-2-.1-2-.1-2-.1-2-.2-2-.1-2-.2-2-.2-2-.1-2-.3-2-.2-2-.2-2-.3-2-.3-2-.3-2-.4-1.9-.4-2-.4-2-.4-1.9-.5-2-.6-2-.5-1.9-.7-1.9-.6-2-.8-1.9-.8-1.9-.9-1.9-.9-1.9-1.1-1.9-1.1-1.9-1.2-1.9-1.3-1.9-1.5-1.8-1.6-1.8-1.7-1.8-1.8-1.8-2.1-1.8-2.1-1.8-2.4-1.7-2.6-1.7-2.8-1.7-3.1-1.6-3.3-1.6-3.6-1.6-4-1.5-4.3-1.5z"/>
+<path class="jsf-u" d="M74,70.6c1.6-2.3,5.8-3.9,8.3-3.5,2.5.5,5.9,3.6,6.5,6.4.6,2.7-2.2,5.8-3,10.1-.8,4.4-1.4,10.4-1.8,15.5-.6,5.3-1.1,10.9-1.3,15.8-.1,1.4,0,2.9.2,4.3.4.1.7.2,1.1.3,4.3,1.4,9.3,7.7,14.4,11.6,2.2,1.7,4.6,3.5,6.9,5.2,1.9-1,3.8-1.7,5.8-2,4.6-.8,11.1.3,15.3,2.4,4.2,2.1,10.1,10,10.1,10,0,0-4.7,2.7-7.4,4.7,2.4-.9,4.6-1.7,6.6-2.6,6-2.6,12.7-6.1,16.2-8.8,3.5-2.6,4.6-4.5,5.2-7.5.7-3.1-1.1-11-1.1-11l.4,0c-2.3-2.8-4.6-5.6-5.7-7.5-2.7-4.4-3.8-11.6-3.8-11.6,0,0,1.4-1.2,2-2,.8-.6,1.5-1.5,2.1-2.4.6-1,1.3-1.9,2-3,.6-1.1,1.2-2.2,1.9-3.3.7-1.1,1.2-2.3,1.8-3.3.7-1.1,1.4-2.1,2-3,.7-.7,1.4-1.5,2.1-2,.7-.5,1.4-.7,2.2-.8.7-.1,1.5,0,2.2.3.8.4,1.7,1,2.5,1.6.8.7,1.6,1.5,2.5,2.4.9,1,1.7,2,2.6,2.9.9.9,1.7,1.9,2.5,2.8.9,1,1.8,1.8,2.6,2.6.7.7,1.6,1.4,2.5,1.9.7.7,2.3,1.5,2.3,1.5,0,0,.5,7.3-1.2,12.2-1.5,4.4-7.4,14.6-8.6,16.6.3,1.8.7,3.4,1.2,4.3,1.5,2.6,1.7,3.6,6.5,4.3,4.8.7,14.4,0,22.1-.3.9,0,1.9-.1,3-.2l2.6-24.4,52.5,5.5c2.3-2.5,5-5,6.8-7.5,2.3-3.3,2.3-9.7,5.2-10.2,2.7-.5,11,4.7,11.8,7.4.9,2.7-4.8,5.6-6.9,9.2-2,3.5-3.3,8.4-5.3,12.1-2.1,3.6-4.1,8.8-6.7,10.1-.8.4-1.7.6-2.6.6-.3,1-.8,2-1.3,2.8-.7.9-1.6,1.8-2.7,2.6l-.7,6.2-9.2-1c-4,1.9-8.5,3.5-12.9,4.8-1.1.3-2.3.9-3.6,1.6-1.8,4.5-4.5,9.8-6.2,15.1-2.5,7.3-4.6,15.9-6.6,23.8-1.9,8-3,15.9-5.5,23.7-2.5,7.8-6.4,16-9.6,23.2-2.9,6.4-8.6,17.3-9.8,19.7l1.4.1c.5,0,1,.3,1.4.7.3.4.5,1,.4,1.5l-.3,2.9.1,0c0,0,8.9,8.7,12,13,3.1,4.3,3.6,6.8,6.7,12.5,3.2,5.7,8.4,13.6,12.3,21.8,3.9,8.3,7.8,20.7,11.2,27.6,3.2,6.8,5.2,9.1,8.6,13.8.9-.4,1.4-.7,1.4-.7,0,0,7.7,9.3,11.8,14.9,4.1,5.6,8.9,13.2,12.9,18.9,3.9,5.7,7.5,10.7,11.1,15.5,3.5,4.8,7.3,9.2,10.1,13.5,2.8,4.3,4.4,7.1,6.9,12.2,2.5,5.1,8,18.5,8,18.5,0,0-10.5-3.6-15-7-4.5-3.4-8.1-9-12.1-13.3-4-4.3-7.7-8-11.9-12.5-4.1-4.4-8.5-9-13.2-14.2-4.8-5.2-15.2-17.1-15.2-17.1,0,0-12.5-10.9-11.4-15.8.1-.5.4-1,.7-1.5-3.4-4.5-5.8-7.3-10.6-13.3-5.1-6.2-14-15.3-19.2-23.4-5.2-8.2-12.1-25.4-12.1-25.4,0,0-2.7,5.3-4,9-1.3,3.7-2.3,6.7-3.5,13.3-1.3,6.5-3.2,19-4,25.9-.8,7-1,10.5-1,15.8,0,.1,0,.2,0,.3.6.2,1.1.4,1.5.7,3.9,2.8.9,8.7,1,14.8.1,6.2-.3,15.3-.5,21.9-.3,6.7-.7,12.8-1,18.2-.3,5.3-1,14.1-1,14.1,0,0,1.4.4,4.5,2,3.1,1.6,14,7.5,14,7.5l-33.5,0c0,0-1.6-2.9-2-4.5-.4-1.6-.3-1.9-.5-5-.2-3.1-.1-8.6-.5-13.9-.4-5.2-1.4-11.2-2-17.8-.6-6.7-1.3-15.6-1.5-22.1-.2-6.6.5-17.2.5-17.2,0,0,.5,0,1.5,0-.3-4.9-.8-8.7-1.5-15.3-.8-7-2.7-17.4-3.5-26-.7-8.6-1-17.8-1-25.7,0-7.9,0-16.3,1-22,.8-4.6,3.5-9.5,4.6-11.3-.1-.1-.3-.2-.4-.3-.3-.4-.5-1-.4-1.5l.4-4.1c-2.9-4.2-7.4-10.7-10.2-14.8-4.5-6.3-10.1-12.8-14.2-19.6-4-6.8-6.7-14.1-10.2-21-3.6-7-7.9-15-11.3-21-1.8-3.2-3.9-6.2-5.6-8.8-.3-.2-.6-.4-.9-.6-1.3,1.8-2.2,3.3-2.2,3.3,0,0-5.4-5.5-7-9.3-.9-2.1-1.6-4.7-2.1-7.4-4.1-4.3-8.3-9.1-12.2-13.4-4.3-4.8-10.5-9.9-12.1-14.1-.3-.8-.4-1.6-.5-2.3-2.5-.6-5-1.8-6-3.9-1.3-3.2.4-9.4,1.1-14.7.8-5.2,2-11.5,3.4-16.8,1.4-5.4,3.9-11.1,4.9-15.4,1-4.3-.6-8,.9-10.4z"/>
+<path class="jsf-b" d="M159,266c0,0-4,6.3-5,12-1,5.7-1,14.1-1,22,0,7.9.3,17.1,1,25.7.8,8.6,2.7,19,3.5,26,.8,7.1,1.3,10.9,1.5,16.3.2,5.4-.7,9.8-.5,16.1.2,6.4.9,15.5,1.5,22.1.6,6.7-1,15,2,17.9,3,3,13.2,2.8,16-.2,2.8-3.1.7-11.5,1-18.1.2-6.7.6-15.6.5-21.9-.1-6.3-1-10.6-1-15.9,0-5.3.2-8.8,1-15.8.8-6.9,2.7-19.4,4-25.9,1.2-6.6,2.2-9.6,3.5-13.3,1.3-3.7,4-9,4-9,0,0,6.9,17.2,12.1,25.4,5.2,8.1,14.1,17.2,19.2,23.4,5,6.3,7.4,9,11.1,13.9,3.8,5,6.9,10.3,11.4,15.8,4.4,5.5,10.4,11.9,15.1,17.1,4.8,5.2,9.2,13.4,13.3,14.2,4.1.7,11.5-5.4,11.6-9.6.1-4.1-7.1-9.7-11.1-15.5-4-5.7-8.7-13.3-12.8-18.9-4.2-5.6-8.5-10-11.9-14.8-3.5-4.9-5.5-7.2-8.8-14.1-3.4-6.9-7.3-19.3-11.2-27.6-3.9-8.2-9.1-16.1-12.3-21.8-3.1-5.7-3.6-8.2-6.7-12.5-3.1-4.3-12-13-12-13l-39,0z"/>
+<path class="jsf-k" d="M157.5,367c0,0-.7,10.6-.5,17.2.2,6.5.9,15.4,1.5,22.1.6,6.6,1.6,12.6,2,17.8.4,5.3.3,10.8.5,13.9.2,3.1.1,3.4.5,5,.4,1.6,2,4.5,2,4.5l33.5,0c0,0-10.9-5.9-14-7.5-3.1-1.6-4.5-2-4.5-2,0,0,.7-8.8,1-14.1.3-5.4.7-11.5,1-18.2.2-6.6.6-15.7.5-21.9-.1-6.1,2.9-12-1-14.8-3.9-2.8-22.5-2-22.5-2zM250.2,354c0,0,7.7,9.3,11.8,14.9,4.1,5.6,8.9,13.2,12.9,18.9,3.9,5.7,7.5,10.7,11.1,15.5,3.5,4.8,7.3,9.2,10.1,13.5,2.8,4.3,4.4,7.1,6.9,12.2,2.5,5.1,8,18.5,8,18.5,0,0-10.5-3.6-15-7-4.5-3.4-8.1-9-12.1-13.3-4-4.3-7.7-8-11.9-12.5-4.1-4.4-8.5-9-13.2-14.2-4.8-5.2-15.2-17.1-15.2-17.1,0,0-12.5-10.9-11.4-15.8,1.1-4.8,18-13.6,18-13.6z"/>
+<g class="jsf-p"><rect x="165" y="374.5" width="10" height="8" rx="1" transform="rotate(1 170 378.5)"/><rect x="243.5" y="370" width="10" height="8" rx="1" transform="rotate(-38 248.5 374)"/></g>
+<g transform="rotate(-6 178 264)">
+<path class="jsf-b" d="M140.3,150.5c1.2-5.4-8.7-9-13.2-13.5-4.6-4.5-9.8-9.1-14.4-13.5-4.6-4.4-9-11.2-13.1-13-4.1-1.8-9-.2-11.5,1.9-2.5,2.2-4.8,6.7-3.7,11.1,1.1,4.4,6.8,10.1,10.5,15.3,3.8,5.3,7.9,11.1,12,16.2,4.2,5.1,7.3,15.3,12.8,14.5,5.6-.7,19.3-13.6,20.6-19zM233,162c2.7,4.4,9.7-.7,14.5-1.6,4.8-.9,9.9-2.1,14.3-3.7,4.4-1.7,9.9-3.3,12.4-6.2,2.4-2.9,3.5-8.2,2.5-11.4-1.1-3.2-5.5-6.8-8.9-7.6-3.3-.8-7.5,2.4-11.4,2.8-3.8.4-7.6-.2-11.8-.2-4.3-.1-11.7-4.7-13.6-.1-1.9,4.7-.8,23.6,2,28z"/>
+<path class="jsf-b" d="M171,120l16,0c0,0-.2,9.2,1,12,1.2,2.8,1.3,3.8,6,5,4.7,1.2,14.3,1.5,22,2,7.7.5,18.7-.2,24,1,5.3,1.2,7,3.2,8,6,1,2.8,0,6-2,11-2,5-6.8,12-10,19-3.2,7-6.2,15.3-9,23-2.8,7.7-4.7,15.5-8,23-3.3,7.5-8,15.2-12,22-4,6.8-12,19-12,19l-34,0c0,0-7.2-13.2-11-20-3.8-6.8-8.7-13.8-12-21-3.3-7.2-5.2-14.7-8-22-2.8-7.3-6.3-15.7-9-22-2.7-6.3-6.5-11.7-7-16-.5-4.3,1.7-8,4-10,2.3-2,5-.8,10-2,5-1.2,13.8-3,20-5,6.2-2,13.2-4.7,17-7,3.8-2.3,5-4,6-7,1-3,0-11,0-11z"/>
+<rect class="jsf-h" x="146" y="156" width="64" height="64"/>
+<path class="jsf-a" d="M146,220l64,-64"/>
+<path class="jsf-l" d="M158.8,198.4V215.9M155.8,198.4h6M155.8,215.9h6M168.4,186.3V208.8M165.4,186.3h6M165.4,208.8h6M178,174.2V201.8M175,174.2h6M175,201.8h6M187.6,167.2V189.7M184.6,167.2h6M184.6,189.7h6M197.2,160.1V177.6M194.2,160.1h6M194.2,177.6h6"/><g class="jsf-pt"><circle cx="158.8" cy="207.2" r="3.5"/><circle cx="168.4" cy="197.6" r="3.5"/><circle cx="178" cy="188" r="3.5"/><circle cx="187.6" cy="178.4" r="3.5"/><circle cx="197.2" cy="168.8" r="3.5"/></g>
+<path class="jsf-x" d="M146,156V220H210"/>
+<g class="jsf-n"><rect x="165.5" y="227" width="10" height="6"/><rect x="180.5" y="227" width="10" height="6"/><rect x="165.5" y="238" width="10" height="6"/><rect x="180.5" y="238" width="10" height="6"/><rect x="165.5" y="249" width="10" height="6"/><rect x="180.5" y="249" width="10" height="6"/></g>
+<path class="jsf-h" d="M164,100c0,0,1.5-1,2.2-1.7.8-.6,1.6-1.4,2.3-2.2.7-.9,1.5-1.8,2.3-2.8.7-1,1.4-2.1,2.2-3.1.8-1,1.5-2.1,2.2-3.1.8-1,1.6-1.9,2.3-2.7.7-.7,1.5-1.4,2.3-1.8.7-.4,1.4-.6,2.2-.6.8,0,1.5.2,2.2.6.8.4,1.6,1.1,2.3,1.8.7.8,1.5,1.7,2.3,2.7.7,1,1.4,2.1,2.2,3.1.8,1,1.5,2.1,2.2,3.1.8,1,1.6,1.9,2.3,2.8.7.8,1.5,1.6,2.3,2.2.7.7,2.2,1.7,2.2,1.7,0,0-.3,7.3-2.5,12-2.2,4.7-10.5,16-10.5,16l-10,0c0,0-8.3-11.3-10.5-16-2.2-4.7-2.5-12-2.5-12z"/><path class="jsf-k" d="M164,100c0,0,1.5-1,2.2-1.7.8-.6,1.6-1.4,2.3-2.2.7-.9,1.5-1.8,2.3-2.8.7-1,1.4-2.1,2.2-3.1.8-1,1.5-2.1,2.2-3.1.8-1,1.6-1.9,2.3-2.7.7-.7,1.5-1.4,2.3-1.8.7-.4,1.4-.6,2.2-.6.8,0,1.5.2,2.2.6.8.4,1.6,1.1,2.3,1.8.7.8,1.5,1.7,2.3,2.7.7,1,1.4,2.1,2.2,3.1.8,1,1.5,2.1,2.2,3.1.8,1,1.6,1.9,2.3,2.8.7.8,1.5,1.6,2.3,2.2.7.7,2.2,1.7,2.2,1.7z"/>
+<path class="jsf-v" d="M148,100H216M148,93v14M216,93v14"/>
+<circle class="jsf-e" cx="184" cy="100" r="5.5"/>
+<g transform="rotate(12 247 137) translate(220 120.3)"><rect class="jsf-g" width="54" height="33.4"/><path class="jsf-f" d="M33.4,0V33.4M33.4,20.6H54M41.3,20.6V33.4"/><path class="jsf-s" d="M0,33.4A33.4,33.4 0 0 1 33.4,0A20.6,20.6 0 0 1 54,20.6A12.7,12.7 0 0 1 41.3,33.4A7.9,7.9 0 0 1 33.4,25.5"/></g>
+<path class="jsf-k" d="M149,143c0,0-5-8.5-9-11-4-2.5-10.3-4.3-15-4-4.7.3-9.8,2.8-13,6-3.2,3.2-5.2,8.5-6,13-.8,4.5-.2,10,1,14,1.2,4,6,10,6,10,0,0,4.8-6,8-9,3.2-3,7.7-6.5,11-9,3.3-2.5,6.2-4.3,9-6,2.8-1.7,8-4,8-4zM97.4,119.3c1.9-2.7.7-8.7,1.4-13.5.7-4.9,1.8-10.4,2.9-15.6,1-5.1,2.2-11,3.5-15.2,1.2-4.2,4.3-7,4-9.8-.3-2.8-3.4-6.3-5.8-7-2.4-.7-6.8.5-8.6,2.6-1.8,2.2-.6,6.1-2,10.2-1.4,4.2-4.5,9.6-6.5,14.8-1.9,5.2-3.8,11.3-5.1,16.4-1.3,5.2-3.6,11.2-2.6,14.5,1,3.2,5.7,4.8,8.8,5.3,3.2.4,8.1,0,10-2.7zM278.4,147.6c2.7-1.1,5.3-6,7.7-9.4,2.4-3.5,4.2-8.2,6.6-11.5,2.4-3.3,8.4-5.6,7.8-8.4-.5-2.8-8.2-8.8-11-8.6-2.9.2-3.6,6.6-6.2,9.6-2.6,3-6.5,5.7-9.4,8.5-3,2.9-7.5,5.7-8.3,8.6-.7,2.8,1.6,6.7,3.7,8.6,2.2,1.9,6.3,3.8,9.1,2.6z"/><path class="jsf-q" d="M86,107l8.9,2.3M88,99.3l8.9,2.3M90,91.7l8.9,2.3M92,84l8.9,2.3M94,76.3l8.9,2.3M96,68.7l8.9,2.3M274.5,134.7l6,5M277.5,131.1l6,5M280.5,127.5l6,5M283.5,124l6,5M286.5,120.4l6,5M289.5,116.8l6,5"/>
+<path class="jsf-m jsf-z" d="M318,80.5V48"/><path class="jsf-m" d="M315.9,45.9l4.24,4.24"/>
+<path class="jsf-hd jsf-hk" d="M100.1,22.9c1.8-.6,3,0,3.5.7.4.7.2,2.3-.7,3.5-.9,1.1-4,1.7-4.9,3.4-.9,1.7-1.2,4.1-.7,6.6.3,1.8,1.8,4,2.7,6,.5-.1,1-.1,1.5-.2.4-2.7,1.6-7,3-9.4,1.7-2.8,4.7-5.4,7-6.2,2.3-.8,5.4.5,6.9,1.2,1.5.7,2.2,2.1,2.1,2.9-.2.9-1.8,1.8-2.9,2.1-1.2.2-2.9-1.3-4.1-.8-1.2.5-2.2,1.6-3,3.8-.6,1.5-.8,4.3-1.2,6.6,2.5.9,3.4,3.2,3.7,5.9.1.7.2,1.7.2,2.7.8,0,1.6-.1,2.1-.4,1.5-.8,2.5-1.9,3.1-3,.6-1.2.1-3,.6-4,.6-1.1,1.9-2.4,2.7-2.3.9.1,2,1.3,2.3,2.7.3,1.5.5,4-.4,6-.9,2-2.9,4.6-4.9,6-2,1.5-5.1,2.6-7,2.7-.2.2-.4.4-.7.6-3,1.8-13.2,1.7-16,0-2.8-1.7-1.3-7.3-1-10,.1-.5.1-1,.2-1.5-.1,0-.1-.1-.2-.2-1.3-2.1-3.1-7-3.3-10.4-.1-3.5.7-7.9,2.3-10.4,1.6-2.5,5.4-3.9,7.1-4.6z"/><path class="jsf-hd" d="M306.2,74.5c1.9-1.2,4.9-1.3,6.4-1.2,1.5.1,2.4,1.1,2.6,1.8.1.7-.8,2-1.8,2.6-1.1.5-3.3-.1-4.6.8-1.2.8-2.1,2.1-3,4.5-.5,1.6-1,4.6-1.4,7,1.2.4,2.4,1.1,3.1,2,1.3,1.7,2.4,4.7,1.5,8-.1.3-.2.5-.3.8.3.3.5.5.7.6,1,.2,1.9-1.8,2.9-2,1.1-.2,2.9.2,3.3.9.4.7.2,2.3-.9,3.3-1.2,1-4.1,3.3-6.1,3-.7-.1-1.4-.4-2.2-.9-1.3,2.4-2.9,4.7-4.4,6.3-2.8,3-7.8,6.7-9.5,6-1.7-.7-1.4-6.5-1-10,.4-3.5,1.9-8,3.5-11,.9-1.8,2.1-3.6,3.4-5,0-.2,0-.4,0-.7.1-2.2,1.5-7.5,2.8-10.3,1.3-2.8,3.1-5.2,5-6.5z"/>
+<path class="jsf-l" d="M318,78V98M313.5,78h9M313.5,98h9"/>
+<circle class="jsf-c" cx="318" cy="88" r="6"/>
+</g>
+<path class="jsf-k" d="M160.6,257.1L196.4,260.9A2,2 0 0 1 198.2,263.1L197.6,269.1A2,2 0 0 1 195.4,270.9L159.6,267.1A2,2 0 0 1 157.8,264.9L158.4,258.9A2,2 0 0 1 160.6,257.1Z"/>
+</svg>
+</div>
+      <h2><span aria-hidden="true">「</span>NO SURPRISES<span aria-hidden="true">」</span></h2>
+      <p>Stand user: <b>Ayaz Khan</b></p>
+      <table>
+        <thead><tr><th scope="col">What broke</th><th scope="col">The rule it left</th></tr></thead>
+        <tbody>
+          <tr><td>Priors built on test rows</td><td>Training window only</td></tr>
+          <tr><td>Split unsorted, same users on both sides</td><td>Sort by event time. Assert zero overlap.</td></tr>
+          <tr><td>Unfair baseline</td><td>Fair comparison before any challenger</td></tr>
+          <tr><td>Scorer read past end of turn</td><td>Check the harness before the model</td></tr>
+        </tbody>
+      </table>
+    </article>
+    <div class="reach">
+      <svg class="lockup" viewBox="0 0 1324 216" role="img" aria-label="Ayaz's Bizarre Adventure"><defs><path id="lk-a" d="M 126.0 71.3 C 121.7 78.0 116.5 86.3 110.4 96.1 C 104.2 105.9 97.0 117.7 88.6 131.4 C 92.5 131.0 96.9 130.8 101.6 130.8 C 106.0 130.8 110.1 131.0 113.8 131.4 C 114.9 124.6 116.4 116.2 118.5 106.2 C 120.5 96.3 123.0 84.6 126.0 71.3Z M 177.6 15.6 C 163.7 65.2 152.3 122.4 143.3 187.2 L 99.8 197.6 L 105.9 166.6 C 99.2 165.4 92.3 164.8 85.4 164.8 C 83.0 164.8 80.5 164.9 77.9 165.1 C 75.2 165.3 72.4 165.5 69.2 165.8 L 52.4 197.4 L 12.0 196.3 C 25.5 173.0 41.6 146.5 60.3 116.5 C 79.0 86.6 100.6 53.0 125.0 15.8ZM 308.2 20.0 C 298.0 30.9 287.8 42.3 277.6 54.2 C 267.4 66.2 256.9 78.9 246.2 92.3 C 237.2 103.6 230.4 114.7 225.8 125.5 C 223.6 130.6 221.5 135.9 219.4 141.4 C 217.3 146.9 215.1 152.8 212.8 159.1 L 179.4 159.1 C 183.3 148.3 187.0 138.5 190.5 129.7 C 194.0 120.9 197.4 112.9 200.8 105.8 C 200.2 102.7 199.9 99.5 199.7 96.1 C 199.5 92.7 199.4 89.1 199.4 85.4 C 199.4 73.7 199.7 62.5 200.4 52.0 C 201.1 41.6 202.2 31.6 203.6 22.3 L 239.1 16.6 C 239.0 16.9 238.8 18.8 238.4 22.1 C 238.0 25.5 237.3 30.4 236.4 36.8 C 235.8 41.0 235.3 44.7 235.0 48.1 C 234.7 51.4 234.6 54.5 234.6 57.2 C 234.6 59.0 234.6 60.6 234.7 62.0 C 234.7 63.5 234.8 64.8 234.9 65.8 C 243.0 54.5 250.3 44.7 257.1 36.5 C 263.8 28.3 270.2 21.5 276.2 16.2ZM 332.0 63.3 C 328.7 68.2 324.7 74.3 320.2 81.8 C 315.6 89.3 310.0 98.1 303.6 108.2 C 305.0 108.1 306.5 108.0 308.1 107.9 C 309.8 107.8 311.6 107.8 313.5 107.8 C 315.3 107.8 317.0 107.8 318.6 107.9 C 320.2 108.0 321.7 108.1 323.0 108.2 C 323.9 103.2 325.2 97.0 326.6 89.5 C 328.1 82.1 329.9 73.4 332.0 63.3Z M 374.8 16.2 C 363.5 56.7 354.3 102.6 347.3 154.0 L 312.9 156.2 L 316.6 137.0 C 312.0 136.2 307.0 135.8 301.6 135.8 C 299.4 135.8 297.1 135.9 294.7 136.0 C 292.4 136.2 290.1 136.3 287.9 136.6 L 275.9 158.9 L 241.0 161.0 C 246.7 151.3 252.8 141.0 259.3 130.2 C 265.9 119.4 272.9 108.1 280.4 96.1 C 287.9 84.1 296.0 71.5 304.5 58.2 C 313.0 45.0 322.1 31.0 331.8 16.4ZM 510.8 12.0 C 502.2 20.9 493.7 29.9 485.3 39.1 C 476.9 48.2 468.4 57.6 459.9 67.5 L 463.3 67.5 L 467.1 67.5 C 467.8 67.5 468.6 67.5 469.4 67.4 C 470.3 67.4 471.1 67.3 472.1 67.3 L 458.9 98.8 L 456.0 98.8 C 448.9 98.8 441.0 99.0 432.2 99.4 C 427.3 105.1 423.0 110.3 419.3 115.0 C 415.5 119.7 412.2 123.8 409.3 127.4 C 418.9 126.8 428.3 125.9 437.4 124.8 C 446.6 123.8 455.8 122.5 465.0 121.1 L 443.4 153.0 C 429.4 154.9 414.9 156.3 399.7 157.3 C 384.6 158.2 368.4 158.7 351.3 158.7 C 357.8 150.2 364.8 141.3 372.4 132.0 C 380.0 122.6 388.3 112.7 397.3 102.0 C 393.7 102.3 390.4 102.6 387.3 103.0 C 384.2 103.4 381.3 103.8 378.6 104.3 L 391.6 72.4 C 397.3 71.8 402.8 71.2 408.2 70.7 C 413.6 70.3 419.4 69.7 425.5 69.2 C 428.6 65.7 431.8 62.1 435.0 58.4 C 438.2 54.7 441.6 50.8 445.2 46.9 C 431.7 47.5 415.7 47.9 397.3 48.0 L 416.6 17.5 C 433.3 17.1 449.5 16.5 465.1 15.6 C 480.8 14.7 496.0 13.5 510.8 12.0ZM 547.2 43.6 L 506.2 61.2 L 511.4 49.4 L 517.8 44.2 L 513.0 43.8 L 523.4 19.8 L 556.8 19.0ZM 636.2 48.8 C 623.9 49.2 617.5 49.5 617.0 49.6 C 608.1 51.0 603.6 54.3 603.6 59.5 C 603.6 60.0 603.7 61.4 604.0 63.7 C 604.3 66.0 604.6 69.3 605.2 73.6 C 606.1 80.5 606.8 86.0 607.2 89.9 C 607.6 93.9 607.8 96.5 607.8 97.6 C 607.8 103.2 606.7 109.2 604.4 115.4 C 602.3 120.8 600.1 125.0 597.8 127.8 C 590.3 137.7 578.5 145.6 562.4 151.5 C 555.9 153.7 549.1 155.6 542.1 157.1 C 535.0 158.5 527.7 159.5 520.0 160.0 L 530.4 124.2 C 536.2 123.6 541.4 122.8 545.9 121.9 C 550.4 121.0 554.2 119.9 557.4 118.8 C 561.3 117.5 563.9 115.9 565.2 114.0 C 566.7 112.1 567.4 109.1 567.4 105.1 C 567.4 103.3 567.3 101.6 567.3 100.0 C 567.2 98.4 567.1 96.9 567.0 95.4 C 566.7 92.9 565.9 88.3 564.6 81.6 C 563.4 76.0 562.8 71.4 562.8 67.7 C 562.8 57.9 567.2 48.2 576.2 38.5 C 583.8 30.1 592.7 23.7 603.0 19.4 C 610.9 16.1 621.3 14.4 634.2 14.4 C 637.3 14.4 640.4 14.5 643.3 14.7 C 646.3 14.9 649.2 15.2 652.0 15.4Z"/><path id="lk-b" d="M 682.0 97.1 L 693.9 12.0 L 729.3 12.0 C 735.6 12.0 740.8 13.7 744.7 17.2 C 748.6 20.7 750.6 25.2 750.6 30.8 C 750.6 34.5 749.9 37.8 748.4 40.6 C 746.9 43.5 744.9 46.0 742.6 48.0 C 740.2 50.0 737.6 51.5 734.9 52.4 L 734.7 52.9 C 738.3 54.2 741.2 56.4 743.5 59.7 C 745.8 62.9 746.9 67.0 746.9 71.8 C 746.9 77.0 745.5 81.5 742.9 85.3 C 740.2 89.1 736.7 92.0 732.5 94.0 C 728.3 96.1 723.8 97.1 719.1 97.1Z M 699.6 82.9 L 718.4 82.9 C 720.7 82.9 722.8 82.4 724.7 81.4 C 726.6 80.4 728.1 79.0 729.2 77.1 C 730.3 75.2 730.9 72.8 730.9 70.0 C 730.9 67.3 730.0 65.0 728.4 63.2 C 726.7 61.4 724.0 60.5 720.4 60.5 L 702.9 60.5Z M 704.9 46.5 L 721.3 46.5 C 724.1 46.5 726.4 45.9 728.3 44.8 C 730.2 43.7 731.6 42.2 732.6 40.5 C 733.6 38.7 734.1 36.8 734.1 34.7 C 734.1 31.8 733.3 29.6 731.8 28.2 C 730.2 26.8 728.0 26.1 725.3 26.1 L 707.7 26.1ZM 754.2 97.1 L 766.1 12.0 L 781.9 12.0 L 770.0 97.1ZM 778.8 97.1 L 779.3 91.0 L 821.8 26.1 L 790.8 26.1 L 792.8 12.0 L 845.8 12.0 L 845.3 18.2 L 802.7 82.9 L 837.2 82.9 L 835.2 97.1ZM 838.3 97.1 L 877.2 12.0 L 895.4 12.0 L 910.7 97.1 L 894.6 97.1 L 891.8 80.3 L 861.5 80.3 L 854.2 97.1Z M 867.8 66.2 L 889.5 66.2 L 885.8 42.9 C 885.4 40.7 885.2 38.4 885.0 35.8 C 884.8 33.2 884.6 31.0 884.5 29.2 C 884.3 27.3 884.3 26.4 884.3 26.4 L 883.8 26.4 C 883.8 26.4 883.5 27.3 882.9 29.2 C 882.3 31.1 881.6 33.4 880.7 35.9 C 879.9 38.5 879.0 40.8 878.1 42.9ZM 919.3 97.1 L 931.2 12.0 L 964.5 12.0 C 972.8 12.0 978.9 13.9 982.9 17.8 C 986.9 21.7 988.9 26.8 988.9 33.0 C 988.9 39.1 987.3 44.4 984.1 48.9 C 980.9 53.4 976.5 56.6 971.0 58.5 L 982.4 97.1 L 965.4 97.1 L 955.5 61.6 L 939.8 61.6 L 935.0 97.1Z M 941.8 47.6 L 958.6 47.6 C 962.7 47.6 966.0 46.5 968.4 44.2 C 970.8 42.0 972.0 39.0 972.0 35.2 C 972.0 32.4 971.2 30.2 969.6 28.6 C 968.0 26.9 965.5 26.1 962.2 26.1 L 944.9 26.1ZM 992.7 97.1 L 1004.6 12.0 L 1037.9 12.0 C 1046.2 12.0 1052.3 13.9 1056.3 17.8 C 1060.3 21.7 1062.3 26.8 1062.3 33.0 C 1062.3 39.1 1060.7 44.4 1057.5 48.9 C 1054.3 53.4 1049.9 56.6 1044.4 58.5 L 1055.8 97.1 L 1038.8 97.1 L 1028.9 61.6 L 1013.2 61.6 L 1008.4 97.1Z M 1015.2 47.6 L 1032.0 47.6 C 1036.1 47.6 1039.4 46.5 1041.8 44.2 C 1044.2 42.0 1045.4 39.0 1045.4 35.2 C 1045.4 32.4 1044.6 30.2 1043.0 28.6 C 1041.4 26.9 1039.0 26.1 1035.6 26.1 L 1018.3 26.1ZM 1066.1 97.1 L 1078.0 12.0 L 1131.5 12.0 L 1129.6 26.1 L 1091.7 26.1 L 1088.9 46.5 L 1121.4 46.5 L 1119.4 60.6 L 1086.9 60.6 L 1083.7 82.9 L 1122.4 82.9 L 1120.4 97.1ZM 668.0 196.2 L 707.0 111.1 L 725.2 111.1 L 740.5 196.2 L 724.3 196.2 L 721.6 179.4 L 691.2 179.4 L 683.9 196.2Z M 697.6 165.3 L 719.3 165.3 L 715.5 142.0 C 715.2 139.8 714.9 137.5 714.7 134.9 C 714.5 132.3 714.4 130.1 714.2 128.3 C 714.1 126.4 714.0 125.5 714.0 125.5 L 713.5 125.5 C 713.5 125.5 713.3 126.4 712.7 128.3 C 712.1 130.2 711.4 132.5 710.5 135.0 C 709.6 137.6 708.8 139.9 707.8 142.0ZM 749.0 196.2 L 760.9 111.1 L 787.1 111.1 C 796.5 111.1 803.8 113.8 809.1 119.2 C 814.3 124.5 817.0 132.6 817.0 143.3 C 817.0 148.0 816.5 152.7 815.7 157.7 C 814.8 162.6 813.4 167.3 811.5 171.9 C 809.6 176.5 807.1 180.6 804.1 184.3 C 801.0 187.9 797.3 190.8 793.1 192.9 C 788.8 195.1 783.9 196.2 778.3 196.2Z M 766.7 182.0 L 776.9 182.0 C 780.7 182.0 784.0 181.2 786.7 179.6 C 789.4 178.0 791.7 175.8 793.6 173.1 C 795.4 170.4 796.9 167.3 798.0 164.0 C 799.1 160.7 799.8 157.4 800.3 154.0 C 800.7 150.6 801.0 147.4 801.0 144.4 C 801.0 138.1 799.5 133.3 796.7 130.1 C 793.8 126.8 789.9 125.2 784.8 125.2 L 774.7 125.2ZM 841.0 196.2 L 827.3 111.1 L 843.4 111.1 L 852.2 171.6 L 852.7 171.6 L 878.5 111.1 L 894.3 111.1 L 856.8 196.2ZM 890.2 196.2 L 902.2 111.1 L 955.7 111.1 L 953.7 125.2 L 915.9 125.2 L 913.1 145.6 L 945.6 145.6 L 943.6 159.7 L 911.1 159.7 L 907.9 182.0 L 946.5 182.0 L 944.6 196.2ZM 958.1 196.2 L 970.0 111.1 L 983.9 111.1 L 1003.3 158.0 C 1003.7 158.6 1004.0 159.6 1004.5 160.9 C 1004.9 162.2 1005.2 163.3 1005.6 164.3 C 1005.9 165.4 1006.1 165.9 1006.1 165.9 L 1006.4 165.5 C 1006.4 165.5 1006.5 165.0 1006.6 164.0 C 1006.7 163.0 1006.9 162.0 1007.0 160.8 C 1007.1 159.7 1007.2 158.9 1007.3 158.5 L 1013.9 111.1 L 1027.9 111.1 L 1016.0 196.2 L 1002.0 196.2 L 982.5 149.3 C 982.3 148.7 981.9 147.8 981.4 146.5 C 981.0 145.2 980.6 144.0 980.3 143.0 C 979.9 141.9 979.8 141.3 979.8 141.3 L 979.3 141.7 C 979.3 141.7 979.2 142.2 979.2 143.0 C 979.1 143.9 979.0 144.9 978.9 146.0 C 978.8 147.1 978.7 148.0 978.5 148.8 L 972.0 196.2ZM 1047.0 196.2 L 1056.9 125.2 L 1035.9 125.2 L 1037.9 111.1 L 1095.5 111.1 L 1093.5 125.2 L 1072.5 125.2 L 1062.6 196.2ZM 1125.1 197.6 C 1116.3 197.6 1109.5 195.7 1104.7 191.7 C 1099.9 187.7 1097.5 181.9 1097.5 174.3 C 1097.5 173.5 1097.6 171.7 1097.9 169.1 C 1098.2 166.4 1098.6 163.1 1099.1 159.3 C 1099.6 155.4 1100.1 151.3 1100.7 147.0 C 1101.4 142.6 1102.0 138.4 1102.6 134.2 C 1103.2 129.9 1103.8 126.1 1104.3 122.6 C 1104.8 119.2 1105.2 116.4 1105.4 114.3 C 1105.7 112.1 1105.9 111.1 1105.9 111.1 L 1121.6 111.1 C 1121.6 111.1 1121.5 112.1 1121.2 114.2 C 1120.9 116.3 1120.5 119.0 1120.0 122.4 C 1119.5 125.9 1119.0 129.7 1118.4 133.8 C 1117.8 137.9 1117.2 142.1 1116.6 146.3 C 1116.0 150.5 1115.4 154.4 1114.9 158.0 C 1114.4 161.6 1114.0 164.6 1113.8 167.1 C 1113.5 169.5 1113.3 171.0 1113.3 171.5 C 1113.3 175.5 1114.3 178.6 1116.4 180.8 C 1118.4 182.9 1121.3 184.0 1125.1 184.0 C 1129.2 184.0 1132.6 182.6 1135.1 179.9 C 1137.6 177.2 1139.2 173.2 1140.0 168.0 L 1147.9 111.1 L 1163.7 111.1 L 1155.6 168.5 C 1154.3 178.0 1151.0 185.2 1145.6 190.2 C 1140.3 195.2 1133.5 197.6 1125.1 197.6ZM 1167.0 196.2 L 1178.9 111.1 L 1212.3 111.1 C 1220.5 111.1 1226.7 113.0 1230.7 116.9 C 1234.7 120.8 1236.7 125.8 1236.7 132.0 C 1236.7 138.2 1235.1 143.5 1231.9 148.0 C 1228.6 152.5 1224.3 155.7 1218.7 157.6 L 1230.1 196.2 L 1213.1 196.2 L 1203.2 160.7 L 1187.6 160.7 L 1182.8 196.2Z M 1189.6 146.7 L 1206.3 146.7 C 1210.5 146.7 1213.7 145.6 1216.1 143.3 C 1218.5 141.1 1219.7 138.1 1219.7 134.3 C 1219.7 131.5 1218.9 129.3 1217.4 127.6 C 1215.8 126.0 1213.3 125.2 1209.9 125.2 L 1192.7 125.2ZM 1240.4 196.2 L 1252.3 111.1 L 1305.9 111.1 L 1303.9 125.2 L 1266.1 125.2 L 1263.2 145.6 L 1295.7 145.6 L 1293.7 159.7 L 1261.3 159.7 L 1258.0 182.0 L 1296.7 182.0 L 1294.7 196.2Z"/><linearGradient id="lk-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" class="lk-s1"/><stop offset=".5" class="lk-s2"/><stop offset="1" class="lk-s3"/></linearGradient><linearGradient id="lk-shine" x1="0" y1="0" x2="1" y2="0"><stop offset="0" class="lk-g0"/><stop offset=".5" class="lk-g1"/><stop offset="1" class="lk-g0"/></linearGradient><mask id="lk-top"><use href="#lk-a" fill="#fff"/><use href="#lk-a" fill="#000" transform="translate(0 3.5)"/></mask><clipPath id="lk-clip"><use href="#lk-a"/></clipPath></defs><g class="lk-stack"><use href="#lk-b" class="lk-b-shadow" transform="translate(4.5 5.5)"/><use href="#lk-b" class="lk-b-ink"/><use href="#lk-b" class="lk-b-fill"/></g><g class="lk-name"><use href="#lk-a" class="lk-ext" transform="translate(7.2 9.0)"/><use href="#lk-a" class="lk-ext" transform="translate(6.0 7.5)"/><use href="#lk-a" class="lk-ext" transform="translate(4.8 6.0)"/><use href="#lk-a" class="lk-ext" transform="translate(3.6 4.5)"/><use href="#lk-a" class="lk-ext" transform="translate(2.4 3.0)"/><use href="#lk-a" class="lk-ext" transform="translate(1.2 1.5)"/><use href="#lk-a" class="lk-ink"/><use href="#lk-a" fill="url(#lk-fill)"/><use href="#lk-a" class="lk-hi" mask="url(#lk-top)"/><g clip-path="url(#lk-clip)"><rect class="lk-sheen" x="-260" y="0" width="200" height="216" fill="url(#lk-shine)"/></g></g></svg>
+      <h2>January 2027.</h2>
+      <p>Hiring in data science, statistics, biostatistics, model risk or quant? Founder, Calx. Provisional patent filed.</p>
+      <ul>
+        <li><a class="btn" href="Ayaz_Khan_Resume.pdf" download>Résumé (PDF)</a></li>
+        <li><a href="mailto:aak2259@columbia.edu">aak2259@columbia.edu</a></li>
+        <li><a href="mailto:khanayaz2727@gmail.com">khanayaz2727@gmail.com</a></li>
+        <li><a href="tel:+19179433853">+1 (917) 943-3853</a></li>
+        <li><a href="https://www.linkedin.com/in/ayazkhan27">LinkedIn</a></li>
+        <li><a href="https://github.com/ayazkhan27">GitHub</a></li>
       </ul>
-    </div>
-  </section>
-
-  <section id="work" aria-labelledby="t-telenav">
-    <div class="wrap">
-      <p class="leg"><b>Stage 2</b><i></i><span>Across the Arizona Desert</span></p>
-      <div class="work">
-        <div class="head rise">
-          <h2 id="t-telenav">The ceiling that stopped a release</h2>
-          <p class="role">Telenav, Santa Clara. Applied ML and Data Engineering Intern, June to August 2026.</p>
-        </div>
-        <figure class="rise">
-          <svg class="chart" viewBox="12 0 316 150" role="img" aria-labelledby="c1t">
-            <title id="c1t">Accuracy ceiling 56.69 percent with 95 percent interval 55.13 to 58.08; production calibrator 9 points below.</title>
-            <text x="16" y="24" class="t">Production</text>
-            <text x="16" y="42" class="m">9 points lower</text>
-            <text x="324" y="24" class="t" text-anchor="end">Ceiling 56.69%</text>
-            <text x="324" y="42" class="m" text-anchor="end">95% CI 55.13 to 58.08</text>
-            <line class="link" x1="78" y1="80" x2="249" y2="80"/>
-            <line class="ci" x1="224" y1="80" x2="284.6" y2="80"/>
-            <line class="ci" x1="224" y1="72" x2="224" y2="88"/><line class="ci" x1="284.6" y1="72" x2="284.6" y2="88"/>
-            <circle class="ctx" cx="71.2" cy="80" r="7"><title>Production calibrator, 9 points below the ceiling</title></circle>
-            <circle class="mark" cx="256" cy="80" r="7"><title>Ceiling 56.69%, 95% CI 55.13 to 58.08</title></circle>
-            <line class="axis" x1="16" y1="112" x2="324" y2="112"/>
-            <text x="16" y="136" class="m">45%</text><text x="118.7" y="136" class="m" text-anchor="middle">50%</text><text x="221.3" y="136" class="m" text-anchor="middle">55%</text><text x="324" y="136" class="m" text-anchor="end">60%</text>
-          </svg>
-        </figure>
-      </div>
-      <div class="bench">
-        <ul class="tally">
-          <li><b>56.69%</b> accuracy ceiling, 95% CI [55.13, 58.08]</li>
-          <li id="leak"><b>0.806<span aria-hidden="true">→</span><span class="vh"> to </span>0.7401</b> AUC after the leakage fix</li>
-          <li><b>0.6206<span aria-hidden="true">→</span><span class="vh"> to </span>0.6457</b> ping-stage AUC from distillation</li>
-          <li><b>95.5%</b> function accuracy, 270M-parameter router</li>
-        </ul>
-        <div class="jj-slot refuse" data-jj="rohan" data-jj-css>
-          <div class="jj-static">
-            <p class="jp" aria-hidden="true">だが断る</p>
-            <p>Leakage said 0.806. The honest number: 0.7401.</p>
-            <p><a href="Ayaz_Khan_Resume.pdf">Heaven's Door: read the résumé (PDF)</a></p>
-          </div>
-        </div>
-      </div>
-      <details class="more">
-        <summary>More from Telenav</summary>
-        <div class="more-body">
-          <p>The 56.69% is a nonparametric estimate of the best accuracy any calibrator could reach on this data: 95% CI [55.13, 58.08] on 4,338 true-ping rows. The production calibrator ran 9 points below that bound. The finding cancelled a release that would have degraded pricing.</p>
-          <div class="split">
-            <p>Target leakage and non-temporal splits had inflated the AUC to 0.806. With both fixed it was an honest 0.7401, and the audit surfaced $127K of campaign waste. Privileged-features distillation lifted ping-stage AUC from 0.6206 to 0.6457 on 23,559 holdout rows.</p>
-            <figure>
-              <div class="legend" aria-hidden="true"><span>Before</span><span class="after">After</span></div>
-              <svg class="chart" viewBox="12 0 316 214" role="img" aria-labelledby="c2t">
-                <title id="c2t">AUC before and after. Leakage and split fix: 0.806 reported, 0.7401 honest. Distillation at ping stage: 0.6206 to 0.6457.</title>
-                <text x="16" y="18" class="t">Leakage and split fix</text>
-                <line class="link" x1="219" y1="48" x2="297" y2="48"/>
-                <circle class="ctx" cx="304.4" cy="48" r="7"><title>Reported AUC 0.806, inflated by leakage</title></circle>
-                <circle class="mark" cx="212.1" cy="48" r="7"><title>Honest AUC 0.7401</title></circle>
-                <text x="212.1" y="76" text-anchor="middle">0.7401</text><text x="324" y="76" text-anchor="end" class="m">0.806</text>
-                <text x="16" y="112" class="t">Distillation, ping stage</text>
-                <line class="link" x1="52" y1="140" x2="73" y2="140"/>
-                <circle class="ctx" cx="44.8" cy="140" r="7"><title>Baseline AUC 0.6206</title></circle>
-                <circle class="mark" cx="80" cy="140" r="7"><title>Distilled AUC 0.6457</title></circle>
-                <text x="16" y="168" class="m">0.6206</text><text x="76" y="168">0.6457</text>
-                <line class="axis" x1="16" y1="182" x2="324" y2="182"/>
-                <text x="16" y="204" class="m">0.60</text><text x="156" y="204" class="m" text-anchor="middle">0.70</text><text x="296" y="204" class="m" text-anchor="middle">0.80</text>
-              </svg>
-              <figcaption>AUC on one shared axis. Distillation results are on 23,559 holdout rows.</figcaption>
-            </figure>
-          </div>
-          <p>A 270M-parameter FunctionGemma router: 95.5% function accuracy and 86.4% exact match on 500 held-out prompts, 95.4% serving accuracy against live Snowflake.</p>
-          <p>Gyro's last lesson: “The shortest route was a detour.” In validation, the detour is a split by time. It is slower to build than a random split, and it is the one that shows how a model scores on rows that arrive after its training data.</p>
-          <p class="muted">In JoJo Part 4, an enemy offers to spare Rohan Kishibe if he lures Josuke into a trap. His answer: “But I refuse.”</p>
-        </div>
-      </details>
-    </div>
-  </section>
-
-  <section id="research" aria-labelledby="t-research">
-    <div class="wrap">
-      <p class="leg"><b>Stage 3</b><i></i><span>Rocky Mountain Breakdown</span></p>
-      <h2 id="t-research" class="rise">Research, in four acts</h2>
-      <ol class="acts" data-enter>
-        <li id="early"><p class="act-k"><svg class="nail" viewBox="0 0 48 48" aria-hidden="true"><circle class="orbit" cx="24" cy="24" r="20"/><path class="arc" d="M24 4A20 20 0 0 1 44.0 24.0"/><path class="tip" d="M24 9c3.2 0 4.6 3 4.6 7.5V22h-9.2v-5.5C19.4 12 20.8 9 24 9z"/></svg><span><b>ACT 1</b>2024</span></p><p class="fig">15%</p><p>efficiency gain in 3D sensor networks, NSF REU; IEEE first author</p></li>
-        <li><p class="act-k"><svg class="nail" viewBox="0 0 48 48" aria-hidden="true"><circle class="orbit" cx="24" cy="24" r="20"/><path class="arc" d="M24 4A20 20 0 0 1 24.0 44.0"/><path class="tip" d="M24 9c3.2 0 4.6 3 4.6 7.5V22h-9.2v-5.5C19.4 12 20.8 9 24 9z"/></svg><span><b>ACT 2</b>2025</span></p><p class="fig">0.172%</p><p>of the data was fraud; Bayesian networks and calibrated XGBoost</p></li>
-        <li id="psc"><p class="act-k"><svg class="nail" viewBox="0 0 48 48" aria-hidden="true"><circle class="orbit" cx="24" cy="24" r="20"/><path class="arc" d="M24 4A20 20 0 1 1 4.0 24.0"/><path class="tip" d="M24 9c3.2 0 4.6 3 4.6 7.5V22h-9.2v-5.5C19.4 12 20.8 9 24 9z"/></svg><span><b>ACT 3</b>2026</span></p><p class="fig">−3.8</p><p>points of affordability testimony in Con Edison rate cases</p></li>
-        <li id="calx"><p class="act-k"><svg class="nail" viewBox="0 0 48 48" aria-hidden="true"><circle class="orbit" cx="24" cy="24" r="20"/><circle class="arc" cx="24" cy="24" r="20"/><path class="tip" d="M24 9c3.2 0 4.6 3 4.6 7.5V22h-9.2v-5.5C19.4 12 20.8 9 24 9z"/></svg><span><b>ACT 4</b>2025 to present</span></p><p class="fig">31.55%</p><p>fewer operations on average in Calx, exact on 45 of 45 cases</p></li>
-      </ol>
-      <details class="more">
-        <summary>More on each act</summary>
-        <div class="more-body">
-          <p class="muted">Johnny Joestar's Stand, Tusk, grows through four acts during the race, each built on the last. His goal is to bring his minus back to zero, which is also a fair description of bias correction.</p>
-          <h3>ACT 1. Aperiodic tilings for sensor network security</h3>
-          <p>NSF REU at Texas A&amp;M University-Kingsville, June to August 2024. I built the Intrusion Effort Index on aperiodic Spectre monotile tilings for wireless sensor network security. It gave a 15% efficiency improvement in 3D deployments. First author, IEEE ICNGN 2024.</p>
-          <blockquote>
-            <p>“Rare even among experienced researchers, his ability to close the distance between abstract theory and practical application is demonstrated by his development of the Intrusion Effort Index.”</p>
-            <footer>Dr. Habib M. Ammari, my REU mentor at Texas A&amp;M University-Kingsville, now at Texas A&amp;M International University, from his recommendation letter</footer>
-          </blockquote>
-          <h3>ACT 2. Credit card fraud detection</h3>
-          <p>Fraud was 0.172% of the data. I rebalanced the training data with SMOTE-NC, modeled fraud with Bayesian networks and calibrated XGBoost, and built a Dash app to monitor the model.</p>
-          <h3>ACT 3. Energy insecurity in Con Edison rate cases</h3>
-          <p class="role">Columbia Data Science Institute scholar, NYSERDA energy-insecurity research, January to May 2026.</p>
-          <div class="split">
-            <div>
-              <p>317 Con Edison testimony PDFs, 16 docket themes. Affordability testimony fell 3.8 points from 2022 to 2025.</p>
-              <p>The filings came from the New York Public Service Commission. I split them into 12,073 segments, 10,225 of them substantive, and modeled topics with BERTopic: LegalBERT embeddings, UMAP, then HDBSCAN. Over the same years, rate-design testimony rose 4.9 points and IT-systems testimony rose 3.4.</p>
-            </div>
-            <figure>
-              <svg class="chart" viewBox="0 0 360 150" role="img" aria-labelledby="c3t">
-                <title id="c3t">Change in share of testimony from 2022 to 2025: affordability minus 3.8 points, rate design plus 4.9, IT systems plus 3.4.</title>
-                <rect class="bar" x="73.6" y="14" width="106.4" height="24"><title>Affordability, down 3.8 points</title></rect>
-                <text x="188" y="31">Affordability</text><text x="66" y="31" text-anchor="end" class="t">−3.8</text>
-                <rect class="bar" x="180" y="58" width="137.2" height="24"><title>Rate design, up 4.9 points</title></rect>
-                <text x="172" y="75" text-anchor="end">Rate design</text><text x="323" y="75" class="t">+4.9</text>
-                <rect class="bar" x="180" y="102" width="95.2" height="24"><title>IT systems, up 3.4 points</title></rect>
-                <text x="172" y="119" text-anchor="end">IT systems</text><text x="281" y="119" class="t">+3.4</text>
-                <line class="zero" x1="180" y1="6" x2="180" y2="134"/>
-              </svg>
-              <figcaption>Change in each theme's share of testimony, in points, 2022 to 2025.</figcaption>
-            </figure>
-          </div>
-          <h3>ACT 4. Calx: one structure, two fields</h3>
-          <p class="role">Founder and lead researcher, 2025 to present. Funny Valentine's D4C crosses between parallel worlds; Calx crosses between fields.</p>
-          <p>Calx is a neuro-symbolic engine for cross-domain discovery. It ports the Structure-Mapping Engine to find the same relational structure in problems from different fields. U.S. provisional patent application 64/029,090, filed through Columbia Technology Ventures.</p>
-          <div class="linkrow">
-            <a href="sma-1/">SMA-1 project page</a>
-            <a href="https://pypi.org/project/structuremappingmemory/">PyPI package</a>
-            <a href="https://github.com/ayazkhan27/SMA-1">Source on GitHub</a>
-          </div>
-          <table class="ledger">
-            <caption class="vh">Calx results</caption>
-            <tbody>
-              <tr><th scope="row">31.55%</th><td>mean reduction in operations from the Certified Affine Corridor dynamic program, exact on 45 of 45 cases</td></tr>
-              <tr><th scope="row">2</th><td>new square-root Kalman filter variants</td></tr>
-              <tr><th scope="row">594,000</th><td>concepts across 11 ontologies in SMA-1, structure-mapping retrieval shipped as an MCP server</td></tr>
-              <tr><th scope="row"><span class="sign">+</span>0.34</th><td>over the strongest RAG baseline on long-tail top-5 retrieval, medicine</td></tr>
-              <tr><th scope="row"><span class="sign">+</span>0.17</th><td>on the same comparison, genomics</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </details>
-    </div>
-  </section>
-
-  <section id="record" aria-labelledby="t-record">
-    <div class="wrap">
-      <p class="leg"><b>Stage 4</b><i></i><span>Little Tomb on the Wide, Wide Prairie</span></p>
-      <div class="rec-wrap">
-        <h2 id="t-record" class="rise">Education and honors</h2>
-        <div>
-          <table class="record" aria-labelledby="t-record">
-            <tbody>
-              <tr><td>Columbia University, M.A. Statistics</td><td>Dec 2026</td></tr>
-              <tr><td>CUNY Hunter College, B.A. Statistics, cum laude</td><td>Dec 2024</td></tr>
-              <tr><td>Provisional patent 64/029,090</td><td>Columbia Technology Ventures</td></tr>
-              <tr><td>IEEE ICNGN 2024</td><td>First author</td></tr>
-            </tbody>
-          </table>
-          <ul class="tools" aria-label="Main tools">
-            <li>Python</li><li>R</li><li>SQL</li><li>PyTorch</li><li>XGBoost</li><li>Snowflake</li>
-          </ul>
-          <details class="more">
-            <summary>Full record and skills</summary>
-            <div class="more-body">
-              <table class="record">
-                <caption class="vh">Education and honors</caption>
-                <tbody>
-                  <tr><td>National Science Foundation Graduate Research Fellow</td><td>1 of 1,000 awardees from 17,000 applicants</td></tr>
-                  <tr><td>Columbia University, M.A. Statistics</td><td>Expected December 2026</td></tr>
-                  <tr><td>CUNY Hunter College, Special Honors B.A. Statistics, computer science minor, cum laude</td><td>December 2024</td></tr>
-                  <tr><td>U.S. provisional patent application 64/029,090</td><td>Through Columbia Technology Ventures</td></tr>
-                  <tr><td>First author, IEEE ICNGN 2024</td><td>Intrusion Effort Index for wireless sensor networks</td></tr>
-                </tbody>
-              </table>
-              <dl class="skills">
-                <div><dt>Languages</dt><dd>Python, R, SQL, SAS, Java, C++</dd></div>
-                <div><dt>Modeling</dt><dd>PyTorch, scikit-learn, transformers, XGBoost, LightGBM, LoRA</dd></div>
-                <div><dt>Data and cloud</dt><dd>Snowflake, Docker, GCP, AWS</dd></div>
-                <div><dt>Methods</dt><dd>Causal inference, survival analysis, Bayesian networks, stochastic processes, SHAP, A/B testing</dd></div>
-              </dl>
-            </div>
-          </details>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="lab" aria-labelledby="t-lab">
-    <div class="wrap">
-      <p class="leg"><b>Stages 5 to 7</b><i></i><span>Bonus stages</span></p>
-      <h2 id="t-lab" class="rise">The Lab</h2>
-      <div class="lab">
-        <details class="tile" id="stand" name="lab">
-          <summary><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><polygon points="32.0,6.0 54.5,19.0 54.5,45.0 32.0,58.0 9.5,45.0 9.5,19.0"/><polygon class="fill" points="32.0,9.9 46.6,23.6 51.1,43.0 32.0,54.1 12.9,43.0 12.9,20.9"/></svg>Stand card</summary>
-          <div class="tile-body">
-            <p>In JoJo many characters fight with a Stand, and most Stands are named after songs, albums or bands. Mine borrows Radiohead's “No Surprises”, and each grade links up to the result that earns it.</p>
-            <div class="jj-slot" data-jj="stand" data-jj-css>
-              <article class="card jj-static" aria-labelledby="stand-name">
-                <div class="card-top">
-                  <dl class="card-id">
-                    <dt>Stand</dt><dd class="name" id="stand-name"><span class="jp" aria-hidden="true">「</span>NO SURPRISES<span class="jp" aria-hidden="true">」</span></dd>
-                    <dt>Stand user</dt><dd>Ayaz Khan</dd>
-                  </dl>
-                  <p class="ability"><b>Ability.</b> Measures how surprised a model should be, in bits. When a calibrator claims more than the data allows, it shows.</p>
-                </div>
-                <div class="card-body">
-                  <svg class="hex" viewBox="-150 -128 300 256" role="img" aria-label="Stand parameters: Power A, Speed B, Range A, Stamina A, Precision A, Potential A"><polygon class="ring" points="0.0,-20.0 17.3,-10.0 17.3,10.0 0.0,20.0 -17.3,10.0 -17.3,-10.0"/><polygon class="ring" points="0.0,-40.0 34.6,-20.0 34.6,20.0 0.0,40.0 -34.6,20.0 -34.6,-20.0"/><polygon class="ring" points="0.0,-60.0 52.0,-30.0 52.0,30.0 0.0,60.0 -52.0,30.0 -52.0,-30.0"/><polygon class="ring" points="0.0,-80.0 69.3,-40.0 69.3,40.0 0.0,80.0 -69.3,40.0 -69.3,-40.0"/><polygon class="ring" points="0.0,-100.0 86.6,-50.0 86.6,50.0 0.0,100.0 -86.6,50.0 -86.6,-50.0"/><line class="spoke" x1="0" y1="0" x2="0.0" y2="-100.0"/><line class="spoke" x1="0" y1="0" x2="86.6" y2="-50.0"/><line class="spoke" x1="0" y1="0" x2="86.6" y2="50.0"/><line class="spoke" x1="0" y1="0" x2="0.0" y2="100.0"/><line class="spoke" x1="0" y1="0" x2="-86.6" y2="50.0"/><line class="spoke" x1="0" y1="0" x2="-86.6" y2="-50.0"/><polygon class="shape" points="0.0,-100.0 69.3,-40.0 86.6,50.0 0.0,100.0 -86.6,50.0 -86.6,-50.0"/><text x="0.0" y="-126.0" text-anchor="middle" aria-hidden="true">Power <tspan class="g">A</tspan></text><text x="105.7" y="-65.0" text-anchor="start" aria-hidden="true">Speed <tspan class="g">B</tspan></text><text x="105.7" y="75.0" text-anchor="start" aria-hidden="true">Range <tspan class="g">A</tspan></text><text x="0.0" y="136.0" text-anchor="middle" aria-hidden="true">Stamina <tspan class="g">A</tspan></text><text x="-105.7" y="75.0" text-anchor="end" aria-hidden="true">Precision <tspan class="g">A</tspan></text><text x="-105.7" y="-65.0" text-anchor="end" aria-hidden="true">Potential <tspan class="g">A</tspan></text></svg>
-                  <dl class="params">
-                    <div><dt>Power</dt><dd class="gr">A</dd><dd class="ev"><a href="#calx">594,000 concepts across 11 ontologies in SMA-1</a></dd></div>
-                    <div><dt>Speed</dt><dd class="gr">B</dd><dd class="ev"><a href="#work">Caught the accuracy ceiling before a degrading release shipped</a></dd></div>
-                    <div><dt>Range</dt><dd class="gr">A</dd><dd class="ev"><a href="#work">Insurance pricing</a>, <a href="#psc">utility rate cases</a>, <a href="#calx">medical and genomic retrieval</a>, <a href="#early">sensor networks</a></dd></div>
-                    <div><dt>Stamina</dt><dd class="gr">A</dd><dd class="ev"><a href="#psc">12,073 segments from 317 rate-case filings</a></dd></div>
-                    <div><dt>Precision</dt><dd class="gr">A</dd><dd class="ev"><a href="#work">95% CI [55.13, 58.08] on 4,338 rows</a></dd></div>
-                    <div><dt>Potential</dt><dd class="gr">A</dd><dd class="ev"><a href="#record">NSF Graduate Research Fellow, 1 of 1,000 from 17,000 applicants</a></dd></div>
-                  </dl>
-                </div>
-              </article>
-            </div>
-          </div>
-        </details>
-        <details class="tile" id="ora" name="lab">
-          <summary><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><circle class="dot" cx="20" cy="38" r="2.4"/><circle class="dot" cx="26" cy="38" r="2.4"/><circle class="dot" cx="26" cy="32" r="2.4"/><circle class="dot" cx="32" cy="38" r="2.4"/><circle class="dot" cx="32" cy="32" r="2.4"/><circle class="dot" cx="32" cy="26" r="2.4"/><circle class="dot" cx="32" cy="20" r="2.4"/><circle class="dot" cx="38" cy="38" r="2.4"/><circle class="dot" cx="38" cy="32" r="2.4"/><circle class="dot" cx="38" cy="26" r="2.4"/><circle class="dot" cx="44" cy="38" r="2.4"/><path d="M14 48H50M14 44V52M50 44V52"/></svg>ORA bootstrap</summary>
-          <div class="tile-body">
-            <p>An interval says how far the estimate could move if the rows had come out differently. A bootstrap is one way to see that: resample the rows with replacement, recompute, and repeat a thousand times. Jotaro's Stand, Star Platinum, wins fights the same way, with a rush of punches (ORA ORA). Here each punch is one resample of simulated rows, a sketch of the idea that is separate from the analysis behind the Telenav interval.</p>
-            <div class="jj-slot" data-jj="ora" data-jj-css><p class="jj-static note">The bootstrap rush needs JavaScript.</p></div>
-          </div>
-        </details>
-        <details class="tile" id="gyro" name="lab">
-          <summary><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><path d="M6 14H58V46H6Z"/><path d="M38 14V46M38 34H58M46 34V46"/><path class="hot" d="M6 46A32 32 0 0 1 38 14A20 20 0 0 1 58 34A12 12 0 0 1 46 46"/></svg>Golden rectangle</summary>
-          <div class="tile-body">
-            <p>Gyro Zeppeli's Spin draws its power from the golden rectangle, sides in the ratio 1 to 1.618, and in Steel Ball Run he says a horse running at its natural pace forms one. Muybridge photographed a horse at a gallop in 1878, so I measured all eleven frames.</p>
-            <div class="jj-slot" data-jj="golden" data-jj-css data-jj-opts='{"frame":1,"measure":"rider"}'><p class="jj-static note">The frame-by-frame measurement needs JavaScript.</p></div>
-            <p class="ps">One more comparison, which I made after seeing the data, so treat it as a joke: Gyro also gives the ratio as roughly 9:16, and 16/9 is 1.78, inside the horse-alone interval [1.71, 1.90], so the horse passes his rough rule and fails his precise one.</p>
-          </div>
-        </details>
-        <details class="tile" id="steel" name="lab">
-          <summary><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="24"/><path class="hot" d="M34.0 32.0 L34.2 32.8 L34.1 33.8 L33.6 34.7 L32.6 35.5 L31.3 35.9 L29.8 35.7 L28.4 35.0 L27.2 33.7 L26.5 32.0 L26.5 29.9 L27.3 27.9 L28.8 26.2 L30.9 25.1 L33.4 24.7 L36.0 25.3 L38.3 26.8 L40.1 29.2 L40.9 32.2 L40.7 35.3 L39.3 38.4 L36.9 40.8 L33.6 42.3 L29.9 42.6 L26.2 41.6 L22.9 39.3 L20.6 35.8 L19.6 31.7 L20.1 27.3 L22.1 23.3 L25.6 20.1 L30.0 18.2 L34.9 18.0 L39.7 19.5 L43.9 22.7 L46.7 27.2 L47.9 32.5 L47.1 38.1 L44.4 43.1 L40.0 47.0 L34.4 49.2 L28.2 49.4 L22.3 47.4 L17.3 43.3"/></svg>Steel ball</summary>
-          <div class="tile-body">
-            <div class="spin">
-              <div class="jj-slot" data-jj="steelball" data-jj-css><figure class="jj-static"><img src="assets/jojo/steelball.png" width="420" height="420" loading="lazy" decoding="async" alt="A polished steel ball engraved with 377 dots in a golden-angle spiral"><figcaption>The live ball needs JavaScript.</figcaption></figure></div>
-              <div>
-                <h3>The Spin, fitted while it slows</h3>
-                <p>Gyro's third lesson to Johnny is “Believe in the Spin.” This spin you can also measure. Drag or flick the ball: in this simulation, friction takes the same share of its speed every second, so the speed decays exponentially and its logarithm falls on a straight line. While the ball slows, the page fits that line by least squares and reports τ, the time constant of the decay. The fit runs live on the simulated readings.</p>
-              </div>
-            </div>
-          </div>
-        </details>
-        <details class="tile" id="disc-tile" name="lab">
-          <summary><svg class="ico" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="27"/><path d="M32.0 17.0L32.0 9.0"/><path d="M40.1 19.4L44.4 12.7"/><path d="M45.6 25.8L52.9 22.4"/><path d="M46.8 34.1L54.8 35.3"/><path d="M43.3 41.8L49.4 47.1"/><path d="M36.2 46.4L38.5 54.1"/><path d="M27.8 46.4L25.5 54.1"/><path d="M20.7 41.8L14.6 47.1"/><path d="M17.2 34.1L9.2 35.3"/><path d="M18.4 25.8L11.1 22.4"/><path d="M23.9 19.4L19.6 12.7"/><circle cx="32" cy="32" r="4"/><path class="hot" d="M27 1H37L32 7Z"/></svg>Zoopraxiscope</summary>
-          <div class="tile-body dark">
-            <p class="plate-note">Sallie Gardner at a gallop, Palo Alto, 19 June 1878. Traced from Eadweard Muybridge's plate.</p>
-            <div class="gate">
-              <div class="disc-wrap">
-                <svg class="disc" id="disc" viewBox="-520 -548 1040 1068" role="slider" tabindex="0" aria-label="Zoopraxiscope disc. Drag it, or use the arrow keys, to turn one frame at a time." aria-valuemin="1" aria-valuemax="11" aria-valuenow="3" aria-valuetext="Frame 3 of 11, all four hooves off the track">
-                  <g id="spin">
-                    <circle r="500" class="d-face"/>
-                    <circle r="482" class="d-rim"/>
-                    <g transform="rotate(0.000)"><use class="d-horse" href="#h1" x="-120" y="-428" width="240" height="153"/><text class="d-num" y="-448">1</text></g>
-            <g transform="rotate(32.727)"><use class="d-horse" href="#h2" x="-120" y="-428" width="240" height="153"/><text class="d-num" y="-448">2</text></g>
-            <g transform="rotate(65.455)"><use class="d-horse" href="#h3" x="-120" y="-428" width="240" height="153"/><text class="d-num" y="-448">3</text></g>
-            <g transform="rotate(98.182)"><use class="d-horse" href="#h4" x="-120" y="-428" width="240" height="153"/><text class="d-num" y="-448">4</text></g>
-            <g transform="rotate(130.909)"><use class="d-horse" href="#h5" x="-120" y="-428" width="240" height="153"/><text class="d-num" y="-448">5</text></g>
-            <g transform="rotate(163.636)"><use class="d-horse" href="#h6" x="-120" y="-428" width="240" height="153"/><text class="d-num" y="-448">6</text></g>
-            <g transform="rotate(196.364)"><use class="d-horse" href="#h7" x="-120" y="-428" width="240" height="153"/><text class="d-num" y="-448">7</text></g>
-            <g transform="rotate(229.091)"><use class="d-horse" href="#h8" x="-120" y="-428" width="240" height="153"/><text class="d-num" y="-448">8</text></g>
-            <g transform="rotate(261.818)"><use class="d-horse" href="#h9" x="-120" y="-428" width="240" height="153"/><text class="d-num" y="-448">9</text></g>
-            <g transform="rotate(294.545)"><use class="d-horse" href="#h10" x="-120" y="-428" width="240" height="153"/><text class="d-num" y="-448">10</text></g>
-            <g transform="rotate(327.273)"><use class="d-horse" href="#h11" x="-120" y="-428" width="240" height="153"/><text class="d-num" y="-448">11</text></g>
-                    <circle r="56" class="d-hub"/><circle r="14" class="d-pin"/>
-                  </g>
-                  <path class="d-gate" d="M-64 -546H64L0 -500Z"/>
-                </svg>
-                <p class="cap">Muybridge later projected painted copies of frames like these from a spinning glass disc, the zoopraxiscope, which he built in 1879. The frame under the pointer is the one on the screen.</p>
-              </div>
-              <div class="gauge">
-                <dl class="readings" aria-hidden="true">
-                  <div><dt>Frame</dt><dd id="r-frame">3 of 11</dd></div>
-                  <div><dt>Elapsed</dt><dd id="r-time">0.08 s</dd></div>
-                  <div><dt>Track covered</dt><dd id="r-track">54 in</dd></div>
-                  <div><dt>Hooves down</dt><dd id="r-hoof" class="air">None</dd></div>
-                </dl>
-                <p class="vh" id="readout" aria-live="polite"></p>
-                <div class="controls">
-                  <button type="button" id="prev" aria-label="Previous frame">Back</button>
-                  <button type="button" id="play" aria-pressed="false">Play</button>
-                  <button type="button" id="next" aria-label="Next frame">Next</button>
-                </div>
-                <ol class="sheet" id="sheet" aria-label="The eleven gallop frames of the 1878 plate">
-                  <li><button type="button" aria-label="Frame 1"><img src="assets/plate/alb-01.jpg" width="240" height="150" alt="" loading="lazy" decoding="async"></button></li>
-          <li><button type="button" aria-label="Frame 2 (all four hooves off the track)"><img src="assets/plate/alb-02.jpg" width="240" height="150" alt="" loading="lazy" decoding="async"></button></li>
-          <li><button type="button" aria-label="Frame 3 (all four hooves off the track)"><img src="assets/plate/alb-03.jpg" width="240" height="150" alt="" loading="lazy" decoding="async"></button></li>
-          <li><button type="button" aria-label="Frame 4"><img src="assets/plate/alb-04.jpg" width="240" height="150" alt="" loading="lazy" decoding="async"></button></li>
-          <li><button type="button" aria-label="Frame 5"><img src="assets/plate/alb-05.jpg" width="240" height="150" alt="" loading="lazy" decoding="async"></button></li>
-          <li><button type="button" aria-label="Frame 6"><img src="assets/plate/alb-06.jpg" width="240" height="150" alt="" loading="lazy" decoding="async"></button></li>
-          <li><button type="button" aria-label="Frame 7"><img src="assets/plate/alb-07.jpg" width="240" height="150" alt="" loading="lazy" decoding="async"></button></li>
-          <li><button type="button" aria-label="Frame 8"><img src="assets/plate/alb-08.jpg" width="240" height="150" alt="" loading="lazy" decoding="async"></button></li>
-          <li><button type="button" aria-label="Frame 9"><img src="assets/plate/alb-09.jpg" width="240" height="150" alt="" loading="lazy" decoding="async"></button></li>
-          <li><button type="button" aria-label="Frame 10"><img src="assets/plate/alb-10.jpg" width="240" height="150" alt="" loading="lazy" decoding="async"></button></li>
-          <li><button type="button" aria-label="Frame 11"><img src="assets/plate/alb-11.jpg" width="240" height="150" alt="" loading="lazy" decoding="async"></button></li>
-                </ol>
-                <p class="why">In 1878 people argued over whether a galloping horse ever has all four hooves in the air. Muybridge stopped arguing and set up cameras along the track, 27 inches and about 1/25 of a second apart, each exposure shorter than 1/2000 of a second. <b>Frames 2 and 3 settled it.</b> I bring the same habit to models: set up the measurement first, then read what it says.</p>
-              </div>
-            </div>
-          </div>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <section id="faq" aria-labelledby="t-faq">
-    <div class="wrap">
-      <p class="leg"><b>Stage 8</b><i></i><span>Both Sides Now</span></p>
-      <div class="faq">
-        <h2 id="t-faq" class="rise">Quick answers</h2>
-        <div>
-          <dl class="qa">
-            <div><dt>Do you need sponsorship? <span class="yn yn-no" aria-hidden="true">NO!</span></dt><dd>U.S. citizen, now and later.</dd></div>
-            <div><dt>When can you start?</dt><dd>January 2027.</dd></div>
-            <div><dt>Will you relocate? <span class="yn yn-yes" aria-hidden="true">YES!</span></dt><dd>Yes, from New York.</dd></div>
-            <div><dt>What roles?</dt><dd>Biostatistics, model risk, analytics.</dd></div>
-          </dl>
-          <details class="more ask">
-            <summary>Ask your own</summary>
-            <div class="more-body">
-              <p>Joseph Joestar's trick is telling an opponent “Your next line is...” before they say it, and D'Arby's Stand, Atum, reads a soul through yes-or-no questions. The box tries both on the questions recruiters ask.</p>
-              <p class="muted">The long answers: I'm a U.S. citizen, so I don't need sponsorship, now or later. My Columbia M.A. in Statistics finishes in December 2026, so I can start in January 2027. I'm in New York and willing to relocate. I'm looking for statistics and data science roles, especially biostatistics, model risk and analytics. The résumé is <a href="Ayaz_Khan_Resume.pdf">Ayaz_Khan_Resume.pdf</a>.</p>
-              <div class="jj-slot" data-jj="joseph" data-jj-css></div>
-            </div>
-          </details>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact" aria-labelledby="t-contact">
-    <div class="wrap">
-      <p class="leg"><b>Stage 9</b><i></i><span>Manhattan Rhapsody</span></p>
-    </div>
-    <div class="wrap finish">
-      <figure>
-        <img class="pf" src="assets/photo-finish.png" width="1309" height="408" loading="lazy" decoding="async" alt="Photo-finish image built from the traced gallop: one fixed slit records time from right to left, so the horse appears stretched and its legs smear in bands.">
-        <div class="pf-scale" aria-hidden="true"><span style="right:0">0 s</span><span style="right:91.7%">1.0 s</span></div>
-        <figcaption>
-          <details class="more pf-more">
-            <summary>Photo finish</summary>
-            <p>A finish-line camera watches one slit and records time instead of space. I ran the eleven traced frames past a single slit at 1/25 s per frame; each band is one exposure, and the legs smear wherever they outrun the body. The scale runs from 0 s at the right to 1.0 s at the left.</p>
-          </details>
-        </figcaption>
-      </figure>
-    </div>
-    <div class="wrap contact">
-      <div class="rise">
-        <h2 id="t-contact" class="vh">Contact</h2>
-        <p class="statement">Hiring in data science, statistics, biostatistics, model risk, quant analytics or quant finance? I can start in January 2027.</p>
-      </div>
-      <figure>
-        <img src="assets/plate/alb-12.jpg" width="360" height="226" alt="Frame 12 of Muybridge's 1878 plate: the horse standing still." loading="lazy" decoding="async">
-        <figcaption class="cap">Frame 12, at rest.</figcaption>
-      </figure>
-      <div>
-        <ul class="reach">
-          <li><a href="mailto:aak2259@columbia.edu">aak2259@columbia.edu</a></li>
-          <li><a href="mailto:khanayaz2727@gmail.com">khanayaz2727@gmail.com</a></li>
-          <li><a href="tel:+19179433853">+1 (917) 943-3853</a></li>
-          <li><a href="https://www.linkedin.com/in/ayazkhan27">linkedin.com/in/ayazkhan27</a></li>
-          <li><a href="https://github.com/ayazkhan27">github.com/ayazkhan27</a></li>
-          <li><a href="https://orcid.org/0009-0008-5695-4934">ORCID 0009-0008-5695-4934</a></li>
-        </ul>
-        <a class="btn btn-accent" href="Ayaz_Khan_Resume.pdf" download data-ep="resume">Download résumé (PDF)</a>
-      </div>
+      <button type="button" id="reset"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10a5.5 5.5 0 1 0 1.8-4.1M4 3v4h4"/></svg>Bites the dust: start over</button>
     </div>
   </section>
 </main>
 
-<aside class="tbc" id="tbc" aria-label="End of the page" data-ep="end">
-  <div class="tbc-title"><svg class="lockup" viewBox="0 0 1324 216" role="img" aria-label="Ayaz's Bizarre Adventure"><defs><path id="lk-a" d="M 126.0 71.3 C 121.7 78.0 116.5 86.3 110.4 96.1 C 104.2 105.9 97.0 117.7 88.6 131.4 C 92.5 131.0 96.9 130.8 101.6 130.8 C 106.0 130.8 110.1 131.0 113.8 131.4 C 114.9 124.6 116.4 116.2 118.5 106.2 C 120.5 96.3 123.0 84.6 126.0 71.3Z M 177.6 15.6 C 163.7 65.2 152.3 122.4 143.3 187.2 L 99.8 197.6 L 105.9 166.6 C 99.2 165.4 92.3 164.8 85.4 164.8 C 83.0 164.8 80.5 164.9 77.9 165.1 C 75.2 165.3 72.4 165.5 69.2 165.8 L 52.4 197.4 L 12.0 196.3 C 25.5 173.0 41.6 146.5 60.3 116.5 C 79.0 86.6 100.6 53.0 125.0 15.8ZM 308.2 20.0 C 298.0 30.9 287.8 42.3 277.6 54.2 C 267.4 66.2 256.9 78.9 246.2 92.3 C 237.2 103.6 230.4 114.7 225.8 125.5 C 223.6 130.6 221.5 135.9 219.4 141.4 C 217.3 146.9 215.1 152.8 212.8 159.1 L 179.4 159.1 C 183.3 148.3 187.0 138.5 190.5 129.7 C 194.0 120.9 197.4 112.9 200.8 105.8 C 200.2 102.7 199.9 99.5 199.7 96.1 C 199.5 92.7 199.4 89.1 199.4 85.4 C 199.4 73.7 199.7 62.5 200.4 52.0 C 201.1 41.6 202.2 31.6 203.6 22.3 L 239.1 16.6 C 239.0 16.9 238.8 18.8 238.4 22.1 C 238.0 25.5 237.3 30.4 236.4 36.8 C 235.8 41.0 235.3 44.7 235.0 48.1 C 234.7 51.4 234.6 54.5 234.6 57.2 C 234.6 59.0 234.6 60.6 234.7 62.0 C 234.7 63.5 234.8 64.8 234.9 65.8 C 243.0 54.5 250.3 44.7 257.1 36.5 C 263.8 28.3 270.2 21.5 276.2 16.2ZM 332.0 63.3 C 328.7 68.2 324.7 74.3 320.2 81.8 C 315.6 89.3 310.0 98.1 303.6 108.2 C 305.0 108.1 306.5 108.0 308.1 107.9 C 309.8 107.8 311.6 107.8 313.5 107.8 C 315.3 107.8 317.0 107.8 318.6 107.9 C 320.2 108.0 321.7 108.1 323.0 108.2 C 323.9 103.2 325.2 97.0 326.6 89.5 C 328.1 82.1 329.9 73.4 332.0 63.3Z M 374.8 16.2 C 363.5 56.7 354.3 102.6 347.3 154.0 L 312.9 156.2 L 316.6 137.0 C 312.0 136.2 307.0 135.8 301.6 135.8 C 299.4 135.8 297.1 135.9 294.7 136.0 C 292.4 136.2 290.1 136.3 287.9 136.6 L 275.9 158.9 L 241.0 161.0 C 246.7 151.3 252.8 141.0 259.3 130.2 C 265.9 119.4 272.9 108.1 280.4 96.1 C 287.9 84.1 296.0 71.5 304.5 58.2 C 313.0 45.0 322.1 31.0 331.8 16.4ZM 510.8 12.0 C 502.2 20.9 493.7 29.9 485.3 39.1 C 476.9 48.2 468.4 57.6 459.9 67.5 L 463.3 67.5 L 467.1 67.5 C 467.8 67.5 468.6 67.5 469.4 67.4 C 470.3 67.4 471.1 67.3 472.1 67.3 L 458.9 98.8 L 456.0 98.8 C 448.9 98.8 441.0 99.0 432.2 99.4 C 427.3 105.1 423.0 110.3 419.3 115.0 C 415.5 119.7 412.2 123.8 409.3 127.4 C 418.9 126.8 428.3 125.9 437.4 124.8 C 446.6 123.8 455.8 122.5 465.0 121.1 L 443.4 153.0 C 429.4 154.9 414.9 156.3 399.7 157.3 C 384.6 158.2 368.4 158.7 351.3 158.7 C 357.8 150.2 364.8 141.3 372.4 132.0 C 380.0 122.6 388.3 112.7 397.3 102.0 C 393.7 102.3 390.4 102.6 387.3 103.0 C 384.2 103.4 381.3 103.8 378.6 104.3 L 391.6 72.4 C 397.3 71.8 402.8 71.2 408.2 70.7 C 413.6 70.3 419.4 69.7 425.5 69.2 C 428.6 65.7 431.8 62.1 435.0 58.4 C 438.2 54.7 441.6 50.8 445.2 46.9 C 431.7 47.5 415.7 47.9 397.3 48.0 L 416.6 17.5 C 433.3 17.1 449.5 16.5 465.1 15.6 C 480.8 14.7 496.0 13.5 510.8 12.0ZM 547.2 43.6 L 506.2 61.2 L 511.4 49.4 L 517.8 44.2 L 513.0 43.8 L 523.4 19.8 L 556.8 19.0ZM 636.2 48.8 C 623.9 49.2 617.5 49.5 617.0 49.6 C 608.1 51.0 603.6 54.3 603.6 59.5 C 603.6 60.0 603.7 61.4 604.0 63.7 C 604.3 66.0 604.6 69.3 605.2 73.6 C 606.1 80.5 606.8 86.0 607.2 89.9 C 607.6 93.9 607.8 96.5 607.8 97.6 C 607.8 103.2 606.7 109.2 604.4 115.4 C 602.3 120.8 600.1 125.0 597.8 127.8 C 590.3 137.7 578.5 145.6 562.4 151.5 C 555.9 153.7 549.1 155.6 542.1 157.1 C 535.0 158.5 527.7 159.5 520.0 160.0 L 530.4 124.2 C 536.2 123.6 541.4 122.8 545.9 121.9 C 550.4 121.0 554.2 119.9 557.4 118.8 C 561.3 117.5 563.9 115.9 565.2 114.0 C 566.7 112.1 567.4 109.1 567.4 105.1 C 567.4 103.3 567.3 101.6 567.3 100.0 C 567.2 98.4 567.1 96.9 567.0 95.4 C 566.7 92.9 565.9 88.3 564.6 81.6 C 563.4 76.0 562.8 71.4 562.8 67.7 C 562.8 57.9 567.2 48.2 576.2 38.5 C 583.8 30.1 592.7 23.7 603.0 19.4 C 610.9 16.1 621.3 14.4 634.2 14.4 C 637.3 14.4 640.4 14.5 643.3 14.7 C 646.3 14.9 649.2 15.2 652.0 15.4Z"/><path id="lk-b" d="M 682.0 97.1 L 693.9 12.0 L 729.3 12.0 C 735.6 12.0 740.8 13.7 744.7 17.2 C 748.6 20.7 750.6 25.2 750.6 30.8 C 750.6 34.5 749.9 37.8 748.4 40.6 C 746.9 43.5 744.9 46.0 742.6 48.0 C 740.2 50.0 737.6 51.5 734.9 52.4 L 734.7 52.9 C 738.3 54.2 741.2 56.4 743.5 59.7 C 745.8 62.9 746.9 67.0 746.9 71.8 C 746.9 77.0 745.5 81.5 742.9 85.3 C 740.2 89.1 736.7 92.0 732.5 94.0 C 728.3 96.1 723.8 97.1 719.1 97.1Z M 699.6 82.9 L 718.4 82.9 C 720.7 82.9 722.8 82.4 724.7 81.4 C 726.6 80.4 728.1 79.0 729.2 77.1 C 730.3 75.2 730.9 72.8 730.9 70.0 C 730.9 67.3 730.0 65.0 728.4 63.2 C 726.7 61.4 724.0 60.5 720.4 60.5 L 702.9 60.5Z M 704.9 46.5 L 721.3 46.5 C 724.1 46.5 726.4 45.9 728.3 44.8 C 730.2 43.7 731.6 42.2 732.6 40.5 C 733.6 38.7 734.1 36.8 734.1 34.7 C 734.1 31.8 733.3 29.6 731.8 28.2 C 730.2 26.8 728.0 26.1 725.3 26.1 L 707.7 26.1ZM 754.2 97.1 L 766.1 12.0 L 781.9 12.0 L 770.0 97.1ZM 778.8 97.1 L 779.3 91.0 L 821.8 26.1 L 790.8 26.1 L 792.8 12.0 L 845.8 12.0 L 845.3 18.2 L 802.7 82.9 L 837.2 82.9 L 835.2 97.1ZM 838.3 97.1 L 877.2 12.0 L 895.4 12.0 L 910.7 97.1 L 894.6 97.1 L 891.8 80.3 L 861.5 80.3 L 854.2 97.1Z M 867.8 66.2 L 889.5 66.2 L 885.8 42.9 C 885.4 40.7 885.2 38.4 885.0 35.8 C 884.8 33.2 884.6 31.0 884.5 29.2 C 884.3 27.3 884.3 26.4 884.3 26.4 L 883.8 26.4 C 883.8 26.4 883.5 27.3 882.9 29.2 C 882.3 31.1 881.6 33.4 880.7 35.9 C 879.9 38.5 879.0 40.8 878.1 42.9ZM 919.3 97.1 L 931.2 12.0 L 964.5 12.0 C 972.8 12.0 978.9 13.9 982.9 17.8 C 986.9 21.7 988.9 26.8 988.9 33.0 C 988.9 39.1 987.3 44.4 984.1 48.9 C 980.9 53.4 976.5 56.6 971.0 58.5 L 982.4 97.1 L 965.4 97.1 L 955.5 61.6 L 939.8 61.6 L 935.0 97.1Z M 941.8 47.6 L 958.6 47.6 C 962.7 47.6 966.0 46.5 968.4 44.2 C 970.8 42.0 972.0 39.0 972.0 35.2 C 972.0 32.4 971.2 30.2 969.6 28.6 C 968.0 26.9 965.5 26.1 962.2 26.1 L 944.9 26.1ZM 992.7 97.1 L 1004.6 12.0 L 1037.9 12.0 C 1046.2 12.0 1052.3 13.9 1056.3 17.8 C 1060.3 21.7 1062.3 26.8 1062.3 33.0 C 1062.3 39.1 1060.7 44.4 1057.5 48.9 C 1054.3 53.4 1049.9 56.6 1044.4 58.5 L 1055.8 97.1 L 1038.8 97.1 L 1028.9 61.6 L 1013.2 61.6 L 1008.4 97.1Z M 1015.2 47.6 L 1032.0 47.6 C 1036.1 47.6 1039.4 46.5 1041.8 44.2 C 1044.2 42.0 1045.4 39.0 1045.4 35.2 C 1045.4 32.4 1044.6 30.2 1043.0 28.6 C 1041.4 26.9 1039.0 26.1 1035.6 26.1 L 1018.3 26.1ZM 1066.1 97.1 L 1078.0 12.0 L 1131.5 12.0 L 1129.6 26.1 L 1091.7 26.1 L 1088.9 46.5 L 1121.4 46.5 L 1119.4 60.6 L 1086.9 60.6 L 1083.7 82.9 L 1122.4 82.9 L 1120.4 97.1ZM 668.0 196.2 L 707.0 111.1 L 725.2 111.1 L 740.5 196.2 L 724.3 196.2 L 721.6 179.4 L 691.2 179.4 L 683.9 196.2Z M 697.6 165.3 L 719.3 165.3 L 715.5 142.0 C 715.2 139.8 714.9 137.5 714.7 134.9 C 714.5 132.3 714.4 130.1 714.2 128.3 C 714.1 126.4 714.0 125.5 714.0 125.5 L 713.5 125.5 C 713.5 125.5 713.3 126.4 712.7 128.3 C 712.1 130.2 711.4 132.5 710.5 135.0 C 709.6 137.6 708.8 139.9 707.8 142.0ZM 749.0 196.2 L 760.9 111.1 L 787.1 111.1 C 796.5 111.1 803.8 113.8 809.1 119.2 C 814.3 124.5 817.0 132.6 817.0 143.3 C 817.0 148.0 816.5 152.7 815.7 157.7 C 814.8 162.6 813.4 167.3 811.5 171.9 C 809.6 176.5 807.1 180.6 804.1 184.3 C 801.0 187.9 797.3 190.8 793.1 192.9 C 788.8 195.1 783.9 196.2 778.3 196.2Z M 766.7 182.0 L 776.9 182.0 C 780.7 182.0 784.0 181.2 786.7 179.6 C 789.4 178.0 791.7 175.8 793.6 173.1 C 795.4 170.4 796.9 167.3 798.0 164.0 C 799.1 160.7 799.8 157.4 800.3 154.0 C 800.7 150.6 801.0 147.4 801.0 144.4 C 801.0 138.1 799.5 133.3 796.7 130.1 C 793.8 126.8 789.9 125.2 784.8 125.2 L 774.7 125.2ZM 841.0 196.2 L 827.3 111.1 L 843.4 111.1 L 852.2 171.6 L 852.7 171.6 L 878.5 111.1 L 894.3 111.1 L 856.8 196.2ZM 890.2 196.2 L 902.2 111.1 L 955.7 111.1 L 953.7 125.2 L 915.9 125.2 L 913.1 145.6 L 945.6 145.6 L 943.6 159.7 L 911.1 159.7 L 907.9 182.0 L 946.5 182.0 L 944.6 196.2ZM 958.1 196.2 L 970.0 111.1 L 983.9 111.1 L 1003.3 158.0 C 1003.7 158.6 1004.0 159.6 1004.5 160.9 C 1004.9 162.2 1005.2 163.3 1005.6 164.3 C 1005.9 165.4 1006.1 165.9 1006.1 165.9 L 1006.4 165.5 C 1006.4 165.5 1006.5 165.0 1006.6 164.0 C 1006.7 163.0 1006.9 162.0 1007.0 160.8 C 1007.1 159.7 1007.2 158.9 1007.3 158.5 L 1013.9 111.1 L 1027.9 111.1 L 1016.0 196.2 L 1002.0 196.2 L 982.5 149.3 C 982.3 148.7 981.9 147.8 981.4 146.5 C 981.0 145.2 980.6 144.0 980.3 143.0 C 979.9 141.9 979.8 141.3 979.8 141.3 L 979.3 141.7 C 979.3 141.7 979.2 142.2 979.2 143.0 C 979.1 143.9 979.0 144.9 978.9 146.0 C 978.8 147.1 978.7 148.0 978.5 148.8 L 972.0 196.2ZM 1047.0 196.2 L 1056.9 125.2 L 1035.9 125.2 L 1037.9 111.1 L 1095.5 111.1 L 1093.5 125.2 L 1072.5 125.2 L 1062.6 196.2ZM 1125.1 197.6 C 1116.3 197.6 1109.5 195.7 1104.7 191.7 C 1099.9 187.7 1097.5 181.9 1097.5 174.3 C 1097.5 173.5 1097.6 171.7 1097.9 169.1 C 1098.2 166.4 1098.6 163.1 1099.1 159.3 C 1099.6 155.4 1100.1 151.3 1100.7 147.0 C 1101.4 142.6 1102.0 138.4 1102.6 134.2 C 1103.2 129.9 1103.8 126.1 1104.3 122.6 C 1104.8 119.2 1105.2 116.4 1105.4 114.3 C 1105.7 112.1 1105.9 111.1 1105.9 111.1 L 1121.6 111.1 C 1121.6 111.1 1121.5 112.1 1121.2 114.2 C 1120.9 116.3 1120.5 119.0 1120.0 122.4 C 1119.5 125.9 1119.0 129.7 1118.4 133.8 C 1117.8 137.9 1117.2 142.1 1116.6 146.3 C 1116.0 150.5 1115.4 154.4 1114.9 158.0 C 1114.4 161.6 1114.0 164.6 1113.8 167.1 C 1113.5 169.5 1113.3 171.0 1113.3 171.5 C 1113.3 175.5 1114.3 178.6 1116.4 180.8 C 1118.4 182.9 1121.3 184.0 1125.1 184.0 C 1129.2 184.0 1132.6 182.6 1135.1 179.9 C 1137.6 177.2 1139.2 173.2 1140.0 168.0 L 1147.9 111.1 L 1163.7 111.1 L 1155.6 168.5 C 1154.3 178.0 1151.0 185.2 1145.6 190.2 C 1140.3 195.2 1133.5 197.6 1125.1 197.6ZM 1167.0 196.2 L 1178.9 111.1 L 1212.3 111.1 C 1220.5 111.1 1226.7 113.0 1230.7 116.9 C 1234.7 120.8 1236.7 125.8 1236.7 132.0 C 1236.7 138.2 1235.1 143.5 1231.9 148.0 C 1228.6 152.5 1224.3 155.7 1218.7 157.6 L 1230.1 196.2 L 1213.1 196.2 L 1203.2 160.7 L 1187.6 160.7 L 1182.8 196.2Z M 1189.6 146.7 L 1206.3 146.7 C 1210.5 146.7 1213.7 145.6 1216.1 143.3 C 1218.5 141.1 1219.7 138.1 1219.7 134.3 C 1219.7 131.5 1218.9 129.3 1217.4 127.6 C 1215.8 126.0 1213.3 125.2 1209.9 125.2 L 1192.7 125.2ZM 1240.4 196.2 L 1252.3 111.1 L 1305.9 111.1 L 1303.9 125.2 L 1266.1 125.2 L 1263.2 145.6 L 1295.7 145.6 L 1293.7 159.7 L 1261.3 159.7 L 1258.0 182.0 L 1296.7 182.0 L 1294.7 196.2Z"/><linearGradient id="lk-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" class="lk-s1"/><stop offset=".5" class="lk-s2"/><stop offset="1" class="lk-s3"/></linearGradient><linearGradient id="lk-shine" x1="0" y1="0" x2="1" y2="0"><stop offset="0" class="lk-g0"/><stop offset=".5" class="lk-g1"/><stop offset="1" class="lk-g0"/></linearGradient><mask id="lk-top"><use href="#lk-a" fill="#fff"/><use href="#lk-a" fill="#000" transform="translate(0 3.5)"/></mask><clipPath id="lk-clip"><use href="#lk-a"/></clipPath></defs><g class="lk-stack"><use href="#lk-b" class="lk-b-shadow" transform="translate(4.5 5.5)"/><use href="#lk-b" class="lk-b-ink"/><use href="#lk-b" class="lk-b-fill"/></g><g class="lk-name"><use href="#lk-a" class="lk-ext" transform="translate(7.2 9.0)"/><use href="#lk-a" class="lk-ext" transform="translate(6.0 7.5)"/><use href="#lk-a" class="lk-ext" transform="translate(4.8 6.0)"/><use href="#lk-a" class="lk-ext" transform="translate(3.6 4.5)"/><use href="#lk-a" class="lk-ext" transform="translate(2.4 3.0)"/><use href="#lk-a" class="lk-ext" transform="translate(1.2 1.5)"/><use href="#lk-a" class="lk-ink"/><use href="#lk-a" fill="url(#lk-fill)"/><use href="#lk-a" class="lk-hi" mask="url(#lk-top)"/><g clip-path="url(#lk-clip)"><rect class="lk-sheen" x="-260" y="0" width="200" height="216" fill="url(#lk-shine)"/></g></g></svg></div>
-  <svg class="arrow" viewBox="0 0 640 120" role="img" aria-label="To Be Continued">
-    <path class="body" d="M4 60 80 3V31H636L606 60 636 89H80V117Z"/>
-    <path class="in" d="M19 60 72 20V39H620L596 60 620 81H72V100Z"/>
-    <text x="343" y="75" text-anchor="middle">To Be Continued</text>
-  </svg>
-  <p class="tbc-next">Next stage: January 2027</p>
-</aside>
-
 <footer class="foot">
-  <p>Ayaz Khan, statistician</p>
-  <nav aria-label="Footer"><a href="#work">Work</a><a href="sma-1/">SMA-1</a><a href="Ayaz_Khan_Resume.pdf">Résumé</a></nav>
-  <details class="credit">
-    <summary>Credits</summary>
-    <p>Plate: Eadweard Muybridge, <i>The Horse in Motion</i>, 1878, public domain. Type: LT Afficher Neue by LyonsType, Alphazet by Type Forward, Japanese lettering in Dela Gothic One (SIL Open Font License). The title card is lettered in SF Fedora by ShyFonts and Archivo Narrow (SIL Open Font License), set as outlines.</p>
-    <p>Music: “Smooth” (instrumental), Santana.</p>
-    <p>Steel Ball Run and JoJo's Bizarre Adventure are by Hirohiko Araki, published by Shueisha. This page is an unaffiliated fan homage: it uses no art, music or sound from the series, and its sound effects are original.</p>
-    <p>This page runs as the 1890 horse race in Steel Ball Run, Part 7 of JoJo's Bizarre Adventure: nine stages and about 6,000 km, from San Diego Beach to Trinity Church in Manhattan. The race ended in New York in January 1891. My next stage starts in January 2027.</p>
-  </details>
+  <p>Music: “Smooth” (instrumental), Santana. Unaffiliated parody of JoJo's Bizarre Adventure by Hirohiko Araki. All art and sound effects are original.</p>
 </footer>
 
-<nav class="rail" id="rail" aria-label="Route: San Diego to New York, one post per stage">
-  <div class="rail-in">
-    <span class="rail-end" aria-hidden="true">San Diego</span>
-    <div class="rail-field" id="rail-field">
-      <svg class="rail-track" aria-hidden="true" preserveAspectRatio="none" viewBox="0 0 100 10"><path d="M0 3H100M0 8H100" vector-effect="non-scaling-stroke"/></svg>
-      <svg class="rail-prints" id="prints" aria-hidden="true"></svg>
-      <ol class="posts">
-        <li><a class="post" href="#results" aria-label="Stage 1, results"><span class="lab">Results</span></a></li>
-        <li><a class="post" href="#work" aria-label="Stage 2, Telenav"><span class="lab">Telenav</span></a></li>
-        <li><a class="post" href="#research" aria-label="Stage 3, research"><span class="lab">Research</span></a></li>
-        <li><a class="post" href="#record" aria-label="Stage 4, record"><span class="lab">Record</span></a></li>
-        <li><a class="post" href="#lab" aria-label="Stages 5 to 7, the Lab"><span class="lab">Lab</span></a></li>
-        <li><a class="post" href="#faq" aria-label="Stage 8, quick answers"><span class="lab">Answers</span></a></li>
-        <li><a class="post" href="#contact" aria-label="Stage 9, contact"><span class="lab">Contact</span></a></li>
-      </ol>
-      <svg class="rail-horse" id="rail-horse" viewBox="100 40 1100 780" aria-hidden="true"><use href="#h1"/></svg>
-    </div>
-    <span class="rail-end" aria-hidden="true">New York</span>
-    <div class="global">
-      <button type="button" class="gbtn" data-sound aria-pressed="false" aria-label="Sound" data-pending title="Sound: music and effects"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7.5h3.5L11 4v12l-4.5-3.5H3z"/><path class="on" d="M13.5 7.2a4 4 0 0 1 0 5.6M15.8 5a7 7 0 0 1 0 10"/></svg></button>
-      <button type="button" class="gbtn" data-time aria-label="Stop time"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="11" r="7"/><path d="M10 7v4l2.5 2.5M8 2h4"/></svg></button>
-    </div>
-  </div>
+<nav class="ctl" id="ctl" aria-label="Page controls" hidden>
+  <button type="button" id="stop" hidden>Stop</button>
+  <button type="button" id="sound" aria-pressed="true" aria-label="Sound"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7.5h3.5L11 4v12l-4.5-3.5H3z"/><path class="on" d="M13.5 7.2a4 4 0 0 1 0 5.6M15.8 5a7 7 0 0 1 0 10"/></svg></button>
+  <button type="button" id="time" aria-pressed="false"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="11" r="7"/><path d="M10 7v4l2.5 2.5M8 2h4"/></svg><span id="timeL">Stop time</span></button>
 </nav>
+
+<div id="stage" hidden>
+  <i class="lines" id="lines"></i>
+  <b class="bigsfx" id="bigsfx" aria-hidden="true"></b>
+  <div id="slot"></div>
+  <p class="sr" id="said" aria-live="polite"></p>
+</div>
+<audio id="epAudio" src="assets/audio/episode.mp3" preload="none"></audio>
+
+<template id="ep">
+  <div class="line" data-k="nsf"><b>1 of 1,000</b><span>NSF Graduate Research Fellow, from 17,000 applicants</span></div>
+  <div class="line" data-k="cu"><b>Columbia</b><span>M.A. Statistics, December 2026</span></div>
+  <div class="line q" data-k="us"><span>U.S. citizen?</span><b class="yes">YES</b></div>
+  <div class="line q" data-k="sp"><span>Need sponsorship?</span><b class="no">NO</b></div>
+  <div class="line jan" data-k="jan"><b>January 2027</b><span><a class="btn" href="Ayaz_Khan_Resume.pdf" download>Résumé (PDF)</a><a href="mailto:aak2259@columbia.edu">aak2259@columbia.edu</a></span></div>
+  <svg id="tbcArrow" class="arrow" data-k="tbc" viewBox="0 0 640 120" role="img" aria-label="To Be Continued"><path class="body" d="M4 60 80 3V31H636L606 60 636 89H80V117Z"/><path class="in" d="M19 60 72 20V39H620L596 60 620 81H72V100Z"/><text x="343" y="75" text-anchor="middle">To Be Continued</text></svg>
+</template>
 <script src="assets/site.js" defer></script>
 </body>
 </html>
