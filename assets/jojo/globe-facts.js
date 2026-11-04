@@ -24,7 +24,7 @@ export const FACTS = [
 "id": 110,
 "lat": 19.5731,
 "lon": -98.8214,
-"fact": "Aztec surveyors near Mexico City measured fields in arrows, hearts and hands: two arrows made one land rod, five hearts made two.",
+"fact": "Researchers found Aztec surveyors near Mexico City measured fields in arrows, hearts and hands: two arrows made one land rod, five hearts made two.",
 "src": "https://www.scientificamerican.com/article/aztec-math-uses-hearts-and-arrows/"
 },
 {
@@ -33,7 +33,7 @@ export const FACTS = [
 "id": 211,
 "lat": -22.9799,
 "lon": -43.2332,
-"fact": "Lua came from data-entry tools built in Brazil for Petrobras engineers; it modified a language called Sol (sun), so a friend suggested Lua (moon).",
+"fact": "Lua descends from data tools built in Brazil for Petrobras engineers; because it modified a language called Sol (sun), a friend suggested Lua (moon).",
 "src": "https://www.lua.org/history.html"
 },
 {
@@ -42,7 +42,7 @@ export const FACTS = [
 "id": 232,
 "lat": -34.9215,
 "lon": -57.9545,
-"fact": "Juan Vucetich devised the first workable fingerprint identification system after joining the La Plata Police Office of Identification and Statistics in Argentina.",
+"fact": "Juan Vucetich of La Plata’s Police Office of Identification and Statistics broke with body measurements, arguing ten fingerprints alone could identify a person.",
 "src": "https://www.nlm.nih.gov/exhibition/visibleproofs/galleries/biographies/vucetich.html"
 },
 {
@@ -51,7 +51,7 @@ export const FACTS = [
 "id": 195,
 "lat": 2.4448,
 "lon": -76.6147,
-"fact": "In 1801 Francisco José de Caldas, in present-day Colombia, found altitude could be read from water’s boiling temperature, no mercury barometer needed.",
+"fact": "By 1801, self-taught Francisco José de Caldas of present-day Colombia had worked out that water’s boiling temperature reveals altitude, no mercury barometer needed.",
 "src": "https://diposit.ub.edu/items/79abcd83-cfe3-4161-bb5d-9e8c01fe2511"
 },
 {
@@ -60,7 +60,7 @@ export const FACTS = [
 "id": 82,
 "lat": -8.9889,
 "lon": -78.6142,
-"fact": "During spring break, a Harvard freshman matched six knotted khipu cords from Peru to a 1670 census of 132 Recuay tribute payers.",
+"fact": "During spring break, a Harvard freshman guided by Gary Urton linked six knotted-cord khipus from Peru to a 1670 census of 132 tribute payers.",
 "src": "https://news.harvard.edu/gazette/story/2017/08/a-students-mines-voices-from-the-incan-past"
 },
 {
@@ -78,7 +78,7 @@ export const FACTS = [
 "id": 188,
 "lat": 23.1339,
 "lon": -82.3549,
-"fact": "In Havana, Benito Viñes forecast an 1875 hurricane from cloud data and past storms; next year, the only captain ignoring him lost his ship.",
+"fact": "In Havana, Benito Viñes forecast an 1875 hurricane using cloud data and past storms; next year, the only captain ignoring him lost his ship.",
 "src": "https://www.encyclopedia.com/humanities/encyclopedias-almanacs-transcripts-and-maps/vines-y-martorell-benito-1837-1893"
 },
 {
@@ -105,7 +105,7 @@ export const FACTS = [
 "id": 214,
 "lat": -20.1338,
 "lon": -67.4891,
-"fact": "GPS surveyors on Bolivia’s Salar de Uyuni measured a 77-centimeter height range and could tell their SUVs rode 5 millimeters higher on empty tanks.",
+"fact": "GPS surveyors on Bolivia’s Salar de Uyuni measured a 77-centimeter elevation range and detected their SUVs riding about 5 millimeters higher on empty tanks.",
 "src": "https://www.sciencenews.org/article/salt-flat-isnt-flat-worlds-largest-playa-sports-ridges-valleys"
 },
 {
@@ -114,7 +114,7 @@ export const FACTS = [
 "id": 85,
 "lat": 9.1543,
 "lon": -79.8461,
-"fact": "Panama’s Barro Colorado Island has a census of trees: a 50-hectare plot recounted every 5 years from 1985 through 2015, logging 423,617 trees.",
+"fact": "Panama’s Barro Colorado Island has a tree census: a 50-hectare plot recounted every 5 years from 1985 through 2015, its archive listing 423,617 trees.",
 "src": "https://datadryad.org/dataset/doi:10.15146/5xcp-0d46"
 },
 {
@@ -132,7 +132,7 @@ export const FACTS = [
 "id": 137,
 "lat": 18.0179,
 "lon": -76.8099,
-"fact": "Jamaican toddlers randomized to weekly home visits, where mothers learned play, were earning 25 percent more than controls twenty years later.",
+"fact": "Jamaican toddlers randomized to weekly home visits that taught mothers to play with them earned 25 percent more than controls twenty years later.",
 "src": "https://news.berkeley.edu/2014/05/29/study-shows-early-childhood-stimulation-intervention-in-jamaica-yields-later-earnings-benefits/"
 },
 {
@@ -213,7 +213,7 @@ export const FACTS = [
 "id": 184,
 "lat": 56.39,
 "lon": 9.37,
-"fact": "Interned in Denmark from 1940, South African mathematician John Kerrich passed the time flipping a coin 10,000 times, getting 5,067 heads.",
+"fact": "Interned in Denmark from 1940, mathematician John Kerrich passed the time flipping a coin 10,000 times, getting 5,067 heads.",
 "src": "https://uio.no/studier/emner/matnat/math/MAT4010/data/forelesningsnotater/the-cenetral-limit-theorem.pdf"
 },
 {
@@ -375,7 +375,7 @@ export const FACTS = [
 "id": 104,
 "lat": 31.6295,
 "lon": -7.9811,
-"fact": "Around 1200, probably at the court in Marrakech, Ibn Mun’im counted tassels from 10 silk colours with a table we now call Pascal’s triangle.",
+"fact": "Around 1200, Ibn Mun’im, who probably lived in Marrakech, counted tassels from 10 silk colors with a table we now call Pascal’s triangle.",
 "src": "https://bms.ulb.ac.be/mathconf2017/presentaties/Jeanine_Daems-History.pdf"
 },
 {
@@ -384,7 +384,7 @@ export const FACTS = [
 "id": 91,
 "lat": 7.43,
 "lon": 3.28,
-"fact": "Igbo-Ora, Nigeria, has the highest non-identical twinning rate reported anywhere: 45 per 1,000 live births, though hospital surveys later found it falling.",
+"fact": "Igbo-Ora, Nigeria, is reported to have the world’s highest non-identical twinning rate, 45 per 1,000 live births, though hospital surveys later found it falling.",
 "src": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7714157/"
 },
 {
@@ -393,7 +393,7 @@ export const FACTS = [
 "id": 156,
 "lat": 6.69,
 "lon": -1.62,
-"fact": "Akan goldsmiths in today’s Ghana and Côte d’Ivoire cast roughly three million brass weights from 1400 to about 1908 to weigh gold-dust money.",
+"fact": "Akan goldsmiths in today’s Ghana and Côte d’Ivoire cast an estimated three million brass weights from 1400 to about 1908 for weighing gold-dust money.",
 "src": "https://artmuseum.princeton.edu/art/collections/objects/1525"
 },
 {
@@ -402,7 +402,7 @@ export const FACTS = [
 "id": 133,
 "lat": 0.62,
 "lon": 37.53,
-"fact": "A machine learning model could predict which elephant was being addressed from the acoustics of wild calls recorded in Kenya, evidence of name-like calls.",
+"fact": "A random forest matched wild elephant calls recorded in Kenya to their intended receiver better than chance, evidence of individually specific, name-like calls.",
 "src": "https://www.nature.com/articles/s41559-024-02420-w"
 },
 {
@@ -411,7 +411,7 @@ export const FACTS = [
 "id": 35,
 "lat": 0.3476,
 "lon": 32.5825,
-"fact": "Makerere University’s AirQo air monitors ride on Kampala’s boda-boda motorcycles, so one device collects data from many points instead of one.",
+"fact": "Makerere University’s AirQo air monitors can ride on Kampala’s boda-boda motorcycles, letting one device collect data from many points instead of one.",
 "src": "https://theconversation.com/how-were-measuring-air-quality-in-kampala-and-why-it-works-for-african-cities-143006"
 },
 {
@@ -438,7 +438,7 @@ export const FACTS = [
 "id": 57,
 "lat": -26.2,
 "lon": 28.05,
-"fact": "Kriging, kin to Gaussian process regression, honours Daniel Krige, who saw Witwatersrand gold estimates undervalue low-grade mine panels and overvalue high-grade ones.",
+"fact": "Kriging, closely related to Gaussian process regression, honors Daniel Krige, who saw Witwatersrand gold estimates undervalue low-grade mine panels and overvalue high-grade ones.",
 "src": "https://arxiv.org/pdf/2408.02331"
 },
 {
@@ -447,8 +447,8 @@ export const FACTS = [
 "id": 142,
 "lat": 33.3152,
 "lon": 44.3661,
-"fact": "Both algorithm and algebra come from one scholar at Baghdad’s House of Wisdom: algorithm from al-Khwarizmi’s name, algebra from his treatise’s title.",
-"src": "https://mathshistory.st-andrews.ac.uk/Biographies/Al-Khwarizmi/"
+"fact": "Al-Kindi, a ninth-century Baghdad scholar, based the letter counts behind his cipher-breaking method on 7 pages totaling 3,667 letters.",
+"src": "https://arxiv.org/pdf/1211.6847"
 },
 {
 "iso": "ir",
@@ -456,8 +456,8 @@ export const FACTS = [
 "id": 143,
 "lat": 32.6546,
 "lon": 51.668,
-"fact": "Omar Khayyam at Esfahan measured the year as 365.24219858156 days, though its true length shifts in the sixth decimal within one lifetime.",
-"src": "https://mathshistory.st-andrews.ac.uk/Biographies/Khayyam/"
+"fact": "The 365.24219858156-day year credited to Omar Khayyam equals 365 + 683/2820, a modern leap cycle’s average, and has no known historical source.",
+"src": "https://arxiv.org/pdf/astro-ph/0409620v1"
 },
 {
 "iso": "il",
@@ -474,7 +474,7 @@ export const FACTS = [
 "id": 37,
 "lat": 41.013,
 "lon": 28.9637,
-"fact": "The paper that triggered studies of the birthday problem was written in Istanbul, where Richard von Mises held a university chair.",
+"fact": "While holding a chair in Istanbul, Richard von Mises wrote a probability paper that spurred many later studies of the birthday problem.",
 "src": "https://mathshistory.st-andrews.ac.uk/Strick/mises.pdf"
 },
 {
@@ -482,8 +482,8 @@ export const FACTS = [
 "name": "Jordan",
 "id": 135,
 "lat": 30.28,
-"lon": 36.95,
-"fact": "Python graph code scored a Neolithic plan carved on a 92 kg Jordanian monolith 75.90% similar to a stone hunting trap 16.3 km away.",
+"lon": 37,
+"fact": "Python graph code scored a plan carved on a 92 kg Jordanian monolith 75.90% similar to a Neolithic stone hunting trap 16.3 km away.",
 "src": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0277927"
 },
 {

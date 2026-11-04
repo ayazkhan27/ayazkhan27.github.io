@@ -121,10 +121,10 @@ export async function mount(root) {
     $('dust').animate([{ transform: 'translate(-50%,-50%) scale(.2)', opacity: 0 }, { transform: 'translate(-50%,-50%) scale(.2)', opacity: 0.9, offset: 0.5 }, { transform: 'translate(-50%,-50%) scale(1.5)', opacity: 0 }], { duration: 760, easing: 'ease-out' });
     if (user) win.setTimeout(() => sfx({ name: 'ora land', gain: 2 }), 300);
   }
-  function launch(w0) {              // w0 in rad/s
+  function launch(w0, v0 = 0) {      // w0 sideways and v0 vertical, in rad/s
     if (Math.abs(w0) > 0.01) dir = Math.sign(w0);
     pin.hidden = true; hiT = 0; run = null;
-    const speed = Math.max(Math.abs(w0), 1.4), free = speed * Math.min(4.6, 2 + speed / 14) / 3;
+    const speed = Math.max(Math.abs(w0), 1.4), T0 = Math.min(4.6, 2 + Math.max(speed, Math.abs(v0)) / 14), free = speed * T0 / 3;
     let best = null, D = 0, score = Infinity;
     for (const f of pool()) {        // the unseen country nearest where this flick would coast to on its own
       let d = (((-f.lon * RAD - ang) * dir) % TAU + TAU) % TAU;
@@ -136,7 +136,11 @@ export async function mount(root) {
       land(best);
       return;
     }
-    run = { a0: ang, D: dir * D, T: Math.max(1.3, Math.min(5.5, 3 * D / speed)), t: 0, lat0: lat, f: best };
+    const T = Math.abs(v0) > speed ? T0 : Math.max(1.3, Math.min(5.5, 3 * D / speed)), roll = Math.abs(v0) > 1;
+    let dl = (((best.lat * RAD - lat) % TAU) + TAU) % TAU;     // shortest way to the country's latitude, plus whole turns if it was flicked vertically
+    if (dl > Math.PI) dl -= TAU;
+    if (roll) dl += TAU * Math.round((v0 * T / 3 - dl) / TAU);
+    run = { a0: ang, D: dir * D, T, t: 0, lat0: lat, dl, roll, f: best };
     kick();
   }
 
@@ -152,8 +156,9 @@ export async function mount(root) {
       const u = Math.min(1, run.t / run.T), k = 1 - u;
       ang = run.a0 + run.D * (1 - k * k * k);
       w = 3 * run.D / run.T * k * k;
-      lat = run.lat0 + (run.f.lat * RAD - run.lat0) * u * u * (3 - 2 * u);
-      if (u >= 1) { const f = run.f; run = null; w = 0; land(f); }
+      lat = run.lat0 + run.dl * (run.roll ? 1 - k * k * k : u * u * (3 - 2 * u));
+      if (run.roll) w = Math.hypot(w, 3 * run.dl / run.T * k * k);
+      if (u >= 1) { const f = run.f; lat = f.lat * RAD; run = null; w = 0; land(f); }
     }
     const rpm = Math.abs(w) * TO_RPM, target = rpm > GOLDEN ? 1 : 0;
     gold += (target - gold) * (1 - Math.exp(-dt / 0.09));
@@ -252,17 +257,18 @@ export async function mount(root) {
   stage.addEventListener('pointerdown', (e) => {
     if (!gl3 || hold.size || drag || e.button !== 0) return;
     user = true; run = null; pin.hidden = true; hiT = 0;
-    drag = { id: e.pointerId, x: e.clientX, pts: [[e.timeStamp, e.clientX]] };
+    drag = { id: e.pointerId, x: e.clientX, y: e.clientY, pts: [[e.timeStamp, e.clientX, e.clientY]] };
     stage.setPointerCapture(e.pointerId);
     stage.classList.add('is-dragging');
     kick();
   });
   stage.addEventListener('pointermove', (e) => {
     if (!drag || e.pointerId !== drag.id || hold.size) return;
-    ang += (e.clientX - drag.x) / radius;   // the globe follows the finger
-    drag.x = e.clientX;
+    ang += (e.clientX - drag.x) / radius;   // the globe follows the finger, both ways
+    lat += (e.clientY - drag.y) / radius;
+    drag.x = e.clientX; drag.y = e.clientY;
     const cs = e.getCoalescedEvents?.();    // true sample times, even when frames are slow
-    for (const c of cs && cs.length ? cs : [e]) drag.pts.push([c.timeStamp, c.clientX]);
+    for (const c of cs && cs.length ? cs : [e]) drag.pts.push([c.timeStamp, c.clientX, c.clientY]);
     while (drag.pts.length > 2 && e.timeStamp - drag.pts[0][0] > 100) drag.pts.shift();
     kick();
   });
@@ -272,17 +278,18 @@ export async function mount(root) {
     drag = null;
     stage.classList.remove('is-dragging');
     const held = e.type === 'pointercancel' || e.timeStamp - b[0] > 80 || dt < 0.008;
-    launch(held ? 0 : Math.max(-40, Math.min(40, (b[1] - a[1]) / dt / radius)));   // a flick hands over its surface speed; a plain release drifts to the nearest
+    const fl = (i) => Math.max(-40, Math.min(40, (b[i] - a[i]) / dt / radius));   // a flick hands over its surface speed; a plain release drifts to the nearest
+    if (held) launch(0); else launch(fl(1), fl(2));
   };
   stage.addEventListener('pointerup', release);
   stage.addEventListener('pointercancel', release);
   stage.addEventListener('keydown', (e) => {
     if (!gl3 || hold.size) return;
-    const k = e.key, w0 = k === 'ArrowRight' ? 7 : k === 'ArrowLeft' ? -7 : k === ' ' || k === 'Enter' ? dir * 22 : 0;
-    if (!w0) return;
+    const k = e.key, w0 = k === 'ArrowRight' ? 7 : k === 'ArrowLeft' ? -7 : k === ' ' || k === 'Enter' ? dir * 22 : 0, v0 = k === 'ArrowDown' ? 7 : k === 'ArrowUp' ? -7 : 0;
+    if (!w0 && !v0) return;
     e.preventDefault();
     user = true;
-    launch(w0);
+    launch(w0, v0);
   });
 
   /* ---- lifecycle ---- */
