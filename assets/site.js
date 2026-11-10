@@ -54,22 +54,24 @@
   const copy = $('#copy'), copied = $('#copied');
   copy.addEventListener('click', async () => {
     try { await navigator.clipboard.writeText('pip install structuremappingmemory'); copied.textContent = 'Copied'; }
-    catch { copied.textContent = 'Copy failed: select the line above'; }
+    catch { copied.textContent = 'Copy failed: select the line and copy it'; }
   });
 
   /* the long version loads when someone comes near it */
   const sfxApi = { hiss() {}, thud() {}, buzz() {}, wake() {} }, deepUrl = new URL('deep.js' + new URL(d.currentScript.src).search, d.currentScript.src).href;
   new IntersectionObserver(([e]) => d.documentElement.classList.toggle('reading', e.isIntersecting)).observe($('#deep'));
-  const deepIo = new IntersectionObserver((es, o) => { if (es.some(e => e.isIntersecting)) { o.disconnect(); import(deepUrl).then(m => m.init(sfxApi)); } }, { rootMargin: '1400px 0px' });
+  const deepIo = new IntersectionObserver((es, o) => { if (es.some(e => e.isIntersecting)) { o.disconnect(); import(deepUrl).then(m => m.init(sfxApi)).catch(() => $('.long').insertAdjacentHTML('beforeend', '<p class="note" role="status">The interactive parts didn’t load. Reload the page to try again.</p>')); } }, { rootMargin: '1400px 0px' });
   deepIo.observe($('#deep'));
 
   if (STILL) { $$('.sheet').forEach(s => s.classList.add('open')); return; }
 
   /* sound: the gesture that opens the window also wakes the audio */
-  let ac, noiseBuf, soundOn = true, quiet = false;
+  let ac, master, noiseBuf, soundOn = true, quiet = false, vol = .5, sfxLag = 0;
+  try { const v = parseFloat(localStorage.getItem('vol')); if (v >= 0 && v <= 1) vol = v; } catch {}
   const wake = () => {
     if (ac || CAPTURE || !window.AudioContext) return;
     ac = new AudioContext();
+    master = ac.createGain(); master.gain.value = vol; master.connect(ac.destination);
     noiseBuf = ac.createBuffer(1, ac.sampleRate * 2, ac.sampleRate);
     const c = noiseBuf.getChannelData(0);
     for (let i = 0; i < c.length; i++) c[i] = Math.random() * 2 - 1;
@@ -77,18 +79,18 @@
   const hiss = (dur, f0, f1, g) => {
     if (!ac || !soundOn || quiet) return;
     if (ac.state === 'suspended') ac.resume();
-    const s = ac.createBufferSource(), f = ac.createBiquadFilter(), v = ac.createGain(), t = ac.currentTime;
+    const s = ac.createBufferSource(), f = ac.createBiquadFilter(), v = ac.createGain(), t = ac.currentTime + sfxLag;
     s.buffer = noiseBuf; s.loop = true; f.type = 'bandpass'; f.Q.value = .8;
     f.frequency.setValueAtTime(f0, t); f.frequency.exponentialRampToValueAtTime(f1, t + dur);
     v.gain.setValueAtTime(.0001, t); v.gain.exponentialRampToValueAtTime(g, t + dur * .22); v.gain.exponentialRampToValueAtTime(.0001, t + dur);
-    s.connect(f).connect(v).connect(ac.destination); s.start(t); s.stop(t + dur);
+    s.connect(f).connect(v).connect(master); s.start(t); s.stop(t + dur);
   };
   const thud = g => {
     if (!ac || !soundOn || quiet) return;
-    const o = ac.createOscillator(), v = ac.createGain(), t = ac.currentTime;
+    const o = ac.createOscillator(), v = ac.createGain(), t = ac.currentTime + sfxLag;
     o.frequency.setValueAtTime(120, t); o.frequency.exponentialRampToValueAtTime(36, t + .2);
     v.gain.setValueAtTime(g, t); v.gain.exponentialRampToValueAtTime(.0001, t + .26);
-    o.connect(v).connect(ac.destination); o.start(t); o.stop(t + .28);
+    o.connect(v).connect(master); o.start(t); o.stop(t + .28);
   };
   const buzz = p => { if (ac && navigator.vibrate) navigator.vibrate(p); };
   Object.assign(sfxApi, { hiss, thud, buzz, wake });
@@ -206,7 +208,7 @@
   }
 
   /* shutters */
-  const shut = $('#shut'), ctl = $('#ctl'), flash = $('#flash');
+  const shut = $('#shut'), ctl = $('#ctl'), flash = $('#flash'), hero = $('.hero'), behind = [$('.skip'), $('#win'), $('main'), $('.foot')];
   let o = 0, ov = 0, oGoal = 0, opened = false, dragging = false, touched = false, nextRattle = 900;
   const nameEl = $('#name'), nameText = nameEl.textContent;
   nameEl.setAttribute('aria-label', nameText);
@@ -232,6 +234,7 @@
     opened = true; oGoal = 1; ov = Math.max(ov, .06); shut.classList.add('open');
     if (byHand) { hiss(1.5, 350, 1900, .16); thud(.22); buzz([12, 40, 18]); }
     ctl.hidden = false;
+    if (d.activeElement === $('#latch')) { hero.inert = false; $('#play').focus({ preventScroll: true }); }   // the latch is about to vanish, so focus moves to Play
     rush(quietText);
   }
   let dragX = 0, moved = 0;
@@ -250,8 +253,9 @@
   shut.addEventListener('pointercancel', () => { dragging = false; });
   $('#latch').addEventListener('keydown', e => { if (!ep && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); wake(); open(true); } });
   addEventListener('scroll', () => { if (!opened && !ep && scrollY > 6 && !biting) open(false); }, { passive: true });
+  addEventListener('keydown', e => { if (e.key === 'Tab' && !opened && !ep && !biting) { open(false); hero.inert = false; } }, true);
   let idle;
-  const armIdle = () => { const mine = idle = {}; later(3400, () => { if (idle === mine && !opened && !touched && !ep) open(false); }); };
+  const armIdle = () => { const mine = idle = {}; later(1500, () => { if (idle === mine && !opened && !touched && !ep) open(false); }); };
 
   /* foil: gold you can rub off; what's under it is the page's real text */
   function paint(f) {
@@ -362,7 +366,7 @@
     later(4300, () => { if (showing.has(el) && el._f && !el._f.cells.size) blow(el._f); });   // nothing stays locked
   }), { threshold: .55 });
   const ioFly = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) flyIn(e.target); }), { threshold: .08 });
-  papers.forEach(el => { foil(el); io.observe(el); ioFly.observe(el); });
+  papers.forEach(el => { foil(el); io.observe(el); ioFly.observe(el); el.addEventListener('focusin', () => { const f = el._f; if (f && !f.done) blow(f); }); });
   d.fonts && d.fonts.ready.then(() => papers.forEach(el => { const f = el._f; if (f && !f.done && !f.cells.size) paint(f); }));
 
   /* Bites the dust: the wind runs backward, the gold comes back, the window shuts */
@@ -378,7 +382,7 @@
       papers.forEach(el => { const f = el._f; if (f) { f.c.remove(); el._f = null; } foil(el); });
       oGoal = 0; ov = -.05; shut.classList.remove('open'); ctl.hidden = true;
       later(520, () => {
-        thud(.32); buzz(24); opened = false; touched = false; biting = false; dir = 1; ambient = .03; goal = .03; exposure = .25; armIdle();
+        thud(.32); buzz(24); opened = false; touched = false; biting = false; dir = 1; ambient = .03; goal = .03; exposure = .25; armIdle(); $('#latch').focus({ preventScroll: true });
       });
     });
   }
@@ -386,7 +390,18 @@
 
   /* time stop: the wind hangs where it is */
   const soundB = $('#sound'), au = $('#epAudio');
-  soundB.addEventListener('click', () => { soundOn = !soundOn; soundB.setAttribute('aria-pressed', soundOn); au.muted = !soundOn; wake(); });
+  const setSound = v => { soundOn = v; soundB.setAttribute('aria-pressed', v); au.muted = !v; $('#playSound').textContent = v ? 'sound on' : 'muted'; };
+  soundB.addEventListener('click', () => { setSound(!soundOn); wake(); });
+  /* ponytail: iOS Safari ignores audio.volume, so the slider hides there and the phone's own buttons do the job; route #epAudio through `master` if that ever matters */
+  const volB = $('#vol');
+  au.volume = vol; volB.value = Math.round(vol * 100); volB.hidden = au.volume !== vol;
+  volB.addEventListener('input', () => {
+    const wasZero = vol === 0;
+    vol = volB.value / 100; au.volume = vol; if (master) master.gain.value = vol;
+    if (vol === 0 ? soundOn : wasZero && !soundOn) setSound(vol > 0);
+    try { localStorage.setItem('vol', vol); } catch {}
+    wake();
+  });
 
   /* the episode: "Smooth", cut to the song's real accents. Everything holds still between hits, and each card acts out what happened. */
   const slot = $('#slot'), lines = $('#lines'), bigsfx = $('#bigsfx'), said = $('#said'), tpl = $('#ep').content;
@@ -406,7 +421,7 @@
     s.classList.add('scn'); s.style.setProperty('--r', (n % 2 ? -.8 : .7) + 'deg');
     const sc = d.createElement('div'); sc.className = 'sc'; s.querySelector('.fig').replaceWith(sc);
     said.textContent = s.querySelector('h3').textContent + ' ' + s.querySelector('p').textContent;
-    slot.append(s); ep.sc = build(s, sc); ep.cur = foil(s); flutter(s, 1, 620);
+    slot.append(s); ep.sc = build(s, sc); ep.cur = foil(s); flutter(s, 1, 400);
   };
   const gust = () => blow(ep.cur, 500);
   const spoken = el => { const c = el.cloneNode(true); c.querySelectorAll('style,svg,[aria-hidden=true]').forEach(x => x.remove()); c.querySelectorAll('*').forEach(x => x.append(' ')); return c.textContent.trim().replace(/\s+/g, ' '); };
@@ -555,7 +570,7 @@
     const el = piece('scraps');
     slot.replaceChildren(el); stage.style.setProperty('--bg', '#241738'); bigsfx.textContent = '';
     said.textContent = spoken(el);
-    ep.sc = { fly(i) { const p = el.children[i]; p.style.visibility = 'visible'; flutter(p, i % 2 ? -.7 : .7, 420); } };
+    ep.sc = { fly(i) { const p = el.children[i]; p.style.visibility = 'visible'; flutter(p, i % 2 ? -.7 : .7, 300); } };
   };
   const scrapHit = () => { hit(); thud(.2); };
   const stampIn = (el, peak = 1.5) => el.animate([{ scale: peak, opacity: 0 }, { scale: 1, opacity: 1 }], { duration: 150, easing: 'cubic-bezier(.1,.9,.2,1)' });
@@ -563,6 +578,8 @@
   const answer = () => { const big = slot.lastElementChild?.querySelector('b'); if (!big) return; big.style.visibility = ''; stampIn(big, 2.2); shake(); hit(); thud(.35); };
   const RUN = [10.107, 10.248, 10.366, 10.48, 10.612, 10.757, 10.885, 11.017, 11.16, 11.272, 11.402, 11.532, 11.648];
   const END = 47;
+  /* cues fire LEAD early: an entrance takes about 60 ms to look landed (measured), and the cue times sit about 15 ms before the attack. The sounds wait for the note itself. */
+  const LEAD = CAPTURE ? 0 : .05;
   const CUES = [
     [.502, () => { root.classList.add('ep0'); sizeC(); exposure = .25; level = goal = .03; ambient = .03; dir = 1; o = 0; ov = .02; thud(.36); buzz(20); win.animate([0, 1, 2, 3, 4].map(i => ({ transform: `translate(${(4 - i) * (i % 2 ? 2.4 : -2.4)}px,${(4 - i) * (i % 2 ? -1 : 1)}px)` })), { duration: 220, easing: 'linear' }); burst(W / 2, H * .5, R(-8, 8), R(-10, 2), 26); }],
     [1.007, () => { ov += .036; thud(.14); }],
@@ -615,7 +632,8 @@
     stage.style.setProperty('--bg', 'transparent');
     root.classList.remove('ep1', 'ep2', 'epsay', 'epfacts');
     root.classList.add('eps');
-    ctl.hidden = false; pauseB.hidden = false;
+    ctl.hidden = false; pauseB.hidden = exitB.hidden = hintB.hidden = false;
+    behind.forEach(el => { el.inert = true; }); pauseB.focus({ preventScroll: true });
     opened = false; oGoal = 0; shut.classList.remove('open');
     if (wasOpen) {   // the wind takes the words and slams the shutters, and they land on the song's first big hit
       goal = .7; hiss(.5, 500, 2600, .1);
@@ -627,30 +645,35 @@
       root.classList.add('ep0'); sizeC();
       o = 0; ov = 0; exposure = .25; level = goal = .03; ambient = .03; dir = 1;
     }
-    if (!CAPTURE) { au.currentTime = 0; au.muted = !soundOn; au.play().catch(() => { if (ep) ep.silent = true; }); }
+    if (!CAPTURE) { au.currentTime = 0; au.muted = !soundOn; au.play().catch(() => { if (ep) { ep.silent = true; hint(false); } }); }
+    hint(false);
   }
-  ctl.insertAdjacentHTML('afterbegin', '<button type="button" id="pause" aria-pressed="false" hidden>Pause</button><button type="button" id="exit" hidden>Exit</button>');
-  const pauseB = $('#pause'), exitB = $('#exit');
+  ctl.insertAdjacentHTML('afterbegin', '<span id="hint" role="status" hidden></span><button type="button" id="pause" hidden>Pause</button><button type="button" id="exit" hidden>Exit</button>');
+  const pauseB = $('#pause'), exitB = $('#exit'), hintB = $('#hint'), TOUCH = matchMedia('(hover: none)').matches;
+  const hint = paused => { hintB.textContent = (ep?.silent ? 'Playing without sound. ' : '') + (TOUCH ? 'Tap' : 'Space or click') + (paused ? ' to resume.' : ' to pause.') + (TOUCH ? '' : ' Esc exits.'); };
   let heldAnims = [];
   const setPaused = v => {
     if (!ep || CAPTURE || v === !!heldAt) return;
     if (v) {
       heldAt = performance.now(); au.pause();
-      heldAnims = d.getAnimations().filter(a => a.playState === 'running'); heldAnims.forEach(a => a.pause());
+      heldAnims = d.getAnimations().filter(a => a.playState === 'running' && a.effect?.target !== hintB); heldAnims.forEach(a => a.pause());
     } else {
       heldFor += performance.now() - heldAt; heldAt = 0; lastT = now();
       heldAnims.forEach(a => a.play()); heldAnims = [];
       if (!au.ended && !ep.silent) au.play().catch(() => {});
     }
-    root.classList.toggle('ep-paused', v); pauseB.textContent = v ? 'Resume' : 'Pause'; pauseB.setAttribute('aria-pressed', v); exitB.hidden = !v;
+    root.classList.toggle('ep-paused', v); pauseB.textContent = v ? 'Resume' : 'Pause'; hint(v);
   };
   function stopEp(toContact) {
     if (!ep) return;
     setPaused(false);
     ep = null; au.pause(); stage.hidden = true; stage.classList.remove('tbc'); slot.replaceChildren(); $('#tbcArrow')?.remove(); bigsfx.textContent = ''; said.textContent = '';
-    root.classList.remove('eps', 'ep0', 'ep1', 'ep2', 'epsay', 'epfacts'); sizeC(); frozen = false; pauseB.hidden = true; ambient = .15;
+    root.classList.remove('eps', 'ep0', 'ep1', 'ep2', 'epsay', 'epfacts'); sizeC(); frozen = false; pauseB.hidden = exitB.hidden = hintB.hidden = true; ambient = .15;
+    behind.forEach(el => { el.inert = false; }); hero.inert = false;
     if (!opened) open(false);
     if (toContact) $('.reach').scrollIntoView();
+    if (!toContact) scrollTo(0, 0);
+    (toContact ? $('.reach a') : $('#play')).focus({ preventScroll: true });
   }
   const epT = () => {
     const clock = (now() - ep.t0) / 1000;
@@ -665,6 +688,7 @@
   ['pointerenter', 'focus'].forEach(e => $('#play').addEventListener(e, () => { au.preload = 'auto'; }, { once: true }));
   pauseB.addEventListener('click', () => setPaused(!heldAt));
   exitB.addEventListener('click', () => stopEp(false));
+  d.addEventListener('click', e => { if (ep && e.target.closest && !e.target.closest('a,button,input')) setPaused(!heldAt); });   // tap anywhere to hold a card
   addEventListener('keydown', e => {
     if (e.key === 'Escape') stopEp(false);
     if (e.key === ' ' && ep && !/^(BUTTON|A|INPUT|TEXTAREA)$/.test(d.activeElement?.tagName)) { e.preventDefault(); setPaused(!heldAt); }
@@ -680,13 +704,14 @@
   let lastT = now();
   function tick() {
     if (heldAt) return;
+    if (hero.inert !== (!opened || !!ep)) hero.inert = !opened || !!ep;
     const t = now(), dt = Math.min(50, t - lastT) || 16.7, k = dt / 16.7; lastT = t;
     for (let i = fx.length - 1; i >= 0; i--) {
       const a = fx[i], p = clamp((t - a.t0) / a.ms);
       a.fn(p);
       if (p >= 1) { fx.splice(fx.indexOf(a), 1); a.done && a.done(); }
     }
-    if (ep) { const T = epT(); $('#epBar').style.transform = `scaleX(${Math.min(1, T / END)})`; while (ep && ep.i < CUES.length && T >= CUES[ep.i][0]) { quiet = T - CUES[ep.i][0] > .6; CUES[ep.i++][1](); } quiet = false; }
+    if (ep) { const T = epT(); $('#epBar').style.transform = `scaleX(${Math.min(1, T / END)})`; while (ep && ep.i < CUES.length && T + LEAD >= CUES[ep.i][0]) { quiet = T - CUES[ep.i][0] > .6; sfxLag = Math.max(0, CUES[ep.i][0] - T); CUES[ep.i++][1](); } quiet = false; sfxLag = 0; }
     if (!dragging) { ov += ((oGoal - o) * .05 - ov * .17) * k; o += ov * k; if (o < 0) { o = 0; ov = 0; } if (o > 1.05) { o = 1.05; ov *= -.3; } }
     if (!opened && !dragging && !biting && t > nextRattle) { nextRattle = t + R(1100, 2400); ov += .009; }
     shut.style.setProperty('--o', o.toFixed(4));

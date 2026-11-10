@@ -6,8 +6,9 @@ Personal homepage of Ayaz Khan. Static HTML, no build step at serve time.
 index.html            generated from tools/page.html; do not edit by hand
 sma-1/index.html      earlier SMA-1 page, kept but not linked (uses ../assets/img)
 Ayaz_Khan_Resume.pdf  résumé
-assets/site.js        digit windows (canvas scenes), the Rerun, Stop time, rail, episode loader
-assets/jojo/          episode.js + episode.css (26 s episode), audio.js (Sound toggle, Rerun synth), stand-figure.svg
+assets/site.js        hero, shutters, foil cards, the 47 s episode and its controls (Pause, Exit, Sound, Volume)
+assets/deep.js        the long version: toys, section bar, lazy video poster; loads on scroll
+assets/jojo/          globe, ORA bootstrap and "Ask me" modules, stand-figure.svg
 assets/audio/         episode.mp3 and its beat map episode.json: an instrumental of "Smooth" by Santana
 assets/fonts/         LT Afficher Neue, Alphazet, Dela Gothic One subset (OFL)
 assets/gallop-*.gif, assets/mail/, assets/logos/   hosted images used by sent emails; do not delete
@@ -18,11 +19,13 @@ tools/                build_page.py, check_page.py, build_sfx_font.py, horse_sym
 
 ```
 python3 tools/build_page.py          # writes index.html
-python3 tools/check_page.py          # word cap (500, everything open, episode strings included) and banned terms
+SITE_BRIEF=/path/to/site_brief python3 tools/check_page.py   # word cap (500) and banned terms; SITE_BRIEF defaults to ../site_brief
 python3 -m http.server 8000          # preview at http://localhost:8000
 ```
 
-Episode anchors: episode.js looks for data-ep="hero|ceiling|leak|calx|nsf|resume|end", data-ep-chip, .lockup and the #h1..#h12 symbols.
+The episode's cue times in `assets/site.js` (`CUES`) are cut to the song's accents. Do not retime them or re-encode the mp3.
+Cues fire `LEAD` (50 ms) early because an entrance takes about 60 ms to look landed; the synth sounds are scheduled back onto the note (`sfxLag`).
+Volume starts at half and is kept in localStorage; iOS Safari ignores page volume, so the slider hides there.
 
 ## The title card
 

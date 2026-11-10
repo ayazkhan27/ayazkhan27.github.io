@@ -6,7 +6,7 @@ const N = 4338, P = 0.5669, TARGET = 1000, SEED = 4338;
 const REAL = [55.13, 58.08], EST = 56.69;
 const BIN = 9, NB = 35, K0 = 2302;            // 35 bins of 9 counts; bin 17 is centred on the mode, 2459
 const X0 = (K0 - 0.5) / N * 100, X1 = (K0 + BIN * NB - 0.5) / N * 100;
-const MAX_RATE = 60, TAP_MS = 200, SFX_GAP = 1000 / 15, MIN_TAIL = 40;
+const MAX_RATE = 240, TAP_MS = 200, SFX_GAP = 1000 / 15, MIN_TAIL = 40;
 /* where kana may land, as fractions of the plot: the empty corners above the tails, one burst per slot.
    Edge slots (third value 1) may take the long オラオラ, which the panel then crops like a manga frame. */
 const SLOTS = [[0.03, 0.16, 1], [0.17, 0.42], [0.02, 0.7, 1], [0.24, 0.1], [0.97, 0.2, 1], [0.83, 0.44], [0.98, 0.72, 1], [0.76, 0.1]];
@@ -271,7 +271,7 @@ export async function mount(root, opts = {}) {
 
   function loop(t) {
     raf = 0;
-    const dt = prev ? Math.min((t - prev) / 1000, 0.05) : 0;
+    const dt = prev ? Math.min((t - prev) / 1000, 0.25) : 0;
     prev = t;
     const rush = rushing() && !frozen && !done();
     if (rush !== rushNow) { rushNow = rush; dirty = true; }

@@ -74,7 +74,7 @@ export async function mount(root) {
     <div class="jj-globe__panel">
       <p class="jj-globe__name"></p>
       <p class="jj-globe__fact">Flick the globe. Where it stops, you get a true story from the history of statistics.</p>
-      <p class="jj-globe__row"><button type="button" class="jj-globe__again">Spin it</button><a class="jj-globe__src" hidden target="_blank" rel="noopener">Source</a></p>
+      <p class="jj-globe__row"><button type="button" class="jj-globe__again">Spin it</button><a class="jj-globe__src" hidden>Source</a></p>
     </div>
     <p class="jj-globe__live" aria-live="polite"></p>`;
   const $ = (c) => root.querySelector('.jj-globe__' + c);
@@ -105,7 +105,7 @@ export async function mount(root) {
     nameEl.textContent = f.name;
     factEl.textContent = f.fact;
     srcEl.href = f.src; srcEl.hidden = false;
-    again.textContent = 'Spin again';
+    again.textContent = failed ? 'Another country' : 'Spin again';
     live.textContent = `${f.name}. ${f.fact}`;
     flag.src = here(`../flags/${f.iso}.svg`);
     root.classList.add('has-fact');
@@ -242,6 +242,7 @@ export async function mount(root) {
   }
   function fallback() {              // no WebGL: the still globe, and the stories work the same
     failed = true;
+    again.textContent = cur ? 'Another country' : 'Show a country';   // nothing spins without WebGL, so the button says what it does
     quiet();
     stage.querySelector('canvas')?.remove();
     pin.hidden = true;

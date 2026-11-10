@@ -20,6 +20,7 @@
 <meta property="og:image:alt" content="Ayaz Khan, statistician and data scientist, at an open window over a sunset.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Ayaz Khan, statistician and data scientist">
+<meta name="twitter:description" content="Statistician and data scientist in New York. Columbia Master's in Statistics, NSF Graduate Research Fellow. Available January 2027.">
 <meta name="twitter:image" content="https://ayazkhan27.github.io/assets/og.png">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="assets/fonts/afficher-bold.woff2" as="font" type="font/woff2" crossorigin>
@@ -27,7 +28,7 @@
 <link rel="preload" href="assets/fonts/ak-text-bold.woff2" as="font" type="font/woff2" crossorigin>
 <script>document.documentElement.classList.add("js");if(matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("still")</script>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}</script>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Ayaz Khan","jobTitle":"Statistician and data scientist","email":"mailto:aak2259@columbia.edu","telephone":"+1-917-943-3853","address":{"@type":"PostalAddress","addressLocality":"New York","addressRegion":"NY","addressCountry":"US"},"alumniOf":[{"@type":"CollegeOrUniversity","name":"Columbia University"},{"@type":"CollegeOrUniversity","name":"Hunter College, City University of New York"}],"sameAs":["https://www.linkedin.com/in/ayazkhan27","https://github.com/ayazkhan27","https://orcid.org/0009-0008-5695-4934"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Ayaz Khan","jobTitle":"Statistician and data scientist","email":"mailto:aak2259@columbia.edu","address":{"@type":"PostalAddress","addressLocality":"New York","addressRegion":"NY","addressCountry":"US"},"alumniOf":[{"@type":"CollegeOrUniversity","name":"Columbia University"},{"@type":"CollegeOrUniversity","name":"Hunter College, City University of New York"}],"sameAs":["https://www.linkedin.com/in/ayazkhan27","https://github.com/ayazkhan27","https://orcid.org/0009-0008-5695-4934"]}</script>
 <style>
 @font-face{font-family:"Afficher";src:url(assets/fonts/afficher-bold.woff2) format("woff2");font-weight:700;font-display:swap}
 @font-face{font-family:"AK Text";src:url(assets/fonts/ak-text-regular.woff2) format("woff2");font-weight:300 500;font-display:swap;size-adjust:106%}
@@ -70,7 +71,8 @@ button{font:inherit;color:inherit;cursor:pointer}
 .sun{position:absolute;left:68%;bottom:17%;width:min(40vmin,24rem);aspect-ratio:1;border-radius:50%;transform:translateX(-50%);background:radial-gradient(circle,#ffe08ab0 0 46%,#ffc04d66 58%,#ffb34000 76%)}
 .sun img{position:absolute;inset:-16%;width:132%;height:132%;max-width:none;filter:drop-shadow(0 0 1.1vmin #ffd76699)}
 .sun::after{content:"";position:absolute;inset:-4%;border-radius:50%;background:radial-gradient(circle,#fff5 0,#fff0 64%);mix-blend-mode:screen;pointer-events:none}
-@media (max-width:700px){.sun{bottom:25%;width:34vmin}}
+@media (min-width:701px) and (max-width:899px){.sun{left:73%;width:34vmin}}
+@media (max-width:700px){.sun{bottom:21%;width:34vmin}}
 @media (max-width:700px) and (orientation:portrait){.win{min-height:46rem}}
 .land{position:absolute;left:0;bottom:0;width:100%;height:36%}
 .land .far{fill:#6d2a78}.land .sea{fill:#f2a24a}.land .near{fill:#1f0d38}
@@ -85,7 +87,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .play svg{width:1.05rem;height:1.05rem;fill:currentColor}
 .play{white-space:nowrap}
 .play small{font-weight:300;font-size:.875rem}
-@media (max-width:480px){.play small{display:none}}
+@media (max-width:359px){.play small{display:none}}
 .flash{position:absolute;inset:0;z-index:6;background:#fff3cf;opacity:0;pointer-events:none}
 .sill{position:absolute;z-index:4;left:0;right:0;bottom:0;height:clamp(1.1rem,3vh,2rem);background:linear-gradient(#efe2c8,#a58e72);box-shadow:0 -10px 26px #1a0a3055}
 .win::after{content:"";position:absolute;inset:0;z-index:4;pointer-events:none;box-shadow:inset 0 0 0 clamp(7px,1.3vmin,15px) #0a0512}
@@ -108,7 +110,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 
 /* the desk: what the wind blew in */
 .papers{position:relative;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:clamp(1.1rem,2.2vw,2.25rem);padding:clamp(1rem,3vw,2.5rem) var(--m) clamp(3rem,7vw,6rem)}
-.papers h2{grid-column:6/13;grid-row:1;align-self:start;font-size:clamp(2.1rem,5.2vw,4.4rem);color:var(--gold)}
+.papers .lede{grid-column:6/13;grid-row:1;align-self:start}.papers .lede p{margin-top:.6rem;max-width:30rem;color:var(--soft)}.papers h2{font-size:clamp(2.1rem,5.2vw,4.4rem);color:var(--gold)}
 .sheet{position:relative;overflow:hidden;display:flex;flex-direction:column;gap:.55rem;min-height:clamp(16.5rem,27vw,22rem);padding:clamp(1.25rem,2.2vw,2rem);color:var(--ink);background:var(--c);transform:rotate(var(--r));box-shadow:0 22px 44px #05020ccc,0 3px 8px #05020c99;touch-action:pan-y}
 .sheet::before{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;background:linear-gradient(115deg,#fff0 42%,#fff8 50%,#fff0 58%);background-size:300% 100%;mix-blend-mode:overlay;animation:glint 4.4s ease-in-out infinite}
 .still .rub,html:not(.js) .rub{display:none}#t-gold::first-letter{text-transform:uppercase}
@@ -135,7 +137,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .pip button{min-height:2.75rem;padding:0 .85rem;background:none;border:1px solid currentColor;border-radius:.2rem}
 .pip button:hover{background:#1c122618}
 .tiny{font-size:.8125rem!important}
-@media (max-width:820px){.papers{grid-template-columns:minmax(0,1fr)}.papers>*{grid-column:1!important;grid-row:auto!important;margin-top:0!important}.papers h2{margin:.25rem 0 .5rem}}
+@media (max-width:820px){.papers{grid-template-columns:minmax(0,1fr)}.papers>*{grid-column:1!important;grid-row:auto!important;margin-top:0!important}.papers .lede{margin:.25rem 0 .5rem}}
 
 /* close */
 .close{display:grid;gap:clamp(2rem,5vw,4rem);padding:0 var(--m) clamp(3rem,6vw,5rem)}
@@ -163,7 +165,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 @media (min-width:700px){.say{max-width:52vw}}
 @media (max-width:340px){.qs button{font-size:.8125rem;padding:.35rem .5rem}}
 .ctl button:hover{background:#2a1846}
-@media (max-width:959px){.reading:not(.eps) .ctl{visibility:hidden;opacity:0;pointer-events:none}}
+@media (max-width:959px){.reading:not(.eps) #vol{display:none}}
 @media (min-width:960px){.reading:not(.eps) .ctl{flex-direction:column;right:.25rem}.reading:not(.eps) .ctl button{min-width:2.5rem;padding:0}}
 .ctl [aria-pressed=false] .on{display:none}
 
@@ -232,19 +234,21 @@ button{font:inherit;color:inherit;cursor:pointer}
 /* the long version: the wind passes behind the paper here, so nothing crosses the text */
 .deep{position:relative;z-index:61;display:grid;gap:clamp(4rem,9vw,8rem);padding:clamp(2.5rem,7vw,6rem) var(--m) clamp(3rem,6vw,5rem);max-width:92rem;margin:0 auto}
 :is(.ep0,.ep1,.ep2) .deep{z-index:0}
-.deep [id]{scroll-margin-top:1.5rem}
+.deep [id]{scroll-margin-top:5.75rem}.reach{scroll-margin-top:1.25rem}
 .long h2{font-size:clamp(3.2rem,11vw,9rem);color:#fff7e6;letter-spacing:-.02em}
 .long p{margin-top:1rem;max-width:44rem;font-size:clamp(1.125rem,1.8vw,1.5rem)}
-.long nav{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem}
-.long nav a{display:inline-flex;align-items:center;min-height:2.75rem;padding:0 1rem;border:1px solid #ffe08a88;border-radius:.2rem;color:#ffe9b0;text-decoration:none;font-weight:600}
-.long nav a:hover{background:#ffe08a22}
+.deep>nav{position:sticky;top:0;z-index:5;align-self:start;display:flex;gap:.5rem;overflow-x:auto;margin:calc(1.5rem - clamp(4rem,9vw,8rem)) calc(var(--m)*-1) 0;padding:.6rem var(--m);background:#120a1c}
+.deep>nav a{flex:none;display:inline-flex;align-items:center;min-height:2.75rem;padding:0 1rem;border:1px solid #ffe08a88;border-radius:.2rem;color:#ffe9b0;text-decoration:none;font-weight:600}
+.deep>nav a:hover{background:#ffe08a22}
+.deep>nav a[aria-current]{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+.deep>nav .top{margin-left:auto}
 .word{font-size:clamp(3.6rem,11.5vw,10rem);line-height:.92;color:var(--gold);letter-spacing:-.02em}
 .block{display:grid;gap:clamp(1.25rem,3vw,2.5rem)}
 @media (min-width:960px){
 #when{grid-template-columns:minmax(0,5fr) minmax(0,8fr)}#when .word{position:sticky;top:2rem;align-self:start}
 #who .prose{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:auto auto auto auto 1fr;gap:1rem 3rem}#who .prose>*{grid-column:1}#who .lead{grid-column:1/-1}#who .record{grid-column:2;grid-row:2/-1;align-self:start;margin-top:0}
 #why .prose{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.25rem 3rem}#why .lead{grid-column:1/-1;font-size:clamp(2.25rem,5vw,4.5rem)}
-#how .stack{grid-template-columns:repeat(4,minmax(0,1fr));gap:2rem}
+.doing{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 .block.head{margin-bottom:clamp(1.5rem,3vw,2.5rem)}
 .block.head .word{position:static}
@@ -270,7 +274,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .toy{min-width:0;display:flex;flex-direction:column;gap:.75rem;padding:clamp(1rem,2.2vw,1.5rem);background:#140c20;color:#f8f0e2;box-shadow:0 12px 26px #05020c88;--color-ink:#f8f0e2;--color-context:#ffe08a66;--color-muted:#cfc2d8;--color-accent:#ffc83d;--color-on-accent:#1c1226;--color-bg:#140c20;--color-surface:#241738;--color-focus:#ffc83d;--color-rule:#ffffff30;--color-gold:#ffc83d;--color-gold-lit:#ffc83d;--color-band:#140c20;--color-band-ink:#f8f0e2;--color-band-muted:#cfc2d8;--color-control-edge:#ffe08a88;--color-mark:#ffc83d;--color-menace:#ff5cb8}
 .toy h4{font:700 clamp(1.75rem,3vw,2.5rem)/1.05 var(--font-display);margin:0;color:var(--gold)}
 .note{font-size:.875rem;line-height:1.45;color:#d9cde0}
-.file .prose .note{color:inherit}
+.file .prose .note,.res .note{color:inherit}
 .sw,.qs{display:flex;flex-wrap:wrap;gap:.45rem}
 .sw button,.qs button{min-height:2.75rem;padding:.4rem .8rem;background:none;border:1px solid #ffe08a88;border-radius:.2rem;color:#ffe9b0;font-size:.9375rem;font-weight:600;text-align:left}
 .sw button:hover,.qs button:hover{background:#ffe08a22}
@@ -314,9 +318,10 @@ button{font:inherit;color:inherit;cursor:pointer}
 .bar small{font-weight:300}
 .bar i{display:flex;align-items:center;justify-content:flex-end;height:1.35rem;width:calc(var(--v)*100%);padding-right:.35rem;font:600 .75rem var(--font-text);font-style:normal;color:#fff;transform-origin:0 50%;transition:transform .9s var(--spring)}
 .bar .b{color:var(--ink)}
-.res:not(.seen) .bar i{transform:scaleX(.02)}
+.res.live:not(.seen) .bar i{transform:scaleX(.02)}
 .tbl{overflow-x:auto;min-width:0}
 .ladder{display:grid;gap:.6rem;min-width:0}.ladder p{margin:0;max-width:60ch}.ladder table{min-width:38rem}.ladder .tbl td:nth-child(n+2){opacity:1;font-weight:300}.ladder .tbl td:last-child,.ladder .tbl th:last-child{text-align:right;white-space:nowrap;font-weight:600}.ladder .tbl .me td{background:#b81f6622;font-weight:600}
+@media (max-width:699px){.ladder table{min-width:0}.ladder thead{display:none}.ladder table,.ladder tbody{display:block}.ladder tr{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.2rem .75rem;padding:.6rem 0;border-top:1px solid #1c122640}.ladder .tbl td{padding:0;border:0}.ladder .tbl td:first-child{font-weight:600}.ladder .tbl td:last-child{grid-area:1/2}.ladder td:nth-child(2),.ladder td:nth-child(3){grid-column:1/-1}.ladder td:nth-child(2)::before{content:"Matches on: ";font-weight:600}.ladder td:nth-child(3)::before{content:"Falls short: ";font-weight:600}.ladder .tbl .me td{background:none}.ladder .tbl tr.me{background:#b81f6622}}
 .tbl table{width:100%;border-collapse:collapse;font-size:.9375rem}
 .tbl th{text-align:left;font-weight:600;padding:.35rem .5rem .35rem 0;vertical-align:bottom}
 .tbl td{padding:.45rem .5rem .45rem 0;border-top:1px solid #1c122640}
@@ -347,20 +352,10 @@ button{font:inherit;color:inherit;cursor:pointer}
 .moat thead th{padding-block:0 .6rem;border:0;font-size:.9375rem;font-weight:600;color:#ffe08a}
 .moat thead th:first-child{width:22%}
 .moat tbody th{font:700 clamp(1.375rem,2.1vw,2rem)/1.06 var(--font-display);color:#ffe08a}
-.moat td:last-child{padding-right:0;color:#fff7e6}
-.moat td:nth-child(2){color:var(--soft)}
+.moat td{padding-right:0;color:var(--soft)}
+.moat td p+p{margin-top:.8rem;color:#fff7e6}
 .moat a{color:#ffe08a}
-@media (max-width:959px){
-.moat thead{display:none}
-.moat,.moat tbody{display:block;width:100%}
-.moat tr{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.5rem 2.25rem;padding:1.1rem 0;border-top:1px solid #ffffff2b}
-.moat tbody th{grid-column:1/-1}
-.moat tbody th,.moat td{padding:0;border:0}
-.moat td::before{display:block;font-size:.9375rem;font-weight:600;color:#ffe08a}
-.moat td:nth-child(2)::before{content:"What’s going on"}
-.moat td:last-child::before{content:"What I do"}
-}
-@media (max-width:699px){.moat tr{grid-template-columns:minmax(0,1fr);row-gap:.9rem}.moat td{max-width:32rem}}
+@media (max-width:959px){.moat thead{display:none}.moat,.moat tbody,.moat tr,.moat tbody th,.moat td{display:block}.moat tr{padding:1.1rem 0;border-top:1px solid #ffffff2b}.moat tbody th,.moat td{padding:0;border:0}.moat td{margin-top:.5rem;max-width:40rem}}
 .basics summary{display:flex;align-items:center;gap:.7rem;min-height:2.75rem;font:700 clamp(1.3rem,2.2vw,2rem)/1.1 var(--font-display);color:#fff7e6;cursor:pointer;list-style:none}
 .basics summary::-webkit-details-marker{display:none}
 .basics summary::before{content:"";flex:none;width:.9rem;height:.9rem;background:linear-gradient(var(--gold) 0 0) center/100% 2px no-repeat,linear-gradient(var(--gold) 0 0) center/2px 100% no-repeat}
@@ -368,10 +363,11 @@ button{font:inherit;color:inherit;cursor:pointer}
 .basics>p{margin-top:.5rem}.basics .steps{margin-top:1rem}
 .basics>p,.basics .steps{max-width:40rem}
 .basics summary:hover{color:#ffe08a}
-.stack{margin:1.25rem 0 0;display:grid;gap:.6rem}
-.stack div{display:grid;gap:.1rem;align-content:start}
-.stack dt{font-weight:600;color:#ffe08a;font-size:.9375rem}
-.stack dd{margin:0}
+.doing{margin:1.25rem 0 0;display:grid;gap:1.5rem 3rem}
+.doing dt{font:700 clamp(1.375rem,2.1vw,2rem)/1.06 var(--font-display);color:#ffe08a}
+.doing dd{margin:.45rem 0 0;max-width:34rem;color:#fff7e6}
+.basics{margin-top:1.75rem}.basics .moat{margin-top:1rem}
+.file .basics{margin-top:0;--gold:var(--ink)}.file .basics summary{color:inherit;font-size:clamp(1.15rem,1.6vw,1.4rem)}.file .basics summary:hover{color:inherit;text-decoration:underline}.file .basics .ladder{margin-top:.75rem}
 .play-row{display:grid;gap:clamp(1.25rem,3vw,2.25rem)}
 .jj-slot>img{display:block;width:min(100%,24rem);height:auto;margin:0 auto}
 .final{display:grid;justify-items:start;gap:1rem}
@@ -386,7 +382,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 .creds{display:flex;align-items:center;gap:clamp(.9rem,2vw,1.6rem);margin-top:clamp(.7rem,1.8vh,1.1rem)}
 .creds img{display:block;height:auto}
 .creds .col{width:min(56vw,27rem)}
-@media (min-width:701px) and (max-width:1179px){.creds .col{width:36vw}.facts{max-width:52vw}}
+@media (min-width:701px) and (max-width:1179px){.creds .col{width:36vw}.facts{max-width:40vw}}
 @media (min-width:1180px){.creds{position:absolute;margin:0;top:0;right:0;flex-direction:column;align-items:flex-end;gap:clamp(.6rem,1.6vh,1rem)}.creds .col{width:clamp(16rem,calc(90.5vw - 812px),max(30rem,24vw))}}
 @media (max-height:480px) and (orientation:landscape){
 .win{min-height:20rem}
@@ -497,9 +493,43 @@ button{font:inherit;color:inherit;cursor:pointer}
 .tbl.dark th{border:0;font-weight:600;color:#ffe08a}
 .tbl.dark tr.dup td{color:#ff9fd2}
 .tbl.dark tr.off td{opacity:.35!important}
+.skip{position:absolute;left:-999rem;top:.5rem;z-index:90;padding:.7rem 1rem;background:var(--gold);color:var(--ink);font-weight:600;border-radius:.2rem}
+.skip:focus{left:.5rem}
+.quick{display:flex;flex-wrap:wrap;gap:.5rem}
+.quick a{display:inline-flex;align-items:center;min-height:2.75rem;padding:0 1rem;background:#120a1cd9;border:1px solid #ffe08a88;border-radius:.2rem;color:#ffe9b0;font-weight:600;text-decoration:none}
+.quick a:hover{background:#2a1846}
+@media (max-width:480px){.quick{gap:.4rem}.quick a{padding:0 .7rem;font-size:.9375rem}}
+@media (max-width:699px){.deep>nav .top{order:-1;margin-left:0}}
+.sheet :focus-visible,.file :focus-visible,.stand :focus-visible{outline-color:var(--ink)}.file .toy :focus-visible{outline-color:var(--gold)}
+.shut.open .latch{visibility:hidden;transition:visibility 0s .6s}
+.ctl{flex-wrap:wrap;justify-content:flex-end;align-items:center;row-gap:.6rem;max-width:calc(100vw - 1.2rem)}
+.tiny a{display:inline-block;padding-block:.6rem}
+.record .tools{font:300 1rem/1.45 var(--font-text);color:var(--soft);text-wrap:pretty}
+@media (min-width:1180px){.basics .steps{display:block;max-width:none;columns:2;column-gap:3rem}.basics .steps li{break-inside:avoid;margin-bottom:.7rem}}
+#vol{width:5.5rem;min-height:2.9rem;margin:0;padding:0 .55rem;background:#0a0512e0;border:1px solid #ffe08a77;border-radius:.2rem;accent-color:var(--gold);cursor:pointer}
+@media (min-width:960px){.reading:not(.eps) #vol{writing-mode:vertical-lr;direction:rtl;width:2.5rem;height:5.5rem;min-height:0;padding:.5rem 0}}
+@media (max-width:480px){#vol{width:4.25rem;padding:0 .35rem}}
+#hint{padding:0 .7rem;line-height:2.9rem;background:#0a0512e0;border-radius:.2rem;color:#ffe9b0;font-size:.875rem;font-weight:600;animation:hint .5s 6s forwards}
+@keyframes hint{to{opacity:0;visibility:hidden}}
+.ep-paused #hint{animation:none}
+.js .jj-slot[data-jj="ora"]{min-height:34rem}
+#stage .jan :focus-visible{outline-color:var(--ink)}
+.ctl :focus-visible{box-shadow:0 0 0 6px #0a0512}
+@media (max-width:700px){#vol{display:none}}
+@media (max-width:699px){.deep>nav .top{position:sticky;left:var(--m);z-index:1;background:#120a1c;box-shadow:calc(var(--m)*-1) 0 0 #120a1c,calc(var(--m)*-2) 0 0 #120a1c,.5rem 0 0 #120a1c}}
+@media (max-height:800px) and (min-width:701px){.sky{background:linear-gradient(180deg,#1d1049 0,#4a1a6e 34%,#9c2868 64%,#e0583f 80%,#ffb340 91%,#ffe39a 100%)}}
+.facts{text-shadow:0 1px 3px #2a0d4acc}
+.hero :focus-visible{box-shadow:0 0 0 6px #0a0512}
+html{scrollbar-gutter:stable}html.eps{overflow:hidden}
+.scraps .pp{font-family:var(--font-text);font-weight:700;letter-spacing:.02em}
+html:not(.deep-on) :is(#rerun,#router,#pfd .sw,[data-copy]){visibility:hidden}html:not(.js) :is(#rerun,#router){display:none}
+@media (min-width:960px) and (max-width:1279px){.close .stand h2{font-size:clamp(1.1rem,1.9vw,1.75rem)}}
+@media (min-width:701px) and (max-width:1179px) and (max-height:720px){.hero{top:clamp(1.5rem,6vh,3rem)}#name{font-size:clamp(4rem,min(14.5vw,17vh),10rem)}.say{font-size:clamp(1.45rem,min(3.8vw,6.2vh),2.6rem)}.creds .col{width:min(36vw,45vh)}}
+@media (max-width:700px) and (orientation:portrait){.hero{top:clamp(2.5rem,7vh,4rem)}}
 </style>
 </head>
 <body>
+<a class="skip" href="#work">Skip intro</a>
 <canvas id="wind" aria-hidden="true"></canvas>
 <header class="win" id="win">
   <div class="sky" aria-hidden="true">
@@ -513,7 +543,8 @@ button{font:inherit;color:inherit;cursor:pointer}
     <p class="facts">U.S. citizen and NSF Graduate Research Fellow, finishing a Master’s in Statistics at Columbia in December 2026. I can start in January 2027.</p>
     <div class="creds"><img class="col" src="assets/logos/columbia-jojo.svg" width="360" height="60" alt="Columbia University in the City of New York"></div>
     <div class="cta">
-      <button type="button" class="play" id="play"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 1.5v13L14 8z"/></svg>Play the 47-second episode <small>sound on</small></button>
+      <button type="button" class="play" id="play"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 1.5v13L14 8z"/></svg>Play the 47-second episode <small id="playSound">sound on</small></button>
+      <p class="quick"><a href="Ayaz_Khan_Resume.pdf" target="_blank" rel="noopener">Résumé (PDF)</a><a href="mailto:aak2259@columbia.edu">Email</a><a href="https://www.linkedin.com/in/ayazkhan27">LinkedIn</a></p>
     </div>
   </div>
   <i class="sill" aria-hidden="true"></i>
@@ -526,9 +557,17 @@ button{font:inherit;color:inherit;cursor:pointer}
   <i class="flash" id="flash" aria-hidden="true"></i>
 </header>
 
-<main>
+<nav class="ctl" id="ctl" aria-label="Page controls" hidden>
+  <button type="button" id="sound" aria-pressed="true" aria-label="Sound" title="Sound"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7.5h3.5L11 4v12l-4.5-3.5H3z"/><path class="on" d="M13.5 7.2a4 4 0 0 1 0 5.6M15.8 5a7 7 0 0 1 0 10"/></svg></button>
+  <input type="range" id="vol" min="0" max="100" value="50" aria-label="Volume" title="Volume">
+</nav>
+
+<main id="work">
   <section class="papers" aria-labelledby="t-gold">
-    <h2 id="t-gold"><span class="rub">Rub the gold off each card to see </span>what I measured</h2>
+    <div class="lede">
+      <h2 id="t-gold"><span class="rub">Rub the gold off each assumption to see </span>what I measured</h2>
+      <p>From my 2026 Telenav internship, except SMA-1.</p>
+    </div>
     <article class="sheet s1" data-n="1">
       <s class="claim">0.806 AUC. Ship it.</s>
       <h3>0.7401 AUC</h3>
@@ -552,8 +591,8 @@ button{font:inherit;color:inherit;cursor:pointer}
     </article>
     <article class="sheet s4" data-n="4">
       <s class="claim">You need another model.</s>
-      <h3>I recommended dropping 33 channels</h3>
-      <p>They account for about $127K of waste in the training window<span class="xtra">, and blocking them would have cost 13 binds on the holdout</span>.</p>
+      <h3>I recommended dropping 33 paid channels</h3>
+      <p>They account for about $127K of waste in the training window<span class="xtra">, and blocking them would have cost 13 policy sales on the holdout</span>.</p>
       <figure class="fig" data-fig="tally"></figure>
       <a class="more" href="#f-channels">Read about the 33 channels</a>
     </article>
@@ -568,7 +607,7 @@ button{font:inherit;color:inherit;cursor:pointer}
       <s class="claim">Just add RAG.</s>
       <h3>0.949 vs 0.606</h3>
       <p>SMA-1, my open-source memory, against the best RAG on rare-case top-5 retrieval in medicine. <span class="xtra">It’s my own benchmark and hasn’t been peer reviewed. On flat tabular data, use logistic regression.</span><span class="eponly">My own benchmark, not peer reviewed.</span></p>
-      <p class="pip"><a href="https://pypi.org/project/structuremappingmemory/"><code>pip install structuremappingmemory</code></a><button type="button" id="copy">Copy</button><span id="copied" role="status"></span></p>
+      <p class="pip"><a href="https://pypi.org/project/structuremappingmemory/"><code>pip install structuremappingmemory</code></a><button type="button" id="copy" aria-label="Copy the pip command">Copy</button><span id="copied" role="status"></span></p>
       <figure class="fig" data-fig="bars"></figure>
       <a class="more" href="#f-sma">Read about SMA-1</a>
     </article>
@@ -624,12 +663,11 @@ button{font:inherit;color:inherit;cursor:pointer}
       <h2>January 2027</h2>
       <p>That’s when I can start, if you’re hiring in data science, statistics, biostatistics, model risk or quant. I’ve also filed a provisional patent application through Columbia Technology Ventures.</p>
       <ul>
-        <li><a class="btn" href="Ayaz_Khan_Resume.pdf" download>Résumé (PDF)</a></li>
+        <li><a class="btn" href="Ayaz_Khan_Resume.pdf" target="_blank" rel="noopener">Résumé (PDF)</a></li>
         <li><a href="mailto:aak2259@columbia.edu">aak2259@columbia.edu</a></li>
-        <li><a href="mailto:khanayaz2727@gmail.com">khanayaz2727@gmail.com</a></li>
-        <li><a href="tel:+19179433853">+1 (917) 943-3853</a></li>
         <li><a href="https://www.linkedin.com/in/ayazkhan27">LinkedIn</a></li>
         <li><a href="https://github.com/ayazkhan27">GitHub</a></li>
+        <li><a href="https://orcid.org/0009-0008-5695-4934">ORCID</a></li>
       </ul>
     </div>
   </section>
@@ -637,8 +675,8 @@ button{font:inherit;color:inherit;cursor:pointer}
   <section class="deep" id="deep" aria-labelledby="t-long">
     <header class="long">
       <h2 id="t-long">The long version</h2>
-      <nav aria-label="The long version"><a href="#who">Who</a><a href="#what">What</a><a href="#when">When and where</a><a href="#why">Why</a><a href="#how">How</a></nav>
     </header>
+    <nav aria-label="The long version"><a href="#who">Who</a><a href="#what">What</a><a href="#when">When and where</a><a href="#why">Why</a><a href="#how">How</a><a class="top" href="#win">Top</a></nav>
 
     <section class="block" id="who" aria-labelledby="w-who">
       <h3 class="word" id="w-who">Who</h3>
@@ -652,7 +690,8 @@ button{font:inherit;color:inherit;cursor:pointer}
           <img class="wide" src="assets/logos/columbia-jojo.svg" width="300" height="50" alt="Columbia University in the City of New York">
           <ul>
             <li>U.S. provisional patent application 64/029,090, through Columbia Technology Ventures</li>
-            <li>First author, IEEE ICNGN 2024</li>
+            <li>First author, IEEE ICNGN 2024 (<a href="https://www.preprints.org/manuscript/202408.1495">preprint</a>)</li>
+            <li class="tools">Python, R, SQL, SAS, Java, C++. PyTorch, scikit-learn, XGBoost, Snowflake, Docker.</li>
           </ul>
         </div>
       </div>
@@ -696,7 +735,7 @@ button{font:inherit;color:inherit;cursor:pointer}
         <div class="toy">
           <h5>Punch out an interval</h5>
           <p class="note">An interval says how far the estimate could move if the rows had come out differently. A bootstrap shows it by resampling the rows and recomputing the estimate many times.</p>
-          <div class="jj-slot" data-jj="ora"><p class="note">The bootstrap needs JavaScript.</p></div>
+          <div class="jj-slot" data-jj="ora"><noscript><p class="note">The bootstrap needs JavaScript.</p></noscript></div>
         </div>
       </article>
 
@@ -711,10 +750,10 @@ button{font:inherit;color:inherit;cursor:pointer}
         <div class="toy" id="router">
           <h5>Ask it something</h5>
           <div class="qs" role="group" aria-label="Sample questions">
-            <button type="button" data-q="0">Show this request’s record</button>
-            <button type="button" data-q="1">Compare this week with last</button>
-            <button type="button" data-q="2">Which scores changed band?</button>
-            <button type="button" data-q="3">What will this driver pay?</button>
+            <button type="button" aria-pressed="false" data-q="0">Show this request’s record</button>
+            <button type="button" aria-pressed="false" data-q="1">Compare this week with last</button>
+            <button type="button" aria-pressed="false" data-q="2">Which scores changed band?</button>
+            <button type="button" aria-pressed="false" data-q="3">What will this driver pay?</button>
           </div>
           <div class="slots" id="slots" aria-hidden="true"></div>
           <pre id="rtOut" role="status" tabindex="0">Pick a question. The router chooses one tool or refuses.</pre>
@@ -760,7 +799,7 @@ button{font:inherit;color:inherit;cursor:pointer}
             <p>It fills the same slot. You keep your LLM and your prompt and swap the memory. Vector RAG embeds text and returns what sounds similar, which can bury a rare term, and cosine similarity stays high even when nothing relevant exists. SMA-1 matches a specific term to general ones up the is-a hierarchy with a distance penalty, weights rare terms by information content, and then cites the match, abstains, or flags novelty.</p>
           </div>
           <figure class="vid">
-            <video src="assets/video/demo_live.mp4" poster="assets/img/demo_poster.png" controls muted playsinline preload="none" width="1280" height="736" aria-label="One reasoner answers the same question with three memories: none, Elasticsearch RAG and SMA-1."></video>
+            <video src="assets/video/demo_live.mp4" poster="assets/img/demo_poster.jpg" controls muted playsinline preload="none" width="1280" height="736" aria-label="One reasoner answers the same question with three memories: none, Elasticsearch RAG and SMA-1."></video>
             <figcaption>One reasoner answers the same question with three memories, streaming live. SMA-1 refuses to name a threat actor it can’t ground.</figcaption>
           </figure>
         </div>
@@ -769,6 +808,11 @@ button{font:inherit;color:inherit;cursor:pointer}
             <h5>Rare-case top-5, only the memory changes</h5>
             <p class="legend"><i class="a"></i>SMA-1 <i class="b"></i>Best RAG overall</p>
             <p class="note">“Rare” means the record’s rarest term is above the corpus median in information content, which covers 59% to 85% of queries.</p>
+            <div class="bar" aria-hidden="true"><span>Medicine</span><i class="a" style="--v:0.949">0.949</i><i class="b" style="--v:0.606">0.606</i></div>
+            <div class="bar" aria-hidden="true"><span>Finance</span><i class="a" style="--v:0.418">0.418</i><i class="b" style="--v:0.231">0.231</i></div>
+            <div class="bar" aria-hidden="true"><span>Genomics</span><i class="a" style="--v:0.849">0.849</i><i class="b" style="--v:0.682">0.682</i></div>
+            <div class="bar" aria-hidden="true"><span>Legal<br><small>all queries</small></span><i class="a" style="--v:0.941">0.941</i><i class="b" style="--v:0.87">0.870</i></div>
+            <div class="bar" aria-hidden="true"><span>Cyber<br><small>directional only</small></span><i class="a" style="--v:0.766">0.766</i><i class="b" style="--v:0.749">0.749</i></div>
           </div>
           <div class="tbl">
             <table>
@@ -784,8 +828,9 @@ button{font:inherit;color:inherit;cursor:pointer}
             </table>
           </div>
         </div>
-        <div class="ladder" id="ladder">
-          <h5>If you already know LangChain</h5>
+        <details class="basics" id="ladder">
+          <summary>If you already know LangChain</summary>
+          <div class="ladder">
           <p>LangChain wires retrieval together; how the retrieving works depends on what sits behind it, usually one of the methods below. SMA-1 takes the same slot as any of them. I ran each on the same medical queries, and only the retriever changed.</p>
           <div class="tbl">
             <table>
@@ -793,7 +838,8 @@ button{font:inherit;color:inherit;cursor:pointer}
               <tbody><tr><td>BM25</td><td>Shared words, weighted by rarity</td><td>No shared word, no match</td><td>0.485</td></tr><tr><td>Dense embeddings</td><td>Text that sounds similar</td><td>Scores stay high when nothing relevant exists</td><td>0.496</td></tr><tr><td>Hybrid with RRF</td><td>BM25 and dense ranks, fused</td><td>Combines both lists and adds no structure</td><td>0.511</td></tr><tr><td>Hybrid with a cross-encoder</td><td>Those candidates, re-scored</td><td>Can only reorder what retrieval already found</td><td>0.606</td></tr><tr><td>HippoRAG-style graph (my LLM-free adaptation)</td><td>PageRank over entities and their links</td><td>Links carry no is-a distance</td><td>0.361</td></tr><tr class="me"><td>SMA-1</td><td>Is-a distance in an ontology, weighted by information content</td><td>Needs a curated ontology for your domain</td><td>0.949</td></tr></tbody>
             </table>
           </div>
-        </div>
+          </div>
+        </details>
         <div class="cols">
           <div class="prose">
             <h5>Why use it?</h5>
@@ -803,9 +849,9 @@ button{font:inherit;color:inherit;cursor:pointer}
           <div class="prose">
             <h5>Where doesn’t it help?</h5>
             <p>It ties a bespoke ontology oracle, Phenomizer, and doesn’t beat it. On flat single-record prediction like hospital readmission or credit card fraud there’s no ontology to mount, and a logistic regression wins. The cyber result is directional only. These are my benchmarks, and the paper hasn’t been peer reviewed.</p>
-            <p class="pip"><a href="https://pypi.org/project/structuremappingmemory/"><code>pip install structuremappingmemory</code></a><button type="button" data-copy="pip install structuremappingmemory">Copy</button></p>
-            <p class="pip"><code>uvx structuremappingmemory</code><button type="button" data-copy="uvx structuremappingmemory">Copy</button></p>
-            <p class="tiny">The second line runs it as an MCP server. <a href="https://github.com/ayazkhan27/SMA-1">Source on GitHub</a>, Apache-2.0.</p>
+            <p class="pip"><a href="https://pypi.org/project/structuremappingmemory/"><code>pip install structuremappingmemory</code></a><button type="button" data-copy="pip install structuremappingmemory" aria-label="Copy the pip command">Copy</button></p>
+            <p class="pip"><code>uvx structuremappingmemory</code><button type="button" data-copy="uvx structuremappingmemory" aria-label="Copy the uvx command">Copy</button></p>
+            <p class="tiny">The second line runs it as an MCP server. There’s a <a href="https://huggingface.co/spaces/zephyr27/SMA-1-demo">live demo</a>, and the <a href="https://github.com/ayazkhan27/SMA-1">source is on GitHub</a> under Apache-2.0.</p>
           </div>
         </div>
       </article>
@@ -814,14 +860,14 @@ button{font:inherit;color:inherit;cursor:pointer}
     <section class="block" id="when" aria-labelledby="w-when">
       <h3 class="word" id="w-when">When and where</h3>
       <ol class="route" id="route">
-        <li><p class="at">June to August 2024. Kingsville, Texas.</p><h4>NSF REU, Texas A&amp;M University-Kingsville</h4><p>I built the Intrusion Effort Index, a security metric for wireless sensor networks laid out on aperiodic Spectre monotile tilings. It improved efficiency by 15% in 3D deployments, and I was first author on the paper at IEEE ICNGN 2024.</p>
+        <li><p class="at">June to August 2024. Kingsville, Texas.</p><h4>NSF REU, Texas A&amp;M University-Kingsville</h4><p>I built the Intrusion Effort Index, a security metric for wireless sensor networks laid out on aperiodic Spectre monotile tilings. It improved efficiency by 15% in 3D deployments, and I was first author on the paper at IEEE ICNGN 2024 (<a href="https://www.preprints.org/manuscript/202408.1495">preprint</a>).</p>
           <blockquote>“Rare even among experienced researchers, his ability to close the distance between abstract theory and practical application is demonstrated by his development of the Intrusion Effort Index.”<footer>Dr. Habib M. Ammari, my REU mentor, from his recommendation letter</footer></blockquote></li>
         <li><p class="at">December 2024. New York.</p><h4>Bachelor’s in Statistics, CUNY Hunter College</h4><p>Special Honors, computer science minor, cum laude.</p></li>
         <li><p class="at">January 2025. New York.</p><h4>Credit card fraud pipeline</h4><p>Fraud was 0.172% of the data, so I used SMOTE-NC resampling, Bayesian networks for causal structure, calibrated XGBoost for cost-asymmetric ranking, and a Dash app to monitor it.</p></li>
         <li><p class="at">2025 to now. New York.</p><h4>Calx</h4><p>I founded Calx, a neuro-symbolic engine for cross-domain discovery. It ports the Structure-Mapping Engine to find the same relational structure in problems from different fields. It produced two new square-root Kalman filter variants with no identified prior art, and a dynamic program, exact on 45 of 45 cases, that averaged 31.55% fewer operations across five scenarios, from 98% fewer to 58% more. SMA-1 is its retrieval layer.</p></li>
         <li><p class="at">January to May 2026. Columbia Data Science Institute.</p><h4>Energy insecurity in Con Edison rate cases</h4><p>For NYSERDA energy-insecurity research I took 317 Con Edison testimony PDFs from the New York Public Service Commission, split them into 12,073 segments, and modeled 16 docket themes with BERTopic, LegalBERT embeddings, UMAP and HDBSCAN.</p>
           <figure class="shift" role="img" aria-label="Change in each theme's share of testimony from 2022 to 2025, in points: affordability down 3.8, rate design up 4.9, IT systems up 3.4."><div><span>Affordability</span><i style="--v:-3.8"></i><b>−3.8</b></div><div><span>Rate design</span><i style="--v:4.9"></i><b>+4.9</b></div><div><span>IT systems</span><i style="--v:3.4"></i><b>+3.4</b></div><figcaption>Change in share of testimony, in points, 2022 to 2025.</figcaption></figure></li>
-        <li><p class="at">June to August 2026. Santa Clara, California.</p><h4>Applied ML and Data Engineering Intern, Telenav</h4><p>Where I did the leak, ceiling, router, channel and distillation work above.</p></li>
+        <li><p class="at">June to August 2026. Santa Clara, California.</p><h4>Applied ML and Data Engineering Intern, Telenav</h4><p>Where I did the <a href="#f-leak">leak</a>, <a href="#f-ceiling">ceiling</a>, <a href="#f-router">router</a>, <a href="#f-channels">channel</a> and <a href="#f-pfd">distillation</a> work above.</p></li>
         <li><p class="at">December 2026. New York.</p><h4>Master’s in Statistics, Columbia University</h4><p>Coursework in statistical machine learning, probability, inference, regression and stochastic processes.</p></li>
         <li class="next"><p class="at">January 2027.</p><h4>Ready to start, and willing to relocate</h4></li>
       </ol>
@@ -840,26 +886,15 @@ button{font:inherit;color:inherit;cursor:pointer}
       <h3 class="word" id="w-how">How</h3>
       <div class="prose">
         <p class="lead">Frontier models keep getting better at the checks I run, so I work on what’s hard now: source control, orchestration, harnesses, refusal, autoregressive decoding and context windows.</p>
-        <p>As of November 2026, this is what I’ve been following and what I do about each. Links go to the primary sources.</p>
-        <table class="moat">
-          <thead><tr><th scope="col"><span class="sr">Problem</span></th><th scope="col">What’s going on</th><th scope="col">What I do</th></tr></thead>
-          <tbody>
-            <tr><th scope="row">Source control</th><td>Anthropic went from about 2,500 merges a day in May to over 30,000 in September, so it <a href="https://www.anthropic.com/research/redesigning-source-control">moved its monorepo off Git onto Scion</a>, a system built for agents that are always online. It says Scion is no replacement for Git in general use.</td><td>I pin the data, prompt, weights and scorer by hash, so a number I report traces back to the run that made it.</td></tr>
-            <tr><th scope="row">Orchestration</th><td>DeepSeek’s <a href="https://github.com/deepseek-ai/dsh-superagent-prototype">dsh-superagent</a> research prototype acts only when asked or when a rule the team using it wrote allows it, and gives each work item its own agent session and directory.</td><td>I scope authority at the tool boundary. In my router at Telenav the model picks one of eight typed, read-only tools, deterministic SQL does the work, and the interface shows which tool ran before the answer arrives.</td></tr>
-            <tr><th scope="row">Harnesses</th><td>The <a href="https://rikiyat.github.io/blog/weight-space-programming/">weight-space programming authors</a> say their results are limited by context length and harnesses. OpenAI and Synopsys say <a href="https://news.synopsys.com/2026-09-30-OpenAI-and-Synopsys-Announce-GPT-Synopsys-Frontier-Intelligence-to-Revolutionize-Chip-Design">GPT-Synopsys</a> will be designed to work with customers’ own agent harnesses.</td><td>I test the scoring harness before I trust the score. One of my router’s early scores was wrong because my own scorer read past the end of a turn.</td></tr>
-            <tr><th scope="row">Refusal</th><td><a href="https://arxiv.org/abs/2406.11717">Arditi et al.</a> found refusal is mediated by a single direction across 13 open chat models. <a href="https://github.com/p-e-w/heretic">Heretic</a> automates removing refusal: Optuna tunes the edit’s settings to minimize both refusals and KL divergence from the original model. Since version 2.0 its default edit uses no refusal direction at all.</td><td>A refusal that lives only in the weights can be edited out. My router is trained to refuse when no tool fits and caught 69.3% of those cases on the held-out prompts, so the limit that counts sits outside the weights: whatever the model does, it can only call eight typed, read-only tools.</td></tr>
-            <tr><th scope="row">Autoregressive decoding</th><td>Decoding for likelihood gives <a href="https://arxiv.org/abs/1904.09751">bland, repetitive text</a>, and that paper’s authors conjecture that per-word objectives favor the lowest common denominator. Dense retrieval has a separate weakness: <a href="https://arxiv.org/abs/2109.08535">one study</a> found it degrades on rarer entities.</td><td>For retrieval I built <a href="#f-sma">SMA-1</a>, which weights rare terms by information content and abstains when nothing grounds the case. For output I keep the numbers out of the model: deterministic SQL returns them, and where a small model rephrased an explanation, a grammar bounded its format.</td></tr>
-            <tr><th scope="row">Context windows</th><td>Google’s <a href="https://opensource.googleblog.com/2026/10/introducing-elephant-goldfish-model-plugin.html">Elephant-Goldfish</a> plugin keeps one long session for design and memory, with no code written there. Stateless sessions then check the spec, and Google says they share none of the designer’s blind spots.</td><td>State lives in files and version control, my agent runs compact at a set token threshold and log it, and a read-only session that didn’t write the work audits it.</td></tr>
-            <tr><th scope="row">The transformer</th><td>In <a href="https://rikiyat.github.io/blog/weight-space-programming/">Sparks of Weight-Space Programming</a>, GPT-6 Astra traced Qwen3.5-0.8B’s reasoning loops to one direction written by the MLPs of layers 15 and 19 and subtracted it from 131,072 weights, 0.016% of the model, with no gradient descent. With 50 batched model runs, which the post calls forward passes, MATH-500 rose from 7.9% to 48.1%. It couldn’t improve Gemma 3 270M, which rarely loops.</td><td>Attention and MLP layers all write into one residual stream that later layers read, so an edit at one layer reaches the rest. A low-rank change can move a whole behavior when that behavior runs through a few directions in the stream, as the loops did and Gemma’s math errors didn’t. Gemma 3 270M is the base of the FunctionGemma model I fine-tuned, so that negative result is close to home. The pushback is worth reading: <a href="https://www.seangoedecke.com/llms-are-not-superhuman-at-reading-and-writing-neural-network-weights/">Sean Goedecke</a> says a competent researcher would make this same edit, <a href="https://honnibal.dev/blog/astra-read-write-misleading">Matthew Honnibal</a> says the post blurs reading raw weights with running Python, and <a href="https://simonwillison.net/2026/Nov/3/qwen-can-interpret-model-weights/">Simon Willison</a>’s Qwen 3.8 27B named three of four games from raw weights, one run each.</td></tr>
-          </tbody>
-        </table>
-        <dl class="stack">
-          <div><dt>Languages</dt><dd>Python, R, SQL, SAS, Java, C++</dd></div>
-          <div><dt>Modeling</dt><dd>PyTorch, scikit-learn, transformers, XGBoost, LightGBM, LoRA</dd></div>
-          <div><dt>Data and cloud</dt><dd>Snowflake, Docker, Git, CI/CD, GCP, AWS, Tableau</dd></div>
-          <div><dt>Methods</dt><dd>Causal inference, Bayesian networks, survival analysis, stochastic processes, SHAP, A/B testing</dd></div>
+        <dl class="doing">
+          <div><dt>Source control</dt><dd>I pin the data, prompt, weights and scorer by hash, so a number I report traces back to the run that made it.</dd></div>
+          <div><dt>Orchestration</dt><dd>I scope authority at the tool boundary. In my router at Telenav the model picks one of eight typed, read-only tools, deterministic SQL does the work, and the interface shows which tool ran before the answer arrives.</dd></div>
+          <div><dt>Harnesses</dt><dd>I test the scoring harness before I trust the score. One of my router’s early scores was wrong because my own scorer read past the end of a turn.</dd></div>
+          <div><dt>Refusal</dt><dd>A refusal that lives only in the weights can be edited out. My router is trained to refuse when no tool fits and caught 69.3% of those cases on the held-out prompts, so the limit that counts sits outside the weights: whatever the model does, it can only call eight typed, read-only tools.</dd></div>
+          <div><dt>Autoregressive decoding</dt><dd>For retrieval I built <a href="#f-sma">SMA-1</a>, which weights rare terms by information content and abstains when nothing grounds the case. For output I keep the numbers out of the model: deterministic SQL returns them, and where a small model rephrased an explanation, a grammar bounded its format.</dd></div>
+          <div><dt>Context windows</dt><dd>State lives in files and version control, my agent runs compact at a set token threshold and log it, and a read-only session that didn’t write the work audits it.</dd></div>
         </dl>
-        <details class="basics">
+        <details class="basics" open>
           <summary>The checks I run on any analysis</summary>
           <p>Agents write SQL and plots fast now, and they can be confidently wrong in ways that look fine. So I read these before I read the write-up.</p>
         <ol class="steps">
@@ -868,36 +903,51 @@ button{font:inherit;color:inherit;cursor:pointer}
           <li>I graph every variable and assert types and null ratios, because a zero can mean missing.</li>
           <li>I treat a score that looks too good as a bug until proven otherwise, which is how I caught the 0.806.</li>
           <li>Where’s the split? It should be sorted by time and cut once, with each user on one side, zero overlap asserted and priors from the training window only.</li>
-          <li>The baseline has to be fair and the metric has to be the one the decision uses: PR AUC for rare events, ROC AUC for ranking, MAE when the error is in dollars. Any challenger has to beat that baseline on the same rows.</li>
+          <li>The baseline has to be fair and the metric has to be the one the decision uses: PR AUC for rare events, ROC AUC for ranking, mean absolute error when the error is in dollars. Any challenger has to beat that baseline on the same rows.</li>
           <li>I test against known answers and I test the harness itself. The router faced 500 held-out prompts, whose labels still need independent review, and the rendered explanations passed a 25 of 25 faithfulness gate.</li>
           <li>If the fields don’t exist yet, no model will help, so I estimate the ceiling and put an interval on it.</li>
           <li>Then I walk the path myself and ask what needs no model.</li>
         </ol>
         </details>
+        <details class="basics">
+          <summary>What I’ve been reading</summary>
+          <p>As of November 2026. Links go to the primary sources.</p>
+        <table class="moat">
+          <thead><tr><th scope="col"><span class="sr">Topic</span></th><th scope="col">What’s going on</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Source control</th><td>Anthropic went from about 2,500 merges a day in May to over 30,000 in September, so it <a href="https://www.anthropic.com/research/redesigning-source-control">moved its monorepo off Git onto Scion</a>, a system built for agents that are always online. It says Scion is no replacement for Git in general use.</td></tr>
+            <tr><th scope="row">Orchestration</th><td>DeepSeek’s <a href="https://github.com/deepseek-ai/dsh-superagent-prototype">dsh-superagent</a> research prototype acts only when asked or when a rule the team using it wrote allows it, and gives each work item its own agent session and directory.</td></tr>
+            <tr><th scope="row">Harnesses</th><td>The <a href="https://rikiyat.github.io/blog/weight-space-programming/">weight-space programming authors</a> say their results are limited by context length and harnesses. OpenAI and Synopsys say <a href="https://news.synopsys.com/2026-09-30-OpenAI-and-Synopsys-Announce-GPT-Synopsys-Frontier-Intelligence-to-Revolutionize-Chip-Design">GPT-Synopsys</a> will be designed to work with customers’ own agent harnesses.</td></tr>
+            <tr><th scope="row">Refusal</th><td><a href="https://arxiv.org/abs/2406.11717">Arditi et al.</a> found refusal is mediated by a single direction across 13 open chat models. <a href="https://github.com/p-e-w/heretic">Heretic</a> automates removing refusal: Optuna tunes the edit’s settings to minimize both refusals and KL divergence from the original model. Since version 2.0 its default edit uses no refusal direction at all.</td></tr>
+            <tr><th scope="row">Autoregressive decoding</th><td>Decoding for likelihood gives <a href="https://arxiv.org/abs/1904.09751">bland, repetitive text</a>, and that paper’s authors conjecture that per-word objectives favor the lowest common denominator. Dense retrieval has a separate weakness: <a href="https://arxiv.org/abs/2109.08535">one study</a> found it degrades on rarer entities.</td></tr>
+            <tr><th scope="row">Context windows</th><td>Google’s <a href="https://opensource.googleblog.com/2026/10/introducing-elephant-goldfish-model-plugin.html">Elephant-Goldfish</a> plugin keeps one long session for design and memory, with no code written there. Stateless sessions then check the spec, and Google says they share none of the designer’s blind spots.</td></tr>
+            <tr><th scope="row">The transformer</th><td><p>In <a href="https://rikiyat.github.io/blog/weight-space-programming/">Sparks of Weight-Space Programming</a>, GPT-6 Astra traced Qwen3.5-0.8B’s reasoning loops to one direction written by the MLPs of layers 15 and 19 and subtracted it from 131,072 weights, 0.016% of the model, with no gradient descent. With 50 batched model runs, which the post calls forward passes, MATH-500 rose from 7.9% to 48.1%. It couldn’t improve Gemma 3 270M, which rarely loops.</p><p>Attention and MLP layers all write into one residual stream that later layers read, so an edit at one layer reaches the rest. A low-rank change can move a whole behavior when that behavior runs through a few directions in the stream, as the loops did and Gemma’s math errors didn’t. Gemma 3 270M is the base of the FunctionGemma model I fine-tuned, so that negative result is close to home. The pushback is worth reading: <a href="https://www.seangoedecke.com/llms-are-not-superhuman-at-reading-and-writing-neural-network-weights/">Sean Goedecke</a> says a competent researcher would make this same edit, <a href="https://honnibal.dev/blog/astra-read-write-misleading">Matthew Honnibal</a> says the post blurs reading raw weights with running Python, and <a href="https://simonwillison.net/2026/Nov/3/qwen-can-interpret-model-weights/">Simon Willison</a>’s Qwen 3.8 27B named three of four games from raw weights, one run each.</p></td></tr>
+          </tbody>
+        </table>
+        </details>
       </div>
     </section>
     <section class="play-row" aria-label="Things to play with">
       <div class="toy spin">
-        <h4>Believe in the Spin</h4>
+        <h4>Spin the globe</h4>
         <div class="jj-slot" data-jj="globe"><img src="assets/jojo/globe-still.jpg" width="480" height="480" loading="lazy" alt="A steel globe"></div>
       </div>
       <div class="toy ask">
         <h4>Ask me</h4>
-        <div class="jj-slot" data-jj="joseph"></div>
+        <div class="jj-slot" data-jj="joseph"><noscript><p class="note">Asking needs JavaScript. My email is in the contact block.</p></noscript></div>
       </div>
     </section>
 
     <section class="final" aria-label="Contact">
       <h2>January 2027</h2>
       <ul>
-        <li><a class="btn" href="Ayaz_Khan_Resume.pdf" download>Résumé (PDF)</a></li>
+        <li><a class="btn" href="Ayaz_Khan_Resume.pdf" target="_blank" rel="noopener">Résumé (PDF)</a></li>
         <li><a href="mailto:aak2259@columbia.edu">aak2259@columbia.edu</a></li>
-        <li><a href="mailto:khanayaz2727@gmail.com">khanayaz2727@gmail.com</a></li>
-        <li><a href="tel:+19179433853">+1 (917) 943-3853</a></li>
         <li><a href="https://www.linkedin.com/in/ayazkhan27">LinkedIn</a></li>
         <li><a href="https://github.com/ayazkhan27">GitHub</a></li>
+        <li><a href="https://orcid.org/0009-0008-5695-4934">ORCID</a></li>
       </ul>
-      <button type="button" id="reset"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10a5.5 5.5 0 1 0 1.8-4.1M4 3v4h4"/></svg>Bites the dust: start over</button>
+      <button type="button" id="reset"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 10a5.5 5.5 0 1 0 1.8-4.1M4 3v4h4"/></svg>Start over <small>Bites the Dust</small></button>
     </section>
   </section>
 </main>
@@ -905,10 +955,6 @@ button{font:inherit;color:inherit;cursor:pointer}
 <footer class="foot">
   <p>Music: “Smooth” (instrumental), Santana. Unaffiliated parody of JoJo’s Bizarre Adventure by Hirohiko Araki. All art and sound effects are original, apart from the Columbia and NSF marks, the flags and the Natural Earth map.</p>
 </footer>
-
-<nav class="ctl" id="ctl" aria-label="Page controls" hidden>
-  <button type="button" id="sound" aria-pressed="true" aria-label="Sound"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7.5h3.5L11 4v12l-4.5-3.5H3z"/><path class="on" d="M13.5 7.2a4 4 0 0 1 0 5.6M15.8 5a7 7 0 0 1 0 10"/></svg></button>
-</nav>
 
 <i id="epBar"></i>
 <div id="stage" hidden>
@@ -922,12 +968,12 @@ button{font:inherit;color:inherit;cursor:pointer}
 <template id="ep">
   <div class="line nf" data-k="nsf"><div class="pool" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><img class="nsf" src="assets/logos/nsf-jojo.svg" width="272" height="272" alt=""><span class="t">NSF Graduate Research Fellow</span><span class="u">1,000 awards from roughly 17,000 eligible applicants</span></div>
   <div class="line" data-k="cu"><img class="col" src="assets/logos/columbia-jojo.svg" width="768" height="125" alt="Columbia University"><span>Master’s in Statistics, December 2026</span></div>
-  <div class="scraps" data-k="scraps"><p>First author, IEEE ICNGN 2024</p><p>U.S. provisional patent application</p><p>2.5 more AUC points on 23,559 holdout rows</p><p>317 Con Edison filings, 16 docket themes</p><p>Python, R, SQL, SAS, Java, C++</p></div>
+  <div class="scraps" data-k="scraps"><p>First author, IEEE ICNGN 2024</p><p>U.S. provisional patent application</p><p>2.5 more AUC points on 23,559 holdout rows</p><p>317 Con Edison filings, 16 docket themes</p><p>Python, R, SQL, SAS, Java, C<span class="pp">++</span></p></div>
   <div class="line q" data-k="us"><span>U.S. citizen?</span><b class="yes">YES</b></div>
   <div class="line q" data-k="sp"><span>Need sponsorship?</span><b class="no">NO</b></div>
-  <div class="line jan" data-k="jan"><small>I can start in</small><b>January <i class="jy">2027</i></b><span><a class="btn" href="Ayaz_Khan_Resume.pdf" download>Résumé (PDF)</a><a href="mailto:aak2259@columbia.edu">aak2259@columbia.edu</a></span></div>
+  <div class="line jan" data-k="jan"><small>I can start in</small><b>January <i class="jy">2027</i></b><span><a class="btn" href="Ayaz_Khan_Resume.pdf" target="_blank" rel="noopener">Résumé (PDF)</a><a href="mailto:aak2259@columbia.edu">aak2259@columbia.edu</a></span></div>
   <svg id="tbcArrow" class="arrow" data-k="tbc" viewBox="0 0 640 120" role="img" aria-label="To Be Continued"><path class="body" d="M4 60 80 3V31H636L606 60 636 89H80V117Z"/><path class="in" d="M19 60 72 20V39H620L596 60 620 81H72V100Z"/><text x="343" y="75" text-anchor="middle">To Be Continued</text></svg>
 </template>
-<script src="assets/site.js?v=bd692f2e" defer></script>
+<script src="assets/site.js?v=77bb0607" defer></script>
 </body>
 </html>

@@ -110,9 +110,9 @@ const DATA = [
 [6, 'Can I see your résumé?|Do you have a CV?|Where is your resume?',
  'resume, pdf, download',
  'Here it is: [my résumé (PDF)](Ayaz_Khan_Resume.pdf).'],
-[6, 'How can I contact you?|What is your email?|What is your phone number?|Can I see your code?|Are you on LinkedIn?',
+[6, 'How can I contact you?|What is your email?|Can I see your code?|Are you on LinkedIn?',
  'mail, phone, call, number, reach, interview, github',
- "Email {mail} or call [+1 (917) 943-3853](tel:+19179433853). I'm on [LinkedIn](https://www.linkedin.com/in/ayazkhan27) and [GitHub](https://github.com/ayazkhan27) as ayazkhan27."],
+ "Email {mail}. I'm on [LinkedIn](https://www.linkedin.com/in/ayazkhan27) and [GitHub](https://github.com/ayazkhan27) as ayazkhan27."],
 [2, 'What are your salary expectations?|How much do you want to be paid?',
  'salary, pay, paid, money, rate, wage',
  "I'd rather talk about that once I know the role. Email me at {mail}."],
@@ -130,7 +130,7 @@ const DATA = [
  'A trigram model of {n} phrasings of these {q} questions guesses how your line ends, weighted by how often I expect each question. TF-IDF cosine similarity picks the answer, and nothing you type leaves this page.'],
 ];
 
-const FALLBACK = "That one isn't in my notes. Ask me directly at {mail}.";
+const FALLBACK = "That one isn’t in my notes. Ask me directly at {mail}.";
 const A = 0.4;          // stupid-backoff penalty per order dropped (Brants et al. 2007)
 const L = 0.2;          // weight of the trigram against the question priors
 const MIN_SIM = 0.55;   // below this cosine, say so instead of guessing
@@ -288,7 +288,7 @@ export function brain() {
   return { Q, nP, predict, match, yesno };
 }
 
-const html = s => s.replace(/&/g, '&amp;').replace(/\{mail\}/g, `[${MAIL}](mailto:${MAIL})`).replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+const html = s => s.replace(/&/g, '&amp;').replace(/\{mail\}/g, `[${MAIL}](mailto:${MAIL})`).replace(/\[([^\]]+)\]\(([^)]+)\)/g, (m, t, h) => `<a href="${h}"${/\.pdf$/.test(h) ? ' target="_blank" rel="noopener"' : ''}>${t}</a>`);
 const sfx = (name, gain) => document.dispatchEvent(new CustomEvent('sfx', { detail: { name, gain } }));
 
 export async function mount(root, opts = {}) {

@@ -1,10 +1,33 @@
 /* The long version: its toys load as they come near. Nothing here runs until someone scrolls down. */
 const d = document, $ = (s, r = d) => r.querySelector(s), $$ = (s, r = d) => [...r.querySelectorAll(s)];
-const here = p => new URL(p, import.meta.url).href;
+const here = p => new URL(p, import.meta.url).href, V = new URL(import.meta.url).search;   // V: the page's build stamp, so modules are never stale
 const ease = t => 1 - (1 - t) ** 3;
 
 export function init(sfx) {
-  rerun(sfx); router(sfx); pfd(sfx); results(); copyButtons(); shift(); route(); tallyAndFly(sfx); video(); modules(sfx);
+  d.documentElement.classList.add('deep-on'); fold(); rerun(sfx); router(sfx); pfd(sfx); results(); copyButtons(); shift(); route(); tallyAndFly(sfx); video(); modules(sfx); where();
+}
+
+/* phones: the long version starts folded, and one tap opens each part */
+function fold() {
+  if (!matchMedia('(max-width: 699px)').matches) return;
+  $$('#how details[open]').forEach(x => { x.open = false; });
+  $$('.file.two .prose, .file.narrow .prose').forEach(p => {
+    const rest = $$(':scope > p', p).slice(1); if (!rest.length) return;
+    const det = d.createElement('details'); det.className = 'basics';
+    det.innerHTML = '<summary>The full story</summary>';
+    rest[0].before(det); det.append(...rest);
+  });
+}
+
+/* the section bar marks the part of the long version on screen */
+function where() {
+  const links = $$('.deep > nav a:not(.top)'), top = $('.deep > nav .top');
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) links.forEach(a => { if (a.getAttribute('href') !== '#' + e.target.id) return a.removeAttribute('aria-current'); a.setAttribute('aria-current', 'true'); a.parentElement.scrollLeft = a.offsetLeft - top.offsetWidth - 46; });
+    if (e.isIntersecting && !e.target.id) links[0].parentElement.scrollLeft = 0;
+  }), { rootMargin: '-45% 0px -50% 0px' });
+  links.forEach(a => io.observe($(a.getAttribute('href'))));
+  $$('.deep > .long, .deep > .play-row, .deep > .final').forEach(x => io.observe(x));   // no id, so nothing matches and the mark clears
 }
 
 /* three fixes: the number only moves when all three are in, because only the ends were measured */
@@ -92,8 +115,7 @@ function pfd(sfx) {
 
 function results() {
   const root = $('#res'); if (!root) return;
-  const R = [['Medicine', .949, .606], ['Finance', .418, .231], ['Genomics', .849, .682], ['Legal', .941, .870, 'all queries'], ['Cyber', .766, .749, 'directional only']];
-  root.insertAdjacentHTML('beforeend', R.map(([n, a, b, note]) => `<div class="bar" aria-hidden="true"><span>${n}${note ? `<br><small>${note}</small>` : ''}</span><i class="a" style="--v:${a}">${a.toFixed(3)}</i><i class="b" style="--v:${b}">${b.toFixed(3)}</i></div>`).join(''));
+  root.classList.add('live');
   new IntersectionObserver((es, o) => es.forEach(e => { if (e.isIntersecting) { root.classList.add('seen'); o.disconnect(); } }), { threshold: .3 }).observe(root);
 }
 
@@ -137,7 +159,10 @@ function tallyAndFly(sfx) {
 function video() {
   const v = $('.vid video'); if (!v) return;
   if (d.documentElement.classList.contains('still')) return;
-  new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) v.play().catch(() => {}); else v.pause(); }), { threshold: .4 }).observe(v);
+  let inView = false, stopped = false;                       // a pause the visitor made is kept
+  v.addEventListener('pause', () => { if (inView) stopped = true; });
+  v.addEventListener('play', () => { stopped = false; });
+  new IntersectionObserver(es => es.forEach(e => { inView = e.isIntersecting; if (!inView) v.pause(); else if (!stopped) v.play().catch(() => {}); }), { threshold: .4 }).observe(v);
 }
 
 /* ORA, the Spin and Ask me are the live site's own modules */
@@ -150,9 +175,10 @@ function modules(sfx) {
   });
   const mount = slot => {
     const name = slot.dataset.jj, link = d.createElement('link');
-    link.rel = 'stylesheet'; link.href = here(`jojo/${name}.css`); d.head.append(link);
+    link.rel = 'stylesheet'; link.href = here(`jojo/${name}.css`) + V; d.head.append(link);
     const host = d.createElement('div'); host.className = 'jj-host';
-    import(here(`jojo/${name}.js`)).then(m => { slot.replaceChildren(host); return m.mount(host, {}); }).catch(() => {});
+    const wait = d.createElement('p'); wait.className = 'note'; wait.textContent = 'Loading…'; slot.append(wait);
+    import(here(`jojo/${name}.js`) + V).then(m => { slot.replaceChildren(host); return m.mount(host, {}); }).catch(() => { wait.textContent = 'This part didn’t load. Reload the page to try again.'; });
   };
   const near = new IntersectionObserver((es, o) => es.forEach(e => { if (e.isIntersecting) { o.unobserve(e.target); mount(e.target); } }), { rootMargin: '500px 0px' });
   $$('[data-jj]').forEach(s => near.observe(s));
