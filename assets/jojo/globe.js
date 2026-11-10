@@ -84,7 +84,6 @@ export async function mount(root) {
   let run = null, drag = null, cur = null, gl3 = null, failed = false, user = false, tossed = false, dir = 1;
   let gold = 0, hi = 0, hiT = 0, spinOn = false, lastSfx = 0;
   const seen = new Set();
-  const home = (() => { try { const r = new Intl.Locale(win.navigator.language).region; return r && FACTS.find((f) => f.iso === r.toLowerCase()); } catch { return null; } })();
   const hold = new Set(['view']);
   if (doc.documentElement.classList.contains('time-stopped')) hold.add('time');
   if (doc.hidden) hold.add('hidden');
@@ -92,7 +91,6 @@ export async function mount(root) {
   const sfx = (detail) => doc.dispatchEvent(new CustomEvent('sfx', { detail }));
   const quiet = () => { if (spinOn) { spinOn = false; sfx({ name: 'spin', stop: true }); } };
   const pool = () => {
-    if (!tossed && home) return [home];
     const fresh = FACTS.filter((f) => !seen.has(f));
     if (fresh.length) return fresh;
     seen.clear();
@@ -125,12 +123,9 @@ export async function mount(root) {
     if (Math.abs(w0) > 0.01) dir = Math.sign(w0);
     pin.hidden = true; hiT = 0; run = null;
     const speed = Math.max(Math.abs(w0), 1.4), T0 = Math.min(4.6, 2 + Math.max(speed, Math.abs(v0)) / 14), free = speed * T0 / 3;
-    let best = null, D = 0, score = Infinity;
-    for (const f of pool()) {        // the unseen country nearest where this flick would coast to on its own
-      let d = (((-f.lon * RAD - ang) * dir) % TAU + TAU) % TAU;
-      d += TAU * Math.max(0, Math.round((free - d) / TAU));
-      if (Math.abs(d - free) < score) { score = Math.abs(d - free); best = f; D = d; }
-    }
+    const P = pool(), best = P[Math.floor(Math.random() * P.length)];   // every country not yet seen is equally likely
+    let D = (((-best.lon * RAD - ang) * dir) % TAU + TAU) % TAU;         // the way round to it in the spin's direction,
+    D += TAU * Math.max(0, Math.round((free - D) / TAU));                // plus the whole turns this much speed would coast
     if (reduce.matches || !gl3) {
       if (gl3) { ang += dir * D; lat = best.lat * RAD; draw(); }
       land(best);
@@ -254,7 +249,8 @@ export async function mount(root) {
   }
 
   /* ---- input ---- */
-  again.addEventListener('click', () => { user = true; launch(dir * (15 + Math.random() * 14)); });
+  const toss = (speed = 15 + Math.random() * 14) => { const a = Math.random() * TAU; launch(Math.cos(a) * speed, Math.sin(a) * speed); };
+  again.addEventListener('click', () => { user = true; toss(); });
   stage.addEventListener('pointerdown', (e) => {
     if (!gl3 || hold.size || drag || e.button !== 0) return;
     user = true; run = null; pin.hidden = true; hiT = 0;
@@ -286,11 +282,11 @@ export async function mount(root) {
   stage.addEventListener('pointercancel', release);
   stage.addEventListener('keydown', (e) => {
     if (!gl3 || hold.size) return;
-    const k = e.key, w0 = k === 'ArrowRight' ? 7 : k === 'ArrowLeft' ? -7 : k === ' ' || k === 'Enter' ? dir * 22 : 0, v0 = k === 'ArrowDown' ? 7 : k === 'ArrowUp' ? -7 : 0;
-    if (!w0 && !v0) return;
+    const k = e.key, w0 = k === 'ArrowRight' ? 7 : k === 'ArrowLeft' ? -7 : 0, v0 = k === 'ArrowDown' ? 7 : k === 'ArrowUp' ? -7 : 0, any = k === ' ' || k === 'Enter';
+    if (!w0 && !v0 && !any) return;
     e.preventDefault();
     user = true;
-    launch(w0, v0);
+    if (any) toss(22); else launch(w0, v0);
   });
 
   /* ---- lifecycle ---- */
@@ -303,7 +299,7 @@ export async function mount(root) {
   const first = new IntersectionObserver((es, o) => {   // one toss when it comes into view, so the first thing it does is land
     if (!es[es.length - 1].isIntersecting || hold.has('time')) return;
     o.disconnect();
-    if (!tossed) launch(8.4);
+    if (!tossed) toss(8.4);
   }, { threshold: 0.6 });
   first.observe(stage);
 }
