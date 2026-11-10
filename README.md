@@ -25,7 +25,7 @@ python3 -m http.server 8000          # preview at http://localhost:8000
 
 The episode's cue times in `assets/site.js` (`CUES`) are cut to the song's accents. Do not retime them or re-encode the mp3.
 Cues fire `LEAD` (50 ms) early because an entrance takes about 60 ms to look landed; the synth sounds are scheduled back onto the note (`sfxLag`).
-Volume starts at half and is kept in localStorage; iOS Safari ignores page volume, so the slider hides there.
+Volume starts at 33% and is kept in localStorage; iOS Safari ignores page volume, so the slider hides there.
 
 ## The title card
 

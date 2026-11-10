@@ -66,7 +66,7 @@
   if (STILL) { $$('.sheet').forEach(s => s.classList.add('open')); return; }
 
   /* sound: the gesture that opens the window also wakes the audio */
-  let ac, master, noiseBuf, soundOn = true, quiet = false, vol = .5, sfxLag = 0;
+  let ac, master, noiseBuf, soundOn = true, quiet = false, vol = .33, sfxLag = 0;
   try { const v = parseFloat(localStorage.getItem('vol')); if (v >= 0 && v <= 1) vol = v; } catch {}
   const wake = () => {
     if (ac || CAPTURE || !window.AudioContext) return;
@@ -391,7 +391,7 @@
   /* time stop: the wind hangs where it is */
   const soundB = $('#sound'), au = $('#epAudio');
   const setSound = v => { soundOn = v; soundB.setAttribute('aria-pressed', v); au.muted = !v; $('#playSound').textContent = v ? 'sound on' : 'muted'; try { localStorage.setItem('muted', v ? '0' : '1'); } catch {} };
-  soundB.addEventListener('click', () => { setSound(!soundOn); if (soundOn && vol === 0) { volB.value = 50; volB.dispatchEvent(new Event('input')); } wake(); });
+  soundB.addEventListener('click', () => { setSound(!soundOn); if (soundOn && vol === 0) { volB.value = 33; volB.dispatchEvent(new Event('input')); } wake(); });
   /* ponytail: iOS Safari ignores audio.volume, so the slider hides there and the phone's own buttons do the job; route #epAudio through `master` if that ever matters */
   const volB = $('#vol');
   au.volume = vol; volB.value = Math.round(vol * 100); volB.hidden = au.volume !== vol;
