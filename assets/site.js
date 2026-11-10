@@ -66,12 +66,15 @@
   if (STILL) { $$('.sheet').forEach(s => s.classList.add('open')); return; }
 
   /* sound: the gesture that opens the window also wakes the audio */
-  let ac, master, noiseBuf, soundOn = true, quiet = false, vol = .33, sfxLag = 0;
+  let ac, master, music, fixedVol = false, noiseBuf, soundOn = true, quiet = false, vol = .33, sfxLag = 0;
   try { const v = parseFloat(localStorage.getItem('vol')); if (v >= 0 && v <= 1) vol = v; } catch {}
   const wake = () => {
-    if (ac || CAPTURE || !window.AudioContext) return;
+    if (CAPTURE || !window.AudioContext) return;
+    if (ac) { if (ac.state !== 'running') ac.resume().catch(() => {}); return; }
     ac = new AudioContext();
     master = ac.createGain(); master.gain.value = vol; master.connect(ac.destination);
+    /* iOS Safari ignores audio.volume, so only there the music goes through a gain node of its own. Everywhere else the element plays directly, as it always has. */
+    if (fixedVol) try { music = ac.createGain(); music.gain.value = vol; ac.createMediaElementSource(au).connect(music).connect(ac.destination); } catch { music = null; }
     noiseBuf = ac.createBuffer(1, ac.sampleRate * 2, ac.sampleRate);
     const c = noiseBuf.getChannelData(0);
     for (let i = 0; i < c.length; i++) c[i] = Math.random() * 2 - 1;
@@ -392,13 +395,12 @@
   const soundB = $('#sound'), au = $('#epAudio');
   const setSound = v => { soundOn = v; soundB.setAttribute('aria-pressed', v); au.muted = !v; $('#playSound').textContent = v ? 'sound on' : 'muted'; try { localStorage.setItem('muted', v ? '0' : '1'); } catch {} };
   soundB.addEventListener('click', () => { setSound(!soundOn); if (soundOn && vol === 0) { volB.value = 33; volB.dispatchEvent(new Event('input')); } wake(); });
-  /* ponytail: iOS Safari ignores audio.volume, so the slider hides there and the phone's own buttons do the job; route #epAudio through `master` if that ever matters */
   const volB = $('#vol');
-  au.volume = vol; volB.value = Math.round(vol * 100); volB.hidden = au.volume !== vol;
+  au.volume = vol; fixedVol = au.volume !== vol; volB.value = Math.round(vol * 100);
   try { if (vol === 0 || localStorage.getItem('muted') === '1') setSound(false); } catch {}
   volB.addEventListener('input', () => {
     const wasZero = vol === 0;
-    vol = volB.value / 100; au.volume = vol; if (master) master.gain.value = vol;
+    vol = volB.value / 100; au.volume = vol; if (master) master.gain.value = vol; if (music) music.gain.value = vol;
     if (vol === 0 ? soundOn : wasZero && !soundOn) setSound(vol > 0);
     try { localStorage.setItem('vol', vol); } catch {}
     wake();
@@ -661,7 +663,7 @@
     } else {
       heldFor += performance.now() - heldAt; heldAt = 0; lastT = now();
       heldAnims.forEach(a => a.play()); heldAnims = [];
-      if (!au.ended && !ep.silent) au.play().catch(() => {});
+      wake(); if (!au.ended && !ep.silent) au.play().catch(() => {});
     }
     root.classList.toggle('ep-paused', v); pauseB.textContent = v ? 'Resume' : 'Pause'; hint(v);
   };
