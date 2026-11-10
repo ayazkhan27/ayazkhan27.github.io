@@ -141,7 +141,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 
 /* close */
 .close{display:grid;gap:clamp(2rem,5vw,4rem);padding:0 var(--m) clamp(3rem,6vw,5rem)}
-@media (min-width:960px){.close{grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);align-items:center}}
+@media (min-width:1180px){.close{grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);align-items:center}}
 .close .stand h2{font-size:clamp(1.75rem,3vw,2.75rem);overflow-wrap:normal;white-space:nowrap}
 .stand{transform:rotate(-.6deg);box-shadow:0 22px 44px #05020ccc}
 .reach .lockup{width:100%;max-width:25rem;margin:0}
@@ -165,7 +165,6 @@ button{font:inherit;color:inherit;cursor:pointer}
 @media (min-width:700px){.say{max-width:52vw}}
 @media (max-width:340px){.qs button{font-size:.8125rem;padding:.35rem .5rem}}
 .ctl button:hover{background:#2a1846}
-@media (max-width:959px){.reading:not(.eps) #vol{display:none}}
 @media (min-width:960px){.reading:not(.eps) .ctl{flex-direction:column;right:.25rem}.reading:not(.eps) .ctl button{min-width:2.5rem;padding:0}}
 .ctl [aria-pressed=false] .on{display:none}
 
@@ -515,15 +514,18 @@ button{font:inherit;color:inherit;cursor:pointer}
 .js .jj-slot[data-jj="ora"]{min-height:34rem}
 #stage .jan :focus-visible{outline-color:var(--ink)}
 .ctl :focus-visible{box-shadow:0 0 0 6px #0a0512}
-@media (max-width:700px){#vol{display:none}}
-@media (max-width:699px){.deep>nav .top{position:sticky;left:var(--m);z-index:1;background:#120a1c;box-shadow:calc(var(--m)*-1) 0 0 #120a1c,calc(var(--m)*-2) 0 0 #120a1c,.5rem 0 0 #120a1c}}
+@media (max-width:959px){#vol{display:none}}
+@media (max-width:699px){.deep>nav .top{position:sticky;left:0;z-index:1;background:#120a1c;box-shadow:calc(var(--m)*-1) 0 0 #120a1c,.5rem 0 0 #120a1c}}
 @media (max-height:800px) and (min-width:701px){.sky{background:linear-gradient(180deg,#1d1049 0,#4a1a6e 34%,#9c2868 64%,#e0583f 80%,#ffb340 91%,#ffe39a 100%)}}
 .facts{text-shadow:0 1px 3px #2a0d4acc}
 .hero :focus-visible{box-shadow:0 0 0 6px #0a0512}
 html{scrollbar-gutter:stable}html.eps{overflow:hidden}
 .scraps .pp{font-family:var(--font-text);font-weight:700;letter-spacing:.02em}
-html:not(.deep-on) :is(#rerun,#router,#pfd .sw,[data-copy]){visibility:hidden}html:not(.js) :is(#rerun,#router){display:none}
-@media (min-width:960px) and (max-width:1279px){.close .stand h2{font-size:clamp(1.1rem,1.9vw,1.75rem)}}
+html:not(.deep-on) :is(#rerun,#router,#pfd .sw,[data-copy]){visibility:hidden}html:not(.js) :is(#rerun,#router,.play-row,.fig figcaption){display:none}
+.nodeep :is(#rerun,#router){display:none}.nodeep .jj-slot[data-jj="ora"]{min-height:0}
+@media (max-height:480px) and (orientation:landscape){.eps #slot{padding-right:5rem}.eps .ctl{flex-direction:column;flex-wrap:nowrap;align-items:stretch;gap:.35rem;max-width:4.25rem}.eps .ctl button{min-height:2.4rem;min-width:0;padding:0 .3rem}.eps #hint{order:-1;width:auto;padding:.3rem;line-height:1.2;font-size:.75rem;text-align:center}#stage:has(.sx) .bigsfx{top:auto;bottom:3%;right:auto;left:2%;font-size:2.4rem}}
+@media (max-width:340px){.eps #slot{padding-bottom:3.75rem}.sx .fg{width:min(34vw,7.5rem)}}
+@media (min-width:1180px) and (max-width:1279px){.close .stand h2{font-size:clamp(1.1rem,1.9vw,1.75rem)}}
 @media (min-width:701px) and (max-width:1179px) and (max-height:720px){.hero{top:clamp(1.5rem,6vh,3rem)}#name{font-size:clamp(4rem,min(14.5vw,17vh),10rem)}.say{font-size:clamp(1.45rem,min(3.8vw,6.2vh),2.6rem)}.creds .col{width:min(36vw,45vh)}}
 @media (max-width:700px) and (orientation:portrait){.hero{top:clamp(2.5rem,7vh,4rem)}}
 </style>
@@ -974,6 +976,6 @@ html:not(.deep-on) :is(#rerun,#router,#pfd .sw,[data-copy]){visibility:hidden}ht
   <div class="line jan" data-k="jan"><small>I can start in</small><b>January <i class="jy">2027</i></b><span><a class="btn" href="Ayaz_Khan_Resume.pdf" target="_blank" rel="noopener">Résumé (PDF)</a><a href="mailto:aak2259@columbia.edu">aak2259@columbia.edu</a></span></div>
   <svg id="tbcArrow" class="arrow" data-k="tbc" viewBox="0 0 640 120" role="img" aria-label="To Be Continued"><path class="body" d="M4 60 80 3V31H636L606 60 636 89H80V117Z"/><path class="in" d="M19 60 72 20V39H620L596 60 620 81H72V100Z"/><text x="343" y="75" text-anchor="middle">To Be Continued</text></svg>
 </template>
-<script src="assets/site.js?v=77bb0607" defer></script>
+<script src="assets/site.js?v=9ab5b3bb" defer></script>
 </body>
 </html>

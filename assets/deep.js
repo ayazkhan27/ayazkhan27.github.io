@@ -23,9 +23,9 @@ function fold() {
 function where() {
   const links = $$('.deep > nav a:not(.top)'), top = $('.deep > nav .top');
   const io = new IntersectionObserver(es => es.forEach(e => {
-    if (e.isIntersecting) links.forEach(a => { if (a.getAttribute('href') !== '#' + e.target.id) return a.removeAttribute('aria-current'); a.setAttribute('aria-current', 'true'); a.parentElement.scrollLeft = a.offsetLeft - top.offsetWidth - 46; });
+    if (e.isIntersecting) links.forEach(a => { if (a.getAttribute('href') !== '#' + e.target.id) return a.removeAttribute('aria-current'); a.setAttribute('aria-current', 'true'); a.parentElement.scrollLeft = a.offsetLeft - top.offsetWidth - 28; });
     if (e.isIntersecting && !e.target.id) links[0].parentElement.scrollLeft = 0;
-  }), { rootMargin: '-45% 0px -50% 0px' });
+  }), { rootMargin: '-70px 0px -75% 0px' });
   links.forEach(a => io.observe($(a.getAttribute('href'))));
   $$('.deep > .long, .deep > .play-row, .deep > .final').forEach(x => io.observe(x));   // no id, so nothing matches and the mark clears
 }

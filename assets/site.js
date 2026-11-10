@@ -60,7 +60,7 @@
   /* the long version loads when someone comes near it */
   const sfxApi = { hiss() {}, thud() {}, buzz() {}, wake() {} }, deepUrl = new URL('deep.js' + new URL(d.currentScript.src).search, d.currentScript.src).href;
   new IntersectionObserver(([e]) => d.documentElement.classList.toggle('reading', e.isIntersecting)).observe($('#deep'));
-  const deepIo = new IntersectionObserver((es, o) => { if (es.some(e => e.isIntersecting)) { o.disconnect(); import(deepUrl).then(m => m.init(sfxApi)).catch(() => $('.long').insertAdjacentHTML('beforeend', '<p class="note" role="status">The interactive parts didn’t load. Reload the page to try again.</p>')); } }, { rootMargin: '1400px 0px' });
+  const deepIo = new IntersectionObserver((es, o) => { if (es.some(e => e.isIntersecting)) { o.disconnect(); import(deepUrl).then(m => m.init(sfxApi)).catch(() => { root.classList.add('nodeep'); [$('.long'), ...$$('.jj-slot')].forEach(el => el.insertAdjacentHTML('beforeend', '<p class="note" role="status">The interactive parts didn’t load. Reload the page to try again.</p>')); }); } }, { rootMargin: '1400px 0px' });
   deepIo.observe($('#deep'));
 
   if (STILL) { $$('.sheet').forEach(s => s.classList.add('open')); return; }
@@ -363,7 +363,7 @@
       let px = f.W * .08, py = f.H * .28;
       tween(620, p => { if (f.done) return; const x = f.W * (.08 + p * .55), y = f.H * (.28 + p * .22); rub(f, px, py, x, y, 24); px = x; py = y; f.cells.clear(); });
     });
-    later(4300, () => { if (showing.has(el) && el._f && !el._f.cells.size) blow(el._f); });   // nothing stays locked
+    later(4300, () => { if (showing.has(el) && el._f && !el._f.done) blow(el._f); });   // nothing stays locked
   }), { threshold: .55 });
   const ioFly = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) flyIn(e.target); }), { threshold: .08 });
   papers.forEach(el => { foil(el); io.observe(el); ioFly.observe(el); el.addEventListener('focusin', () => { const f = el._f; if (f && !f.done) blow(f); }); });
@@ -390,11 +390,12 @@
 
   /* time stop: the wind hangs where it is */
   const soundB = $('#sound'), au = $('#epAudio');
-  const setSound = v => { soundOn = v; soundB.setAttribute('aria-pressed', v); au.muted = !v; $('#playSound').textContent = v ? 'sound on' : 'muted'; };
-  soundB.addEventListener('click', () => { setSound(!soundOn); wake(); });
+  const setSound = v => { soundOn = v; soundB.setAttribute('aria-pressed', v); au.muted = !v; $('#playSound').textContent = v ? 'sound on' : 'muted'; try { localStorage.setItem('muted', v ? '0' : '1'); } catch {} };
+  soundB.addEventListener('click', () => { setSound(!soundOn); if (soundOn && vol === 0) { volB.value = 50; volB.dispatchEvent(new Event('input')); } wake(); });
   /* ponytail: iOS Safari ignores audio.volume, so the slider hides there and the phone's own buttons do the job; route #epAudio through `master` if that ever matters */
   const volB = $('#vol');
   au.volume = vol; volB.value = Math.round(vol * 100); volB.hidden = au.volume !== vol;
+  try { if (vol === 0 || localStorage.getItem('muted') === '1') setSound(false); } catch {}
   volB.addEventListener('input', () => {
     const wasZero = vol === 0;
     vol = volB.value / 100; au.volume = vol; if (master) master.gain.value = vol;
