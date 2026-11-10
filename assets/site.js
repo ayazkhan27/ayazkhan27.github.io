@@ -212,7 +212,7 @@
 
   /* shutters */
   const shut = $('#shut'), ctl = $('#ctl'), flash = $('#flash'), hero = $('.hero'), behind = [$('.skip'), $('#win'), $('main'), $('.foot')];
-  let o = 0, ov = 0, oGoal = 0, opened = false, dragging = false, touched = false, nextRattle = 900;
+  let o = 0, ov = 0, oGoal = 0, opened = false, openedAt = -1e9, dragging = false, touched = false, nextRattle = 900;
   const nameEl = $('#name'), nameText = nameEl.textContent;
   nameEl.setAttribute('aria-label', nameText);
   nameEl.innerHTML = [...nameText].map(c => `<span aria-hidden="true">${c === ' ' ? '&nbsp;' : c}</span>`).join('');
@@ -235,6 +235,8 @@
   function open(byHand, quietText) {
     if (opened) return;
     opened = true; oGoal = 1; ov = Math.max(ov, .06); shut.classList.add('open');
+    /* the tap or key that opens the window must not also press what was behind it: Play and the links sit under the latch on a phone */
+    openedAt = performance.now(); hero.classList.add('settling'); setTimeout(() => hero.classList.remove('settling'), 900);
     if (byHand) { hiss(1.5, 350, 1900, .16); thud(.22); buzz([12, 40, 18]); }
     ctl.hidden = false;
     if (d.activeElement === $('#latch')) { hero.inert = false; $('#play').focus({ preventScroll: true }); }   // the latch is about to vanish, so focus moves to Play
@@ -627,7 +629,7 @@
     [END, () => stopEp(true)]
   ].sort((a, b) => a[0] - b[0]);
   function startEp() {
-    if (ep) return;
+    if (ep || performance.now() - openedAt < 900) return;
     wake();
     const wasOpen = opened;
     ep = { t0: now(), i: 0, cur: null, sc: null };
